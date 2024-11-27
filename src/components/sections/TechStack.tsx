@@ -69,7 +69,7 @@ const TechCard: React.FC<{ tech: typeof technologies[0]; index: number }> = ({ t
       transition={{ delay: index * 0.1 }}
       whileHover={{ y: -10 }}
     >
-      <div className="absolute inset-0 bg-white/5 backdrop-blur-xl rounded-3xl shadow-lg transition-all duration-500 group-hover:shadow-xl" />
+      <div className="absolute inset-0 bg-[#98CCF8]/5 backdrop-blur-xl rounded-3xl shadow-lg transition-all duration-500 group-hover:shadow-xl group-hover:bg-[#98CCF8]/10" />
       
       <div className="relative h-full w-full flex flex-col items-center justify-center p-6">
         <div className="relative w-20 h-20 mb-4">
@@ -79,7 +79,8 @@ const TechCard: React.FC<{ tech: typeof technologies[0]; index: number }> = ({ t
             className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-110"
           />
         </div>
-        <span className="text-sm font-medium text-center tracking-wide text-white">
+
+        <span className="text-sm font-medium text-center tracking-wide text-[#010000]">
           {tech.name}
         </span>
       </div>
@@ -89,8 +90,8 @@ const TechCard: React.FC<{ tech: typeof technologies[0]; index: number }> = ({ t
 
 export const TechStack: React.FC = () => {
   return (
-    <section className="py-32 overflow-hidden bg-background">
-      <div className="container relative">
+    <section className="py-24 bg-background relative overflow-hidden">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -98,11 +99,11 @@ export const TechStack: React.FC = () => {
           className="text-center mb-24"
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-[#040BAB] via-[#373FEC] to-[#0E0BEE] bg-clip-text text-transparent">
+            <span className="text-[#010000]">
               Powered by Modern Technology
             </span>
           </h2>
-          <p className="text-xl text-[#768EB4] max-w-2xl mx-auto">
+          <p className="text-xl text-[#010000]/70 max-w-2xl mx-auto">
             We leverage cutting-edge technologies to craft exceptional digital experiences
           </p>
         </motion.div>

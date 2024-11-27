@@ -5,159 +5,94 @@ import { FiCode, FiLayers, FiShield, FiSmartphone, FiZap, FiGlobe } from 'react-
 
 interface Feature {
   icon: IconType;
-  title: string;
+  name: string;
   description: string;
-  delay: number;
+  link?: string;
 }
 
 const features: Feature[] = [
   {
     icon: FiCode,
-    title: "Modern Development",
+    name: "Modern Development",
     description: "Cutting-edge tech stack with React, TypeScript, and modern tooling",
-    delay: 0.2
   },
   {
     icon: FiLayers,
-    title: "Scalable Architecture",
+    name: "Scalable Architecture",
     description: "Built with scalability in mind using best practices and design patterns",
-    delay: 0.3
   },
   {
     icon: FiShield,
-    title: "Enterprise Security",
+    name: "Enterprise Security",
     description: "Advanced security measures to protect your business data",
-    delay: 0.4
   },
   {
     icon: FiSmartphone,
-    title: "Mobile First",
+    name: "Mobile First",
     description: "Responsive design that works seamlessly across all devices",
-    delay: 0.5
   },
   {
     icon: FiZap,
-    title: "High Performance",
+    name: "High Performance",
     description: "Optimized for speed and efficiency with modern web standards",
-    delay: 0.6
   },
   {
     icon: FiGlobe,
-    title: "Global Scale",
+    name: "Global Scale",
     description: "Ready for international deployment with i18n support",
-    delay: 0.7
   }
 ];
 
-const FeatureCard: React.FC<{ feature: Feature }> = ({ feature }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ 
-        duration: 0.6,
-        delay: feature.delay,
-        ease: [0.22, 1, 0.36, 1]
-      }}
-      viewport={{ once: true }}
-      whileHover={{ y: -5, transition: { duration: 0.2 } }}
-      className="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all"
-    >
-      <div className="relative mb-6 group">
-        {/* Animated gradient background */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#040BAB]/20 to-[#373FEC]/20 rounded-xl blur-xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.5, 0.3, 0.5],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        />
-        
-        {/* Icon Container with gradient */}
-        <div className="relative w-14 h-14 flex items-center justify-center rounded-xl bg-gradient-to-br from-[#040BAB] to-[#373FEC] group-hover:from-[#373FEC] group-hover:to-[#040BAB] transition-all duration-300">
-          <feature.icon className="w-7 h-7 text-white transform group-hover:scale-110 transition-transform duration-300" />
-        </div>
-      </div>
-
-      <motion.h3 
-        className="text-2xl font-bold mb-3 bg-gradient-to-r from-[#040BAB] to-[#373FEC] bg-clip-text text-transparent"
-        whileHover={{ x: 5 }}
-        transition={{ type: "spring", stiffness: 300, damping: 10 }}
-      >
-        {feature.title}
-      </motion.h3>
-      
-      <p className="text-[#768EB4] text-lg leading-relaxed">
-        {feature.description}
-      </p>
-    </motion.div>
-  );
-};
-
 const Features: React.FC = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-[#ECF1F5] to-white relative overflow-hidden">
-      {/* Background decorative elements */}
-      <motion.div
-        className="absolute top-0 right-0 w-96 h-96 rounded-full"
-        style={{
-          background: 'radial-gradient(circle at center, rgba(4, 11, 171, 0.08), transparent 70%)',
-          filter: 'blur(60px)',
-        }}
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.2, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-0 left-0 w-96 h-96 rounded-full"
-        style={{
-          background: 'radial-gradient(circle at center, rgba(55, 63, 236, 0.08), transparent 70%)',
-          filter: 'blur(60px)',
-        }}
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.2, 0.3, 0.2],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      />
-
-      <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-[#040BAB] via-[#373FEC] to-[#0E0BEE] bg-clip-text text-transparent">
-              Cutting-Edge Features
-            </span>
+    <section className="py-24 bg-white relative overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-4xl font-bold tracking-tight text-[#010000] sm:text-5xl">
+            Everything you need to scale your business
           </h2>
-          <p className="text-xl text-[#768EB4] max-w-2xl mx-auto">
-            Discover the powerful capabilities that drive innovation and excellence in every project
+          <p className="mt-6 text-lg leading-8 text-[#010000]/70">
+            Empower your business with our comprehensive suite of solutions designed to drive growth and innovation.
           </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature) => (
-            <FeatureCard key={feature.title} feature={feature} />
-          ))}
+        </div>
+        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+            {features.map((feature) => (
+              <motion.div
+                key={feature.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col relative group"
+              >
+                {/* Card Background with Sky Blue Accent */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#98CCF8]/5 to-transparent rounded-2xl -z-10 group-hover:from-[#98CCF8]/10 transition-colors duration-300" />
+                
+                <div className="relative rounded-2xl border border-[#98CCF8]/10 bg-white/50 p-6 group-hover:border-[#98CCF8]/30 transition-all duration-300">
+                  <dt className="flex items-center gap-x-3 text-lg font-semibold leading-7 text-[#010000]">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#98CCF8]/10 group-hover:bg-[#98CCF8]/20 transition-colors duration-300">
+                      <feature.icon className="h-6 w-6 text-[#010000]" aria-hidden="true" />
+                    </div>
+                    {feature.name}
+                  </dt>
+                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-[#010000]/70">
+                    <p className="flex-auto">{feature.description}</p>
+                    {feature.link && (
+                      <p className="mt-6">
+                        <a
+                          href={feature.link}
+                          className="text-sm font-semibold leading-6 text-[#010000] hover:text-[#98CCF8] transition-colors duration-300"
+                        >
+                          Learn more <span aria-hidden="true">→</span>
+                        </a>
+                      </p>
+                    )}
+                  </dd>
+                </div>
+              </motion.div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>
