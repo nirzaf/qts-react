@@ -93,7 +93,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 2 }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-background/90 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#98CCF8]/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-[#C0F0F9]/5 via-transparent to-[#A6ECFA]/5" />
         {src && (
           <img
             src={src}
@@ -139,7 +140,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                   duration: 0.8, 
                   ease: [0.23, 1, 0.32, 1]
                 }}
-                className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight absolute w-full bg-clip-text text-transparent bg-gradient-to-r from-white via-white/90 to-white/80"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-[#0E0BEE] via-[#2C24F4] to-[#373FEC] bg-clip-text text-transparent"
               >
                 {headlines[currentHeadline]}
               </motion.h1>
@@ -147,7 +148,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
 
           <motion.p
-            className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto font-light"
+            className="text-lg md:text-xl text-[#373FEC]/80 text-center max-w-3xl mx-auto mt-6"
             variants={contentVariants}
           >
             {subTitle}
@@ -157,20 +158,33 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             className="flex flex-wrap justify-center gap-6 mt-12"
             variants={contentVariants}
           >
-            <Link
-              to={primaryBtnURL}
-              className="group relative inline-flex h-12 items-center justify-center rounded-full bg-white px-8 text-sm font-medium text-black transition-all duration-300 hover:bg-opacity-90"
+            <Button 
+              asChild
+              className="relative overflow-hidden group bg-transparent hover:bg-transparent"
             >
-              <span>{primaryBtn}</span>
-              <motion.span
-                className="absolute right-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1"
-                initial={{ x: -5 }}
-                animate={{ x: 0 }}
-                transition={{ duration: 0.3 }}
+              <a 
+                href="https://quadratetechsolutions.zohobookings.com/"
+                className="
+                  relative px-8 py-3 rounded-full overflow-hidden
+                  before:content-[''] before:absolute before:inset-0 
+                  before:bg-gradient-to-br before:from-[#98CCF8]/50 before:to-[#C0F0F9]/5 
+                  before:rounded-full before:backdrop-blur-md
+                  after:content-[''] after:absolute after:inset-[1px]
+                  after:bg-gradient-to-br after:from-[#A6ECFA]/40 after:to-transparent 
+                  after:rounded-full after:backdrop-blur-sm
+                  shadow-[0_0_20px_rgba(152,204,248,0.3),inset_0_0_15px_rgba(192,240,249,0.3)]
+                  group-hover:shadow-[0_0_30px_rgba(152,204,248,0.4),inset_0_0_20px_rgba(192,240,249,0.4)]
+                  transition-all duration-300 transform group-hover:scale-105
+                "
               >
-                →
-              </motion.span>
-            </Link>
+                <span className="relative z-10 text-lg font-semibold bg-gradient-to-r from-[#0E0BEE] via-[#2C24F4] to-[#373FEC] bg-clip-text text-transparent">
+                  Book a Meeting
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#98CCF8]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute -top-[150%] -left-[150%] w-[400%] h-[400%] bg-gradient-to-br from-[#A6ECFA]/40 via-[#C0F0F9]/10 to-transparent rounded-full transform rotate-45 group-hover:translate-x-[60%] group-hover:translate-y-[60%] transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#98CCF8]/20 via-[#C0F0F9]/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+              </a>
+            </Button>
             <Link
               to={secondaryBtnURL}
               className="group inline-flex h-12 items-center justify-center rounded-full border border-white/30 bg-transparent px-8 text-sm font-medium text-white transition-all duration-300 hover:bg-white/10"
