@@ -57,7 +57,7 @@ const Contact: FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <ContactForm onClose={() => setActiveMethod(null)} />
+              <ContactForm />
             </motion.div>
           )}
         </div>
