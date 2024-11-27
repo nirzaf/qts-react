@@ -13,17 +13,20 @@ export default defineConfig({
   build: {
     sourcemap: true,
     target: 'esnext',
+    chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
-              return 'react-vendor'
-            }
-            return 'vendor'
-          }
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-slot', '@radix-ui/react-avatar'],
+          'animation-vendor': ['framer-motion'],
+          'icons-vendor': ['lucide-react'],
+          'utils-vendor': ['clsx', 'tailwind-merge']
         }
       }
-    }
+    },
+    minify: 'esbuild',
+    cssMinify: true,
+    cssCodeSplit: true
   }
-})
+});
