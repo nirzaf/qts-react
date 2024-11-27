@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { ButtonConfig } from '@/types';
 
@@ -13,13 +13,11 @@ interface HeroSectionProps {
 }
 
 const container: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    y: 0,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.3,
+      staggerChildren: 0.3,
     },
   },
 };
@@ -62,6 +60,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   primaryButton,
   secondaryButton,
 }) => {
+  const words = ["Transform", "Innovate", "Elevate", "Empower"];
+  const [currentWord, setCurrentWord] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWord((prev) => (prev + 1) % words.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section 
       className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-tr from-[#ECF1F5] via-[#98CCF8]/5 to-[#C0F0F9]/10"
@@ -98,10 +106,36 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           className="grid lg:grid-cols-2 gap-12 items-center"
         >
           <motion.div variants={item} className="text-center lg:text-left">
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-[#040BAB] via-[#373FEC] to-[#0E0BEE] bg-clip-text text-transparent">
-                Transform Your Digital Presence
-              </span>
+            <h1 className="text-5xl lg:text-7xl font-bold mb-6 flex flex-col relative">
+              <div className="h-[1.2em] overflow-hidden">
+                <motion.span
+                  key={words[currentWord]}
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -50, opacity: 0 }}
+                  transition={{ 
+                    y: { type: "spring", stiffness: 300, damping: 30 },
+                    opacity: { duration: 0.2 }
+                  }}
+                  className="bg-gradient-to-r from-[#040BAB] via-[#373FEC] to-[#0E0BEE] bg-clip-text text-transparent inline-block relative"
+                >
+                  {words[currentWord]}
+                  <motion.div 
+                    className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#040BAB] to-[#373FEC]"
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    animate={{ scaleX: 1, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}
+                  />
+                </motion.span>
+              </div>
+              <motion.span 
+                className="bg-gradient-to-r from-[#040BAB] via-[#373FEC] to-[#0E0BEE] bg-clip-text text-transparent mt-2"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+              >
+                Your Digital Presence
+              </motion.span>
             </h1>
             <motion.p 
               className="text-xl lg:text-2xl text-[#768EB4] mb-8 max-w-2xl mx-auto lg:mx-0"
