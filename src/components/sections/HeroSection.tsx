@@ -4,10 +4,6 @@ import { ButtonConfig } from '@/types';
 
 interface HeroSectionProps {
   backgroundImage: string;
-  heroImage: {
-    src: string;
-    alt: string;
-  };
   primaryButton: ButtonConfig;
   secondaryButton: ButtonConfig;
 }
@@ -56,7 +52,6 @@ const decorativeVariants: Variants = {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   backgroundImage,
-  heroImage,
   primaryButton,
   secondaryButton,
 }) => {
@@ -168,58 +163,48 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <motion.div 
             variants={item} 
             className="relative max-w-lg mx-auto lg:mx-0"
-            whileHover={{ 
-              scale: 1.03,
-              rotateY: 5,
-              transition: { type: "spring", stiffness: 400, damping: 10 }
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            whileHover={{ scale: 1.02 }}
+            transition={{ 
+              duration: 0.5,
+              ease: "easeOut",
+              scale: {
+                type: "spring",
+                stiffness: 300,
+                damping: 25
+              }
             }}
           >
-            <div className="relative z-10">
+            {/* Main Image Container */}
+            <div className="relative">
               <img
                 src="https://ik.imagekit.io/quadrate/assets/img/QTS%20PNG.png?updatedAt=1732728815505"
-                alt="Quadrate Tech Solutions Hero"
-                className="w-full h-auto rounded-xl shadow-2xl"
+                alt="Quadrate Tech Solutions"
+                className="w-full h-auto rounded-2xl shadow-2xl"
                 style={{
-                  filter: 'drop-shadow(0 25px 25px rgba(4, 11, 171, 0.15))',
-                  transform: 'perspective(1000px) rotateY(-5deg)',
+                  filter: 'drop-shadow(0 20px 40px rgba(55, 63, 236, 0.12))',
                 }}
               />
               
-              {/* Floating elements */}
+              {/* Simple Background Glow */}
               <motion.div
-                className="absolute -right-8 -top-8 w-20 h-20 bg-gradient-to-br from-[#040BAB] to-[#373FEC] rounded-lg opacity-20"
+                className="absolute inset-0 -z-10 rounded-2xl opacity-40 blur-2xl"
+                style={{
+                  background: 'radial-gradient(circle at 50% 50%, rgba(55, 63, 236, 0.15), transparent 70%)',
+                }}
                 animate={{
-                  y: [0, -10, 0],
-                  rotate: [0, 5, 0],
+                  scale: [1, 1.1, 1],
+                  opacity: [0.4, 0.3, 0.4],
                 }}
                 transition={{
                   duration: 4,
                   repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              <motion.div
-                className="absolute -left-4 bottom-12 w-12 h-12 bg-gradient-to-tr from-[#373FEC] to-[#040BAB] rounded-full opacity-20"
-                animate={{
-                  y: [0, 10, 0],
-                  x: [0, -5, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
+                  repeatType: "reverse",
                   ease: "easeInOut"
                 }}
               />
             </div>
-            
-            {/* Enhanced background effect */}
-            <div 
-              className="absolute -inset-4 bg-gradient-to-r from-[#040BAB]/10 via-[#373FEC]/5 to-[#040BAB]/10 rounded-2xl blur-2xl"
-              style={{ 
-                zIndex: 0,
-                transform: 'translateY(2%) scale(0.95)',
-              }}
-            />
           </motion.div>
         </motion.div>
       </div>

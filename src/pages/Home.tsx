@@ -7,7 +7,7 @@ import { PartnersSection } from '@/components/sections/PartnersSection';
 import { FaqSection } from '@/components/sections/FaqSection';
 import { PricingSection } from '@/components/sections/PricingSection';
 import { ContactCTA } from '@/components/sections/ContactCTA';
-import { Features } from '@/components/sections/features/Features';
+import Features from '@/components/sections/features/Features';
 import { TechStack } from '@/components/sections/TechStack';
 import { AnimatedSection } from '@/components/sections/home/AnimatedSection';
 import { AnimatedHero } from '@/components/sections/home/AnimatedHero';
@@ -58,17 +58,12 @@ const Home: React.FC = () => {
         />
 
         <Features />
-        
         <TechStack />
-
         <ServicesSection />
-
         <AnimatedSection>
           <PricingSection plans={pricingPlans} />
         </AnimatedSection>
-
         <TestimonialsSection />
-
         <StatsSection />
 
         <PartnersSection
