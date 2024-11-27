@@ -1,7 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Calendar } from 'lucide-react';
 
 interface ContactCTAProps {
   title: string;
@@ -10,6 +8,23 @@ interface ContactCTAProps {
   buttonUrl: string;
 }
 
+const container = {
+  hidden: { opacity: 0, x: -100 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.5,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
+
 export const ContactCTA: React.FC<ContactCTAProps> = ({
   title,
   description,
@@ -17,65 +32,43 @@ export const ContactCTA: React.FC<ContactCTAProps> = ({
   buttonUrl,
 }) => {
   return (
-    <section className="relative overflow-hidden bg-primary/5 py-16 sm:py-24">
-      {/* Background Pattern */}
-      <div 
-        className="absolute inset-0 bg-[url('https://ik.imagekit.io/quadrate/assets/img/cta-bg.png?updatedAt=1718024113822')] bg-cover bg-center opacity-5"
-        aria-hidden="true"
-      />
+    <section className="relative overflow-hidden bg-gradient-to-tr from-[#040BAB] via-[#373FEC] to-[#5B7CCA] py-24">
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 right-1/4 w-1/3 h-1/3 bg-white/5 rounded-full transform rotate-45 blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-white/5 rounded-full transform -rotate-45 blur-3xl" />
+      </div>
 
-      <div className="container relative">
-        <div className="mx-auto max-w-4xl text-center">
+      <div className="container relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <h2 className="text-4xl font-bold sm:text-5xl mb-6 text-white">
+            {title}
+          </h2>
+          <p className="text-xl text-white/80 max-w-2xl mx-auto mb-12">
+            {description}
+          </p>
+          
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              {title}
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              {description}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-8"
-          >
-            <Button
-              size="lg"
-              className="group"
+            <motion.button
+              variants={item}
+              className="px-8 py-4 rounded-full bg-white text-[#040BAB] font-semibold hover:bg-white/90 transition-colors duration-300"
               onClick={() => window.open(buttonUrl, '_blank')}
             >
-              <Calendar className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
               {buttonText}
-            </Button>
+            </motion.button>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-8 flex items-center justify-center gap-4"
-          >
-            <div className="flex items-center">
-              <div className="flex -space-x-2">
-                {[1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="inline-block h-8 w-8 rounded-full bg-primary/10"
-                  />
-                ))}
-              </div>
-              <span className="ml-3 text-sm text-muted-foreground">
-                Join 100+ businesses already growing
-              </span>
-            </div>
-          </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

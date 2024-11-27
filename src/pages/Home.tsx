@@ -13,6 +13,7 @@ import { AnimatedSection } from '@/components/sections/home/AnimatedSection';
 import { AnimatedHero } from '@/components/sections/home/AnimatedHero';
 import { faqs } from '@/data/home-page/faqs';
 import { pricingPlans } from '@/data/home-page/pricing';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * Home page component displaying various sections about Quadrate Tech Solutions
@@ -23,6 +24,7 @@ import { pricingPlans } from '@/data/home-page/pricing';
  * - Modular component architecture
  */
 const Home: React.FC = () => {
+  const navigate = useNavigate();
   // Error boundary could be added here for section-level error handling
   try {
     return (
@@ -32,23 +34,26 @@ const Home: React.FC = () => {
         transition={{ duration: 0.5 }}
       >
         <AnimatedHero
-          title={
-            <>
-              We build <span className="text-primary">World Class</span>{' '}
-              <br className="hidden sm:inline" />
-              Software Solutions
-            </>
-          }
-          description="Quadrate Tech Solutions: Delivering innovative software for every business need with cutting-edge technology and unparalleled expertise."
           data={{
+            backgroundImage: '/images/hero-bg.jpg',
+            heroImage: {
+              src: '/images/hero-image.jpg',
+              alt: 'Quadrate Tech Solutions',
+            },
             primaryButton: {
-              text: "Get Started",
-              href: "/contact"
+              text: 'Get Started',
+              onClick: () => {
+                // Navigate to contact page
+                navigate('/contact');
+              },
             },
             secondaryButton: {
-              text: "View Services",
-              href: "/services"
-            }
+              text: 'Learn More',
+              onClick: () => {
+                // Navigate to about page
+                navigate('/about');
+              },
+            },
           }}
         />
 

@@ -1,14 +1,32 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { HeroSection } from '@/components/sections/HeroSection';
-import { type HeroData } from '@/data/heroData';
+import { HeroData } from '@/types';
 import { fadeInUpVariants } from '@/config/animations';
 
+const defaultHeroData: HeroData = {
+  backgroundImage: '/images/hero-bg.jpg',
+  heroImage: {
+    src: '/images/hero-image.jpg',
+    alt: 'Quadrate Tech Solutions Hero',
+  },
+  primaryButton: {
+    text: 'Get Started',
+    onClick: () => {
+      // Add your click handler here
+      console.log('Primary button clicked');
+    },
+  },
+  secondaryButton: {
+    text: 'Learn More',
+    onClick: () => {
+      // Add your click handler here
+      console.log('Secondary button clicked');
+    },
+  },
+};
+
 interface AnimatedHeroProps {
-  /** The main title of the hero section, can include styled elements */
-  title: React.ReactNode;
-  /** A concise description of the main value proposition */
-  description: string;
   /** Optional hero section configuration data */
   data?: Partial<HeroData>;
   /** Optional className for custom styling */
@@ -27,12 +45,12 @@ interface AnimatedHeroProps {
  * - Integration with shared animation configurations
  */
 export const AnimatedHero: React.FC<AnimatedHeroProps> = ({
-  title,
-  description,
   data,
   className = '',
   animationDelay = 0.2
 }) => {
+  const heroData: HeroData = { ...defaultHeroData, ...data };
+
   return (
     <motion.div
       className={className}
@@ -50,9 +68,10 @@ export const AnimatedHero: React.FC<AnimatedHeroProps> = ({
       }}
     >
       <HeroSection
-        title={title}
-        description={description}
-        data={data}
+        backgroundImage={heroData.backgroundImage}
+        heroImage={heroData.heroImage}
+        primaryButton={heroData.primaryButton}
+        secondaryButton={heroData.secondaryButton}
       />
     </motion.div>
   );
