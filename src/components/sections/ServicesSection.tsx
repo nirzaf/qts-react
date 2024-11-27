@@ -47,10 +47,12 @@ export const ServicesSection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Comprehensive Digital Solutions
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-[#040BAB] via-[#373FEC] to-[#0E0BEE] bg-clip-text text-transparent">
+                Comprehensive Digital Solutions
+              </span>
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="text-xl text-[#768EB4] max-w-2xl mx-auto">
               From custom software development to digital marketing, we provide end-to-end solutions
               to help your business thrive in the digital age.
             </p>
@@ -67,14 +69,17 @@ export const ServicesSection: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
               >
-                <Card className="group relative overflow-hidden">
+                <Card className="group relative overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#ECF1F5]">
                   <div className="relative space-y-4 p-6">
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                      <Icon className="h-6 w-6 text-primary" />
+                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-[#040BAB]/10 to-[#373FEC]/10">
+                      <Icon className="h-6 w-6 text-[#040BAB]" />
                     </div>
-                    <h3 className="text-xl font-semibold">{service.title}</h3>
-                    <p className="text-muted-foreground">{service.description}</p>
-                    <Button variant="ghost" className="mt-4">
+                    <h3 className="text-xl font-semibold text-[#040BAB]">{service.title}</h3>
+                    <p className="text-[#768EB4]">{service.description}</p>
+                    <Button 
+                      variant="ghost" 
+                      className="mt-4 text-[#373FEC] hover:text-[#0E0BEE] hover:bg-[#ECF1F5]/50 transition-colors"
+                    >
                       Learn More
                       <span className="ml-2">→</span>
                     </Button>
@@ -86,7 +91,10 @@ export const ServicesSection: React.FC = () => {
         </div>
 
         <div className="mx-auto mt-16 text-center">
-          <Button size="lg" asChild>
+          <Button 
+            size="lg" 
+            className="bg-gradient-to-r from-[#040BAB] to-[#373FEC] hover:from-[#373FEC] hover:to-[#0E0BEE] text-white transition-all duration-300"
+          >
             <a href="https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions">
               Book a Consultation
             </a>

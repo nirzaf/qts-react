@@ -97,10 +97,12 @@ export const TechStack: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-24"
         >
-          <h2 className="text-4xl font-bold sm:text-5xl mb-6 text-primary">
-            Powered by Modern Technology
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-[#040BAB] via-[#373FEC] to-[#0E0BEE] bg-clip-text text-transparent">
+              Powered by Modern Technology
+            </span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light tracking-wide leading-relaxed">
+          <p className="text-xl text-[#768EB4] max-w-2xl mx-auto">
             We leverage cutting-edge technologies to craft exceptional digital experiences
           </p>
         </motion.div>
