@@ -21,49 +21,6 @@ const headlines = [
   "Beyond Boundaries"
 ];
 
-const logoVariants = {
-  initial: { 
-    scale: 0.9,
-    opacity: 0,
-    y: 30
-  },
-  animate: {
-    scale: 1,
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 1,
-      ease: [0.23, 1, 0.32, 1], // Apple's custom easing
-    }
-  },
-  hover: {
-    scale: 1.02,
-    filter: [
-      "brightness(1.1) drop-shadow(0px 20px 40px rgba(0,0,0,0.2))",
-      "brightness(1.15) drop-shadow(0px 25px 50px rgba(0,0,0,0.25))",
-      "brightness(1.1) drop-shadow(0px 20px 40px rgba(0,0,0,0.2))"
-    ],
-    transition: {
-      duration: 5,
-      repeat: Infinity,
-      repeatType: "reverse",
-      ease: "easeInOut"
-    }
-  }
-};
-
-const contentVariants = {
-  initial: { opacity: 0, y: 20 },
-  animate: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.23, 1, 0.32, 1]
-    }
-  }
-};
-
 const HeroSection: React.FC<HeroSectionProps> = ({
   title = "Quadrate Tech Solutions",
   subTitle = "Your Digital Solutions Partner",
@@ -80,144 +37,80 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentHeadline((prev) => (prev + 1) % headlines.length);
-    }, 4000);
+    }, 3000);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-black text-white">
-      {/* Background with Gradient */}
-      <motion.div 
-        className="absolute inset-0 w-full h-full"
-        initial={{ scale: 1.1, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 2 }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-[#98CCF8]/10 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-[#C0F0F9]/5 via-transparent to-[#A6ECFA]/5" />
-        {src && (
-          <img
-            src={src}
-            alt={alt}
-            className="w-full h-full object-cover opacity-60"
-          />
-        )}
-      </motion.div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#ECF1F5] via-[#98CCF8]/10 to-[#C0F0F9]/20">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-bl from-[#98CCF8]/20 via-[#A6ECFA]/10 to-transparent rounded-full transform rotate-12 animate-pulse" />
+        <div className="absolute -bottom-1/2 -left-1/2 w-full h-full bg-gradient-to-tr from-[#C0F0F9]/20 via-[#98CCF8]/10 to-transparent rounded-full transform -rotate-12 animate-pulse" />
+      </div>
 
-      {/* Content Container */}
-      <div className="container relative z-10 flex flex-col items-center justify-center gap-8 py-20">
-        {/* Logo Section */}
-        <motion.div
-          className="mb-16 w-full flex justify-center"
-          initial="initial"
-          animate="animate"
-          whileHover="hover"
-        >
-          <motion.img
-            src="https://ik.imagekit.io/quadrate/assets/QTS%20PNG.png?updatedAt=1732465331710"
-            alt="Quadrate Tech Solutions"
-            className="w-[280px] h-auto"
-            variants={logoVariants}
-          />
-        </motion.div>
+      <div className="container relative z-10 px-4 py-32 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <motion.h1
+            className="text-4xl font-bold tracking-tight text-[#040BAB] sm:text-6xl md:text-7xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {title}
+          </motion.h1>
 
-        {/* Main Content */}
-        <motion.div 
-          className="text-center space-y-6"
-          variants={contentVariants}
-          initial="initial"
-          animate="animate"
-        >
-          {/* Animated Headlines */}
-          <div className="h-32 relative overflow-hidden mb-2">
+          <motion.div
+            className="mt-4 overflow-hidden h-12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <AnimatePresence mode="wait">
-              <motion.h1
+              <motion.p
                 key={currentHeadline}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -40 }}
-                transition={{ 
-                  duration: 0.8, 
-                  ease: [0.23, 1, 0.32, 1]
-                }}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-[#0E0BEE] via-[#2C24F4] to-[#373FEC] bg-clip-text text-transparent"
+                className="text-xl sm:text-2xl font-medium bg-gradient-to-r from-[#5B7CCA] via-[#373FEC] to-[#0E0BEE] bg-clip-text text-transparent"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.5 }}
               >
                 {headlines[currentHeadline]}
-              </motion.h1>
+              </motion.p>
             </AnimatePresence>
-          </div>
+          </motion.div>
 
           <motion.p
-            className="text-lg md:text-xl text-[#373FEC]/80 text-center max-w-3xl mx-auto mt-6"
-            variants={contentVariants}
+            className="mx-auto mt-6 max-w-2xl text-lg text-[#768EB4]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
             {subTitle}
           </motion.p>
 
           <motion.div
-            className="flex flex-wrap justify-center gap-6 mt-12"
-            variants={contentVariants}
+            className="mt-10 flex items-center justify-center gap-x-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <Button 
-              asChild
-              className="relative overflow-hidden group bg-transparent hover:bg-transparent"
+            <Link
+              to={primaryBtnURL}
+              className="rounded-full bg-gradient-to-r from-[#5B7CCA] to-[#373FEC] px-8 py-3 text-lg font-semibold text-white shadow-lg hover:shadow-xl hover:from-[#373FEC] hover:to-[#0E0BEE] transition-all duration-300"
             >
-              <a 
-                href="https://quadratetechsolutions.zohobookings.com/"
-                className="
-                  relative px-8 py-3 rounded-full overflow-hidden
-                  before:content-[''] before:absolute before:inset-0 
-                  before:bg-gradient-to-br before:from-[#98CCF8]/50 before:to-[#C0F0F9]/5 
-                  before:rounded-full before:backdrop-blur-md
-                  after:content-[''] after:absolute after:inset-[1px]
-                  after:bg-gradient-to-br after:from-[#A6ECFA]/40 after:to-transparent 
-                  after:rounded-full after:backdrop-blur-sm
-                  shadow-[0_0_20px_rgba(152,204,248,0.3),inset_0_0_15px_rgba(192,240,249,0.3)]
-                  group-hover:shadow-[0_0_30px_rgba(152,204,248,0.4),inset_0_0_20px_rgba(192,240,249,0.4)]
-                  transition-all duration-300 transform group-hover:scale-105
-                "
-              >
-                <span className="relative z-10 text-lg font-semibold bg-gradient-to-r from-[#0E0BEE] via-[#2C24F4] to-[#373FEC] bg-clip-text text-transparent">
-                  Book a Meeting
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#98CCF8]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute -top-[150%] -left-[150%] w-[400%] h-[400%] bg-gradient-to-br from-[#A6ECFA]/40 via-[#C0F0F9]/10 to-transparent rounded-full transform rotate-45 group-hover:translate-x-[60%] group-hover:translate-y-[60%] transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#98CCF8]/20 via-[#C0F0F9]/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
-              </a>
-            </Button>
+              {primaryBtn}
+            </Link>
             <Link
               to={secondaryBtnURL}
-              className="group inline-flex h-12 items-center justify-center rounded-full border border-white/30 bg-transparent px-8 text-sm font-medium text-white transition-all duration-300 hover:bg-white/10"
+              className="text-[#040BAB] hover:text-[#0E0BEE] px-6 py-3 text-lg font-semibold relative group"
             >
               {secondaryBtn}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#0E0BEE] group-hover:w-full transition-all duration-300"></span>
             </Link>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 1 }}
-      >
-        <motion.div
-          className="w-1 h-12 rounded-full bg-white/20 relative overflow-hidden"
-          animate={{
-            backgroundColor: ["rgba(255,255,255,0.2)", "rgba(255,255,255,0.4)", "rgba(255,255,255,0.2)"]
-          }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <motion.div
-            className="w-full bg-white absolute top-0 bottom-0"
-            animate={{
-              y: ["0%", "100%", "0%"]
-            }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </motion.div>
-      </motion.div>
     </section>
   );
 };

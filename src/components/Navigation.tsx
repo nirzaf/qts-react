@@ -29,7 +29,7 @@ export const Navigation: React.FC = () => {
   return (
     <motion.div
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        isScrolled ? 'bg-[#ECF1F5]/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -47,35 +47,14 @@ export const Navigation: React.FC = () => {
               >
                 <motion.div
                   className={`
-                    relative px-4 py-2 rounded-full overflow-hidden
+                    relative px-4 py-2 rounded-full overflow-hidden text-[#040BAB] hover:text-[#0E0BEE]
                     before:content-[''] before:absolute before:inset-0 
-                    before:bg-gradient-to-br before:from-[#98CCF8]/50 before:to-[#C0F0F9]/5 
-                    before:rounded-full before:backdrop-blur-md
-                    after:content-[''] after:absolute after:inset-[1px]
-                    after:bg-gradient-to-br after:from-[#A6ECFA]/40 after:to-transparent 
-                    after:rounded-full after:backdrop-blur-sm
-                    ${
-                      location.pathname === link.to 
-                        ? 'shadow-[0_0_15px_rgba(152,204,248,0.3),inset_0_0_10px_rgba(192,240,249,0.3)] before:opacity-80' 
-                        : 'shadow-[0_0_10px_rgba(152,204,248,0.2)] hover:shadow-[0_0_15px_rgba(152,204,248,0.3),inset_0_0_10px_rgba(192,240,249,0.2)]'
-                    }
-                    transition-all duration-300
+                    before:bg-[#98CCF8]/0 hover:before:bg-[#98CCF8]/10
+                    before:transition-all before:duration-300
+                    ${location.pathname === link.to ? 'text-[#0E0BEE] before:bg-[#98CCF8]/20' : ''}
                   `}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
-                  <span className={`
-                    relative z-10 text-lg font-medium
-                    ${
-                      location.pathname === link.to 
-                        ? 'text-[#0E0BEE] font-semibold' 
-                        : 'text-[#373FEC] hover:text-[#2C24F4]'
-                    }
-                  `}>
-                    {link.label}
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#C0F0F9]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute -top-[150%] -left-[150%] w-[400%] h-[400%] bg-gradient-to-br from-[#98CCF8]/40 via-[#A6ECFA]/10 to-transparent rounded-full transform rotate-45 group-hover:translate-x-[60%] group-hover:translate-y-[60%] transition-transform duration-700" />
+                  {link.label}
                 </motion.div>
               </Link>
             ))}
@@ -84,58 +63,21 @@ export const Navigation: React.FC = () => {
 
         <div className="flex items-center">
           {/* Book a Meeting Button */}
-          <Button 
+          <Button
             asChild
-            className="hidden md:flex relative overflow-hidden group bg-transparent hover:bg-transparent"
+            className="bg-gradient-to-r from-[#5B7CCA] to-[#373FEC] hover:from-[#373FEC] hover:to-[#0E0BEE] text-white shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <a 
-              href="https://quadratetechsolutions.zohobookings.com/"
-              className="
-                relative px-8 py-3 rounded-full overflow-hidden
-                before:content-[''] before:absolute before:inset-0 
-                before:bg-gradient-to-br before:from-[#98CCF8]/50 before:to-[#C0F0F9]/5 
-                before:rounded-full before:backdrop-blur-md
-                after:content-[''] after:absolute after:inset-[1px]
-                after:bg-gradient-to-br after:from-[#A6ECFA]/40 after:to-transparent 
-                after:rounded-full after:backdrop-blur-sm
-                shadow-[0_0_20px_rgba(152,204,248,0.3),inset_0_0_15px_rgba(192,240,249,0.3)]
-                group-hover:shadow-[0_0_30px_rgba(152,204,248,0.4),inset_0_0_20px_rgba(192,240,249,0.4)]
-                transition-all duration-300 transform group-hover:scale-105
-              "
-            >
-              <span className="relative z-10 text-lg font-semibold bg-gradient-to-r from-[#0E0BEE] via-[#2C24F4] to-[#373FEC] bg-clip-text text-transparent">
-                Book a Meeting
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#98CCF8]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute -top-[150%] -left-[150%] w-[400%] h-[400%] bg-gradient-to-br from-[#A6ECFA]/40 via-[#C0F0F9]/10 to-transparent rounded-full transform rotate-45 group-hover:translate-x-[60%] group-hover:translate-y-[60%] transition-transform duration-700" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#98CCF8]/20 via-[#C0F0F9]/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+            <a href="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions">
+              Book a Meeting
             </a>
           </Button>
 
           {/* Mobile Menu Button */}
           <button
-            className="
-              md:hidden relative overflow-hidden rounded-full p-2
-              before:content-[''] before:absolute before:inset-0 
-              before:bg-gradient-to-br before:from-[#98CCF8]/50 before:to-[#C0F0F9]/5 
-              before:rounded-full before:backdrop-blur-md
-              after:content-[''] after:absolute after:inset-[1px]
-              after:bg-gradient-to-br after:from-[#A6ECFA]/40 after:to-transparent 
-              after:rounded-full after:backdrop-blur-sm
-              shadow-[0_0_10px_rgba(152,204,248,0.2)]
-              hover:shadow-[0_0_15px_rgba(152,204,248,0.3),inset_0_0_10px_rgba(192,240,249,0.2)]
-              transition-all duration-300
-            "
+            className="md:hidden p-2 rounded-lg bg-[#98CCF8]/10 hover:bg-[#98CCF8]/20 text-[#040BAB]"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <div className="relative z-10 text-[#373FEC] hover:text-[#0E0BEE]">
-              {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </div>
-            <div className="absolute -top-[150%] -left-[150%] w-[400%] h-[400%] bg-gradient-to-br from-[#98CCF8]/40 via-[#A6ECFA]/10 to-transparent rounded-full transform rotate-45 hover:translate-x-[60%] hover:translate-y-[60%] transition-transform duration-700" />
+            {isMobileMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
       </div>
@@ -144,84 +86,30 @@ export const Navigation: React.FC = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+            className="md:hidden bg-[#ECF1F5]/95 backdrop-blur-lg border-t border-[#768EB4]/10"
           >
-            <div className="
-              container py-4 backdrop-blur-md bg-white/10
-              before:content-[''] before:absolute before:inset-0 
-              before:bg-gradient-to-b before:from-[#98CCF8]/50 before:to-[#C0F0F9]/5 
-              before:backdrop-blur-md
-              after:content-[''] after:absolute after:inset-[1px]
-              after:bg-gradient-to-b after:from-[#A6ECFA]/40 after:to-transparent 
-              after:backdrop-blur-sm
-              shadow-[0_10px_20px_rgba(152,204,248,0.2)]
-              rounded-b-2xl border-t border-white/30
-              relative overflow-hidden
-            ">
+            <div className="container py-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}
-                  className={`
-                    relative block py-2 px-4 mx-2 rounded-full overflow-hidden
-                    before:content-[''] before:absolute before:inset-0 
-                    before:bg-gradient-to-br before:from-[#98CCF8]/30 before:to-[#C0F0F9]/5 
-                    before:rounded-full before:backdrop-blur-sm
-                    after:content-[''] after:absolute after:inset-[1px]
-                    after:bg-gradient-to-br after:from-[#A6ECFA]/20 after:to-transparent 
-                    after:rounded-full
-                    ${
-                      location.pathname === link.to 
-                        ? 'shadow-[0_0_15px_rgba(152,204,248,0.3),inset_0_0_10px_rgba(192,240,249,0.3)] before:opacity-80' 
-                        : 'hover:shadow-[0_0_10px_rgba(152,204,248,0.2),inset_0_0_5px_rgba(192,240,249,0.1)]'
-                    }
-                    transition-all duration-300 my-1
-                  `}
+                  className={`block py-2 px-4 rounded-lg text-[#040BAB] hover:text-[#0E0BEE] hover:bg-[#98CCF8]/10
+                    ${location.pathname === link.to ? 'bg-[#98CCF8]/20 text-[#0E0BEE]' : ''}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  <span className={`
-                    relative z-10 text-lg font-medium
-                    ${
-                      location.pathname === link.to 
-                        ? 'text-[#0E0BEE] font-semibold' 
-                        : 'text-[#373FEC] hover:text-[#2C24F4]'
-                    }
-                  `}>
-                    {link.label}
-                  </span>
-                  <div className="absolute -top-[150%] -left-[150%] w-[400%] h-[400%] bg-gradient-to-br from-[#98CCF8]/40 via-[#A6ECFA]/10 to-transparent rounded-full transform rotate-45 hover:translate-x-[60%] hover:translate-y-[60%] transition-transform duration-700" />
+                  {link.label}
                 </Link>
               ))}
               <div className="mt-4 px-4">
-                <Button 
+                <Button
                   asChild
-                  className="w-full relative overflow-hidden group bg-transparent hover:bg-transparent"
+                  className="w-full bg-gradient-to-r from-[#5B7CCA] to-[#373FEC] hover:from-[#373FEC] hover:to-[#0E0BEE] text-white shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  <a 
-                    href="https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions"
-                    className="
-                      relative px-8 py-3 rounded-full overflow-hidden
-                      before:content-[''] before:absolute before:inset-0 
-                      before:bg-gradient-to-br before:from-[#98CCF8]/50 before:to-[#C0F0F9]/5 
-                      before:rounded-full before:backdrop-blur-md
-                      after:content-[''] after:absolute after:inset-[1px]
-                      after:bg-gradient-to-br after:from-[#A6ECFA]/40 after:to-transparent 
-                      after:rounded-full after:backdrop-blur-sm
-                      shadow-[0_0_20px_rgba(152,204,248,0.3),inset_0_0_15px_rgba(192,240,249,0.3)]
-                      group-hover:shadow-[0_0_30px_rgba(152,204,248,0.4),inset_0_0_20px_rgba(192,240,249,0.4)]
-                      transition-all duration-300 transform group-hover:scale-105
-                    "
-                  >
-                    <span className="relative z-10 text-lg font-semibold bg-gradient-to-r from-[#0E0BEE] via-[#2C24F4] to-[#373FEC] bg-clip-text text-transparent">
-                      Book a Meeting
-                    </span>
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#98CCF8]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute -top-[150%] -left-[150%] w-[400%] h-[400%] bg-gradient-to-br from-[#A6ECFA]/40 via-[#C0F0F9]/10 to-transparent rounded-full transform rotate-45 group-hover:translate-x-[60%] group-hover:translate-y-[60%] transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#98CCF8]/20 via-[#C0F0F9]/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                  <a href="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions">
+                    Book a Meeting
                   </a>
                 </Button>
               </div>
