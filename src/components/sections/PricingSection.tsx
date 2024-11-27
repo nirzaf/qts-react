@@ -9,6 +9,7 @@ interface PricingPlan {
   price: string;
   description: string;
   features: string[];
+  popular?: boolean;
 }
 
 interface PricingSectionProps {
@@ -25,10 +26,12 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ plans }) => {
           transition={{ duration: 0.6 }}
           className="mx-auto max-w-2xl text-center"
         >
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Simple, Transparent Pricing
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-[#040BAB] via-[#373FEC] to-[#0E0BEE] bg-clip-text text-transparent">
+              Simple, Transparent Pricing
+            </span>
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="text-xl text-[#768EB4] max-w-2xl mx-auto">
             Choose the perfect plan for your business needs. No hidden fees.
           </p>
         </motion.div>
@@ -41,37 +44,50 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ plans }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
-              <Card className="relative flex h-full flex-col p-6">
+              <Card className={`relative flex h-full flex-col p-8 hover:shadow-lg transition-all duration-300 border-[#ECF1F5] ${
+                plan.popular ? 'border-[#040BAB] shadow-lg ring-2 ring-[#040BAB]/10' : ''
+              }`}>
+                {plan.popular && (
+                  <div className="absolute -top-4 right-8">
+                    <span className="inline-flex items-center rounded-full bg-gradient-to-r from-[#040BAB] to-[#373FEC] px-4 py-1 text-xs font-medium text-white shadow-lg">
+                      Most Popular
+                    </span>
+                  </div>
+                )}
                 <div className="mb-8">
-                  <h3 className="text-lg font-semibold">{plan.name}</h3>
+                  <h3 className="text-2xl font-bold text-[#040BAB]">{plan.name}</h3>
                   <div className="mt-4 flex items-baseline">
                     {plan.price === 'Custom' ? (
-                      <span className="text-4xl font-bold">Custom</span>
+                      <span className="text-5xl font-bold text-[#373FEC]">Custom</span>
                     ) : (
                       <>
-                        <span className="text-4xl font-bold">${plan.price}</span>
-                        <span className="ml-1 text-sm text-muted-foreground">/month</span>
+                        <span className="text-5xl font-bold text-[#373FEC]">${plan.price}</span>
+                        <span className="ml-2 text-lg text-[#768EB4]">/month</span>
                       </>
                     )}
                   </div>
-                  <p className="mt-4 text-sm text-muted-foreground">
+                  <p className="mt-4 text-[#768EB4]">
                     {plan.description}
                   </p>
                 </div>
 
-                <ul className="mb-8 space-y-4 text-sm">
+                <ul className="mb-8 space-y-4">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-center">
-                      <Check className="mr-3 h-4 w-4 text-primary" />
-                      {feature}
+                      <Check className="mr-3 h-5 w-5 text-[#040BAB]" />
+                      <span className="text-[#768EB4]">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
                 <div className="mt-auto">
                   <Button
-                    className="w-full"
-                    variant={plan.name === 'Professional' ? 'default' : 'outline'}
+                    className={`w-full ${
+                      plan.popular 
+                        ? 'bg-gradient-to-r from-[#040BAB] to-[#373FEC] hover:from-[#373FEC] hover:to-[#0E0BEE] text-white' 
+                        : 'border-[#ECF1F5] text-[#040BAB] hover:bg-[#ECF1F5]/50'
+                    }`}
+                    variant={plan.popular ? 'default' : 'outline'}
                     onClick={() => window.location.href = '/contact'}
                   >
                     Get Started
@@ -88,9 +104,9 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ plans }) => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mx-auto mt-16 text-center"
         >
-          <p className="text-muted-foreground">
+          <p className="text-[#768EB4]">
             Need a custom plan?{' '}
-            <a href="/contact" className="font-semibold text-primary hover:underline">
+            <a href="/contact" className="font-semibold text-[#040BAB] hover:text-[#373FEC] transition-colors">
               Contact us
             </a>
           </p>
