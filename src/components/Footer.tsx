@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export const Footer: React.FC = () => {
   return (
@@ -15,10 +16,36 @@ export const Footer: React.FC = () => {
         <div className="grid gap-8 py-16 sm:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
           <div className="space-y-4">
-            <img
+            <motion.img
               src="https://ik.imagekit.io/quadrate/assets/QTS%20PNG.png?updatedAt=1732465331710"
               alt="Quadrate Tech Solutions"
-              className="h-12"
+              className="h-12 w-auto logo-emboss"
+              whileHover={{ 
+                scale: 1.05,
+                filter: "drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2))",
+              }}
+              animate={{
+                filter: [
+                  "drop-shadow(2px 2px 2px rgba(255,255,255,0.5)) drop-shadow(-2px -2px 2px rgba(0,0,0,0.2))",
+                  "drop-shadow(2px 2px 3px rgba(255,255,255,0.6)) drop-shadow(-2px -2px 3px rgba(0,0,0,0.3))",
+                  "drop-shadow(2px 2px 2px rgba(255,255,255,0.5)) drop-shadow(-2px -2px 2px rgba(0,0,0,0.2))"
+                ]
+              }}
+              transition={{
+                filter: {
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                },
+                scale: {
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 15
+                }
+              }}
+              style={{
+                filter: "drop-shadow(2px 2px 2px rgba(255,255,255,0.5)) drop-shadow(-2px -2px 2px rgba(0,0,0,0.2))"
+              }}
             />
             <p className="text-sm text-muted-foreground">
               Empowering businesses with innovative digital solutions and cutting-edge technology.
