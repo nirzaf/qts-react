@@ -14,11 +14,7 @@ const HeroImage = ({ src, alt }: HeroImageProps) => {
   };
 
   if (imageError) {
-    return (
-      <div className="relative mx-auto max-w-xl lg:mx-0 h-[400px] flex items-center justify-center bg-muted rounded-lg">
-        <p className="text-muted-foreground">Image not available</p>
-      </div>
-    );
+    return null;
   }
 
   return (

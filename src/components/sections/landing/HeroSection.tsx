@@ -1,13 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-
-interface Review {
-  title: string;
-  content: string;
-  author: string;
-  rating: number;
-}
 
 interface HeroSectionProps {
   title?: string;
@@ -16,12 +10,59 @@ interface HeroSectionProps {
   primaryBtnURL?: string;
   secondaryBtn?: string;
   secondaryBtnURL?: string;
-  withReview?: boolean;
-  reviews?: Review[];
-  starCount?: number;
   src?: string;
   alt?: string;
 }
+
+const headlines = [
+  "Innovation Redefined",
+  "Future of Technology",
+  "Digital Excellence",
+  "Beyond Boundaries"
+];
+
+const logoVariants = {
+  initial: { 
+    scale: 0.9,
+    opacity: 0,
+    y: 30
+  },
+  animate: {
+    scale: 1,
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      ease: [0.23, 1, 0.32, 1], // Apple's custom easing
+    }
+  },
+  hover: {
+    scale: 1.02,
+    filter: [
+      "brightness(1.1) drop-shadow(0px 20px 40px rgba(0,0,0,0.2))",
+      "brightness(1.15) drop-shadow(0px 25px 50px rgba(0,0,0,0.25))",
+      "brightness(1.1) drop-shadow(0px 20px 40px rgba(0,0,0,0.2))"
+    ],
+    transition: {
+      duration: 5,
+      repeat: Infinity,
+      repeatType: "reverse",
+      ease: "easeInOut"
+    }
+  }
+};
+
+const contentVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.23, 1, 0.32, 1]
+    }
+  }
+};
 
 const HeroSection: React.FC<HeroSectionProps> = ({
   title = "Quadrate Tech Solutions",
@@ -30,71 +71,139 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   primaryBtnURL = "/contact",
   secondaryBtn = "Learn More",
   secondaryBtnURL = "/about",
-  withReview = false,
-  reviews = [],
-  starCount = 0,
   src = "",
   alt = ""
 }) => {
-  useTranslation();
+  const [currentHeadline, setCurrentHeadline] = useState(0);
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeadline((prev) => (prev + 1) % headlines.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <section className="container flex flex-col gap-4 pb-8 pt-6 md:gap-8 md:pb-12 md:pt-10 lg:py-32">
-      <div className="flex flex-col items-center gap-4 text-center">
-        <h1 className="text-3xl font-bold sm:text-5xl md:text-6xl lg:text-7xl">
-          {title}
-        </h1>
-        <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-          {subTitle}
-        </p>
-      </div>
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-black text-white">
+      {/* Background with Gradient */}
+      <motion.div 
+        className="absolute inset-0 w-full h-full"
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 2 }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-background/90 to-background" />
+        {src && (
+          <img
+            src={src}
+            alt={alt}
+            className="w-full h-full object-cover opacity-60"
+          />
+        )}
+      </motion.div>
 
-      <div className="flex justify-center space-x-4">
-        <Link
-          to={primaryBtnURL}
-          className="inline-flex h-11 items-center justify-center rounded-md bg-primary px-8 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+      {/* Content Container */}
+      <div className="container relative z-10 flex flex-col items-center justify-center gap-8 py-20">
+        {/* Logo Section */}
+        <motion.div
+          className="mb-16 w-full flex justify-center"
+          initial="initial"
+          animate="animate"
+          whileHover="hover"
         >
-          {primaryBtn}
-        </Link>
-        <Link
-          to={secondaryBtnURL}
-          className="inline-flex h-11 items-center justify-center rounded-md border border-input bg-background px-8 font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
-        >
-          {secondaryBtn}
-        </Link>
-      </div>
+          <motion.img
+            src="https://ik.imagekit.io/quadrate/assets/QTS%20PNG.png?updatedAt=1732465331710"
+            alt="Quadrate Tech Solutions"
+            className="w-[280px] h-auto"
+            variants={logoVariants}
+          />
+        </motion.div>
 
-      {withReview && reviews.length > 0 && (
-        <div className="mx-auto flex flex-col items-center justify-center gap-4 text-center">
-          <div className="flex items-center gap-1">
-            {[...Array(5)].map((_, i) => (
-              <svg
-                key={i}
-                className={`h-5 w-5 ${i < starCount ? "fill-primary" : "fill-muted"}`}
-                viewBox="0 0 20 20"
-                fill="currentColor"
+        {/* Main Content */}
+        <motion.div 
+          className="text-center space-y-6"
+          variants={contentVariants}
+          initial="initial"
+          animate="animate"
+        >
+          {/* Animated Headlines */}
+          <div className="h-32 relative overflow-hidden mb-2">
+            <AnimatePresence mode="wait">
+              <motion.h1
+                key={currentHeadline}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -40 }}
+                transition={{ 
+                  duration: 0.8, 
+                  ease: [0.23, 1, 0.32, 1]
+                }}
+                className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight absolute w-full bg-clip-text text-transparent bg-gradient-to-r from-white via-white/90 to-white/80"
               >
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-            ))}
+                {headlines[currentHeadline]}
+              </motion.h1>
+            </AnimatePresence>
           </div>
-          <div className="flex flex-col gap-4">
-            {reviews.map((review, index) => (
-              <div key={index} className="text-sm text-muted-foreground">
-                <p className="font-medium text-foreground">{review.title}</p>
-                <p>{review.content}</p>
-                <p className="mt-2 font-medium text-foreground">- {review.author}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
-      {src && (
-        <div className="overflow-hidden rounded-lg border bg-background">
-          <img src={src} alt={alt} className="aspect-video object-cover" />
-        </div>
-      )}
+          <motion.p
+            className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto font-light"
+            variants={contentVariants}
+          >
+            {subTitle}
+          </motion.p>
+
+          <motion.div
+            className="flex flex-wrap justify-center gap-6 mt-12"
+            variants={contentVariants}
+          >
+            <Link
+              to={primaryBtnURL}
+              className="group relative inline-flex h-12 items-center justify-center rounded-full bg-white px-8 text-sm font-medium text-black transition-all duration-300 hover:bg-opacity-90"
+            >
+              <span>{primaryBtn}</span>
+              <motion.span
+                className="absolute right-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1"
+                initial={{ x: -5 }}
+                animate={{ x: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                →
+              </motion.span>
+            </Link>
+            <Link
+              to={secondaryBtnURL}
+              className="group inline-flex h-12 items-center justify-center rounded-full border border-white/30 bg-transparent px-8 text-sm font-medium text-white transition-all duration-300 hover:bg-white/10"
+            >
+              {secondaryBtn}
+            </Link>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <motion.div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 1 }}
+      >
+        <motion.div
+          className="w-1 h-12 rounded-full bg-white/20 relative overflow-hidden"
+          animate={{
+            backgroundColor: ["rgba(255,255,255,0.2)", "rgba(255,255,255,0.4)", "rgba(255,255,255,0.2)"]
+          }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <motion.div
+            className="w-full bg-white absolute top-0 bottom-0"
+            animate={{
+              y: ["0%", "100%", "0%"]
+            }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

@@ -36,42 +36,8 @@ export const Navigation: React.FC = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="container flex h-16 items-center justify-between">
-        {/* Logo and Navigation Section */}
+        {/* Navigation Section */}
         <div className="flex items-center gap-6 md:gap-10">
-          <Link to="/" className="flex items-center">
-            <motion.img 
-              src="https://ik.imagekit.io/quadrate/assets/QTS%20PNG.png?updatedAt=1732465331710" 
-              alt="Quadrate Tech Solutions" 
-              className="h-12 w-auto logo-emboss" 
-              whileHover={{ 
-                scale: 1.05,
-                filter: "drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2))",
-              }}
-              animate={{
-                filter: [
-                  "drop-shadow(2px 2px 2px rgba(255,255,255,0.5)) drop-shadow(-2px -2px 2px rgba(0,0,0,0.2))",
-                  "drop-shadow(2px 2px 3px rgba(255,255,255,0.6)) drop-shadow(-2px -2px 3px rgba(0,0,0,0.3))",
-                  "drop-shadow(2px 2px 2px rgba(255,255,255,0.5)) drop-shadow(-2px -2px 2px rgba(0,0,0,0.2))"
-                ]
-              }}
-              transition={{
-                filter: {
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                },
-                scale: {
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 15
-                }
-              }}
-              style={{
-                filter: "drop-shadow(2px 2px 2px rgba(255,255,255,0.5)) drop-shadow(-2px -2px 2px rgba(0,0,0,0.2))"
-              }}
-            />
-          </Link>
-          
           <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
@@ -103,7 +69,7 @@ export const Navigation: React.FC = () => {
             asChild
             className="hidden md:flex bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 transition-all duration-300 transform hover:scale-105"
           >
-            <a href="https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions">
+            <a href="https://quadratetechsolutions.zohobookings.com/">
               Book a Meeting
             </a>
           </Button>
