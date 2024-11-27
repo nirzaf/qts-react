@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { format } from 'date-fns';
 import { Badge } from '../components/ui/badge';
-import ReactMarkdown from 'react-markdown';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import Loading from '../components/ui/loading';
+
+// Lazy load heavy components
+const ReactMarkdown = lazy(() => import('react-markdown'));
+const SyntaxHighlighter = lazy(() => 
+  import('react-syntax-highlighter').then(mod => ({ default: mod.Prism }))
+);
 
 interface Post {
   title: string;
@@ -17,14 +21,59 @@ interface Post {
   content: string;
 }
 
+// Separate markdown rendering component for better code splitting
+const MarkdownContent: React.FC<{ content: string }> = ({ content }) => {
+  const [style, setStyle] = useState<any>(null);
+
+  // Load syntax highlighting style only when needed
+  useEffect(() => {
+    import('react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus')
+      .then(mod => setStyle(mod.default));
+  }, []);
+
+  return (
+    <Suspense fallback={<Loading />}>
+      <ReactMarkdown
+        components={{
+          code: ({ className, children }) => {
+            const match = /language-(\w+)/.exec(className || '');
+            return match ? (
+              <Suspense fallback={<div className="animate-pulse h-24 bg-muted rounded" />}>
+                <SyntaxHighlighter
+                  style={style}
+                  language={match[1]}
+                  PreTag="div"
+                >
+                  {String(children).replace(/\n$/, '')}
+                </SyntaxHighlighter>
+              </Suspense>
+            ) : (
+              <code className={className}>{children}</code>
+            );
+          },
+          img: ({ src, alt }) => (
+            <img
+              src={src}
+              alt={alt}
+              loading="lazy"
+              className="w-full h-auto"
+              decoding="async"
+            />
+          ),
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    </Suspense>
+  );
+};
+
 const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // For now, we'll fetch the markdown content directly
-    // Later, we can implement dynamic loading of markdown files
     const fetchPost = async () => {
       try {
         const response = await fetch(`/content/blog/${slug}.md`);
@@ -58,22 +107,7 @@ const BlogPostPage: React.FC = () => {
   }, [slug]);
 
   if (loading) {
-    return (
-      <div className="container py-8 md:py-12 lg:py-24">
-        <div className="mx-auto max-w-3xl">
-          <div className="animate-pulse space-y-4">
-            <div className="h-8 w-3/4 rounded bg-muted"></div>
-            <div className="h-4 w-1/2 rounded bg-muted"></div>
-            <div className="aspect-video rounded bg-muted"></div>
-            <div className="space-y-2">
-              <div className="h-4 rounded bg-muted"></div>
-              <div className="h-4 rounded bg-muted"></div>
-              <div className="h-4 w-4/5 rounded bg-muted"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (!post) {
@@ -129,32 +163,13 @@ const BlogPostPage: React.FC = () => {
             src={post.heroImage}
             alt={post.title}
             className="h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
         <div className="prose prose-gray dark:prose-invert max-w-none">
-          <ReactMarkdown
-            components={{
-              code: ({ className, children }) => {
-                const match = /language-(\w+)/.exec(className || '');
-                return match ? (
-                  <SyntaxHighlighter
-                    style={vscDarkPlus as any}
-                    language={match[1]}
-                    PreTag="div"
-                  >
-                    {String(children).replace(/\n$/, '')}
-                  </SyntaxHighlighter>
-                ) : (
-                  <code className={className}>
-                    {children}
-                  </code>
-                );
-              },
-            }}
-          >
-            {post.content}
-          </ReactMarkdown>
+          <MarkdownContent content={post.content} />
         </div>
       </div>
     </motion.article>
