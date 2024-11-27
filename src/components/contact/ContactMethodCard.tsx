@@ -15,22 +15,80 @@ const ContactMethodCard = ({ method, isActive, onClick, index }: ContactMethodCa
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      animate={{ 
+        opacity: 1, 
+        y: 0, 
+        scale: 1,
+        transition: {
+          type: "spring",
+          stiffness: 100,
+          damping: 15,
+          delay: index * 0.15
+        }
+      }}
+      whileHover={{ 
+        scale: 1.02,
+        transition: { 
+          type: "spring", 
+          stiffness: 400, 
+          damping: 10 
+        }
+      }}
+      whileTap={{ scale: 0.98 }}
+      className="h-full"
     >
       <Card
-        className={`relative h-full p-6 cursor-pointer transition-all hover:scale-105 ${
-          isActive ? 'border-primary shadow-lg' : ''
+        className={`relative h-[280px] w-full p-8 cursor-pointer transition-all duration-300 flex flex-col ${
+          isActive 
+            ? 'border-primary shadow-xl bg-primary/5' 
+            : 'hover:shadow-lg hover:border-primary/50'
         }`}
         onClick={onClick}
       >
-        <div className={`inline-flex p-3 rounded-lg ${method.color} bg-opacity-10 mb-4`}>
-          <Icon className={`h-6 w-6 ${method.color.replace('bg-', 'text-')}`} />
-        </div>
-        <h3 className="text-xl font-semibold mb-2">{method.title}</h3>
-        <p className="text-muted-foreground">{method.description}</p>
-        <ArrowRight className="absolute bottom-4 right-4 h-5 w-5 text-primary opacity-0 transition-opacity group-hover:opacity-100" />
+        <motion.div 
+          className={`inline-flex p-4 rounded-xl ${method.color} bg-opacity-10`}
+          whileHover={{ 
+            scale: 1.1,
+            rotate: [0, -10, 10, -10, 0],
+            transition: { duration: 0.5 }
+          }}
+        >
+          <Icon className={`h-8 w-8 ${method.color.replace('bg-', 'text-')}`} />
+        </motion.div>
+        
+        <motion.div
+          className="flex-grow flex flex-col justify-between mt-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ 
+            opacity: 1, 
+            y: 0,
+            transition: { delay: index * 0.15 + 0.2 }
+          }}
+        >
+          <div>
+            <h3 className="text-2xl font-semibold mb-3">{method.title}</h3>
+            <p className="text-muted-foreground text-lg leading-relaxed line-clamp-2">{method.description}</p>
+          </div>
+
+          <motion.div
+            className="self-end mt-4"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            whileHover={{ 
+              x: 5,
+              transition: { 
+                type: "spring",
+                stiffness: 400,
+                damping: 10
+              }
+            }}
+          >
+            <ArrowRight className={`h-6 w-6 ${
+              isActive ? 'text-primary' : 'text-primary/60'
+            } transition-colors`} />
+          </motion.div>
+        </motion.div>
       </Card>
     </motion.div>
   );

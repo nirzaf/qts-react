@@ -68,4 +68,5 @@
 - Iterate until the build is successful.
 - Push changes using git push if the build is successful.
 
-> **Note:** Never commit code that doesn't build successfully.
+> **Note:** Always build the project after completing any given task,
+    `npm run build`
