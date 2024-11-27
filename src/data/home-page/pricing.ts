@@ -9,7 +9,7 @@ export interface PricingPlan {
 export const pricingPlans: PricingPlan[] = [
   {
     name: "Starter",
-    price: "499",
+    price: "199",
     description: "Perfect for small businesses starting their digital journey",
     features: [
       "Basic Website Development",
@@ -23,7 +23,7 @@ export const pricingPlans: PricingPlan[] = [
   },
   {
     name: "Professional",
-    price: "999",
+    price: "499",
     description: "Ideal for growing businesses needing comprehensive solutions",
     popular: true,
     features: [

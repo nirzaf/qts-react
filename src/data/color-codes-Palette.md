@@ -9,7 +9,6 @@
 | #A6ECFA    | Baby Blue           | Form Field Backgrounds / Alerts       |
 | #768EB4    | Slate Blue          | Borders / Dividers                    |
 | #6C6EC1    | Royal Blue          | Iconography / Navigation Bar          |
-| #98CCF8    | Sky Blue (Repeated) | Same as above                         |
 | #010000    | Jet Black           | Text (Main Content)                   |
 | #ECF1F5    | Powder Gray         | Background (Body or Section Dividers) |
 

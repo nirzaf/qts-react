@@ -61,11 +61,9 @@ const Home: React.FC = () => {
         <TechStack />
         <ServicesSection />
         <AnimatedSection>
-          <PricingSection plans={pricingPlans} />
+        <PricingSection plans={pricingPlans} />
         </AnimatedSection>
-        <TestimonialsSection />
         <StatsSection />
-
         <PartnersSection
           title="Trusted by Industry Leaders"
           description="Join the ranks of forward-thinking companies that trust Quadrate Tech Solutions for their digital transformation journey."
