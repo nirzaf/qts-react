@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
-import RatingDisplay from '@/components/ui/rating-display';
 import HeroImage from './hero/HeroImage';
 import { type HeroData, defaultHeroData } from '@/data/heroData';
 
@@ -107,7 +106,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <motion.img
                 src="https://ik.imagekit.io/quadrate/assets/QTS%20PNG.png?updatedAt=1732465331710"
                 alt="Quadrate Tech Solutions"
-                className="w-72 h-auto"
+                className="w-[14.4rem] h-auto"
                 variants={logoVariants}
               />
             </motion.div>
@@ -137,16 +136,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             >
               {description}
             </motion.p>
-
-            {rating && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <RatingDisplay {...rating} />
-              </motion.div>
-            )}
 
             <motion.div
               className="flex flex-wrap gap-4 justify-center"

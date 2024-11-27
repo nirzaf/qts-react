@@ -3,11 +3,6 @@ interface ButtonConfig {
   href: string;
 }
 
-interface Rating {
-  score: number;
-  count: string;
-}
-
 export interface HeroData {
   backgroundImage: string;
   heroImage: {
@@ -16,7 +11,6 @@ export interface HeroData {
   };
   primaryButton: ButtonConfig;
   secondaryButton: ButtonConfig;
-  rating?: Rating;
 }
 
 export const defaultHeroData: HeroData = {
@@ -32,9 +26,5 @@ export const defaultHeroData: HeroData = {
   secondaryButton: {
     text: 'Learn More',
     href: '/services'
-  },
-  rating: {
-    score: 4.9,
-    count: '2.5k+'
   }
 };

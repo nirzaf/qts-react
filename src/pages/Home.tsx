@@ -48,10 +48,6 @@ const Home: React.FC = () => {
             secondaryButton: {
               text: "View Services",
               href: "/services"
-            },
-            rating: {
-              score: 4.9,
-              count: "3.2k+"
             }
           }}
         />
