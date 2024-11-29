@@ -77,7 +77,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <section 
-      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-tr from-[#ECF1F5] via-[#98CCF8]/5 to-[#C0F0F9]/10"
+      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-tr from-[#ECF1F5] via-[#00045C]/5 to-[#0607E1]/10"
       style={{ 
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
@@ -88,14 +88,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-1/4 right-1/4 w-1/3 h-1/3 bg-gradient-to-bl from-[#98CCF8]/20 via-[#A6ECFA]/10 to-transparent rounded-full"
+          className="absolute top-1/4 right-1/4 w-1/3 h-1/3 bg-gradient-to-bl from-[#0607E1]/20 via-[#1304F9]/10 to-transparent rounded-full"
           variants={decorativeVariants}
           initial="initial"
           animate="animate"
           whileHover="whileHover"
         />
         <motion.div
-          className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-gradient-to-tr from-[#C0F0F9]/20 via-[#98CCF8]/10 to-transparent rounded-full"
+          className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-gradient-to-tr from-[#00045C]/20 via-[#0607E1]/10 to-transparent rounded-full"
           variants={decorativeVariants}
           initial="initial"
           animate="animate"
@@ -122,11 +122,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     y: { type: "spring", stiffness: 300, damping: 30 },
                     opacity: { duration: 0.2 }
                   }}
-                  className="bg-gradient-to-r from-[#040BAB] via-[#373FEC] to-[#0E0BEE] bg-clip-text text-transparent inline-block relative"
+                  className="bg-gradient-to-r from-[#00045C] via-[#0607E1] to-[#1304F9] bg-clip-text text-transparent inline-block relative"
                 >
                   {words[currentWord]}
                   <motion.div 
-                    className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#040BAB] to-[#373FEC]"
+                    className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#00045C] to-[#0607E1]"
                     initial={{ scaleX: 0, opacity: 0 }}
                     animate={{ scaleX: 1, opacity: 1 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
@@ -134,7 +134,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </motion.span>
               </div>
               <motion.span 
-                className="bg-gradient-to-r from-[#040BAB] via-[#373FEC] to-[#0E0BEE] bg-clip-text text-transparent mt-2"
+                className="bg-gradient-to-r from-[#00045C] via-[#0607E1] to-[#1304F9] bg-clip-text text-transparent mt-2"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
@@ -143,7 +143,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </motion.span>
             </h1>
             <motion.p 
-              className="text-xl lg:text-2xl text-[#768EB4] mb-8 max-w-2xl mx-auto lg:mx-0"
+              className="text-xl lg:text-2xl text-[#71717A] mb-8 max-w-2xl mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
@@ -152,7 +152,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </motion.p>
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
               <motion.button
-                className="px-8 py-4 rounded-xl bg-gradient-to-r from-[#040BAB] to-[#373FEC] text-white font-semibold text-lg shadow-lg shadow-[#040BAB]/20 hover:shadow-xl hover:shadow-[#040BAB]/30 transition-shadow"
+                className="px-8 py-4 rounded-xl bg-gradient-to-r from-[#00045C] to-[#0607E1] text-white font-semibold text-lg shadow-lg shadow-[#00045C]/20 hover:shadow-xl hover:shadow-[#00045C]/30 transition-shadow"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={primaryButton.onClick}
@@ -160,7 +160,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 {primaryButton.text}
               </motion.button>
               <motion.button
-                className="px-8 py-4 rounded-xl border-2 border-[#040BAB] text-[#040BAB] font-semibold text-lg hover:bg-[#040BAB]/5 transition-colors"
+                className="px-8 py-4 rounded-xl border-2 border-[#00045C] text-[#00045C] font-semibold text-lg hover:bg-[#00045C]/5 transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={secondaryButton.onClick}
@@ -186,14 +186,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               }
             }}
           >
-            {/* Main Image Container */}
             <div className="relative">
               <img
                 src={heroImage?.src || "https://ik.imagekit.io/quadrate/assets/img/QTS%20PNG.png?updatedAt=1732728815505"}
                 alt={heroImage?.alt || "Quadrate Tech Solutions"}
                 className="w-full h-auto rounded-2xl shadow-2xl"
                 style={{
-                  filter: 'drop-shadow(0 20px 40px rgba(55, 63, 236, 0.12))',
+                  filter: 'drop-shadow(0 20px 40px rgba(0, 4, 92, 0.12))',
                 }}
               />
               
@@ -201,7 +200,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <motion.div
                 className="absolute inset-0 -z-10 rounded-2xl opacity-40 blur-2xl"
                 style={{
-                  background: 'radial-gradient(circle at 50% 50%, rgba(55, 63, 236, 0.15), transparent 70%)',
+                  background: 'radial-gradient(circle at 50% 50%, rgba(0, 4, 92, 0.15), transparent 70%)',
                 }}
                 animate={{
                   scale: [1, 1.1, 1],

@@ -24,24 +24,24 @@ const Home: React.FC = () => {
 
   try {
     return (
-      <div className="relative bg-white">
+      <div className="relative bg-[#FFFFFF]">
         {/* Global Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#98CCF8]/10 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-[500px] bg-gradient-to-t from-[#98CCF8]/5 to-transparent" />
+          <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#0607E1]/10 to-transparent" />
+          <div className="absolute bottom-0 left-0 w-full h-[500px] bg-gradient-to-t from-[#00045C]/5 to-transparent" />
         </div>
 
         {/* Content Container */}
         <div className="relative">
-          {/* Hero Section with Sky Blue Accents */}
+          {/* Hero Section with Federal Blue & Chrysler Blue Accents */}
           <section className="relative overflow-hidden">
             <div className="absolute inset-0">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#98CCF8]/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#00045C]/20 to-transparent" />
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.1 }}
                 transition={{ duration: 1.5 }}
-                className="absolute top-1/4 right-0 w-1/2 h-1/2 bg-[#98CCF8]/10 blur-3xl"
+                className="absolute top-1/4 right-0 w-1/2 h-1/2 bg-[#0607E1]/10 blur-3xl"
               />
             </div>
             <HeroSection
@@ -62,25 +62,25 @@ const Home: React.FC = () => {
           </section>
 
           {/* Features Section */}
-          <AnimatedSection className="bg-gradient-to-b from-white via-[#98CCF8]/5 to-white">
+          <AnimatedSection className="bg-gradient-to-b from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
             <Features />
           </AnimatedSection>
 
           {/* Tech Stack Section */}
           <AnimatedSection className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#98CCF8]/10 to-transparent opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#00045C]/10 to-transparent opacity-50" />
             <TechStack />
           </AnimatedSection>
 
           {/* Services Section */}
-          <AnimatedSection className="bg-gradient-to-b from-white via-[#98CCF8]/5 to-white">
+          <AnimatedSection className="bg-gradient-to-b from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
             <ServicesSection />
           </AnimatedSection>
 
           {/* Pricing Section */}
           <AnimatedSection>
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#98CCF8]/10 via-transparent to-[#98CCF8]/5" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[#00045C]/10 via-transparent to-[#0607E1]/5" />
               <PricingSection plans={pricingPlans} />
             </div>
           </AnimatedSection>
@@ -89,8 +89,8 @@ const Home: React.FC = () => {
           <StatsSection />
 
           {/* Partners Section */}
-          <AnimatedSection className="relative bg-white">
-            <div className="absolute inset-0 bg-gradient-to-t from-[#98CCF8]/5 to-transparent" />
+          <AnimatedSection className="relative bg-[#FFFFFF]">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0607E1]/5 to-transparent" />
             <PartnersSection
               title="Trusted by Industry Leaders"
               description="Join the ranks of forward-thinking companies that trust Quadrate Tech Solutions for their digital transformation journey."
@@ -99,15 +99,15 @@ const Home: React.FC = () => {
         </div>
 
         {/* Footer Gradient */}
-        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#98CCF8]/10 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#00045C]/10 to-transparent" />
       </div>
     );
   } catch (error) {
     console.error('Error rendering Home page:', error);
     return (
       <div className="text-center py-12">
-        <h2 className="text-2xl font-bold text-red-600">Something went wrong</h2>
-        <p className="mt-2">Please refresh the page or contact support if the problem persists.</p>
+        <h2 className="text-2xl font-bold text-[#EF4444]">Something went wrong</h2>
+        <p className="mt-2 text-[#71717A]">Please refresh the page or contact support if the problem persists.</p>
       </div>
     );
   }
