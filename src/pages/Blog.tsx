@@ -23,10 +23,12 @@ const BlogPage: React.FC = () => {
   }, []);
 
   return (
-    <section className="container py-8 md:py-12 lg:py-24">
+    <div className="min-h-screen bg-[#FFFFFF]">
       <BlogHeader />
-      <BlogSection posts={posts} isLoading={isLoading} />
-    </section>
+      <div className="container py-16">
+        <BlogSection posts={posts} isLoading={isLoading} />
+      </div>
+    </div>
   );
 };
 
