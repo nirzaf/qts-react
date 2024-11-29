@@ -24,11 +24,11 @@ const Home: React.FC = () => {
 
   try {
     return (
-      <div className="relative bg-[#FFFFFF]">
+      <div className="relative bg-white">
         {/* Global Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#0607E1]/10 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-[500px] bg-gradient-to-t from-[#00045C]/5 to-transparent" />
+          <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#0607E1]/20 to-transparent" />
+          <div className="absolute bottom-0 left-0 w-full h-[500px] bg-gradient-to-t from-[#00045C]/10 to-transparent" />
         </div>
 
         {/* Content Container */}
@@ -36,12 +36,12 @@ const Home: React.FC = () => {
           {/* Hero Section with Federal Blue & Chrysler Blue Accents */}
           <section className="relative overflow-hidden">
             <div className="absolute inset-0">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#00045C]/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#00045C]/30 to-transparent" />
               <motion.div
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.1 }}
+                animate={{ opacity: 0.15 }}
                 transition={{ duration: 1.5 }}
-                className="absolute top-1/4 right-0 w-1/2 h-1/2 bg-[#0607E1]/10 blur-3xl"
+                className="absolute top-1/4 right-0 w-1/2 h-1/2 bg-[#0607E1]/20 blur-3xl"
               />
             </div>
             <HeroSection
@@ -62,7 +62,7 @@ const Home: React.FC = () => {
           </section>
 
           {/* Features Section */}
-          <AnimatedSection className="bg-gradient-to-b from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
+          <AnimatedSection className="bg-gradient-to-b from-white via-[#0607E1]/5 to-white">
             <Features />
           </AnimatedSection>
 
@@ -73,7 +73,7 @@ const Home: React.FC = () => {
           </AnimatedSection>
 
           {/* Services Section */}
-          <AnimatedSection className="bg-gradient-to-b from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
+          <AnimatedSection className="bg-gradient-to-b from-white via-[#0607E1]/5 to-white">
             <ServicesSection />
           </AnimatedSection>
 
@@ -89,7 +89,7 @@ const Home: React.FC = () => {
           <StatsSection />
 
           {/* Partners Section */}
-          <AnimatedSection className="relative bg-[#FFFFFF]">
+          <AnimatedSection className="relative bg-white">
             <div className="absolute inset-0 bg-gradient-to-t from-[#0607E1]/5 to-transparent" />
             <PartnersSection
               title="Trusted by Industry Leaders"
