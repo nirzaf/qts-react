@@ -1,8 +1,27 @@
-# QTS React Color Palette
+## Interactive Elements
 
-## Base Colors
+- `--destructive: #EF4444` (HSL: 0 84.2% 60.2%)
+  - Used for error states and destructive actions
+  
+- `--destructive-foreground: #FAFAFA` (HSL: 0 0% 98%)
+  - Text color on destructive backgrounds
 
-### Light Theme
+- `--border: #E4E4E7` (HSL: 240 5.9% 90%)
+  - Color for borders and dividers
+  
+- `--input: #E4E4E7` (HSL: 240 5.9% 90%)
+  - Color for form input borders
+
+## Link Colors
+
+- `#646CFF`
+  - Primary link color
+  
+- `#535BF2`
+  - Link hover color
+  
+- `#747BFF`
+  - Secondary link color (light theme)
 
 - `--background: #FFFFFF` (HSL: 0 0% 100%)
   - Primary background color for light theme, used for main content areas
@@ -80,30 +99,6 @@
 - `--card-foreground: #0A0A0B` (HSL: 240 10% 3.9%)
   - Text color for card content
 
-## Interactive Elements
-
-- `--destructive: #EF4444` (HSL: 0 84.2% 60.2%)
-  - Used for error states and destructive actions
-  
-- `--destructive-foreground: #FAFAFA` (HSL: 0 0% 98%)
-  - Text color on destructive backgrounds
-
-- `--border: #E4E4E7` (HSL: 240 5.9% 90%)
-  - Color for borders and dividers
-  
-- `--input: #E4E4E7` (HSL: 240 5.9% 90%)
-  - Color for form input borders
-
-## Link Colors
-
-- `#646CFF`
-  - Primary link color
-  
-- `#535BF2`
-  - Link hover color
-  
-- `#747BFF`
-  - Secondary link color (light theme)
 
 ## Brand Accent Colors
 

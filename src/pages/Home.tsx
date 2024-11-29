@@ -24,24 +24,24 @@ const Home: React.FC = () => {
 
   try {
     return (
-      <div className="relative bg-white">
+      <div className="relative bg-[--background]">
         {/* Global Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#0607E1]/20 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-[500px] bg-gradient-to-t from-[#00045C]/10 to-transparent" />
+          <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#646CFF]/20 to-transparent" />
+          <div className="absolute bottom-0 left-0 w-full h-[500px] bg-gradient-to-t from-[#535BF2]/10 to-transparent" />
         </div>
 
         {/* Content Container */}
         <div className="relative">
-          {/* Hero Section with Federal Blue & Chrysler Blue Accents */}
+          {/* Hero Section with Updated Color Accents */}
           <section className="relative overflow-hidden">
             <div className="absolute inset-0">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#00045C]/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#747BFF]/30 to-transparent" />
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.15 }}
                 transition={{ duration: 1.5 }}
-                className="absolute top-1/4 right-0 w-1/2 h-1/2 bg-[#0607E1]/20 blur-3xl"
+                className="absolute top-1/4 right-0 w-1/2 h-1/2 bg-[#646CFF]/20 blur-3xl"
               />
             </div>
             <HeroSection
@@ -62,44 +62,42 @@ const Home: React.FC = () => {
           </section>
 
           {/* Features Section */}
-          <AnimatedSection className="bg-gradient-to-b from-white via-[#0607E1]/5 to-white">
+          <AnimatedSection className="bg-gradient-to-b from-[--background] via-[#646CFF]/5 to-[--background]">
             <Features />
           </AnimatedSection>
 
           {/* Tech Stack Section */}
           <AnimatedSection className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#00045C]/10 to-transparent opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#535BF2]/5 to-[#747BFF]/5" />
             <TechStack />
           </AnimatedSection>
 
           {/* Services Section */}
-          <AnimatedSection className="bg-gradient-to-b from-white via-[#0607E1]/5 to-white">
+          <AnimatedSection className="bg-gradient-to-b from-[--background] via-[#646CFF]/5 to-[--background]">
             <ServicesSection />
           </AnimatedSection>
 
           {/* Pricing Section */}
-          <AnimatedSection>
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#00045C]/10 via-transparent to-[#0607E1]/5" />
-              <PricingSection plans={pricingPlans} />
-            </div>
+          <AnimatedSection className="relative">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#535BF2]/5 to-transparent" />
+            <PricingSection plans={pricingPlans} />
           </AnimatedSection>
 
           {/* Stats Section */}
           <StatsSection />
 
           {/* Partners Section */}
-          <AnimatedSection className="relative bg-white">
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0607E1]/5 to-transparent" />
+          <AnimatedSection className="relative bg-[--background]">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#646CFF]/5 to-transparent" />
             <PartnersSection
               title="Trusted by Industry Leaders"
-              description="Join the ranks of forward-thinking companies that trust Quadrate Tech Solutions for their digital transformation journey."
+              description="We collaborate with forward-thinking companies to deliver exceptional solutions."
             />
           </AnimatedSection>
         </div>
 
         {/* Footer Gradient */}
-        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#00045C]/10 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#535BF2]/10 to-transparent" />
       </div>
     );
   } catch (error) {
