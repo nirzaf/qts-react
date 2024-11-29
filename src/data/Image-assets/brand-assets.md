@@ -1,7 +1,6 @@
 # Brand Assets
 
 ## Main Logos
-- Main Logo: https://ik.imagekit.io/quadrate/assets/QTS%20PNG.png?updatedAt=1732465331710
 - Embossed Logo: https://ik.imagekit.io/quadrate/assets/QTS-Logo-%20emposed.png?updatedAt=1732462181140
 - Favicon: https://ik.imagekit.io/quadrate/assets/img/QTS-Logo-%20Favicon.png?updatedAt=1718024117217
 - Apple Touch Icon: https://ik.imagekit.io/quadrate/assets/img/apple-touch-icon.png?updatedAt=1718024112741
