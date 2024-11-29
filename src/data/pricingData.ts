@@ -11,17 +11,15 @@ export interface PricingPlan {
 export const pricingPlans: PricingPlan[] = [
   {
     name: 'Starter',
-    price: '299,999',
-    description: 'Perfect for small businesses starting their digital journey',
+    price: '$99',
+    description: 'Perfect for small businesses getting started',
     features: [
-      'Basic website development',
-      'Mobile responsive design',
-      'Contact form integration',
-      '5 pages included',
-      'Basic SEO optimization',
-      '3 months support',
-      'Basic security features',
-      'Standard hosting setup'
+      'Server Resources',
+      'Security Features',
+      'Domain Names',
+      'Storage Space',
+      'SSL Certificate',
+      'Email Services'
     ],
     popular: false,
     ctaText: 'Get Started',
@@ -29,19 +27,17 @@ export const pricingPlans: PricingPlan[] = [
   },
   {
     name: 'Professional',
-    price: '499,999',
-    description: 'Ideal for growing businesses needing advanced features',
+    price: '$199',
+    description: 'Ideal for growing businesses and teams',
     features: [
-      'Advanced website development',
-      'Custom animations & interactions',
-      'Content Management System',
-      '10 pages included',
-      'Advanced SEO optimization',
-      '6 months support',
-      'Enhanced security features',
-      'Premium hosting setup',
-      'Social media integration',
-      'Analytics dashboard'
+      'Server Resources',
+      'Security Features',
+      'Domain Names',
+      'User Accounts',
+      'Database Storage',
+      'Cloud Backup',
+      'CPU Allocation',
+      'Auto Updates'
     ],
     popular: true,
     ctaText: 'Get Started',
@@ -49,22 +45,24 @@ export const pricingPlans: PricingPlan[] = [
   },
   {
     name: 'Enterprise',
-    price: 'Custom',
-    description: 'Tailored solutions for large organizations',
+    price: '$399',
+    description: 'Advanced features for larger organizations',
     features: [
-      'Custom web application development',
-      'Advanced system integration',
-      'Unlimited pages',
-      'Enterprise-grade security',
-      'Priority 24/7 support',
-      'Custom feature development',
-      'Performance optimization',
-      'Load balancing setup',
-      'Multi-language support',
-      'Dedicated project manager'
+      'Server Resources',
+      'Security Features',
+      'Domain Names',
+      'User Accounts',
+      'Database Storage',
+      'Cloud Backup',
+      'CPU Allocation',
+      'Storage Space',
+      'SSL Certificate',
+      'Email Services',
+      'Auto Updates',
+      'Support'
     ],
     popular: false,
-    ctaText: 'Contact Us',
+    ctaText: 'Contact Sales',
     ctaLink: 'https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions'
   }
 ];

@@ -1,114 +1,65 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Check } from 'lucide-react';
-
-interface PricingPlan {
-  name: string;
-  price: string;
-  description: string;
-  features: string[];
-  popular?: boolean;
-}
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { PricingPlan } from '@/data/pricingData';
+import { PricingCard } from '@/components/pricing/PricingCard';
 
 interface PricingSectionProps {
   plans: PricingPlan[];
 }
 
 export const PricingSection: React.FC<PricingSectionProps> = ({ plans }) => {
+  const [hoveredPlan, setHoveredPlan] = useState<number | null>(null);
+
+  // Map the plans to include the correct button text and link
+  const mappedPlans = plans.map(plan => ({
+    ...plan,
+    ctaText: plan.popular ? 'Get Started' : plan.name === 'Enterprise' ? 'Contact Sales' : 'Get Started',
+    ctaLink: 'https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions'
+  }));
+
   return (
-    <section className="bg-[#FFFFFF] py-16 sm:py-24">
-      <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto max-w-2xl text-center"
-        >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-[#000000]">
+    <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#000000] mb-4">
             Simple, Transparent Pricing
           </h2>
-          <p className="text-xl text-[#000000]/70 max-w-2xl mx-auto">
-            Choose the perfect plan for your business needs. No hidden fees.
+          <p className="text-lg text-[#000000]/70 max-w-2xl mx-auto">
+            Choose the perfect plan for your business needs
           </p>
-        </motion.div>
+        </div>
 
-        <div className="mx-auto mt-16 grid max-w-7xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {plans.map((plan, index) => (
+        {/* Pricing Cards */}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 relative">
+          {mappedPlans.map((plan, index) => (
             <motion.div
               key={plan.name}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
+              transition={{ delay: index * 0.2 }}
+              onHoverStart={() => setHoveredPlan(index)}
+              onHoverEnd={() => setHoveredPlan(null)}
+              className="relative"
             >
-              <Card className={`relative flex h-full flex-col p-8 hover:shadow-lg transition-all duration-300 border-[#000000]/10 bg-[#FFFFFF] ${
-                plan.popular ? 'border-[#0607E1]/20 shadow-lg ring-1 ring-[#0607E1]/10' : ''
-              }`}>
-                {plan.popular && (
-                  <div className="absolute -top-4 right-8">
-                    <span className="inline-flex items-center rounded-full bg-[#000000] px-4 py-1 text-xs font-medium text-[#FFFFFF] shadow-lg">
-                      Most Popular
-                    </span>
-                  </div>
+              <AnimatePresence>
+                {hoveredPlan === index && (
+                  <motion.div
+                    className="absolute -inset-4 bg-[#0607E1]/5 rounded-2xl"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                  />
                 )}
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-[#000000]">{plan.name}</h3>
-                  <div className="mt-4 flex items-baseline">
-                    {plan.price === 'Custom' ? (
-                      <span className="text-5xl font-bold text-[#000000]">Custom</span>
-                    ) : (
-                      <>
-                        <span className="text-5xl font-bold text-[#000000]">${plan.price}</span>
-                        <span className="ml-2 text-lg text-[#000000]/70">/month</span>
-                      </>
-                    )}
-                  </div>
-                  <p className="mt-4 text-[#000000]/70">
-                    {plan.description}
-                  </p>
-                </div>
-
-                <ul className="mb-8 space-y-4">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-center">
-                      <Check className="mr-3 h-5 w-5 text-[#0607E1]/80" />
-                      <span className="text-[#000000]/70">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-auto">
-                  <Button
-                    className={`w-full ${
-                      plan.popular 
-                        ? 'bg-[#000000] hover:bg-[#0607E1]/10 text-[#FFFFFF]' 
-                        : 'border-[#000000]/20 text-[#000000] hover:bg-[#0607E1]/5'
-                    }`}
-                    variant={plan.popular ? 'default' : 'outline'}
-                    onClick={() => window.location.href = '/contact'}
-                  >
-                    Get Started
-                  </Button>
-                </div>
-              </Card>
+              </AnimatePresence>
+              <PricingCard 
+                plan={plan} 
+                isHovered={hoveredPlan === index}
+              />
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mx-auto mt-16 text-center"
-        >
-          <p className="text-[#000000]/70">
-            Need a custom plan?{' '}
-            <a href="/contact" className="font-semibold text-[#000000] hover:text-[#0607E1] underline-offset-4 hover:underline transition-colors">
-              Contact us
-            </a>
-          </p>
-        </motion.div>
       </div>
     </section>
   );

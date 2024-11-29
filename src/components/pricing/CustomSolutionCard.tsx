@@ -1,30 +1,32 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { ArrowRight } from 'lucide-react';
+import { FiSettings, FiPhone } from 'react-icons/fi';
 
 const CustomSolutionCard: React.FC = () => {
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="mx-auto max-w-3xl text-center"
+    <motion.div
+      className="p-8 rounded-2xl border-2 border-[#000000]/10 bg-[#FFFFFF]"
+      whileHover={{ y: -5 }}
     >
-      <Card className="p-8 bg-muted/50">
-        <h2 className="text-2xl font-bold tracking-tight mb-4">Need a Custom Solution?</h2>
-        <p className="text-muted-foreground mb-6">
-          Contact us for a personalized quote tailored to your specific requirements. Our team will work with you to create the perfect solution for your business.
-        </p>
-        <Button size="lg" asChild>
-          <a href="https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions">
-            Schedule a Consultation
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </a>
-        </Button>
-      </Card>
+      <div className="flex items-start space-x-6">
+        <div className="p-3 bg-[#000000]/5 rounded-xl">
+          <FiSettings size={24} className="text-[#000000]" />
+        </div>
+        <div className="flex-grow">
+          <h3 className="text-2xl font-bold text-[#000000] mb-2">Custom Solution</h3>
+          <p className="text-[#000000]/60 mb-4">
+            Need a tailored solution? Let's discuss your specific requirements and create a custom plan that perfectly fits your needs.
+          </p>
+          <motion.button
+            className="inline-flex items-center space-x-2 px-6 py-3 bg-[#000000]/5 text-[#000000] rounded-xl hover:bg-[#000000]/10 transition-colors"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <FiPhone size={20} />
+            <span>Schedule a Call</span>
+          </motion.button>
+        </div>
+      </div>
     </motion.div>
   );
 };
