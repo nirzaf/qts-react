@@ -1,10 +1,7 @@
 # Brand Assets
 
 ## Main Logos
-- Embossed Logo: https://ik.imagekit.io/quadrate/assets/QTS-Logo-%20emposed.png?updatedAt=1732462181140
-- Favicon: https://ik.imagekit.io/quadrate/assets/img/QTS-Logo-%20Favicon.png?updatedAt=1718024117217
-- Apple Touch Icon: https://ik.imagekit.io/quadrate/assets/img/apple-touch-icon.png?updatedAt=1718024112741
-- Favicon Alternative: https://ik.imagekit.io/quadrate/assets/img/favicon.png?updatedAt=1718024113261
+- Embossed Logo: https://ik.imagekit.io/quadrate/QTS%20Logo%20primary.png?updatedAt=1732912040014
 
 ## Partner Logos
 ### Grommunio

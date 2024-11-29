@@ -5,62 +5,39 @@ import { motion } from 'framer-motion';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="relative border-t bg-background">
-      {/* Background Pattern */}
-      <div 
-        className="absolute inset-0 bg-[url('https://ik.imagekit.io/quadrate/assets/img/footer-bg.png?updatedAt=1718024113822')] bg-cover bg-center opacity-5"
-        aria-hidden="true"
-      />
-
-      <div className="container relative">
-        <div className="grid gap-8 py-16 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Company Info */}
+    <footer className="bg-[#FFFFFF] border-t border-[#000000]/5">
+      <div className="container py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Logo and Description */}
           <div className="space-y-4">
-            <motion.img
-              src="https://ik.imagekit.io/quadrate/assets/QTS%20PNG.png?updatedAt=1732465331710"
-              alt="Quadrate Tech Solutions"
-              className="h-12 w-auto logo-emboss"
-              whileHover={{ 
-                scale: 1.05,
-                filter: "drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2))",
-              }}
-              animate={{
-                filter: [
-                  "drop-shadow(2px 2px 2px rgba(255,255,255,0.5)) drop-shadow(-2px -2px 2px rgba(0,0,0,0.2))",
-                  "drop-shadow(2px 2px 3px rgba(255,255,255,0.6)) drop-shadow(-2px -2px 3px rgba(0,0,0,0.3))",
-                  "drop-shadow(2px 2px 2px rgba(255,255,255,0.5)) drop-shadow(-2px -2px 2px rgba(0,0,0,0.2))"
-                ]
-              }}
-              transition={{
-                filter: {
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                },
-                scale: {
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 15
-                }
-              }}
-              style={{
-                filter: "drop-shadow(2px 2px 2px rgba(255,255,255,0.5)) drop-shadow(-2px -2px 2px rgba(0,0,0,0.2))"
-              }}
-            />
-            <p className="text-sm text-muted-foreground">
+            <motion.div
+              className="flex-shrink-0"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <Link to="/" className="flex items-center">
+                <img
+                  src="https://ik.imagekit.io/quadrate/QTS%20Logo%20primary.png?updatedAt=1732912040014"
+                  alt="QTS Logo"
+                  className="h-10 w-auto brightness-[0.7] contrast-[1.4] [filter:saturate(1.2)_hue-rotate(-10deg)]"
+                />
+                <span className="ml-2 text-xl font-bold text-[#000000]">QTS</span>
+              </Link>
+            </motion.div>
+            <p className="text-[#000000]/70 text-sm">
               Empowering businesses with innovative digital solutions and cutting-edge technology.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-primary">
+              <a href="#" className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary">
+              <a href="#" className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary">
+              <a href="#" className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary">
+              <a href="#" className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
@@ -68,25 +45,25 @@ export const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="text-sm font-semibold text-[#000000] mb-4">Quick Links</h3>
+            <ul className="space-y-3">
               <li>
-                <Link to="/about" className="text-muted-foreground hover:text-primary">
+                <Link to="/about" className="text-sm text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-muted-foreground hover:text-primary">
+                <Link to="/services" className="text-sm text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
                   Services
                 </Link>
               </li>
               <li>
-                <Link to="/pricing" className="text-muted-foreground hover:text-primary">
+                <Link to="/pricing" className="text-sm text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
                   Pricing
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-muted-foreground hover:text-primary">
+                <Link to="/blog" className="text-sm text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
                   Blog
                 </Link>
               </li>
@@ -95,25 +72,25 @@ export const Footer: React.FC = () => {
 
           {/* Services */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase">Services</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="text-sm font-semibold text-[#000000] mb-4">Services</h3>
+            <ul className="space-y-3">
               <li>
-                <Link to="/services" className="text-muted-foreground hover:text-primary">
+                <Link to="/services" className="text-sm text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
                   Custom Software Development
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-muted-foreground hover:text-primary">
+                <Link to="/services" className="text-sm text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
                   Web Development
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-muted-foreground hover:text-primary">
+                <Link to="/services" className="text-sm text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
                   Digital Marketing
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-muted-foreground hover:text-primary">
+                <Link to="/services" className="text-sm text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
                   Mobile App Development
                 </Link>
               </li>
@@ -122,20 +99,20 @@ export const Footer: React.FC = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase">Contact</h3>
-            <ul className="space-y-2 text-sm">
-              <li className="text-muted-foreground">
+            <h3 className="text-sm font-semibold text-[#000000] mb-4">Contact</h3>
+            <ul className="space-y-3">
+              <li className="text-[#000000]/70 text-sm">
                 19/2/9, Market Complex,<br />
                 Matale Road, Akurana,<br />
                 Kandy: 20850
               </li>
               <li>
-                <a href="tel:+94814242615" className="text-muted-foreground hover:text-primary">
+                <a href="tel:+94814242615" className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
                   +94 81 424 2615
                 </a>
               </li>
               <li>
-                <a href="mailto:info@quadrate.lk" className="text-muted-foreground hover:text-primary">
+                <a href="mailto:info@quadrate.lk" className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
                   info@quadrate.lk
                 </a>
               </li>
@@ -143,16 +120,22 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t py-6">
-          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p className="text-sm text-muted-foreground">
+        {/* Bottom Section */}
+        <div className="mt-8 pt-8 border-t border-[#000000]/5">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p className="text-sm text-[#000000]/70">
               {new Date().getFullYear()} Quadrate Tech Solutions. All rights reserved.
             </p>
-            <div className="flex space-x-4 text-sm text-muted-foreground">
-              <Link to="/privacy" className="hover:text-primary">Privacy Policy</Link>
-              <Link to="/terms" className="hover:text-primary">Terms of Service</Link>
-              <Link to="/cookies" className="hover:text-primary">Cookie Policy</Link>
+            <div className="flex space-x-6">
+              <Link to="/privacy" className="text-sm text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="text-sm text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
+                Terms of Service
+              </Link>
+              <Link to="/cookies" className="text-sm text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
+                Cookie Policy
+              </Link>
             </div>
           </div>
         </div>

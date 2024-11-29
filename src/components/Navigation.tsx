@@ -42,11 +42,11 @@ export const Navigation: React.FC = () => {
           >
             <Link to="/" className="flex items-center">
               <motion.img
-                src="https://ik.imagekit.io/quadrate/assets/QTS-Logo-%20emposed.png?updatedAt=1732462181140"
+                src="https://ik.imagekit.io/quadrate/QTS%20Logo%20primary.png?updatedAt=1732912040014"
                 alt="QTS Logo"
                 width={40}
                 height={40}
-                className="h-10 w-auto"
+                className="h-10 w-auto brightness-[0.7] contrast-[1.4] [filter:saturate(1.2)_hue-rotate(-10deg)]"
               />
               <span className="ml-2 text-xl font-bold text-[#000000]">QTS</span>
             </Link>
