@@ -131,8 +131,8 @@ export const StatsSection: React.FC = () => {
               {/* Floating Background Effect */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 0.05, scale: 1 }}
-                whileHover={{ opacity: 0.1, scale: 1.1 }}
+                animate={{ opacity: 0.03, scale: 1 }}
+                whileHover={{ opacity: 0.05, scale: 1.1 }}
                 className="absolute inset-0 bg-[#0607E1] rounded-[2rem] blur-2xl transition-all duration-500"
               />
               
@@ -145,10 +145,10 @@ export const StatsSection: React.FC = () => {
                   transition: { duration: 0.3 }
                 }}
               >
-                <div className="relative p-8 rounded-[2rem] border border-[#000000]/10 bg-white backdrop-blur-xl shadow-xl hover:shadow-2xl hover:border-[#0607E1]/20 transition-all duration-500">
+                <div className="relative p-8 rounded-[2rem] border border-[#000000]/10 bg-white backdrop-blur-xl shadow-xl hover:shadow-2xl hover:border-[#0607E1]/5 transition-all duration-500">
                   {/* Animated Corner Accents */}
-                  <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-[#000000]/10 rounded-tl-[2rem] opacity-30 group-hover:opacity-100 group-hover:border-[#0607E1]/20 transition-all duration-500" />
-                  <div className="absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-[#000000]/10 rounded-br-[2rem] opacity-30 group-hover:opacity-100 group-hover:border-[#0607E1]/20 transition-all duration-500" />
+                  <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-[#000000]/10 rounded-tl-[2rem] opacity-30 group-hover:opacity-100 group-hover:border-[#0607E1]/5 transition-all duration-500" />
+                  <div className="absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-[#000000]/10 rounded-br-[2rem] opacity-30 group-hover:opacity-100 group-hover:border-[#0607E1]/5 transition-all duration-500" />
                   
                   {/* Icon Container */}
                   <motion.div
@@ -160,7 +160,7 @@ export const StatsSection: React.FC = () => {
                   >
                     {/* Icon Background */}
                     <div className="absolute inset-0 bg-[#0607E1]/5 rounded-2xl blur opacity-25 group-hover:opacity-40 transition-opacity duration-500" />
-                    <div className="relative h-16 w-16 flex items-center justify-center rounded-2xl bg-[#000000]/5 group-hover:bg-[#0607E1]/10 transition-all duration-500">
+                    <div className="relative h-16 w-16 flex items-center justify-center rounded-2xl bg-[#000000]/5 group-hover:bg-[#0607E1]/5 transition-all duration-500">
                       {React.createElement(stat.icon, { className: "h-8 w-8 text-[#000000] transform group-hover:scale-110 transition-transform duration-500" })}
                     </div>
                   </motion.div>
@@ -187,7 +187,7 @@ export const StatsSection: React.FC = () => {
                   >
                     <h4 className="text-xl font-semibold text-[#000000] mb-2 relative inline-block">
                       {stat.name}
-                      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#0607E1]/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#0607E1]/5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
                     </h4>
                   </motion.div>
 
