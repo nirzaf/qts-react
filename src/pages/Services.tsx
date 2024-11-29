@@ -144,25 +144,32 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* Why Choose Us Section */}
-      <WhyChooseUs />
-
-      {/* Features Section */}
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0607E1]/5 via-[#0A25C9]/5 to-[#0B48D0]/5 opacity-50" />
         <div className="container relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-block bg-[#FFFFFF] px-8 py-4 rounded-2xl shadow-lg mb-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#000000]">Why Choose Us</h2>
-            </div>
-            <p className="text-xl text-[#000000]/70 max-w-2xl mx-auto bg-[#FFFFFF] px-6 py-3 rounded-full shadow-md inline-block">
-              We combine expertise with innovation to deliver exceptional results
-            </p>
-          </motion.div>
+          <div className="flex flex-col items-center justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-8"
+            >
+              <div className="inline-block bg-[#FFFFFF] px-8 py-4 rounded-2xl shadow-lg">
+                <h2 className="text-3xl md:text-4xl font-bold text-[#000000]">Why Choose Us</h2>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-center mb-16"
+            >
+              <p className="text-xl text-[#000000]/70 max-w-2xl mx-auto bg-[#FFFFFF] px-6 py-3 rounded-full shadow-md">
+                We combine expertise with innovation to deliver exceptional results
+              </p>
+            </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
@@ -188,7 +195,7 @@ const ServicesPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Features Section */}
       <section className="py-20">
         <div className="container">
           <motion.div
