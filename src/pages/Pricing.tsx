@@ -14,58 +14,46 @@ const Pricing: React.FC = () => {
   const [hoveredPlan, setHoveredPlan] = useState<number | null>(null);
 
   return (
-    <div className="relative min-h-screen bg-[#FFFFFF] overflow-hidden">
-      {/* Content */}
-      <div className="relative z-10">
-        <PricingHeader />
+    <div className="min-h-screen bg-[#FFFFFF]">
+      <PricingHeader />
+      
+      {/* Pricing Cards Container */}
+      <div className="container py-16">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {pricingPlans.map((plan, index) => (
+            <motion.div
+              key={plan.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2 }}
+              onHoverStart={() => setHoveredPlan(index)}
+              onHoverEnd={() => setHoveredPlan(null)}
+              className="relative"
+            >
+              <AnimatePresence>
+                {hoveredPlan === index && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    className="absolute inset-0 bg-gradient-to-r from-[#0607E1]/10 via-[#0A25C9]/10 to-[#0B48D0]/10 rounded-2xl"
+                  />
+                )}
+              </AnimatePresence>
+              <PricingCard plan={plan} isPopular={plan.popular} />
+            </motion.div>
+          ))}
+        </div>
 
-        {/* Pricing Cards Container */}
-        <section className="container mx-auto py-12">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 relative">
-            {pricingPlans.map((plan, index) => (
-              <motion.div
-                key={plan.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2 }}
-                onHoverStart={() => setHoveredPlan(index)}
-                onHoverEnd={() => setHoveredPlan(null)}
-                className="relative"
-              >
-                <AnimatePresence>
-                  {hoveredPlan === index && (
-                    <motion.div
-                      className="absolute -inset-4 bg-[#0607E1]/5 rounded-2xl"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  )}
-                </AnimatePresence>
-                <PricingCard 
-                  plan={plan} 
-                  isHovered={hoveredPlan === index}
-                />
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* Custom Solution Card with subtle hover effect */}
-        <section className="container mx-auto py-12">
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="relative"
-          >
-            <CustomSolutionCard />
-          </motion.div>
-        </section>
-
-        {/* Simple bottom border */}
-        <div className="absolute bottom-0 left-0 w-full h-px bg-[#0607E1]/10" />
+        {/* Custom Solution Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="mt-16"
+        >
+          <CustomSolutionCard />
+        </motion.div>
       </div>
     </div>
   );
