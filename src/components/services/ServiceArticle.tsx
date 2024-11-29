@@ -22,13 +22,30 @@ const ServiceArticle: React.FC<ServiceArticleProps> = ({ article, index }) => {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="container py-8 md:py-12"
     >
-      <div className={`flex flex-col gap-8 ${article.isRightSection ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
+      <div className={`
+        flex flex-col gap-8 p-6 rounded-2xl
+        bg-gradient-to-br from-background to-primary/5
+        hover:shadow-xl transition-all duration-300
+        ${article.isRightSection ? 'md:flex-row-reverse' : 'md:flex-row'}
+      `}>
         <div className="flex-1 space-y-6">
-          <h2 className="text-3xl font-bold tracking-tight">{article.title}</h2>
+          <motion.h2 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="text-3xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80"
+          >
+            {article.title}
+          </motion.h2>
           <p className="text-muted-foreground leading-relaxed">{article.subTitle}</p>
           {article.btnExists && (
-            <Button asChild className="mt-4">
-              <a href={article.btnURL}>{article.btnTitle}</a>
+            <Button 
+              asChild 
+              className="mt-4 bg-primary hover:bg-primary/90 transition-all duration-300"
+            >
+              <a href={article.btnURL} className="flex items-center gap-2">
+                {article.btnTitle}
+                <span className="ml-2">→</span>
+              </a>
             </Button>
           )}
         </div>

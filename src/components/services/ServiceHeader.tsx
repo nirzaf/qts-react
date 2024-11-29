@@ -8,20 +8,49 @@ const ServiceHeader: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="container space-y-6 py-8 md:py-12 lg:py-24"
+      className="container relative space-y-6 py-16 md:py-24 lg:py-32"
     >
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.primary/5),transparent)]" />
       <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
-        <h1 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
+        <motion.span
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary"
+        >
+          Premium IT Solutions
+        </motion.span>
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="font-bold text-4xl leading-[1.1] sm:text-5xl md:text-6xl"
+        >
           Expert IT Consultation Services
-        </h1>
-        <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-          At Quadrate Tech Solutions, we take pride in providing comprehensive solutions and exceptional service in the IT industry. Our experienced team is dedicated to supporting your project from consultation to completion with a range of specialized services.
-        </p>
-        <Button asChild className="mt-8">
-          <a href="https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions">
-            Schedule a Consultation
-          </a>
-        </Button>
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
+        >
+          Transform your business with our comprehensive IT solutions. Our experienced team delivers exceptional service from consultation to completion.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="flex gap-4"
+        >
+          <Button size="lg" className="bg-primary hover:bg-primary/90">
+            <a href="https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions">
+              Schedule a Consultation
+            </a>
+          </Button>
+          <Button size="lg" variant="outline">
+            View Services
+          </Button>
+        </motion.div>
       </div>
     </motion.section>
   );
