@@ -28,102 +28,123 @@ export const Navigation: React.FC = () => {
 
   return (
     <motion.div
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
-      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      className="fixed top-0 left-0 right-0 z-50 bg-[#FFFFFF] border-b border-[#000000]/5"
     >
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
-          {/* Logo Section */}
-          <Link to="/" className="flex items-center space-x-2">
-            <motion.img
-              src="https://ik.imagekit.io/quadrate/assets/QTS-Logo-%20emposed.png?updatedAt=1732462181140"
-              alt="QTS Logo"
-              className="h-12 w-auto"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              whileHover={{ scale: 1.05 }}
-            />
-          </Link>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative flex h-16 items-center justify-between">
+          {/* Logo */}
+          <motion.div
+            className="flex-shrink-0"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            <Link to="/" className="flex items-center">
+              <motion.img
+                src="https://ik.imagekit.io/quadrate/assets/QTS-Logo-%20emposed.png?updatedAt=1732462181140"
+                alt="QTS Logo"
+                width={40}
+                height={40}
+                className="h-10 w-auto"
+              />
+              <span className="ml-2 text-xl font-bold text-[#000000]">QTS</span>
+            </Link>
+          </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className="relative group px-4 py-2"
-              >
+          <div className="hidden md:block">
+            <div className="flex items-center space-x-8">
+              {navLinks.map((link) => (
                 <motion.div
-                  className={`
-                    relative rounded-full overflow-hidden text-[#040BAB] hover:text-[#0E0BEE]
-                    before:content-[''] before:absolute before:inset-0 
-                    before:bg-[#98CCF8]/0 hover:before:bg-[#98CCF8]/10
-                    before:transition-all before:duration-300
-                    ${location.pathname === link.to ? 'text-[#0E0BEE] before:bg-[#98CCF8]/20' : ''}
-                  `}
+                  key={link.to}
                   whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  {link.label}
+                  <Link
+                    to={link.to}
+                    className={`relative text-[#000000]/70 hover:text-[#000000] transition-colors duration-200
+                      ${location.pathname === link.to ? 'text-[#000000]' : ''}
+                    `}
+                  >
+                    {link.label}
+                    {location.pathname === link.to && (
+                      <motion.div
+                        className="absolute bottom-0 left-0 h-0.5 w-full bg-[#0607E1]/5"
+                        layoutId="underline"
+                      />
+                    )}
+                  </Link>
                 </motion.div>
-              </Link>
-            ))}
-          </nav>
+              ))}
+            </div>
+          </div>
 
-          <div className="flex items-center space-x-4">
-            {/* Book a Meeting Button */}
+          {/* CTA Button */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
             <Button
               asChild
-              className="hidden sm:inline-flex bg-gradient-to-r from-[#0607E1] to-[#373FEC] hover:from-[#373FEC] hover:to-[#0E0BEE] text-white shadow-lg hover:shadow-xl transition-all duration-300"
+              className="inline-flex items-center justify-center rounded-md bg-[#000000] px-4 py-2 text-sm font-medium text-[#FFFFFF] hover:bg-[#000000]/90 transition-colors duration-200"
             >
               <a href="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions">
                 Book a Meeting
               </a>
             </Button>
+          </motion.div>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="lg:hidden p-2 rounded-lg bg-[#98CCF8]/10 hover:bg-[#98CCF8]/20 text-[#040BAB]"
+          {/* Mobile menu button */}
+          <div className="flex md:hidden">
+            <motion.button
+              type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="inline-flex items-center justify-center rounded-md p-2 text-[#000000]/70 hover:text-[#000000] transition-colors duration-200"
+              whileTap={{ scale: 0.95 }}
             >
-              {isMobileMenuOpen ? <X /> : <Menu />}
-            </button>
+              <span className="sr-only">Open main menu</span>
+              {isMobileMenuOpen ? (
+                <X className="block h-6 w-6" aria-hidden="true" />
+              ) : (
+                <Menu className="block h-6 w-6" aria-hidden="true" />
+              )}
+            </motion.button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white/95 backdrop-blur-lg border-t border-[#768EB4]/10 shadow-lg"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="md:hidden"
           >
-            <div className="container py-4 px-4">
-              <nav className="flex flex-col space-y-2">
-                {navLinks.map((link) => (
+            <div className="space-y-1 px-4 pb-3 pt-2 bg-[#FFFFFF] border-t border-[#000000]/5">
+              {navLinks.map((link) => (
+                <motion.div
+                  key={link.to}
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
                   <Link
-                    key={link.to}
                     to={link.to}
-                    className={`px-4 py-2 rounded-lg text-[#040BAB] hover:text-[#0E0BEE] hover:bg-[#98CCF8]/10
-                      ${location.pathname === link.to ? 'bg-[#98CCF8]/20 text-[#0E0BEE]' : ''}`}
+                    className={`block px-3 py-2 text-base font-medium text-[#000000]/70 hover:text-[#000000] transition-colors duration-200
+                      ${location.pathname === link.to ? 'text-[#000000]' : ''}
+                    `}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.label}
                   </Link>
-                ))}
-              </nav>
+                </motion.div>
+              ))}
               <div className="mt-4">
                 <Button
                   asChild
-                  className="w-full bg-gradient-to-r from-[#0607E1] to-[#373FEC] hover:from-[#373FEC] hover:to-[#0E0BEE] text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="w-full bg-[#000000] px-4 py-2 text-sm font-medium text-[#FFFFFF] hover:bg-[#000000]/90 transition-colors duration-200"
                 >
                   <a href="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions">
                     Book a Meeting

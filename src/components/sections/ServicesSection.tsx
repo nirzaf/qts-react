@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Code2, Globe, LineChart, Smartphone, Sparkles, Workflow } from 'lucide-react';
+import { Code2, Globe, LineChart, Smartphone, Sparkles, Workflow, ArrowRight } from 'lucide-react';
 
 const services = [
   {
@@ -39,56 +39,117 @@ const services = [
 
 export const ServicesSection: React.FC = () => {
   return (
-    <section className="bg-[#FFFFFF] py-8 sm:py-16">
-      <div className="container">
-        <div className="mx-auto max-w-2xl text-center">
-          <motion.div
+    <section className="relative overflow-hidden bg-[#FFFFFF] py-24">
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[#000000]/2" />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+          className="absolute top-1/4 right-1/4 w-1/3 h-1/3 bg-[#000000]/2 rounded-full blur-2xl"
+        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2.5, repeat: Infinity, repeatType: "reverse", delay: 0.5 }}
+          className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-[#000000]/2 rounded-full blur-2xl"
+        />
+      </div>
+
+      <div className="container relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto max-w-2xl text-center mb-16"
+        >
+          <motion.h2 
+            className="text-4xl font-bold tracking-tight text-[#000000] sm:text-5xl mb-6"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-[#0607E1] to-[#0607E1] bg-clip-text text-transparent">
-                Comprehensive Digital Solutions
-              </span>
-            </h2>
-            <p className="text-xl text-[#000000]/70 max-w-2xl mx-auto">
-              From custom software development to digital marketing, we provide end-to-end solutions
-              to help your business thrive in the digital age.
-            </p>
-          </motion.div>
+            Comprehensive Digital Solutions
+          </motion.h2>
+          <motion.p 
+            className="text-lg text-[#000000]/70"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            From custom software development to digital marketing, we provide end-to-end solutions
+            to help your business thrive in the digital age.
+          </motion.p>
+        </motion.div>
+
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-3">
+          {services.map((service, index) => (
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="group relative"
+            >
+              {/* Card Container */}
+              <motion.div
+                className="relative overflow-hidden rounded-2xl bg-[#FFFFFF] p-8 shadow-lg border border-[#000000]/10"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-[#000000]/5 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                
+                {/* Icon Container */}
+                <motion.div
+                  className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#FFFFFF] shadow-md border border-[#000000]/10"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <service.icon className="h-8 w-8 text-[#000000]" />
+                </motion.div>
+
+                {/* Content */}
+                <motion.h3
+                  className="mb-4 text-xl font-semibold text-[#000000]"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                >
+                  {service.title}
+                </motion.h3>
+                <motion.p
+                  className="text-[#000000]/70"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  {service.description}
+                </motion.p>
+
+                {/* Learn More Link */}
+                <motion.div 
+                  className="mt-6 inline-flex items-center gap-2 text-[#000000] group-hover:text-[#0607E1] transition-colors duration-300"
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <span className="font-medium">Learn more</span>
+                  <ArrowRight className="h-4 w-4" />
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          ))}
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-7xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-              >
-                <Card className="group relative overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#000000]/5 bg-[#FFFFFF]">
-                  <div className="relative space-y-4 p-6">
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#0607E1]/5">
-                      <Icon className="h-6 w-6 text-[#0607E1]" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-[#000000]">{service.title}</h3>
-                    <p className="text-[#000000]/70">{service.description}</p>
-                    <Button 
-                      variant="ghost" 
-                      className="mt-4 text-[#0607E1] hover:text-[#0607E1] hover:bg-[#0607E1]/5 transition-colors"
-                    >
-                      Learn More
-                      <span className="ml-2">→</span>
-                    </Button>
-                  </div>
-                </Card>
-              </motion.div>
-            );
-          })}
-        </div>
+        {/* Subtle Blue Accent Line */}
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-[#0607E1]/2" />
 
         <div className="mx-auto mt-16 text-center">
           <Button 
