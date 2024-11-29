@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { FaBrain } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
 import { SiMicrosoft } from 'react-icons/si';
+import WhyChooseUs from "@/components/sections/WhyChooseUs";
 
 interface Service {
   id: string;
@@ -141,6 +142,9 @@ const ServicesPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Why Choose Us Section */}
+      <WhyChooseUs />
 
       {/* Features Section */}
       <section className="py-20 relative overflow-hidden">
