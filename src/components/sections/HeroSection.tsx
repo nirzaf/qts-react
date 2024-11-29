@@ -112,13 +112,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               >
                 {/* Company Name with Fade-in Letters Animation */}
                 <motion.div
-                  className="text-2xl md:text-3xl font-light mb-4 overflow-hidden"
+                  className="text-xl md:text-2xl font-light mb-1 overflow-hidden"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.6 }}
                 >
                   {/* Split text into individual letters for animation */}
-                  <div className="flex items-center justify-center lg:justify-start space-x-1">
+                  <div className="flex items-center justify-center lg:justify-start space-x-[2px]">
                     {"Quadrate Tech Solutions".split("").map((letter, index) => (
                       <motion.span
                         key={index}
@@ -134,6 +134,28 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                         {letter === " " ? "\u00A0" : letter}
                       </motion.span>
                     ))}
+                  </div>
+                </motion.div>
+
+                {/* Helps text with fade-in and slide animation */}
+                <motion.div
+                  className="text-lg md:text-xl font-light mb-4 overflow-hidden text-[#000000]/60"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.8 }}
+                >
+                  <div className="flex items-center justify-center lg:justify-start">
+                    <motion.span
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        duration: 0.3,
+                        delay: 1,
+                        ease: "easeOut"
+                      }}
+                    >
+                      Helps
+                    </motion.span>
                   </div>
                 </motion.div>
 
