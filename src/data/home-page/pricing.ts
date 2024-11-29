@@ -3,7 +3,9 @@ export interface PricingPlan {
   price: string;
   description: string;
   features: string[];
-  popular?: boolean;
+  popular: boolean;
+  ctaText: string;
+  ctaLink: string;
 }
 
 export const pricingPlans: PricingPlan[] = [
@@ -19,7 +21,10 @@ export const pricingPlans: PricingPlan[] = [
       "3 Months Support",
       "Performance Optimization",
       "Security Essentials"
-    ]
+    ],
+    popular: false,
+    ctaText: "Get Started",
+    ctaLink: "https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions"
   },
   {
     name: "Professional",
@@ -35,7 +40,9 @@ export const pricingPlans: PricingPlan[] = [
       "Performance Optimization",
       "Enhanced Security",
       "Analytics Integration"
-    ]
+    ],
+    ctaText: "Choose Professional",
+    ctaLink: "https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions"
   },
   {
     name: "Enterprise",
@@ -49,7 +56,10 @@ export const pricingPlans: PricingPlan[] = [
       "Priority Support",
       "Scalable Infrastructure",
       "Advanced Security",
-      "24/7 Monitoring"
-    ]
+      "24/7 Support"
+    ],
+    popular: false,
+    ctaText: "Contact Us",
+    ctaLink: "https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions"
   }
 ];

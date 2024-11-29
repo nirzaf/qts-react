@@ -5,7 +5,6 @@ import { ArrowRight } from 'lucide-react';
 import { FaBrain } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
 import { SiMicrosoft } from 'react-icons/si';
-import WhyChooseUs from "@/components/sections/WhyChooseUs";
 
 interface Service {
   id: string;
