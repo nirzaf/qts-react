@@ -4,10 +4,10 @@ import { AboutContent } from '@/components/sections/about/AboutContent';
 
 const AboutPage: React.FC = () => {
   return (
-    <div className="relative min-h-screen bg-[#FFFFFF]">
+    <div className="min-h-screen bg-[#FFFFFF]">
       <AboutHero 
-        title="About Quadrate Tech Solutions"
-        subtitle="Empowering businesses with innovative technology solutions since 2009. We're dedicated to delivering excellence in software development and digital transformation."
+        title="About Us"
+        subtitle="Building the future of technology solutions, one innovation at a time"
       />
       <AboutContent />
     </div>
