@@ -41,18 +41,18 @@ export const PartnersSection: React.FC<PartnersSectionProps> = ({
     <section className="relative overflow-hidden bg-[#FFFFFF] py-24">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[#0607E1]/5" />
+        <div className="absolute inset-0 bg-[#000000]/2" />
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-          className="absolute top-1/4 right-1/4 w-1/3 h-1/3 bg-[#0607E1]/5 rounded-full blur-2xl"
+          className="absolute top-1/4 right-1/4 w-1/3 h-1/3 bg-[#000000]/2 rounded-full blur-2xl"
         />
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 2.5, repeat: Infinity, repeatType: "reverse", delay: 0.5 }}
-          className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-[#0607E1]/5 rounded-full blur-2xl"
+          className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-[#000000]/2 rounded-full blur-2xl"
         />
       </div>
 
@@ -103,13 +103,13 @@ export const PartnersSection: React.FC<PartnersSectionProps> = ({
             >
               {/* Hover Effect Background */}
               <motion.div 
-                className="absolute inset-0 bg-[#0607E1]/5 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10"
+                className="absolute inset-0 bg-[#000000]/5 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10"
                 initial={{ scale: 0.8 }}
                 whileHover={{ scale: 1.1 }}
               />
               
               {/* Partner Logo Container */}
-              <div className="relative p-4 rounded-xl border border-[#000000]/10 bg-white backdrop-blur-sm group-hover:border-[#0607E1]/5 group-hover:shadow-lg transition-all duration-300">
+              <div className="relative p-4 rounded-xl border border-[#000000]/10 bg-white backdrop-blur-sm group-hover:border-[#000000]/20 group-hover:shadow-lg transition-all duration-300">
                 <motion.img
                   className="h-12 w-full object-contain grayscale transition-all duration-300 group-hover:grayscale-0"
                   src={partner.logo}
@@ -136,11 +136,11 @@ export const PartnersSection: React.FC<PartnersSectionProps> = ({
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             {/* Card Glow Effect */}
-            <div className="absolute -inset-1 bg-[#0607E1]/5 rounded-2xl opacity-20 group-hover:opacity-30 blur transition-all duration-300" />
+            <div className="absolute -inset-1 bg-[#000000]/5 rounded-2xl opacity-20 group-hover:opacity-30 blur transition-all duration-300" />
             
             {/* Card Content */}
             <div className="relative rounded-xl overflow-hidden backdrop-blur-sm border border-[#000000]/10 bg-white">
-              <div className="absolute inset-0 bg-[#0607E1]/5 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+              <div className="absolute inset-0 bg-[#000000]/5 opacity-0 group-hover:opacity-100 transition-all duration-300" />
               <div className="relative p-8">
                 <div className="grid gap-8 sm:grid-cols-2">
                   <motion.div 
@@ -178,6 +178,9 @@ export const PartnersSection: React.FC<PartnersSectionProps> = ({
             </div>
           </motion.div>
         </motion.div>
+
+        {/* Subtle Blue Accent Line */}
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-[#0607E1]/2" />
       </div>
     </section>
   );
