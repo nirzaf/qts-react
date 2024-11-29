@@ -110,6 +110,34 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
+                {/* Company Name with Fade-in Letters Animation */}
+                <motion.div
+                  className="text-2xl md:text-3xl font-light mb-4 overflow-hidden"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  {/* Split text into individual letters for animation */}
+                  <div className="flex items-center justify-center lg:justify-start space-x-1">
+                    {"Quadrate Tech Solutions".split("").map((letter, index) => (
+                      <motion.span
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.3,
+                          delay: index * 0.03,
+                          ease: "easeOut"
+                        }}
+                        className="text-[#000000]/80 inline-block"
+                      >
+                        {letter === " " ? "\u00A0" : letter}
+                      </motion.span>
+                    ))}
+                  </div>
+                </motion.div>
+
+                {/* Existing Dynamic Text */}
                 <div className="h-[1.2em] overflow-hidden">
                   <motion.span
                     key={words[currentWord]}
