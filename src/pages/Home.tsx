@@ -22,6 +22,9 @@ import { useNavigate } from 'react-router-dom';
 const Home: React.FC = () => {
   const navigate = useNavigate();
 
+  const handleGetStarted = () => navigate('/contact');
+  const handleLearnMore = () => navigate('/about');
+
   try {
     return (
       <div className="relative bg-[--background]">
@@ -45,18 +48,17 @@ const Home: React.FC = () => {
               />
             </div>
             <HeroSection
-              backgroundImage="https://ik.imagekit.io/quadrate/assets/img/hero-bg.png?updatedAt=1718024113863"
               heroImage={{
                 src: 'https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458',
                 alt: 'Digital Solutions'
               }}
               primaryButton={{
-                text: 'Get Started',
-                onClick: () => navigate('/contact'),
+                text: "Get Started",
+                onClick: handleGetStarted
               }}
               secondaryButton={{
-                text: 'Learn More',
-                onClick: () => navigate('/about'),
+                text: "Learn More",
+                onClick: handleLearnMore
               }}
             />
           </section>

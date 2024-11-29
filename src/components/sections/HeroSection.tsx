@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 interface HeroSectionProps {
-  backgroundImage: string;
   heroImage?: {
     src: string;
     alt: string;
@@ -17,50 +16,7 @@ interface HeroSectionProps {
   };
 }
 
-const container: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.3,
-    },
-  },
-};
-
-const item: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
-
-const decorativeVariants: Variants = {
-  initial: {
-    scale: 0.8,
-    opacity: 0.5,
-    rotate: 0,
-  },
-  animate: {
-    scale: 1,
-    opacity: 0.8,
-    rotate: 360,
-    transition: {
-      duration: 20,
-      ease: "linear",
-    },
-  },
-  whileHover: {
-    scale: 1.1,
-    rotate: [0, 180],
-    filter: ["blur(0px)", "blur(4px)"],
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-      repeatType: "mirror",
-    },
-  },
-};
-
 export const HeroSection: React.FC<HeroSectionProps> = ({
-  backgroundImage,
   heroImage,
   primaryButton,
   secondaryButton,
@@ -73,7 +29,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       setCurrentWord((prev) => (prev + 1) % words.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [words.length]);
 
   return (
     <section className="relative overflow-hidden bg-[#FFFFFF] pt-32 pb-24">

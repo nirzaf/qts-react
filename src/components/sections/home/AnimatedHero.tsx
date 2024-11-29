@@ -68,7 +68,10 @@ export const AnimatedHero: React.FC<AnimatedHeroProps> = ({
       }}
     >
       <HeroSection
-        backgroundImage={heroData.backgroundImage}
+        heroImage={{
+          src: heroData.backgroundImage,
+          alt: "Hero Background"
+        }}
         primaryButton={heroData.primaryButton}
         secondaryButton={heroData.secondaryButton}
       />

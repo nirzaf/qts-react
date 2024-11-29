@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Code2, Globe, LineChart, Smartphone, Sparkles, Workflow, ArrowRight } from 'lucide-react';
 
