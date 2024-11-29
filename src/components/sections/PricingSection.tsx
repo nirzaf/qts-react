@@ -1,41 +1,27 @@
-import React, { useState, useCallback } from 'react';
-import { PricingPlan } from '@/data/pricingData';
-import { PricingHeader } from '@/components/pricing/sections/PricingHeader';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { pricingPlans } from '@/data/pricingData';
 import { PricingCardContainer } from '@/components/pricing/sections/PricingCardContainer';
+import CustomSolutionCard from '@/components/pricing/CustomSolutionCard';
 
 interface PricingSectionProps {
-  plans: PricingPlan[];
 }
 
-export const PricingSection: React.FC<PricingSectionProps> = ({ plans }) => {
-  const [hoveredPlan, setHoveredPlan] = useState<number | null>(null);
-
-  // Map the plans to include the correct button text and link
-  const mappedPlans = plans.map(plan => ({
-    ...plan,
-    ctaText: plan.popular ? 'Get Started' : plan.name === 'Enterprise' ? 'Contact Sales' : 'Get Started',
-    ctaLink: 'https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions'
-  }));
-
-  const handleHoverStart = useCallback((index: number) => {
-    setHoveredPlan(index);
-  }, []);
-
-  const handleHoverEnd = useCallback(() => {
-    setHoveredPlan(null);
-  }, []);
-
+export const PricingSection: React.FC<PricingSectionProps> = () => {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <PricingHeader />
-        <PricingCardContainer
-          plans={mappedPlans}
-          hoveredPlan={hoveredPlan}
-          onHoverStart={handleHoverStart}
-          onHoverEnd={handleHoverEnd}
-        />
-      </div>
+    <section className="container mx-auto py-12">
+      {/* Pricing Cards Container */}
+      <PricingCardContainer plans={pricingPlans} />
+
+      {/* Custom Solution Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
+        className="mt-16"
+      >
+        <CustomSolutionCard />
+      </motion.div>
     </section>
   );
 };

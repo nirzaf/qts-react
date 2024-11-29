@@ -7,7 +7,6 @@ import { ServicesSection } from '@/components/sections/ServicesSection';
 import { PricingSection } from '@/components/sections/PricingSection';
 import { StatsSection } from '@/components/sections/StatsSection';
 import { PartnersSection } from '@/components/sections/PartnersSection';
-import { pricingPlans } from '@/data/home-page/pricing';
 import { AnimatedSection } from '@/components/sections/home/AnimatedSection';
 import { useNavigate } from 'react-router-dom';
 
@@ -80,10 +79,9 @@ const Home: React.FC = () => {
           </AnimatedSection>
 
           {/* Pricing Section */}
-          <AnimatedSection className="relative">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#535BF2]/5 to-transparent" />
-            <PricingSection plans={pricingPlans} />
-          </AnimatedSection>
+          <div id="pricing" className="bg-white">
+            <PricingSection />
+          </div>
 
           {/* Stats Section */}
           <StatsSection />
