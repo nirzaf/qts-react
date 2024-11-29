@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
-import { ButtonConfig } from '@/types';
 
 interface HeroSectionProps {
   backgroundImage: string;
-  primaryButton: ButtonConfig;
-  secondaryButton: ButtonConfig;
+  heroImage?: {
+    src: string;
+    alt: string;
+  };
+  primaryButton: {
+    text: string;
+    onClick: () => void;
+  };
+  secondaryButton: {
+    text: string;
+    onClick: () => void;
+  };
 }
 
 const container: Variants = {
@@ -52,6 +61,7 @@ const decorativeVariants: Variants = {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   backgroundImage,
+  heroImage,
   primaryButton,
   secondaryButton,
 }) => {
@@ -179,8 +189,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Main Image Container */}
             <div className="relative">
               <img
-                src="https://ik.imagekit.io/quadrate/assets/img/QTS%20PNG.png?updatedAt=1732728815505"
-                alt="Quadrate Tech Solutions"
+                src={heroImage?.src || "https://ik.imagekit.io/quadrate/assets/img/QTS%20PNG.png?updatedAt=1732728815505"}
+                alt={heroImage?.alt || "Quadrate Tech Solutions"}
                 className="w-full h-auto rounded-2xl shadow-2xl"
                 style={{
                   filter: 'drop-shadow(0 20px 40px rgba(55, 63, 236, 0.12))',

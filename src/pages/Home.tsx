@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { HeroSection } from '@/components/sections/HeroSection';
-import { Features } from '@/components/sections/features/Features';
+import Features from '@/components/sections/features/Features';
 import { TechStack } from '@/components/sections/TechStack';
 import { ServicesSection } from '@/components/sections/ServicesSection';
 import { PricingSection } from '@/components/sections/PricingSection';
 import { StatsSection } from '@/components/sections/StatsSection';
 import { PartnersSection } from '@/components/sections/PartnersSection';
 import { pricingPlans } from '@/data/home-page/pricing';
-import { AnimatedSection } from '@/components/AnimatedSection';
+import { AnimatedSection } from '@/components/sections/home/AnimatedSection';
 import { useNavigate } from 'react-router-dom';
 
 /**
@@ -21,18 +21,7 @@ import { useNavigate } from 'react-router-dom';
  */
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
 
-  // Error boundary could be added here for section-level error handling
   try {
     return (
       <div className="relative bg-white">
@@ -56,26 +45,18 @@ const Home: React.FC = () => {
               />
             </div>
             <HeroSection
-              data={{
-                backgroundImage: '/images/hero-bg.jpg',
-                heroImage: {
-                  src: 'https://ik.imagekit.io/quadrate/assets/BsRWJ-wWSr2cVcZUVLyq0A.webp?updatedAt=1732462181074',
-                  alt: 'Quadrate Tech Solutions',
-                },
-                primaryButton: {
-                  text: 'Get Started',
-                  onClick: () => {
-                    // Navigate to contact page
-                    navigate('/contact');
-                  },
-                },
-                secondaryButton: {
-                  text: 'Learn More',
-                  onClick: () => {
-                    // Navigate to about page
-                    navigate('/about');
-                  },
-                },
+              backgroundImage="https://ik.imagekit.io/quadrate/assets/img/hero-bg.png?updatedAt=1718024113863"
+              heroImage={{
+                src: 'https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458',
+                alt: 'Digital Solutions'
+              }}
+              primaryButton={{
+                text: 'Get Started',
+                onClick: () => navigate('/contact'),
+              }}
+              secondaryButton={{
+                text: 'Learn More',
+                onClick: () => navigate('/about'),
               }}
             />
           </section>
