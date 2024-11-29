@@ -6,10 +6,7 @@ import path from 'path'
 export default defineConfig({
   plugins: [react({
     jsxImportSource: 'react',
-    plugins: [['@swc/plugin-emotion', {}]],
-    swcrc: true,
-    tsDecorators: true,
-    minify: true
+    plugins: [['@swc/plugin-emotion', {}]]
   })],
   resolve: {
     alias: {
@@ -20,6 +17,7 @@ export default defineConfig({
     sourcemap: true,
     target: 'esnext',
     chunkSizeWarningLimit: 600,
+    minify: 'esbuild',
     rollupOptions: {
       output: {
         manualChunks: {
@@ -31,7 +29,6 @@ export default defineConfig({
         }
       }
     },
-    minify: 'esbuild',
     cssMinify: true,
     cssCodeSplit: true
   }
