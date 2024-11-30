@@ -151,7 +151,7 @@ export const HeroSection = ({
                 </motion.div>
               </motion.h2>
 
-              {/* Helps Text - Enhanced Animation */}
+              {/* Helps Text - 3D Effect */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -163,14 +163,15 @@ export const HeroSection = ({
                 className="relative h-[40px] flex items-center justify-center lg:justify-start perspective-1000"
               >
                 <motion.h3 
-                  className="text-3xl lg:text-5xl font-bold relative z-10 cursor-default
-                    text-[#0607E1] 
-                    transition-all duration-300 ease-out transform-gpu
+                  className="text-3xl lg:text-4xl font-semibold relative z-10 cursor-default
+                    text-[#0607E1] hover:text-[#0A25C9]
+                    transition-all duration-500 ease-in-out transform-gpu
                     -mt-2 font-outfit"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ rotateX: -30, y: 20, opacity: 0 }}
+                  animate={{ rotateX: 0, y: 0, opacity: 1 }}
                   whileHover={{ 
-                    scale: 1.02,
+                    scale: 1.05,
+                    y: -2,
                     transition: { 
                       type: "spring",
                       stiffness: 400,
@@ -179,48 +180,39 @@ export const HeroSection = ({
                   }}
                   style={{
                     transformStyle: 'preserve-3d',
-                    textShadow: '0 2px 4px rgba(6,7,225,0.2)'
+                    backfaceVisibility: 'hidden'
                   }}
                 >
-                  <motion.div
-                    className="relative inline-block"
+                  <motion.span
+                    className="inline-block relative"
                     whileHover={{
-                      transition: { duration: 0.2 }
+                      textShadow: "0 4px 8px rgba(6,7,225,0.3)"
                     }}
                   >
-                    {/* Main Text with Gradient */}
-                    <span className="relative z-10 bg-gradient-to-b from-[#0607E1] to-[#0A25C9] bg-clip-text text-transparent">
+                    {/* 3D Text Layers */}
+                    <span className="absolute -z-10 text-[#0607E1]/10" 
+                      style={{ transform: 'translateZ(-2px) translateY(2px)' }}>
                       Helps
                     </span>
-
-                    {/* Bottom Border/Line */}
-                    <motion.div
-                      className="absolute -bottom-1 left-0 w-full h-[2px] bg-[#0607E1]"
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: 0.8, delay: 0.5 }}
-                    />
-
-                    {/* Hover Effect Glow */}
-                    <motion.div
-                      className="absolute inset-0 rounded-lg bg-[#0607E1]/5"
-                      initial={{ opacity: 0 }}
-                      whileHover={{ 
-                        opacity: 1,
-                        transition: { duration: 0.2 }
-                      }}
-                    />
-                  </motion.div>
+                    <span className="absolute -z-20 text-[#0607E1]/5" 
+                      style={{ transform: 'translateZ(-4px) translateY(4px)' }}>
+                      Helps
+                    </span>
+                    <span className="relative z-10">
+                      Helps
+                    </span>
+                  </motion.span>
                 </motion.h3>
 
-                {/* Background Accent */}
+                {/* Subtle Background Effect */}
                 <motion.div
-                  className="absolute -inset-2 bg-gradient-to-r from-[#0607E1]/5 via-transparent to-[#0607E1]/5 rounded-xl blur-md"
+                  className="absolute inset-0 bg-gradient-to-r from-[#0607E1]/5 via-transparent to-[#0607E1]/5 rounded-xl"
+                  style={{ transform: 'translateZ(-6px)' }}
                   animate={{
-                    opacity: [0.3, 0.5, 0.3],
+                    opacity: [0.2, 0.3, 0.2],
                   }}
                   transition={{
-                    duration: 4,
+                    duration: 3,
                     repeat: Infinity,
                     repeatType: "reverse",
                     ease: "easeInOut"
@@ -304,10 +296,10 @@ export const HeroSection = ({
               </motion.div>
             </motion.div>
 
-            {/* Image Section */}
+            {/* Image Section - Hidden on Mobile */}
             {heroImage && (
               <motion.div
-                className="relative"
+                className="relative hidden lg:block"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ 
