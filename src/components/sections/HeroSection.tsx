@@ -78,14 +78,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     "Transform Your Digital Presence",
     "Startups Scale Their Operations",
     "Businesses Reach New Heights",
-    "Teams Collaborate",
-    "Ideas Come To Life"
+    "Teams Collaborate Effectively",
+    "Ideas Transform Into Reality"
   ];
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTextIndex((prevIndex) => (prevIndex + 1) % phrases.length);
-    }, 3000); // Change text every 3 seconds
+    }, 4000); // Increased duration for better readability
 
     return () => clearInterval(timer);
   }, []);
@@ -99,47 +99,62 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center lg:text-left space-y-8"
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="text-center lg:text-left space-y-12" // Increased spacing
             >
-              {/* Company Name - Smaller Size */}
+              {/* Company Name - Consistent Size */}
               <motion.h2 
-                className="text-2xl md:text-3xl font-medium tracking-tight"
+                className="text-3xl lg:text-4xl font-bold tracking-tight h-[60px] flex items-center justify-center lg:justify-start"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ 
+                  duration: 0.8,
+                  delay: 0.2,
+                  ease: [0.43, 0.13, 0.23, 0.96]
+                }}
               >
-                <div className="flex flex-wrap justify-center lg:justify-start font-chakra tracking-normal">
+                <div className="flex flex-wrap justify-center lg:justify-start font-chakra">
                   {"Quadrate Tech Solutions".split('').map((letter, index) => (
                     <AnimatedLetter key={index} letter={letter} index={index} />
                   ))}
                 </div>
               </motion.h2>
 
-              {/* Helps Text - Enhanced */}
+              {/* Helps Text - Enhanced Animation */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="relative mb-0"
+                transition={{ 
+                  duration: 0.8,
+                  delay: 0.4,
+                  ease: [0.43, 0.13, 0.23, 0.96]
+                }}
+                className="relative h-[60px] flex items-center justify-center lg:justify-start"
               >
                 <motion.h3 
-                  className="text-5xl font-orbitron font-bold relative z-10 cursor-default
-                    bg-gradient-to-r from-[#0607E1] via-[#0A25C9] to-[#0607E1] hover:from-[#0A25C9] hover:via-[#0B48D0] hover:to-[#0A25C9]
-                    bg-clip-text text-transparent
-                    transition-all duration-300 ease-in-out transform hover:scale-105
-                    hover:drop-shadow-[0_0_8px_rgba(6,7,225,0.5)]"
+                  className="text-3xl lg:text-4xl font-pacifico font-semibold relative z-10 cursor-default
+                    text-[#0607E1] hover:text-[#0A25C9]
+                    transition-all duration-500 ease-in-out transform hover:scale-105
+                    hover:drop-shadow-[0_0_8px_rgba(6,7,225,0.3)]"
+                  whileHover={{ 
+                    scale: 1.05,
+                    transition: { duration: 0.3 }
+                  }}
                 >
                   Helps
                 </motion.h3>
               </motion.div>
 
-              {/* Main Heading - Larger Size */}
+              {/* Main Heading - Improved Animation */}
               <motion.h1 
-                className="text-[3.4rem] lg:text-[4.05rem] font-bold tracking-tight min-h-[8rem] lg:min-h-[10rem] flex flex-col justify-start -mt-2"
+                className="text-4xl lg:text-5xl font-bold tracking-tight h-[120px] flex items-center justify-center lg:justify-start"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
+                transition={{ 
+                  duration: 0.8,
+                  delay: 0.6,
+                  ease: [0.43, 0.13, 0.23, 0.96]
+                }}
               >
                 <div className="flex flex-wrap justify-center lg:justify-start">
                   <motion.div
@@ -147,7 +162,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ 
+                      duration: 0.8,
+                      ease: [0.43, 0.13, 0.23, 0.96]
+                    }}
                     className="flex flex-wrap justify-center lg:justify-start"
                   >
                     {phrases[textIndex].split(' ').map((word, index) => (
@@ -157,12 +175,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </div>
               </motion.h1>
 
-              {/* Buttons */}
+              {/* Buttons - Consistent Spacing */}
               <motion.div
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-[100px]"
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1 }}
+                transition={{ 
+                  duration: 0.8,
+                  delay: 0.8,
+                  ease: [0.43, 0.13, 0.23, 0.96]
+                }}
               >
                 <button
                   onClick={primaryButton.onClick}
@@ -179,13 +201,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </motion.div>
             </motion.div>
 
-            {/* Image Section */}
+            {/* Image Section - Enhanced Animation */}
             {heroImage && (
               <motion.div
                 className="relative"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                transition={{ 
+                  duration: 0.8,
+                  delay: 0.4,
+                  ease: [0.43, 0.13, 0.23, 0.96]
+                }}
               >
                 <img
                   src={heroImage.src}
