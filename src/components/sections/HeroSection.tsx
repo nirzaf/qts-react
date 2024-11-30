@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface HeroSectionProps {
   heroImage?: {
@@ -16,6 +16,71 @@ interface HeroSectionProps {
   };
 }
 
+const AnimatedLetter: React.FC<{ letter: string; index: number }> = ({ letter, index }) => (
+  <motion.span
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{
+      duration: 0.5,
+      delay: index * 0.05,
+      ease: [0.43, 0.13, 0.23, 0.96]
+    }}
+    className={`inline-block transform hover:scale-110 hover:text-[#007AFF] transition-all duration-300 cursor-default font-chakra
+      ${letter === ' ' ? 'mx-[3px]' : 'mx-[0.5px]'}`}
+    style={{
+      textShadow: '1px 1px 0px rgba(0,0,0,0.05)'
+    }}
+  >
+    {letter === ' ' ? '\u00A0' : letter}
+  </motion.span>
+);
+
+const AnimatedWord: React.FC<{ word: string }> = ({ word }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative inline-block"
+    >
+      <motion.span
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="relative z-10 font-montserrat text-3xl md:text-4xl font-bold tracking-wider"
+        whileHover={{ scale: 1.05 }}
+      >
+        {word.split('').map((letter, index) => (
+          <motion.span
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.3,
+              delay: index * 0.05,
+              ease: "easeOut"
+            }}
+            className="inline-block"
+            style={{
+              color: isHovered ? '#007AFF' : 'currentColor',
+              transition: 'color 0.3s ease'
+            }}
+          >
+            {letter}
+          </motion.span>
+        ))}
+      </motion.span>
+      {isHovered && (
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 blur-lg -z-10"
+        />
+      )}
+    </motion.div>
+  );
+};
+
 export const HeroSection: React.FC<HeroSectionProps> = ({
   heroImage,
   primaryButton,
@@ -23,6 +88,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 }) => {
   const words = ["Transform", "Innovate", "Elevate", "Empower"];
   const [currentWord, setCurrentWord] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -58,64 +124,56 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center lg:text-left"
+              className="text-center lg:text-left space-y-8"
             >
-              <motion.h1
-                className="text-5xl md:text-6xl font-bold tracking-tight text-[#000000] mb-6"
+              {/* Company Name - Smaller Size */}
+              <motion.h2 
+                className="text-2xl md:text-3xl font-medium tracking-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                {/* Company Name with Fade-in Letters Animation */}
-                <motion.div
-                  className="text-xl md:text-2xl font-light mb-1 overflow-hidden"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  {/* Split text into individual letters for animation */}
-                  <div className="flex items-center justify-center lg:justify-start space-x-[2px]">
-                    {"Quadrate Tech Solutions".split("").map((letter, index) => (
-                      <motion.span
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                          duration: 0.3,
-                          delay: index * 0.03,
-                          ease: "easeOut"
-                        }}
-                        className="text-[#000000]/80 inline-block"
-                      >
-                        {letter === " " ? "\u00A0" : letter}
-                      </motion.span>
-                    ))}
-                  </div>
-                </motion.div>
+                <div className="flex flex-wrap justify-center lg:justify-start font-chakra tracking-normal">
+                  {"Quadrate Tech Solutions".split('').map((letter, index) => (
+                    <AnimatedLetter key={index} letter={letter} index={index} />
+                  ))}
+                </div>
+              </motion.h2>
 
-                {/* Helps text with fade-in and slide animation */}
-                <motion.div
-                  className="text-lg md:text-xl font-light mb-4 overflow-hidden text-[#000000]/60"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.8 }}
+              {/* Helps text with unique effects */}
+              <motion.div
+                className="text-xl md:text-2xl font-light relative"
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
+              >
+                <motion.span
+                  className="inline-block bg-gradient-to-r from-[#007AFF] to-[#00C6FF] bg-clip-text text-transparent relative"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 1 }}
+                  whileHover={{ scale: 1.1 }}
                 >
-                  <div className="flex items-center justify-center lg:justify-start">
-                    <motion.span
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.3,
-                        delay: 1,
-                        ease: "easeOut"
-                      }}
-                    >
-                      Helps
-                    </motion.span>
-                  </div>
-                </motion.div>
+                  Helps
+                  <AnimatePresence>
+                    {isHovering && (
+                      <motion.div
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0, opacity: 0 }}
+                        className="absolute -inset-1 bg-gradient-to-r from-[#007AFF]/10 to-[#00C6FF]/10 blur-sm rounded-lg -z-10"
+                      />
+                    )}
+                  </AnimatePresence>
+                </motion.span>
+              </motion.div>
 
-                {/* Existing Dynamic Text */}
+              {/* Main Heading - Larger Size */}
+              <motion.h1 
+                className="text-5xl md:text-6xl lg:text-7xl font-bold"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
                 <div className="h-[1.2em] overflow-hidden">
                   <motion.span
                     key={words[currentWord]}
@@ -137,15 +195,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     />
                   </motion.span>
                 </div>
-                <motion.span 
-                  className="bg-gradient-to-r from-[#000000] via-[#0607E1] to-[#0607E1] bg-clip-text text-transparent mt-2"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
-                >
-                  Your Digital Presence
-                </motion.span>
               </motion.h1>
+
+              {/* Your Digital Presence with enhanced animation */}
+              <motion.div 
+                className="relative"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+                  {"Your Digital Presence".split(' ').map((word, idx) => (
+                    <AnimatedWord key={idx} word={word} />
+                  ))}
+                </div>
+              </motion.div>
+
               <motion.p 
                 className="text-xl lg:text-2xl text-[#000000]/70 mb-8 max-w-2xl mx-auto lg:mx-0"
                 initial={{ opacity: 0, y: 20 }}
