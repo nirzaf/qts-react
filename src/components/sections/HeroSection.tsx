@@ -25,7 +25,7 @@ const AnimatedLetter: React.FC<{ letter: string; index: number }> = ({ letter, i
       delay: index * 0.05,
       ease: [0.43, 0.13, 0.23, 0.96]
     }}
-    className={`inline-block transform hover:scale-110 hover:text-[#007AFF] transition-all duration-300 cursor-default font-chakra
+    className={`inline-block transform hover:scale-110 hover:text-[#0607E1] transition-all duration-300 cursor-default font-chakra
       ${letter === ' ' ? 'mx-[3px]' : 'mx-[0.5px]'}`}
     style={{
       textShadow: '1px 1px 0px rgba(0,0,0,0.05)'
@@ -51,7 +51,7 @@ const AnimatedWord: React.FC<{ word: string }> = ({ word }) => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, delay: index * 0.1 }}
           className={`inline-block transition-all duration-300 ${
-            isHovered ? 'text-blue-500 scale-110' : ''
+            isHovered ? 'text-[#0607E1] scale-110' : ''
           }`}
         >
           {letter}
@@ -142,13 +142,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               >
                 <button
                   onClick={primaryButton.onClick}
-                  className="px-8 py-3 bg-[#007AFF] text-white rounded-lg hover:bg-[#0056b3] transition-colors duration-300"
+                  className="px-8 py-3 bg-[#0607E1] text-white rounded-lg hover:bg-[#0A25C9] transition-colors duration-300"
                 >
                   {primaryButton.text}
                 </button>
                 <button
                   onClick={secondaryButton.onClick}
-                  className="px-8 py-3 border-2 border-[#007AFF] text-[#007AFF] rounded-lg hover:bg-[#007AFF] hover:text-white transition-colors duration-300"
+                  className="px-8 py-3 border-2 border-[#0607E1] text-[#0607E1] rounded-lg hover:bg-[#0607E1] hover:text-white transition-colors duration-300"
                 >
                   {secondaryButton.text}
                 </button>

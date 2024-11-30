@@ -5,6 +5,7 @@ import ContactForm from '@/components/contact/ContactForm';
 import ContactBackground from '@/components/contact/ContactBackground';
 import ContactContainer from '@/components/contact/ContactContainer';
 import ContactMethodsGrid from '@/components/contact/ContactMethodsGrid';
+import LocationCards from '@/components/contact/LocationCards';
 import { contactMethods } from '@/data/contactData';
 
 /**
@@ -13,6 +14,7 @@ import { contactMethods } from '@/data/contactData';
  * - Interactive contact method selection
  * - Multi-step contact form
  * - Animated transitions
+ * - Global office locations with maps
  */
 const Contact: FC = () => {
   const [activeMethod, setActiveMethod] = useState<string | null>(null);
@@ -46,6 +48,9 @@ const Contact: FC = () => {
             <ContactForm />
           </motion.div>
         )}
+
+        {/* Location Cards Section */}
+        <LocationCards />
       </ContactContainer>
     </div>
   );
