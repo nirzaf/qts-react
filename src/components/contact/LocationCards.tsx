@@ -48,42 +48,24 @@ const LocationCards: FC = () => {
             }}
             whileHover={{ 
               scale: 1.02,
-              transition: {
-                duration: 0.3,
-                ease: "easeOut"
-              }
+              transition: { duration: 0.2 }
             }}
-            className="h-full relative group"
           >
-            {/* Animated border background */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-[#0607E1] via-[#0A25C9] to-[#0B48D0] rounded-2xl opacity-75 group-hover:opacity-100 transition duration-300 blur-sm group-hover:blur"></div>
-            
-            {/* Card content */}
-            <Card className="relative h-full overflow-hidden bg-white dark:bg-gray-900 rounded-xl">
-              <div className="relative">
-                <div className="aspect-video w-full overflow-hidden">
-                  <Suspense fallback={
-                    <div className="w-full h-full bg-gray-100 dark:bg-gray-800 animate-pulse" />
-                  }>
-                    <MapEmbed
-                      src={location.mapUrl}
-                      title={location.title}
-                      className="transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </Suspense>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-semibold text-[#0607E1] mb-2 group-hover:text-[#0A25C9] transition-colors duration-300">
-                    {location.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">{location.address}</p>
-                  
-                  {/* Decorative corner elements */}
-                  <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#0607E1] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#0607E1] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#0607E1] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#0607E1] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
+            <Card className="overflow-hidden h-full border border-[#0607E1]/10 hover:border-[#0607E1]/20 transition-colors duration-300">
+              <div className="p-4">
+                <h3 className="text-xl font-semibold mb-2">{location.title}</h3>
+                <p className="text-[#000000]/70 mb-4">{location.address}</p>
+              </div>
+              <div className="h-[300px] relative">
+                <Suspense fallback={
+                  <div className="w-full h-full bg-[#0607E1]/5 animate-pulse" />
+                }>
+                  <MapEmbed
+                    src={location.mapUrl}
+                    title={location.title}
+                    className="border-t border-[#0607E1]/10"
+                  />
+                </Suspense>
               </div>
             </Card>
           </motion.div>

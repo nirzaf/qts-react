@@ -28,7 +28,7 @@ const Contact: FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-white text-black">
+    <div className="relative min-h-screen bg-[#FFFFFF] text-[#000000]">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -43,6 +43,7 @@ const Contact: FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.5 }}
+          className="w-full"
         >
           <ContactHeader />
         </motion.div>
@@ -51,31 +52,20 @@ const Contact: FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
+          className="w-full"
         >
-          <ContactMethodsGrid 
-            activeMethod={activeMethod}
-            onMethodClick={handleMethodClick}
-          />
+          {activeMethod === 'email' ? (
+            <ContactForm onBack={() => setActiveMethod(null)} />
+          ) : (
+            <ContactMethodsGrid methods={contactMethods} onMethodClick={handleMethodClick} />
+          )}
         </motion.div>
 
-        {/* Contact Form Section */}
-        {activeMethod === 'email' && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.4 }}
-            className="mt-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg p-6 border border-[#0607E1]/10"
-          >
-            <ContactForm />
-          </motion.div>
-        )}
-
-        {/* Location Cards Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="mt-12"
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="w-full mt-16"
         >
           <LocationCards />
         </motion.div>
