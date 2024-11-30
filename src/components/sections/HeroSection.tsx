@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 interface HeroSectionProps {
   heroImage?: {
@@ -140,31 +140,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </div>
               </motion.h2>
 
-              {/* Helps text with unique effects */}
+              {/* Helps Text - Enhanced */}
               <motion.div
-                className="text-xl md:text-2xl font-light relative"
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="relative"
               >
-                <motion.span
-                  className="inline-block bg-gradient-to-r from-[#007AFF] to-[#00C6FF] bg-clip-text text-transparent relative"
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 1 }}
-                  whileHover={{ scale: 1.1 }}
+                <motion.h3 
+                  className="text-5xl font-orbitron font-bold relative z-10 cursor-default
+                    bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 hover:from-blue-500 hover:via-blue-300 hover:to-blue-500
+                    bg-clip-text text-transparent
+                    transition-all duration-300 ease-in-out transform hover:scale-105
+                    hover:drop-shadow-[0_0_8px_rgba(0,122,255,0.5)]"
                 >
                   Helps
-                  <AnimatePresence>
-                    {isHovering && (
-                      <motion.div
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0, opacity: 0 }}
-                        className="absolute -inset-1 bg-gradient-to-r from-[#007AFF]/10 to-[#00C6FF]/10 blur-sm rounded-lg -z-10"
-                      />
-                    )}
-                  </AnimatePresence>
-                </motion.span>
+                </motion.h3>
               </motion.div>
 
               {/* Main Heading - Larger Size */}

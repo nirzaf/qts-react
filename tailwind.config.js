@@ -70,6 +70,7 @@ export default {
       },
       fontFamily: {
         chakra: ['Chakra Petch', 'sans-serif'],
+        orbitron: ['Orbitron', 'sans-serif'],
       },
     },
   },
