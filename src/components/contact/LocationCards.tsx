@@ -43,27 +43,46 @@ const LocationCards: FC = () => {
                 duration: 0.5
               }
             }}
-            whileHover={{ scale: 1.02 }}
-            className="h-full"
+            whileHover={{ 
+              scale: 1.02,
+              transition: {
+                duration: 0.3,
+                ease: "easeOut"
+              }
+            }}
+            className="h-full relative group"
           >
-            <Card className="h-full overflow-hidden">
-              <div className="aspect-video w-full">
-                <iframe
-                  src={location.mapUrl}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title={`${location.title} Map`}
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold text-[#0607E1] mb-2">
-                  {location.title}
-                </h3>
-                <p className="text-gray-600">{location.address}</p>
+            {/* Animated border background */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-[#0607E1] via-[#0A25C9] to-[#0B48D0] rounded-2xl opacity-75 group-hover:opacity-100 transition duration-300 blur-sm group-hover:blur"></div>
+            
+            {/* Card content */}
+            <Card className="relative h-full overflow-hidden bg-white dark:bg-gray-900 rounded-xl">
+              <div className="relative">
+                <div className="aspect-video w-full overflow-hidden">
+                  <iframe
+                    src={location.mapUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={`${location.title} Map`}
+                    className="transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-semibold text-[#0607E1] mb-2 group-hover:text-[#0A25C9] transition-colors duration-300">
+                    {location.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">{location.address}</p>
+                  
+                  {/* Decorative corner elements */}
+                  <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#0607E1] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#0607E1] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#0607E1] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#0607E1] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
               </div>
             </Card>
           </motion.div>
