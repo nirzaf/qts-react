@@ -110,7 +110,7 @@ const Home: React.FC = () => {
             </Suspense>
           </div>
 
-          {/* Partners Section - Updated gradient and font */}
+          {/* Partners Section - Updated with centered text and carousel */}
           <AnimatedSection className="relative bg-[#FFFFFF]">
             <div className="absolute inset-0 bg-gradient-to-t from-[#0607E1]/5 to-transparent" />
             <div className="font-plusJakartaSans relative z-10">
