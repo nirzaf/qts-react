@@ -37,9 +37,10 @@ const AnimatedLetter: React.FC<{ letter: string; index: number }> = ({ letter, i
       stiffness: 150,
       damping: 15
     }}
-    className={`inline-block transform cursor-default font-chakra
+    className={`inline-block transform cursor-default font-inter
       ${letter === ' ' ? 'mx-[3px]' : 'mx-[0.5px]'}
-      hover:text-[#0607E1] hover:scale-110 transition-colors duration-300`}
+      hover:text-[#0607E1] hover:scale-110 transition-colors duration-300
+      font-semibold tracking-tight`}
     style={{
       transformOrigin: "center center"
     }}
@@ -115,9 +116,10 @@ export const HeroSection = ({
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-center lg:text-left space-y-6"
             >
-              {/* Company Name - Consistent Size */}
+              {/* Company Name - Updated Font */}
               <motion.h2 
-                className="text-3xl lg:text-4xl font-bold tracking-tight h-[50px] flex items-center justify-center lg:justify-start overflow-hidden"
+                className="text-3xl lg:text-4xl font-bold tracking-tight h-[50px] flex items-center justify-center lg:justify-start overflow-hidden
+                  font-montserrat"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ 
@@ -126,7 +128,7 @@ export const HeroSection = ({
                 }}
               >
                 <motion.div 
-                  className="flex flex-wrap justify-center lg:justify-start font-chakra tracking-tighter"
+                  className="flex flex-wrap justify-center lg:justify-start tracking-tighter"
                   initial={{ x: -100 }}
                   animate={{ x: 0 }}
                   transition={{
@@ -142,7 +144,7 @@ export const HeroSection = ({
                 </motion.div>
               </motion.h2>
 
-              {/* Helps Text */}
+              {/* Helps Text - Updated Font */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -154,11 +156,11 @@ export const HeroSection = ({
                 className="relative h-[40px] flex items-center justify-center lg:justify-start"
               >
                 <motion.h3 
-                  className="text-3xl lg:text-4xl font-pacifico font-semibold relative z-10 cursor-default
+                  className="text-3xl lg:text-4xl font-semibold relative z-10 cursor-default
                     text-[#0607E1] hover:text-[#0A25C9]
                     transition-all duration-500 ease-in-out transform hover:scale-105
                     hover:drop-shadow-[0_0_8px_rgba(6,7,225,0.3)]
-                    -mt-2"
+                    -mt-2 font-outfit"
                   whileHover={{ 
                     scale: 1.05,
                     transition: { duration: 0.3 }
@@ -168,9 +170,10 @@ export const HeroSection = ({
                 </motion.h3>
               </motion.div>
 
-              {/* Main Heading */}
+              {/* Main Heading - Updated Font */}
               <motion.h1 
-                className="text-4xl lg:text-5xl font-bold tracking-tight h-[100px] flex items-center justify-center lg:justify-start -mt-2"
+                className="text-4xl lg:text-5xl font-bold tracking-tight h-[100px] flex items-center justify-center lg:justify-start -mt-2
+                  font-plusJakartaSans antialiased"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ 

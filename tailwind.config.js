@@ -71,6 +71,10 @@ export default {
       fontFamily: {
         chakra: ['Chakra Petch', 'sans-serif'],
         orbitron: ['Orbitron', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
+        outfit: ['Outfit', 'sans-serif'],
+        plusJakartaSans: ['Plus Jakarta Sans', 'sans-serif'],
       },
     },
   },
