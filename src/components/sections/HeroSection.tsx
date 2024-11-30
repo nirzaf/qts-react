@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 interface HeroSectionProps {
@@ -39,45 +39,25 @@ const AnimatedWord: React.FC<{ word: string }> = ({ word }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <motion.div
+    <motion.span
+      className="inline-block mx-1"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative inline-block"
     >
-      <motion.span
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="relative z-10 font-montserrat text-3xl md:text-4xl font-bold tracking-wider"
-        whileHover={{ scale: 1.05 }}
-      >
-        {word.split('').map((letter, index) => (
-          <motion.span
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.3,
-              delay: index * 0.05,
-              ease: "easeOut"
-            }}
-            className="inline-block"
-            style={{
-              color: isHovered ? '#007AFF' : 'currentColor',
-              transition: 'color 0.3s ease'
-            }}
-          >
-            {letter}
-          </motion.span>
-        ))}
-      </motion.span>
-      {isHovered && (
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 blur-lg -z-10"
-        />
-      )}
-    </motion.div>
+      {word.split('').map((letter, index) => (
+        <motion.span
+          key={index}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2, delay: index * 0.1 }}
+          className={`inline-block transition-all duration-300 ${
+            isHovered ? 'text-blue-500 scale-110' : ''
+          }`}
+        >
+          {letter}
+        </motion.span>
+      ))}
+    </motion.span>
   );
 };
 
@@ -86,36 +66,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   primaryButton,
   secondaryButton,
 }) => {
-  const words = ["Transform", "Innovate", "Elevate", "Empower"];
-  const [currentWord, setCurrentWord] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWord((prev) => (prev + 1) % words.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [words.length]);
-
   return (
     <section className="relative overflow-hidden bg-[#FFFFFF] pt-32 pb-24">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[#000000]/2" />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-          className="absolute top-1/4 right-1/4 w-1/3 h-1/3 bg-[#000000]/2 rounded-full blur-2xl"
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2.5, repeat: Infinity, repeatType: "reverse", delay: 0.5 }}
-          className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-[#000000]/2 rounded-full blur-2xl"
-        />
-      </div>
-
       <div className="container relative z-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -160,114 +112,67 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
               {/* Main Heading - Larger Size */}
               <motion.h1 
-                className="text-5xl md:text-6xl lg:text-7xl font-bold"
+                className="text-6xl lg:text-7xl font-bold tracking-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
               >
-                <div className="h-[1.2em] overflow-hidden">
-                  <motion.span
-                    key={words[currentWord]}
-                    initial={{ y: 50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -50, opacity: 0 }}
-                    transition={{ 
-                      y: { type: "spring", stiffness: 300, damping: 30 },
-                      opacity: { duration: 0.2 }
-                    }}
-                    className="bg-gradient-to-r from-[#000000] via-[#0607E1] to-[#0607E1] bg-clip-text text-transparent inline-block relative"
-                  >
-                    {words[currentWord]}
-                    <motion.div 
-                      className="absolute bottom-0 left-0 w-full h-1 bg-[#0607E1]"
-                      initial={{ scaleX: 0, opacity: 0 }}
-                      animate={{ scaleX: 1, opacity: 1 }}
-                      transition={{ delay: 0.2, duration: 0.5 }}
-                    />
-                  </motion.span>
-                </div>
-              </motion.h1>
-
-              {/* Your Digital Presence with enhanced animation */}
-              <motion.div 
-                className="relative"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                <div className="flex flex-wrap justify-center lg:justify-start gap-3">
-                  {"Your Digital Presence".split(' ').map((word, idx) => (
-                    <AnimatedWord key={idx} word={word} />
+                <div className="flex flex-wrap justify-center lg:justify-start">
+                  {"Transform Your Digital Presence".split(' ').map((word, index) => (
+                    <AnimatedWord key={index} word={word} />
                   ))}
                 </div>
-              </motion.div>
+              </motion.h1>
 
               <motion.p 
                 className="text-xl lg:text-2xl text-[#000000]/70 mb-8 max-w-2xl mx-auto lg:mx-0"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
               >
-                Elevate your business with cutting-edge solutions that drive growth and innovation
+                Elevate your business with our innovative solutions
               </motion.p>
-              <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-                <motion.button
-                  className="px-8 py-4 rounded-xl bg-[#000000] text-[#FFFFFF] hover:bg-[#000000]/90 transition-colors duration-200"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+
+              {/* Buttons */}
+              <motion.div
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1 }}
+              >
+                <button
                   onClick={primaryButton.onClick}
+                  className="px-8 py-3 bg-[#007AFF] text-white rounded-lg hover:bg-[#0056b3] transition-colors duration-300"
                 >
                   {primaryButton.text}
-                </motion.button>
-                <motion.button
-                  className="px-8 py-4 rounded-xl border-2 border-[#000000] text-[#000000] font-semibold text-lg hover:bg-[#000000]/5 transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                </button>
+                <button
                   onClick={secondaryButton.onClick}
+                  className="px-8 py-3 border-2 border-[#007AFF] text-[#007AFF] rounded-lg hover:bg-[#007AFF] hover:text-white transition-colors duration-300"
                 >
                   {secondaryButton.text}
-                </motion.button>
-              </div>
+                </button>
+              </motion.div>
             </motion.div>
 
-            {/* Hero Image */}
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
+            {/* Image Section */}
+            {heroImage && (
               <motion.div
-                className="relative z-10"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="relative"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <img
-                  src={heroImage?.src || "https://ik.imagekit.io/quadrate/assets/img/QTS%20PNG.png?updatedAt=1732728815505"}
-                  alt={heroImage?.alt || "Quadrate Tech Solutions"}
-                  className="w-full h-auto rounded-2xl shadow-2xl"
-                  style={{
-                    filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.12))',
-                  }}
+                  src={heroImage.src}
+                  alt={heroImage.alt}
+                  className="w-full h-auto rounded-lg shadow-xl"
                 />
-                {/* Image Overlay */}
-                <div className="absolute inset-0 rounded-2xl bg-[#000000]/5 opacity-0 group-hover:opacity-100 transition-all duration-300" />
               </motion.div>
-
-              {/* Decorative Elements */}
-              <motion.div
-                className="absolute -z-10 -inset-4 bg-[#0607E1]/2 rounded-2xl blur-2xl"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-              />
-            </motion.div>
+            )}
           </div>
         </div>
       </div>
-
-      {/* Subtle Blue Accent Line */}
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-[#0607E1]/2" />
     </section>
   );
 };
