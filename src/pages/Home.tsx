@@ -9,6 +9,7 @@ import { StatsSection } from '@/components/sections/StatsSection';
 import { PartnersSection } from '@/components/sections/PartnersSection';
 import { AnimatedSection } from '@/components/sections/home/AnimatedSection';
 import { useNavigate } from 'react-router-dom';
+import { CompanyValues } from '@/components/sections/home/CompanyValues';
 
 /**
  * Home page component displaying various sections about Quadrate Tech Solutions
@@ -76,6 +77,11 @@ const Home: React.FC = () => {
           {/* Services Section */}
           <AnimatedSection className="bg-gradient-to-b from-[--background] via-[#646CFF]/5 to-[--background]">
             <ServicesSection />
+          </AnimatedSection>
+
+          {/* Company Values Section */}
+          <AnimatedSection className="bg-gradient-to-b from-[--background] via-[#646CFF]/5 to-[--background]">
+            <CompanyValues />
           </AnimatedSection>
 
           {/* Pricing Section */}
