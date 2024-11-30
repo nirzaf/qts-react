@@ -84,7 +84,7 @@ export const Navigation: React.FC = () => {
           </motion.div>
 
           {/* Mobile menu button and CTA */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-2 md:hidden opacity-100">
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -124,9 +124,9 @@ export const Navigation: React.FC = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden overflow-hidden"
+            className="md:hidden overflow-hidden absolute right-0 top-16 w-64 bg-white shadow-lg rounded-bl-lg z-50"
           >
-            <div className="space-y-1 px-4 pb-3 pt-2 bg-[#FFFFFF] border-t border-[#000000]/5">
+            <div className="space-y-1 px-4 pb-3 pt-2">
               {navLinks.map((link) => (
                 <motion.div
                   key={link.to}
