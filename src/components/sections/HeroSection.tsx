@@ -135,7 +135,7 @@ export const HeroSection = ({
                 }}
               >
                 <motion.div 
-                  className="flex flex-wrap justify-center lg:justify-start tracking-tighter py-2"
+                  className="flex flex-wrap justify-center lg:justify-start tracking-tighter py-2 w-full"
                   initial={{ x: -100 }}
                   animate={{ x: 0 }}
                   transition={{
@@ -145,9 +145,24 @@ export const HeroSection = ({
                     mass: 1
                   }}
                 >
-                  {"Quadrate Tech Solutions".split('').map((letter, index) => (
-                    <AnimatedLetter key={index} letter={letter} index={index} />
-                  ))}
+                  {/* First Line - Quadrate */}
+                  <div className="w-full text-center lg:text-left lg:w-auto lg:inline">
+                    {"Quadrate".split('').map((letter, index) => (
+                      <AnimatedLetter key={`first-${index}`} letter={letter} index={index} />
+                    ))}
+                  </div>
+                  {/* Space between words for desktop */}
+                  <div className="hidden lg:inline">&nbsp;</div>
+                  {/* Second Line - Tech Solutions */}
+                  <div className="w-full text-center lg:text-left lg:w-auto lg:inline">
+                    {"Tech Solutions".split('').map((letter, index) => (
+                      <AnimatedLetter 
+                        key={`second-${index}`} 
+                        letter={letter} 
+                        index={index + "Quadrate".length} 
+                      />
+                    ))}
+                  </div>
                 </motion.div>
               </motion.h2>
 
