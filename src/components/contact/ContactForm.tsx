@@ -66,7 +66,7 @@ const ContactForm: FC = () => {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
-                <Button className="w-full" onClick={nextStep}>
+                <Button className="w-full bg-[#0607E1] hover:bg-[#0607E1]/90" onClick={nextStep}>
                   Continue
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -97,7 +97,7 @@ const ContactForm: FC = () => {
                     onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
                   />
                 </div>
-                <Button className="w-full" onClick={nextStep}>
+                <Button className="w-full bg-[#0607E1] hover:bg-[#0607E1]/90" onClick={nextStep}>
                   Next Step
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -117,7 +117,10 @@ const ContactForm: FC = () => {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 />
-                <Button className="w-full" onClick={handleSubmit}>
+                <Button 
+                  className="w-full bg-[#0607E1] hover:bg-[#0607E1]/90" 
+                  onClick={handleSubmit}
+                >
                   Send Message
                   <Send className="ml-2 h-4 w-4" />
                 </Button>

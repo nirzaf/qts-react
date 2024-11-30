@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { HeroSection } from '@/components/sections/HeroSection';
 import Features from '@/components/sections/features/Features';
 import { TechStack } from '@/components/sections/TechStack';
@@ -8,7 +8,10 @@ import { PricingSection } from '@/components/sections/PricingSection';
 import { StatsSection } from '@/components/sections/StatsSection';
 import { PartnersSection } from '@/components/sections/PartnersSection';
 import { AnimatedSection } from '@/components/sections/home/AnimatedSection';
-import { useNavigate } from 'react-router-dom';
+import { CompanyValues } from '@/components/sections/home/CompanyValues';
+import BackgroundElements from '@/components/home/BackgroundElements';
+import HeroBackground from '@/components/home/HeroBackground';
+import ErrorFallback from '@/components/home/ErrorFallback';
 
 /**
  * Home page component displaying various sections about Quadrate Tech Solutions
@@ -27,25 +30,13 @@ const Home: React.FC = () => {
   try {
     return (
       <div className="relative bg-[--background]">
-        {/* Global Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#646CFF]/20 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-[500px] bg-gradient-to-t from-[#535BF2]/10 to-transparent" />
-        </div>
+        <BackgroundElements />
 
         {/* Content Container */}
         <div className="relative">
           {/* Hero Section with Updated Color Accents */}
           <section className="relative overflow-hidden">
-            <div className="absolute inset-0">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#747BFF]/30 to-transparent" />
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.15 }}
-                transition={{ duration: 1.5 }}
-                className="absolute top-1/4 right-0 w-1/2 h-1/2 bg-[#646CFF]/20 blur-3xl"
-              />
-            </div>
+            <HeroBackground />
             <HeroSection
               heroImage={{
                 src: 'https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458',
@@ -78,6 +69,11 @@ const Home: React.FC = () => {
             <ServicesSection />
           </AnimatedSection>
 
+          {/* Company Values Section */}
+          <AnimatedSection className="bg-gradient-to-b from-[--background] via-[#646CFF]/5 to-[--background]">
+            <CompanyValues />
+          </AnimatedSection>
+
           {/* Pricing Section */}
           <div id="pricing" className="bg-white">
             <PricingSection />
@@ -95,19 +91,11 @@ const Home: React.FC = () => {
             />
           </AnimatedSection>
         </div>
-
-        {/* Footer Gradient */}
-        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#535BF2]/10 to-transparent" />
       </div>
     );
   } catch (error) {
     console.error('Error rendering Home page:', error);
-    return (
-      <div className="text-center py-12">
-        <h2 className="text-2xl font-bold text-[#EF4444]">Something went wrong</h2>
-        <p className="mt-2 text-[#71717A]">Please refresh the page or contact support if the problem persists.</p>
-      </div>
-    );
+    return <ErrorFallback />;
   }
 };
 

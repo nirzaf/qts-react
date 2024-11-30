@@ -14,7 +14,7 @@ const features = [
     description: "Our team of seasoned professionals brings years of industry expertise to every project.",
     icon: Code2,
     color: "from-blue-500/10 to-cyan-500/10",
-    iconColor: "text-blue-500",
+    iconColor: "text-[#0607E1]",
   },
   {
     title: "Quality Focused",
@@ -79,9 +79,9 @@ export const WhyChooseUs = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-block rounded-full bg-blue-50 px-4 py-1.5 mb-6"
+            className="inline-block rounded-full bg-[#0607E1]/5 px-4 py-1.5 mb-6"
           >
-            <span className="text-sm font-semibold text-blue-600">
+            <span className="text-sm font-semibold text-[#0607E1]">
               Why Choose Us
             </span>
           </motion.div>
@@ -125,7 +125,7 @@ export const WhyChooseUs = () => {
                   </div>
                   
                   {/* Hover effect line */}
-                  <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-blue-500 to-violet-500 group-hover:w-full transition-all duration-300" />
+                  <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-[#0607E1] to-violet-500 group-hover:w-full transition-all duration-300" />
                 </div>
               </motion.div>
             );
