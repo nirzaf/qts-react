@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface HeroSectionProps {
   heroImage?: {
@@ -57,23 +57,30 @@ const AnimatedWord: React.FC<{ word: string }> = ({ word }) => {
       className="inline-block mx-1"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      whileHover={{ scale: 1.05 }}
     >
       {word.split('').map((letter, index) => (
         <motion.span
           key={index}
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0, y: 40, rotateX: -90 }}
           animate={{ 
-            opacity: 1,
-            y: isHovered ? -5 : 0,
+            opacity: 1, 
+            y: 0, 
+            rotateX: 0,
             color: isHovered ? '#0607E1' : '#000000',
-            scale: isHovered ? 1.1 : 1
           }}
           transition={{ 
-            duration: 0.3,
-            delay: index * 0.05,
-            ease: [0.43, 0.13, 0.23, 0.96]
+            duration: 0.5,
+            delay: index * 0.03,
+            type: "spring",
+            stiffness: 150,
+            damping: 15
           }}
-          className="inline-block transition-all duration-300"
+          className="inline-block transform-gpu font-plusJakartaSans"
+          style={{ 
+            display: 'inline-block',
+            backfaceVisibility: 'hidden'
+          }}
         >
           {letter}
         </motion.span>
@@ -144,7 +151,7 @@ export const HeroSection = ({
                 </motion.div>
               </motion.h2>
 
-              {/* Helps Text - Updated Font */}
+              {/* Helps Text - Enhanced Animation */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -153,51 +160,121 @@ export const HeroSection = ({
                   delay: 0.4,
                   ease: [0.43, 0.13, 0.23, 0.96]
                 }}
-                className="relative h-[40px] flex items-center justify-center lg:justify-start"
+                className="relative h-[40px] flex items-center justify-center lg:justify-start perspective-1000"
               >
                 <motion.h3 
-                  className="text-3xl lg:text-4xl font-semibold relative z-10 cursor-default
-                    text-[#0607E1] hover:text-[#0A25C9]
-                    transition-all duration-500 ease-in-out transform hover:scale-105
-                    hover:drop-shadow-[0_0_8px_rgba(6,7,225,0.3)]
+                  className="text-3xl lg:text-5xl font-bold relative z-10 cursor-default
+                    text-[#0607E1] 
+                    transition-all duration-300 ease-out transform-gpu
                     -mt-2 font-outfit"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   whileHover={{ 
-                    scale: 1.05,
-                    transition: { duration: 0.3 }
+                    scale: 1.02,
+                    transition: { 
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 25
+                    }
+                  }}
+                  style={{
+                    transformStyle: 'preserve-3d',
+                    textShadow: '0 2px 4px rgba(6,7,225,0.2)'
                   }}
                 >
-                  Helps
+                  <motion.div
+                    className="relative inline-block"
+                    whileHover={{
+                      transition: { duration: 0.2 }
+                    }}
+                  >
+                    {/* Main Text with Gradient */}
+                    <span className="relative z-10 bg-gradient-to-b from-[#0607E1] to-[#0A25C9] bg-clip-text text-transparent">
+                      Helps
+                    </span>
+
+                    {/* Bottom Border/Line */}
+                    <motion.div
+                      className="absolute -bottom-1 left-0 w-full h-[2px] bg-[#0607E1]"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.8, delay: 0.5 }}
+                    />
+
+                    {/* Hover Effect Glow */}
+                    <motion.div
+                      className="absolute inset-0 rounded-lg bg-[#0607E1]/5"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ 
+                        opacity: 1,
+                        transition: { duration: 0.2 }
+                      }}
+                    />
+                  </motion.div>
                 </motion.h3>
+
+                {/* Background Accent */}
+                <motion.div
+                  className="absolute -inset-2 bg-gradient-to-r from-[#0607E1]/5 via-transparent to-[#0607E1]/5 rounded-xl blur-md"
+                  animate={{
+                    opacity: [0.3, 0.5, 0.3],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut"
+                  }}
+                />
               </motion.div>
 
-              {/* Main Heading - Updated Font */}
+              {/* Main Heading - Enhanced Animation */}
               <motion.h1 
                 className="text-4xl lg:text-5xl font-bold tracking-tight h-[100px] flex items-center justify-center lg:justify-start -mt-2
-                  font-plusJakartaSans antialiased"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.8,
-                  delay: 0.6,
-                  ease: [0.43, 0.13, 0.23, 0.96]
-                }}
+                  font-plusJakartaSans antialiased perspective-1000"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
               >
                 <div className="flex flex-wrap justify-center lg:justify-start">
-                  <motion.div
-                    key={textIndex}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ 
-                      duration: 0.8,
-                      ease: [0.43, 0.13, 0.23, 0.96]
-                    }}
-                    className="flex flex-wrap justify-center lg:justify-start"
-                  >
-                    {phrases[textIndex].split(' ').map((word, index) => (
-                      <AnimatedWord key={index} word={word} />
-                    ))}
-                  </motion.div>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={textIndex}
+                      initial={{ 
+                        opacity: 0,
+                        rotateX: -90,
+                        y: 50
+                      }}
+                      animate={{ 
+                        opacity: 1,
+                        rotateX: 0,
+                        y: 0
+                      }}
+                      exit={{ 
+                        opacity: 0,
+                        rotateX: 90,
+                        y: -50
+                      }}
+                      transition={{ 
+                        duration: 0.5,
+                        type: "spring",
+                        stiffness: 150,
+                        damping: 20
+                      }}
+                      className="flex flex-wrap justify-center lg:justify-start transform-gpu"
+                      style={{ 
+                        backfaceVisibility: 'hidden',
+                        transformStyle: 'preserve-3d'
+                      }}
+                    >
+                      {phrases[textIndex].split(' ').map((word, index) => (
+                        <AnimatedWord 
+                          key={`${textIndex}-${index}`} 
+                          word={word} 
+                        />
+                      ))}
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
               </motion.h1>
 
