@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 interface HeroSectionProps {
@@ -16,11 +16,80 @@ interface HeroSectionProps {
   };
 }
 
+const AnimatedLetter: React.FC<{ letter: string; index: number }> = ({ letter, index }) => (
+  <motion.span
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{
+      duration: 0.5,
+      delay: index * 0.05,
+      ease: [0.43, 0.13, 0.23, 0.96]
+    }}
+    className={`inline-block transform hover:scale-110 hover:text-[#0607E1] transition-all duration-300 cursor-default font-chakra
+      ${letter === ' ' ? 'mx-[3px]' : 'mx-[0.5px]'}`}
+    style={{
+      textShadow: '1px 1px 0px rgba(0,0,0,0.05)'
+    }}
+  >
+    {letter === ' ' ? '\u00A0' : letter}
+  </motion.span>
+);
+
+const AnimatedWord: React.FC<{ word: string }> = ({ word }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      className="inline-block mx-1"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {word.split('').map((letter, index) => (
+        <motion.span
+          key={index}
+          initial={{ opacity: 0 }}
+          animate={{ 
+            opacity: 1,
+            y: isHovered ? -5 : 0,
+            color: isHovered ? '#0607E1' : '#000000',
+            scale: isHovered ? 1.1 : 1
+          }}
+          transition={{ 
+            duration: 0.3,
+            delay: index * 0.05,
+            ease: [0.43, 0.13, 0.23, 0.96]
+          }}
+          className="inline-block transition-all duration-300"
+        >
+          {letter}
+        </motion.span>
+      ))}
+    </motion.div>
+  );
+};
+
 export const HeroSection: React.FC<HeroSectionProps> = ({
   heroImage,
   primaryButton,
   secondaryButton,
 }) => {
+  const [textIndex, setTextIndex] = useState(0);
+  const phrases = [
+    "Transform Your Digital Presence",
+    "Startups Scale Their Operations",
+    "Businesses Reach New Heights",
+    "Teams Collaborate",
+    "Ideas Come To Life"
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTextIndex((prevIndex) => (prevIndex + 1) % phrases.length);
+    }, 3000); // Change text every 3 seconds
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative overflow-hidden bg-[#FFFFFF] pt-32 pb-24">
       <div className="container relative z-10">
@@ -40,65 +109,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <div className="relative z-10">
-                  <div className="hidden sm:block">
-                    {"Quadrate Tech Solutions".split('').map((letter, index) => (
-                      <motion.span
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                          duration: 0.5,
-                          delay: index * 0.03,
-                          ease: "easeOut"
-                        }}
-                        className="inline-block font-bold text-[#000000] text-4xl sm:text-5xl lg:text-6xl"
-                      >
-                        {letter === ' ' ? '\u00A0' : letter}
-                      </motion.span>
-                    ))}
-                  </div>
-                  <div className="block sm:hidden">
-                    <div className="space-y-1">
-                      <div>
-                        {"Quadrate".split('').map((letter, index) => (
-                          <motion.span
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{
-                              duration: 0.5,
-                              delay: index * 0.03,
-                              ease: "easeOut"
-                            }}
-                            className="inline-block font-extrabold text-[#000000] text-4xl tracking-wide"
-                            style={{
-                              textShadow: '0 1px 2px rgba(0,0,0,0.1)'
-                            }}
-                          >
-                            {letter}
-                          </motion.span>
-                        ))}
-                      </div>
-                      <div>
-                        {"Tech Solutions".split('').map((letter, index) => (
-                          <motion.span
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{
-                              duration: 0.5,
-                              delay: (index + "Quadrate".length) * 0.03,
-                              ease: "easeOut"
-                            }}
-                            className="inline-block font-bold text-[#000000] text-3xl"
-                          >
-                            {letter === ' ' ? '\u00A0' : letter}
-                          </motion.span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+                <div className="flex flex-wrap justify-center lg:justify-start font-chakra tracking-normal">
+                  {"Quadrate Tech Solutions".split('').map((letter, index) => (
+                    <AnimatedLetter key={index} letter={letter} index={index} />
+                  ))}
                 </div>
               </motion.h2>
 
@@ -107,7 +121,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="relative"
+                className="relative mb-0"
               >
                 <motion.h3 
                   className="text-5xl font-orbitron font-bold relative z-10 cursor-default
@@ -122,30 +136,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
               {/* Main Heading - Larger Size */}
               <motion.h1 
-                className="text-6xl lg:text-7xl font-bold tracking-tight"
+                className="text-[3.4rem] lg:text-[4.05rem] font-bold tracking-tight min-h-[8rem] lg:min-h-[10rem] flex flex-col justify-start -mt-2"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
                 <div className="flex flex-wrap justify-center lg:justify-start">
-                  {"Transform Your Digital Presence".split(' ').map((word, index) => (
-                    <span key={index}>{word}</span>
-                  ))}
+                  <motion.div
+                    key={textIndex}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                    className="flex flex-wrap justify-center lg:justify-start"
+                  >
+                    {phrases[textIndex].split(' ').map((word, index) => (
+                      <AnimatedWord key={index} word={word} />
+                    ))}
+                  </motion.div>
                 </div>
               </motion.h1>
 
-              <motion.p 
-                className="text-xl lg:text-2xl text-[#000000]/70 mb-8 max-w-2xl mx-auto lg:mx-0"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-              >
-                Elevate your business with our innovative solutions
-              </motion.p>
-
               {/* Buttons */}
               <motion.div
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-[100px]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1 }}
