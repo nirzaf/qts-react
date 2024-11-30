@@ -287,13 +287,13 @@ export const HeroSection = ({
               >
                 <button
                   onClick={primaryButton.onClick}
-                  className="px-8 py-3 bg-[#0607E1] text-white rounded-lg hover:bg-[#0A25C9] transition-colors duration-300"
+                  className="px-8 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors duration-300"
                 >
                   {primaryButton.text}
                 </button>
                 <button
                   onClick={secondaryButton.onClick}
-                  className="px-8 py-3 border-2 border-[#0607E1] text-[#0607E1] rounded-lg hover:bg-[#0607E1] hover:text-white transition-colors duration-300"
+                  className="px-8 py-3 border-2 border-black text-black rounded-lg hover:bg-black hover:text-white transition-colors duration-300"
                 >
                   {secondaryButton.text}
                 </button>
