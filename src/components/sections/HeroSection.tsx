@@ -121,12 +121,12 @@ export const HeroSection = ({
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-center lg:text-left space-y-6"
+              className="text-center lg:text-left space-y-4 mt-4"
             >
               {/* Company Name - Updated Font */}
               <motion.h2 
-                className="text-3xl lg:text-4xl font-bold tracking-tight h-[50px] flex items-center justify-center lg:justify-start overflow-hidden
-                  font-montserrat"
+                className="text-3xl lg:text-4xl font-bold tracking-tight min-h-[60px] flex items-center justify-center lg:justify-start overflow-visible
+                  font-montserrat relative z-20"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ 
@@ -135,7 +135,7 @@ export const HeroSection = ({
                 }}
               >
                 <motion.div 
-                  className="flex flex-wrap justify-center lg:justify-start tracking-tighter"
+                  className="flex flex-wrap justify-center lg:justify-start tracking-tighter py-2"
                   initial={{ x: -100 }}
                   animate={{ x: 0 }}
                   transition={{
