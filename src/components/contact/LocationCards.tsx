@@ -15,24 +15,26 @@ const locations: Location[] = [
   {
     title: 'Al MAMOORA Branch',
     address: 'Dubai, United Arab Emirates',
-    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7390776.694315359!2d41.75165042500002!3d25.2444119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45d1002d1f29b5%3A0xf16439d8460b5b7f!2sQuadrate%20Tech%20Solutions%20-%20Al%20MAMOORA%20Branch!5e0!3m2!1sen!2sae!4v1732952488753!5m2!1sen!2sae'
+    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.6647604244674!2d55.38095661501671!3d25.227806983877946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45d1002d1f29b5%3A0xf16439d8460b5b7f!2sQuadrate%20Tech%20Solutions%20-%20Al%20MAMOORA%20Branch!5e0!3m2!1sen!2sae!4v1732952488753!5m2!1sen!2sae'
   },
   {
     title: 'Doha Branch',
     address: 'Doha, Qatar',
-    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7390776.694315359!2d41.75165042500002!3d25.2444119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45db62bf10ec0f%3A0x2345926a5113cbd5!2sQuadrate%20Tech%20Solutions%20-%20Doha!5e0!3m2!1sen!2sae!4v1732952507587!5m2!1sen!2sae'
+    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3606.9876543209876!2d51.53423461501234!3d25.286543982345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45db62bf10ec0f%3A0x2345926a5113cbd5!2sQuadrate%20Tech%20Solutions%20-%20Doha!5e0!3m2!1sen!2sae!4v1732952507587!5m2!1sen!2sae'
   },
   {
     title: 'Sri Lanka Branch',
     address: 'Colombo, Sri Lanka',
-    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8103761.539122115!2d70.86233172500002!3d7.363445500000023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25903d9ba7603%3A0x3bd657d71032e35a!2sQuadrate%20Tech%20Solutions!5e0!3m2!1sen!2sae!4v1732952523771!5m2!1sen!2sae'
+    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.798765432109!2d79.86123456789012!3d6.927654321098765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f16.1!3m3!1m2!1s0x3ae25903d9ba7603%3A0x3bd657d71032e35a!2sQuadrate%20Tech%20Solutions!5e0!3m2!1sen!2sae!4v1732952523771!5m2!1sen!2sae'
   }
 ];
 
 const LocationCards: FC = () => {
   return (
     <div className="py-12">
-      <h2 className="text-3xl font-bold text-center mb-8">Our Global Presence</h2>
+      <h2 className="font-montserrat font-bold tracking-tight text-2xl md:text-3xl text-center mb-8">
+        Our Global Presence
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {locations.map((location, index) => (
           <motion.div
