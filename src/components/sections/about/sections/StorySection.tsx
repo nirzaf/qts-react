@@ -1,26 +1,51 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
-const storyVariants = {
-  initial: { opacity: 0, y: 20 },
+const storyVariants: Variants = {
+  initial: { 
+    opacity: 0, 
+    y: 20,
+    transition: { duration: 0.3 }
+  },
   animate: { 
     opacity: 1, 
     y: 0,
     transition: {
       duration: 0.6,
-      ease: "easeOut"
+      ease: "easeOut",
+      when: "beforeChildren",
+      staggerChildren: 0.1
+    }
+  },
+  exit: {
+    opacity: 0,
+    y: -20,
+    transition: {
+      duration: 0.3,
+      ease: "easeIn"
     }
   }
 };
 
-const textVariants = {
-  initial: { opacity: 0 },
+const textVariants: Variants = {
+  initial: { 
+    opacity: 0,
+    y: 10,
+    transition: { duration: 0.3 }
+  },
   animate: { 
     opacity: 1,
+    y: 0,
     transition: {
       duration: 0.4,
-      ease: "easeOut",
-      delay: 0.2
+      ease: "easeOut"
+    }
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.2,
+      ease: "easeIn"
     }
   }
 };
@@ -31,6 +56,7 @@ export const StorySection: React.FC = () => {
       variants={storyVariants}
       initial="initial"
       animate="animate"
+      exit="exit"
       className="space-y-4"
     >
       <motion.h2 
