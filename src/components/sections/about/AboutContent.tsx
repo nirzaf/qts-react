@@ -1,38 +1,42 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { StorySection } from './sections/StorySection';
 import { ValuesSection } from './sections/ValuesSection';
 import { ImageSection } from './sections/ImageSection';
 
-// Predefined animation variants with supported easing
-const containerVariants = {
-  initial: { opacity: 0 },
-  animate: { 
+// Predefined animation variants with simple, stable configurations
+const containerVariants: Variants = {
+  hidden: { 
+    opacity: 0,
+    transition: { duration: 0.3 }
+  },
+  visible: { 
     opacity: 1,
     transition: { 
       duration: 0.5,
-      ease: "easeOut"
+      when: "beforeChildren",
+      staggerChildren: 0.1
     }
   },
   exit: { 
     opacity: 0,
     transition: { 
       duration: 0.3,
-      ease: "easeIn"
+      when: "afterChildren"
     }
   }
 };
 
-const contentVariants = {
-  initial: { opacity: 0, x: -20 },
-  animate: { 
-    opacity: 1, 
-    x: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-      staggerChildren: 0.1
-    }
+const contentVariants: Variants = {
+  hidden: { 
+    opacity: 0,
+    y: 20,
+    transition: { duration: 0.3 }
+  },
+  visible: { 
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 }
   }
 };
 
@@ -40,17 +44,16 @@ export const AboutContent: React.FC = () => {
   return (
     <AnimatePresence mode="wait">
       <motion.section
+        key="about-content"
         variants={containerVariants}
-        initial="initial"
-        animate="animate"
+        initial="hidden"
+        animate="visible"
         exit="exit"
         className="container py-12 sm:py-16"
       >
         <div className="grid gap-12 lg:grid-cols-2">
           <motion.div 
             variants={contentVariants}
-            initial="initial"
-            animate="animate"
             className="space-y-8"
           >
             <StorySection />
