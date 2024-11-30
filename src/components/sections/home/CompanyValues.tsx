@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Building2, Rocket, Target, Award } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 
-export const CompanyValues: React.FC = () => {
+const CompanyValues: React.FC = () => {
   const cards = [
     {
       icon: Target,
@@ -88,4 +88,6 @@ export const CompanyValues: React.FC = () => {
       </div>
     </section>
   );
-}; 
+};
+
+export default CompanyValues;

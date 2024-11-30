@@ -79,7 +79,7 @@ const iconVariants = {
   },
 };
 
-export const StatsSection: React.FC = () => {
+const StatsSection: React.FC = () => {
   return (
     <section className="relative overflow-hidden bg-[#FFFFFF] py-24">
       {/* Animated Background Elements */}
@@ -209,3 +209,5 @@ export const StatsSection: React.FC = () => {
     </section>
   );
 };
+
+export default StatsSection;

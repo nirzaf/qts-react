@@ -88,7 +88,7 @@ const TechCard: React.FC<{ tech: typeof technologies[0]; index: number }> = ({ t
   );
 };
 
-export const TechStack: React.FC = () => {
+const TechStack: React.FC = () => {
   return (
     <section className="py-24 bg-background relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
@@ -147,3 +147,5 @@ export const TechStack: React.FC = () => {
     </section>
   );
 };
+
+export default TechStack;

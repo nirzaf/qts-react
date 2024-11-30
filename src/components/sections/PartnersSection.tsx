@@ -33,7 +33,7 @@ interface PartnersSectionProps {
   description: string;
 }
 
-export const PartnersSection: React.FC<PartnersSectionProps> = ({
+const PartnersSection: React.FC<PartnersSectionProps> = ({
   title,
   description
 }) => {
@@ -185,3 +185,5 @@ export const PartnersSection: React.FC<PartnersSectionProps> = ({
     </section>
   );
 };
+
+export default PartnersSection;

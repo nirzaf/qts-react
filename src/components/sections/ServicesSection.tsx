@@ -36,7 +36,7 @@ const services = [
   },
 ];
 
-export const ServicesSection: React.FC = () => {
+const ServicesSection: React.FC = () => {
   return (
     <section className="relative overflow-hidden bg-[#FFFFFF] py-8">
       {/* Subtle Background Pattern */}
@@ -173,3 +173,5 @@ export const ServicesSection: React.FC = () => {
     </section>
   );
 };
+
+export default ServicesSection;

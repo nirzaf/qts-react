@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HeroSection } from '@/components/sections/HeroSection';
-import Features from '@/components/sections/features/Features';
-import { TechStack } from '@/components/sections/TechStack';
-import { ServicesSection } from '@/components/sections/ServicesSection';
-import { PricingSection } from '@/components/sections/PricingSection';
-import { StatsSection } from '@/components/sections/StatsSection';
-import { PartnersSection } from '@/components/sections/PartnersSection';
 import { AnimatedSection } from '@/components/sections/home/AnimatedSection';
-import { CompanyValues } from '@/components/sections/home/CompanyValues';
 import BackgroundElements from '@/components/home/BackgroundElements';
 import HeroBackground from '@/components/home/HeroBackground';
 import ErrorFallback from '@/components/home/ErrorFallback';
+import Loading from '@/components/ui/loading';
+
+// Lazy load heavy components
+const Features = lazy(() => import('@/components/sections/features/Features'));
+const TechStack = lazy(() => import('@/components/sections/TechStack'));
+const ServicesSection = lazy(() => import('@/components/sections/ServicesSection'));
+const PricingSection = lazy(() => import('@/components/sections/PricingSection'));
+const StatsSection = lazy(() => import('@/components/sections/StatsSection'));
+const PartnersSection = lazy(() => import('@/components/sections/PartnersSection'));
+const CompanyValues = lazy(() => import('@/components/sections/home/CompanyValues'));
 
 /**
  * Home page component displaying various sections about Quadrate Tech Solutions
@@ -20,6 +23,7 @@ import ErrorFallback from '@/components/home/ErrorFallback';
  * - Responsive design
  * - Section-level error handling
  * - Modular component architecture
+ * - Lazy loading for optimal performance
  */
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -55,40 +59,54 @@ const Home: React.FC = () => {
 
           {/* Features Section */}
           <AnimatedSection className="bg-gradient-to-b from-[--background] via-[#646CFF]/5 to-[--background]">
-            <Features />
+            <Suspense fallback={<Loading />}>
+              <Features />
+            </Suspense>
           </AnimatedSection>
 
           {/* Tech Stack Section */}
           <AnimatedSection className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-[#535BF2]/5 to-[#747BFF]/5" />
-            <TechStack />
+            <Suspense fallback={<Loading />}>
+              <TechStack />
+            </Suspense>
           </AnimatedSection>
 
           {/* Services Section */}
           <AnimatedSection className="bg-gradient-to-b from-[--background] via-[#646CFF]/5 to-[--background]">
-            <ServicesSection />
+            <Suspense fallback={<Loading />}>
+              <ServicesSection />
+            </Suspense>
           </AnimatedSection>
 
           {/* Company Values Section */}
           <AnimatedSection className="bg-gradient-to-b from-[--background] via-[#646CFF]/5 to-[--background]">
-            <CompanyValues />
+            <Suspense fallback={<Loading />}>
+              <CompanyValues />
+            </Suspense>
           </AnimatedSection>
 
           {/* Pricing Section */}
           <div id="pricing" className="bg-white">
-            <PricingSection />
+            <Suspense fallback={<Loading />}>
+              <PricingSection />
+            </Suspense>
           </div>
 
           {/* Stats Section */}
-          <StatsSection />
+          <Suspense fallback={<Loading />}>
+            <StatsSection />
+          </Suspense>
 
           {/* Partners Section */}
           <AnimatedSection className="relative bg-[--background]">
             <div className="absolute inset-0 bg-gradient-to-t from-[#646CFF]/5 to-transparent" />
-            <PartnersSection
-              title="Trusted by Industry Leaders"
-              description="We collaborate with forward-thinking companies to deliver exceptional solutions."
-            />
+            <Suspense fallback={<Loading />}>
+              <PartnersSection
+                title="Trusted by Industry Leaders"
+                description="We collaborate with forward-thinking companies to deliver exceptional solutions."
+              />
+            </Suspense>
           </AnimatedSection>
         </div>
       </div>

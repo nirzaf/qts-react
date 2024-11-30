@@ -7,7 +7,7 @@ import CustomSolutionCard from '@/components/pricing/CustomSolutionCard';
 interface PricingSectionProps {
 }
 
-export const PricingSection: React.FC<PricingSectionProps> = () => {
+const PricingSection: React.FC<PricingSectionProps> = () => {
   return (
     <section className="container mx-auto py-12">
       {/* Pricing Cards Container */}
@@ -25,3 +25,5 @@ export const PricingSection: React.FC<PricingSectionProps> = () => {
     </section>
   );
 };
+
+export default PricingSection;
