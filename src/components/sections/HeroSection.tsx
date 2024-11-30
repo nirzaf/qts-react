@@ -287,15 +287,21 @@ export const HeroSection = ({
               >
                 <button
                   onClick={primaryButton.onClick}
-                  className="px-8 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors duration-300"
+                  className="relative px-8 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors duration-300 overflow-hidden group"
                 >
-                  {primaryButton.text}
+                  <span className="relative z-10">{primaryButton.text}</span>
+                  <div className="absolute inset-0 overflow-hidden">
+                    <div className="torch-wave absolute w-[200%] h-full top-0 -left-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                  </div>
                 </button>
                 <button
                   onClick={secondaryButton.onClick}
-                  className="px-8 py-3 border-2 border-black text-black rounded-lg hover:bg-black hover:text-white transition-colors duration-300"
+                  className="relative px-8 py-3 border-2 border-black text-black rounded-lg hover:bg-black hover:text-white transition-colors duration-300 overflow-hidden group"
                 >
-                  {secondaryButton.text}
+                  <span className="relative z-10">{secondaryButton.text}</span>
+                  <div className="absolute inset-0 overflow-hidden opacity-50">
+                    <div className="torch-wave absolute w-[200%] h-full top-0 -left-full bg-gradient-to-r from-transparent via-black/10 to-transparent transform group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                  </div>
                 </button>
               </motion.div>
             </motion.div>
