@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 interface HeroSectionProps {
@@ -15,51 +15,6 @@ interface HeroSectionProps {
     onClick: () => void;
   };
 }
-
-const AnimatedLetter: React.FC<{ letter: string; index: number }> = ({ letter, index }) => (
-  <motion.span
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{
-      duration: 0.5,
-      delay: index * 0.05,
-      ease: [0.43, 0.13, 0.23, 0.96]
-    }}
-    className={`inline-block transform hover:scale-110 hover:text-[#0607E1] transition-all duration-300 cursor-default font-chakra
-      ${letter === ' ' ? 'mx-[3px]' : 'mx-[0.5px]'}`}
-    style={{
-      textShadow: '1px 1px 0px rgba(0,0,0,0.05)'
-    }}
-  >
-    {letter === ' ' ? '\u00A0' : letter}
-  </motion.span>
-);
-
-const AnimatedWord: React.FC<{ word: string }> = ({ word }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <motion.span
-      className="inline-block mx-1"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {word.split('').map((letter, index) => (
-        <motion.span
-          key={index}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2, delay: index * 0.1 }}
-          className={`inline-block transition-all duration-300 ${
-            isHovered ? 'text-[#0607E1] scale-110' : ''
-          }`}
-        >
-          {letter}
-        </motion.span>
-      ))}
-    </motion.span>
-  );
-};
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   heroImage,
@@ -85,10 +40,65 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <div className="flex flex-wrap justify-center lg:justify-start font-chakra tracking-normal">
-                  {"Quadrate Tech Solutions".split('').map((letter, index) => (
-                    <AnimatedLetter key={index} letter={letter} index={index} />
-                  ))}
+                <div className="relative z-10">
+                  <div className="hidden sm:block">
+                    {"Quadrate Tech Solutions".split('').map((letter, index) => (
+                      <motion.span
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.5,
+                          delay: index * 0.03,
+                          ease: "easeOut"
+                        }}
+                        className="inline-block font-bold text-[#000000] text-4xl sm:text-5xl lg:text-6xl"
+                      >
+                        {letter === ' ' ? '\u00A0' : letter}
+                      </motion.span>
+                    ))}
+                  </div>
+                  <div className="block sm:hidden">
+                    <div className="space-y-1">
+                      <div>
+                        {"Quadrate".split('').map((letter, index) => (
+                          <motion.span
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{
+                              duration: 0.5,
+                              delay: index * 0.03,
+                              ease: "easeOut"
+                            }}
+                            className="inline-block font-extrabold text-[#000000] text-4xl tracking-wide"
+                            style={{
+                              textShadow: '0 1px 2px rgba(0,0,0,0.1)'
+                            }}
+                          >
+                            {letter}
+                          </motion.span>
+                        ))}
+                      </div>
+                      <div>
+                        {"Tech Solutions".split('').map((letter, index) => (
+                          <motion.span
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{
+                              duration: 0.5,
+                              delay: (index + "Quadrate".length) * 0.03,
+                              ease: "easeOut"
+                            }}
+                            className="inline-block font-bold text-[#000000] text-3xl"
+                          >
+                            {letter === ' ' ? '\u00A0' : letter}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </motion.h2>
 
@@ -119,7 +129,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               >
                 <div className="flex flex-wrap justify-center lg:justify-start">
                   {"Transform Your Digital Presence".split(' ').map((word, index) => (
-                    <AnimatedWord key={index} word={word} />
+                    <span key={index}>{word}</span>
                   ))}
                 </div>
               </motion.h1>
