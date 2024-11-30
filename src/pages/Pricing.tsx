@@ -1,8 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { pricingPlans } from '@/data/pricingData';
 import PricingHeader from '@/components/pricing/PricingHeader';
-import PricingCard from '@/components/pricing/PricingCard';
+import PricingGrid from '@/components/pricing/PricingGrid';
 import CustomSolutionCard from '@/components/pricing/CustomSolutionCard';
 
 /**
@@ -15,21 +14,9 @@ const Pricing: React.FC = () => {
     <div className="min-h-screen bg-[#FFFFFF]">
       <PricingHeader />
       
-      {/* Pricing Cards Container */}
+      {/* Pricing Section */}
       <div className="container py-16">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {pricingPlans.map((plan, index) => (
-            <motion.div
-              key={plan.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
-              className="relative"
-            >
-              <PricingCard plan={plan} isPopular={plan.popular} />
-            </motion.div>
-          ))}
-        </div>
+        <PricingGrid />
 
         {/* Custom Solution Card */}
         <motion.div
