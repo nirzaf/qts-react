@@ -14,13 +14,10 @@
         "development": true
       }
     },
-    "target": "es2020",
+    "target": "es2022",
     "loose": true,
     "externalHelpers": true,
     "keepClassNames": true
   },
-  "minify": true,
-  "module": {
-    "type": "es6"
-  }
+  "minify": true
 }
