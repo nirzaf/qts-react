@@ -125,7 +125,7 @@ export const HeroSection = ({
             >
               {/* Company Name - Updated Font */}
               <motion.h2 
-                className="text-3xl lg:text-4xl font-bold tracking-tight min-h-[60px] flex items-center justify-center lg:justify-start overflow-visible
+                className="text-2xl lg:text-3xl font-bold tracking-tight min-h-[60px] flex items-center justify-center lg:justify-start overflow-visible
                   font-montserrat relative z-20"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -147,7 +147,7 @@ export const HeroSection = ({
                 >
                   {/* First Line - Quadrate */}
                   <div className="w-full text-center lg:text-left lg:w-auto lg:inline">
-                    {"Quadrate".split('').map((letter, index) => (
+                    {"QUADRATE".split('').map((letter, index) => (
                       <AnimatedLetter key={`first-${index}`} letter={letter} index={index} />
                     ))}
                   </div>
@@ -155,18 +155,18 @@ export const HeroSection = ({
                   <div className="hidden lg:inline">&nbsp;</div>
                   {/* Second Line - Tech Solutions */}
                   <div className="w-full text-center lg:text-left lg:w-auto lg:inline">
-                    {"Tech Solutions".split('').map((letter, index) => (
+                    {"TECH SOLUTIONS".split('').map((letter, index) => (
                       <AnimatedLetter 
                         key={`second-${index}`} 
                         letter={letter} 
-                        index={index + "Quadrate".length} 
+                        index={index + "QUADRATE".length} 
                       />
                     ))}
                   </div>
                 </motion.div>
               </motion.h2>
 
-              {/* Helps Text - 3D Effect */}
+              {/* Helps Text with Pointer - Enhanced 3D Effect */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -175,64 +175,52 @@ export const HeroSection = ({
                   delay: 0.4,
                   ease: [0.43, 0.13, 0.23, 0.96]
                 }}
-                className="relative h-[40px] flex items-center justify-center lg:justify-start perspective-1000"
+                className="relative h-[50px] flex items-center justify-center lg:justify-start perspective-1000"
               >
-                <motion.h3 
-                  className="text-3xl lg:text-4xl font-semibold relative z-10 cursor-default
-                    text-[#0607E1] hover:text-[#0A25C9]
-                    transition-all duration-500 ease-in-out transform-gpu
-                    -mt-2 font-outfit"
-                  initial={{ rotateX: -30, y: 20, opacity: 0 }}
-                  animate={{ rotateX: 0, y: 0, opacity: 1 }}
-                  whileHover={{ 
-                    scale: 1.05,
-                    y: -2,
-                    transition: { 
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 25
-                    }
-                  }}
-                  style={{
-                    transformStyle: 'preserve-3d',
-                    backfaceVisibility: 'hidden'
-                  }}
-                >
-                  <motion.span
-                    className="inline-block relative"
-                    whileHover={{
-                      textShadow: "0 4px 8px rgba(6,7,225,0.3)"
+                <motion.div className="relative">
+                  {/* Pointer Arrow */}
+                  <motion.div
+                    className="absolute -top-3 left-1/2 lg:left-12 transform -translate-x-1/2 text-[#0607E1]"
+                    initial={{ y: 0 }}
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
                     }}
                   >
-                    {/* 3D Text Layers */}
-                    <span className="absolute -z-10 text-[#0607E1]/10" 
-                      style={{ transform: 'translateZ(-2px) translateY(2px)' }}>
-                      Helps
-                    </span>
-                    <span className="absolute -z-20 text-[#0607E1]/5" 
-                      style={{ transform: 'translateZ(-4px) translateY(4px)' }}>
-                      Helps
-                    </span>
-                    <span className="relative z-10">
-                      Helps
-                    </span>
-                  </motion.span>
-                </motion.h3>
-
-                {/* Subtle Background Effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-[#0607E1]/5 via-transparent to-[#0607E1]/5 rounded-xl"
-                  style={{ transform: 'translateZ(-6px)' }}
-                  animate={{
-                    opacity: [0.2, 0.3, 0.2],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    ease: "easeInOut"
-                  }}
-                />
+                    ▼
+                  </motion.div>
+                  
+                  {/* Helps Text */}
+                  <motion.h3 
+                    className="text-2xl lg:text-3xl font-semibold relative z-10 cursor-pointer
+                      bg-gradient-to-r from-[#0607E1] via-[#0A25C9] to-[#0607E1] bg-clip-text text-transparent
+                      transition-all duration-500 ease-in-out transform-gpu
+                      font-outfit px-6"
+                    initial={{ rotateX: -30, y: 20, opacity: 0 }}
+                    animate={{ rotateX: 0, y: 0, opacity: 1 }}
+                    whileHover={{ 
+                      scale: 1.05,
+                      y: -2,
+                      transition: { 
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 10
+                      }
+                    }}
+                  >
+                    Helps
+                  </motion.h3>
+                  
+                  {/* Decorative underline */}
+                  <motion.div
+                    className="h-[2px] bg-gradient-to-r from-transparent via-[#0607E1] to-transparent mt-1"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ delay: 0.6, duration: 0.8 }}
+                  />
+                </motion.div>
               </motion.div>
 
               {/* Main Heading - Enhanced Animation */}
