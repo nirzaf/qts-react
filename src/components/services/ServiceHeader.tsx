@@ -10,7 +10,7 @@ const ServiceHeader: React.FC = () => {
       transition={{ duration: 0.6 }}
       className="container relative space-y-6 py-16 md:py-24 lg:py-32"
     >
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.primary/5),transparent)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,rgba(6,7,225,0.05),transparent)]" />
       <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
         <motion.span
           initial={{ opacity: 0, y: -10 }}

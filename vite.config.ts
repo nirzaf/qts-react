@@ -25,8 +25,12 @@ export default defineConfig({
           'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-slot', '@radix-ui/react-avatar'],
           'animation-vendor': ['framer-motion'],
           'icons-vendor': ['lucide-react'],
-          'utils-vendor': ['clsx', 'tailwind-merge']
-        }
+          'utils-vendor': ['clsx', 'tailwind-merge'],
+          'i18n-vendor': ['i18next', 'react-i18next']
+        },
+        assetFileNames: 'assets/[name].[hash][extname]',
+        chunkFileNames: 'chunks/[name].[hash].js',
+        entryFileNames: 'entries/[name].[hash].js'
       }
     },
     cssMinify: true,
