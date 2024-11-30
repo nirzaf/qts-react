@@ -31,13 +31,6 @@ const MapEmbed = memo(({ src, title, className = '' }: MapEmbedProps) => {
     return () => observer.disconnect();
   }, [title]);
 
-  // Generate a static map placeholder URL based on the embed URL
-  const getStaticMapUrl = () => {
-    // Extract location from embed URL
-    const location = title.replace(' Branch', '');
-    return `https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(location)}&zoom=12&size=600x300&scale=2&format=png&style=feature:all|saturation:-100`;
-  };
-
   return (
     <div className="relative w-full h-full">
       {/* Static Map Placeholder */}
