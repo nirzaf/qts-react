@@ -64,7 +64,7 @@ const technologies = [
 const TechCard: React.FC<{ tech: typeof technologies[0]; index: number }> = ({ tech, index }) => {
   return (
     <motion.div
-      className="relative aspect-square w-40 group"
+      className="relative aspect-square w-24 sm:w-32 md:w-40 group"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
@@ -72,8 +72,8 @@ const TechCard: React.FC<{ tech: typeof technologies[0]; index: number }> = ({ t
     >
       <div className="absolute inset-0 bg-[#98CCF8]/5 backdrop-blur-xl rounded-3xl shadow-lg transition-all duration-500 group-hover:shadow-xl group-hover:bg-[#98CCF8]/10" />
       
-      <div className="relative h-full w-full flex flex-col items-center justify-center p-6">
-        <div className="relative w-20 h-20 mb-4">
+      <div className="relative h-full w-full flex flex-col items-center justify-center p-3 sm:p-4 md:p-6">
+        <div className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mb-2 sm:mb-3 md:mb-4">
           <img
             src={tech.icon}
             alt={tech.name}
@@ -81,7 +81,7 @@ const TechCard: React.FC<{ tech: typeof technologies[0]; index: number }> = ({ t
           />
         </div>
 
-        <span className="text-sm font-medium text-center tracking-wide text-[#010000]">
+        <span className="text-xs sm:text-sm font-medium text-center tracking-wide text-[#010000]">
           {tech.name}
         </span>
       </div>
@@ -91,17 +91,17 @@ const TechCard: React.FC<{ tech: typeof technologies[0]; index: number }> = ({ t
 
 export const TechStack: React.FC = () => {
   return (
-    <section className="py-16">
+    <section className="py-8 sm:py-12 md:py-16 overflow-hidden">
       <div className="container">
         <AnimatedHeading 
           text="Technologies We Use" 
-          className="mb-8"
+          className="mb-4 sm:mb-6 md:mb-8"
         />
         <div className="relative">
           <motion.div
-            className="flex gap-8 py-8"
+            className="flex gap-4 sm:gap-6 md:gap-8 py-4 sm:py-6 md:py-8"
             animate={{
-              x: [-1200, 0],
+              x: ["calc(-100%)", "0%"],
               transition: {
                 duration: 40,
                 repeat: Infinity,
@@ -116,9 +116,9 @@ export const TechStack: React.FC = () => {
           </motion.div>
 
           <motion.div
-            className="flex gap-8 py-8 mt-8"
+            className="flex gap-4 sm:gap-6 md:gap-8 py-4 sm:py-6 md:py-8 mt-4 sm:mt-6 md:mt-8"
             animate={{
-              x: [0, -1200],
+              x: ["0%", "calc(-100%)"],
               transition: {
                 duration: 40,
                 repeat: Infinity,
