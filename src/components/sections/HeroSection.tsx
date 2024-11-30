@@ -91,20 +91,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-[#FFFFFF] pt-32 pb-24">
+    <section className="relative overflow-hidden bg-[#FFFFFF] pt-24 pb-20">
       <div className="container relative z-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
             {/* Text Content */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-center lg:text-left space-y-12" // Increased spacing
+              className="text-center lg:text-left space-y-6"
             >
               {/* Company Name - Consistent Size */}
               <motion.h2 
-                className="text-3xl lg:text-4xl font-bold tracking-tight h-[60px] flex items-center justify-center lg:justify-start"
+                className="text-3xl lg:text-4xl font-bold tracking-tight h-[50px] flex items-center justify-center lg:justify-start"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ 
@@ -113,14 +113,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   ease: [0.43, 0.13, 0.23, 0.96]
                 }}
               >
-                <div className="flex flex-wrap justify-center lg:justify-start font-chakra">
+                <div className="flex flex-wrap justify-center lg:justify-start font-chakra tracking-tighter">
                   {"Quadrate Tech Solutions".split('').map((letter, index) => (
                     <AnimatedLetter key={index} letter={letter} index={index} />
                   ))}
                 </div>
               </motion.h2>
 
-              {/* Helps Text - Enhanced Animation */}
+              {/* Helps Text */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -129,13 +129,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   delay: 0.4,
                   ease: [0.43, 0.13, 0.23, 0.96]
                 }}
-                className="relative h-[60px] flex items-center justify-center lg:justify-start"
+                className="relative h-[40px] flex items-center justify-center lg:justify-start"
               >
                 <motion.h3 
                   className="text-3xl lg:text-4xl font-pacifico font-semibold relative z-10 cursor-default
                     text-[#0607E1] hover:text-[#0A25C9]
                     transition-all duration-500 ease-in-out transform hover:scale-105
-                    hover:drop-shadow-[0_0_8px_rgba(6,7,225,0.3)]"
+                    hover:drop-shadow-[0_0_8px_rgba(6,7,225,0.3)]
+                    -mt-2"
                   whileHover={{ 
                     scale: 1.05,
                     transition: { duration: 0.3 }
@@ -145,9 +146,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </motion.h3>
               </motion.div>
 
-              {/* Main Heading - Improved Animation */}
+              {/* Main Heading */}
               <motion.h1 
-                className="text-4xl lg:text-5xl font-bold tracking-tight h-[120px] flex items-center justify-center lg:justify-start"
+                className="text-4xl lg:text-5xl font-bold tracking-tight h-[100px] flex items-center justify-center lg:justify-start -mt-2"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ 
@@ -175,9 +176,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </div>
               </motion.h1>
 
-              {/* Buttons - Consistent Spacing */}
+              {/* Buttons */}
               <motion.div
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-8"
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ 
@@ -201,7 +202,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </motion.div>
             </motion.div>
 
-            {/* Image Section - Enhanced Animation */}
+            {/* Image Section */}
             {heroImage && (
               <motion.div
                 className="relative"
