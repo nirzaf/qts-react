@@ -101,10 +101,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               >
                 <motion.h3 
                   className="text-5xl font-orbitron font-bold relative z-10 cursor-default
-                    bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 hover:from-blue-500 hover:via-blue-300 hover:to-blue-500
+                    bg-gradient-to-r from-[#0607E1] via-[#0A25C9] to-[#0607E1] hover:from-[#0A25C9] hover:via-[#0B48D0] hover:to-[#0A25C9]
                     bg-clip-text text-transparent
                     transition-all duration-300 ease-in-out transform hover:scale-105
-                    hover:drop-shadow-[0_0_8px_rgba(0,122,255,0.5)]"
+                    hover:drop-shadow-[0_0_8px_rgba(6,7,225,0.5)]"
                 >
                   Helps
                 </motion.h3>
