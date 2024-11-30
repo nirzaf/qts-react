@@ -18,17 +18,30 @@ interface HeroSectionProps {
 
 const AnimatedLetter: React.FC<{ letter: string; index: number }> = ({ letter, index }) => (
   <motion.span
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{
-      duration: 0.5,
-      delay: index * 0.05,
-      ease: [0.43, 0.13, 0.23, 0.96]
+    initial={{ 
+      opacity: 0,
+      x: -100,
+      rotate: -180,
+      scale: 0
     }}
-    className={`inline-block transform hover:scale-110 hover:text-[#0607E1] transition-all duration-300 cursor-default font-chakra
-      ${letter === ' ' ? 'mx-[3px]' : 'mx-[0.5px]'}`}
+    animate={{ 
+      opacity: 1,
+      x: 0,
+      rotate: 0,
+      scale: 1
+    }}
+    transition={{
+      duration: 0.8,
+      delay: index * 0.05,
+      type: "spring",
+      stiffness: 150,
+      damping: 15
+    }}
+    className={`inline-block transform cursor-default font-chakra
+      ${letter === ' ' ? 'mx-[3px]' : 'mx-[0.5px]'}
+      hover:text-[#0607E1] hover:scale-110 transition-colors duration-300`}
     style={{
-      textShadow: '1px 1px 0px rgba(0,0,0,0.05)'
+      transformOrigin: "center center"
     }}
   >
     {letter === ' ' ? '\u00A0' : letter}
@@ -68,11 +81,11 @@ const AnimatedWord: React.FC<{ word: string }> = ({ word }) => {
   );
 };
 
-export const HeroSection: React.FC<HeroSectionProps> = ({
+export const HeroSection = ({
   heroImage,
   primaryButton,
   secondaryButton,
-}) => {
+}: HeroSectionProps): JSX.Element => {
   const [textIndex, setTextIndex] = useState(0);
   const phrases = [
     "Transform Your Digital Presence",
@@ -85,13 +98,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   useEffect(() => {
     const timer = setInterval(() => {
       setTextIndex((prevIndex) => (prevIndex + 1) % phrases.length);
-    }, 4000); // Increased duration for better readability
+    }, 4000);
 
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-[#FFFFFF] pt-24 pb-20">
+    <motion.section className="relative overflow-hidden bg-[#FFFFFF] pt-24 pb-20">
       <div className="container relative z-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
@@ -104,20 +117,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             >
               {/* Company Name - Consistent Size */}
               <motion.h2 
-                className="text-3xl lg:text-4xl font-bold tracking-tight h-[50px] flex items-center justify-center lg:justify-start"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                className="text-3xl lg:text-4xl font-bold tracking-tight h-[50px] flex items-center justify-center lg:justify-start overflow-hidden"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ 
                   duration: 0.8,
                   delay: 0.2,
-                  ease: [0.43, 0.13, 0.23, 0.96]
                 }}
               >
-                <div className="flex flex-wrap justify-center lg:justify-start font-chakra tracking-tighter">
+                <motion.div 
+                  className="flex flex-wrap justify-center lg:justify-start font-chakra tracking-tighter"
+                  initial={{ x: -100 }}
+                  animate={{ x: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 20,
+                    mass: 1
+                  }}
+                >
                   {"Quadrate Tech Solutions".split('').map((letter, index) => (
                     <AnimatedLetter key={index} letter={letter} index={index} />
                   ))}
-                </div>
+                </motion.div>
               </motion.h2>
 
               {/* Helps Text */}
@@ -224,6 +246,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
