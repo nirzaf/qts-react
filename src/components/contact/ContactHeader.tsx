@@ -8,10 +8,9 @@ const ContactHeader = () => {
       transition={{ duration: 0.6 }}
       className="text-center mb-12"
     >
-      <h1 className="text-4xl font-bold sm:text-5xl md:text-6xl mb-4">
-        Let's Create Something
-        <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent"> Amazing</span>
-      </h1>
+      <h2 className="font-montserrat font-bold tracking-tight text-4xl md:text-5xl mb-4 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+        Let's Create Something Amazing
+      </h2>
       <p className="text-muted-foreground text-lg">
         Choose how you'd like to connect with us
       </p>

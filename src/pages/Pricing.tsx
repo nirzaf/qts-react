@@ -49,9 +49,6 @@ const Pricing: React.FC = () => {
           className="text-center mb-16"
           variants={itemVariants}
         >
-          <h1 className="text-[#000000] text-4xl md:text-5xl font-bold mb-4">
-            Simple, Transparent Pricing
-          </h1>
           <p className="text-[#000000]/70 text-lg max-w-2xl mx-auto">
             Choose the perfect plan for your needs. All plans include our core features.
           </p>
