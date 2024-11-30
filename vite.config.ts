@@ -2,44 +2,32 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import path from 'path'
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react({
-    jsxImportSource: 'react',
-    plugins: [['@swc/plugin-emotion', {}]]
-  })],
+  plugins: [react()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
     }
   },
   build: {
+    outDir: 'dist',
     sourcemap: true,
-    target: 'esnext',
-    chunkSizeWarningLimit: 600,
-    minify: 'esbuild',
+    target: 'es2019',
     rollupOptions: {
       output: {
         manualChunks: {
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-framer': ['framer-motion'],
-          'vendor-ui': ['@radix-ui/react-slot', '@radix-ui/react-tooltip'],
-          'vendor-icons': ['lucide-react']
-        },
-        entryFileNames: 'assets/[name].[hash].js',
-        chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[ext]/[name].[hash].[ext]'
+          'react-vendor': ['react', 'react-dom'],
+          'framer-motion': ['framer-motion']
+        }
       }
-    },
-    cssCodeSplit: true,
-    cssMinify: true,
-    assetsInlineLimit: 4096,
-    modulePreload: {
-      polyfill: true
     }
   },
+  server: {
+    port: 3000,
+    host: true
+  },
   optimizeDeps: {
-    include: ['framer-motion'],
-    exclude: []
+    include: ['react', 'react-dom', 'framer-motion']
   }
 })
