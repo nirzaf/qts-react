@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { IconType } from 'react-icons';
 import { FiCode, FiLayers, FiShield, FiSmartphone, FiZap, FiGlobe } from 'react-icons/fi';
+import AnimatedHeading from '@/components/ui/AnimatedHeading';
 
 interface Feature {
   icon: IconType;
@@ -43,14 +44,15 @@ const features: Feature[] = [
   }
 ];
 
-const Features: React.FC = () => {
+export const Features: React.FC = () => {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="py-16">
+      <div className="container">
+        <AnimatedHeading 
+          text="Our Features" 
+          className="mb-8"
+        />
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-4xl font-bold tracking-tight text-[#010000] sm:text-5xl">
-            Everything you need to scale your business
-          </h2>
           <p className="mt-6 text-lg leading-8 text-[#010000]/70">
             Empower your business with our comprehensive suite of solutions designed to drive growth and innovation.
           </p>

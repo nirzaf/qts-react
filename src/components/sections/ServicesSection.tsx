@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Code2, Globe, LineChart, Smartphone, Sparkles, Workflow, ArrowRight } from 'lucide-react';
+import AnimatedHeading from '@/components/ui/AnimatedHeading';
 
 const services = [
   {
@@ -36,64 +37,14 @@ const services = [
   },
 ];
 
-const ServicesSection: React.FC = () => {
+export const ServicesSection: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-[#FFFFFF] py-8">
-      {/* Subtle Background Pattern */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[#000000]/2" />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-          className="absolute top-1/4 right-1/4 w-1/3 h-1/3 bg-[#000000]/2 rounded-full blur-2xl"
+    <section className="py-16">
+      <div className="container">
+        <AnimatedHeading 
+          text="Our Services" 
+          className="mb-8"
         />
-      </div>
-
-      <div className="container relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto max-w-2xl text-center mb-8"
-        >
-          {/* Main Title with Animation */}
-          <motion.div 
-            className="inline-block"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#000000] mb-2 relative">
-              <span>Everything you need to</span>
-              <div className="relative inline-block ml-2">
-                <span className="relative z-10">scale your business</span>
-                <motion.div
-                  className="absolute bottom-0 left-0 h-[6px] bg-[#0607E1]/5 w-full"
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                />
-              </div>
-            </h2>
-          </motion.div>
-
-          {/* Subtitle with Fade Animation */}
-          <motion.p 
-            className="text-lg text-[#000000]/70 mt-3"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            From custom software development to digital marketing, we provide end-to-end solutions
-            to help your business thrive in the digital age.
-          </motion.p>
-        </motion.div>
-
         <div className="mx-auto grid max-w-7xl gap-4 lg:grid-cols-3">
           {services.map((service, index) => (
             <motion.div
@@ -155,20 +106,17 @@ const ServicesSection: React.FC = () => {
             </motion.div>
           ))}
         </div>
-      </div>
 
-      {/* Subtle Blue Accent Line */}
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-[#0607E1]/2" />
-
-      <div className="mx-auto mt-12 text-center">
-        <Button 
-          size="lg" 
-          className="bg-[#0607E1] hover:bg-[#0607E1]/90 text-[#FFFFFF] transition-all duration-300"
-        >
-          <a href="https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions">
-            Book a Consultation
-          </a>
-        </Button>
+        <div className="mx-auto mt-12 text-center">
+          <Button 
+            size="lg" 
+            className="bg-[#0607E1] hover:bg-[#0607E1]/90 text-[#FFFFFF] transition-all duration-300"
+          >
+            <a href="https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions">
+              Book a Consultation
+            </a>
+          </Button>
+        </div>
       </div>
     </section>
   );

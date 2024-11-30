@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import AnimatedHeading from '@/components/ui/AnimatedHeading';
 
 const technologies = [
   {
@@ -88,26 +89,14 @@ const TechCard: React.FC<{ tech: typeof technologies[0]; index: number }> = ({ t
   );
 };
 
-const TechStack: React.FC = () => {
+export const TechStack: React.FC = () => {
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-24"
-        >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            <span className="text-[#010000]">
-              Powered by Modern Technology
-            </span>
-          </h2>
-          <p className="text-xl text-[#010000]/70 max-w-2xl mx-auto">
-            We leverage cutting-edge technologies to craft exceptional digital experiences
-          </p>
-        </motion.div>
-
+    <section className="py-16">
+      <div className="container">
+        <AnimatedHeading 
+          text="Technologies We Use" 
+          className="mb-8"
+        />
         <div className="relative">
           <motion.div
             className="flex gap-8 py-8"
