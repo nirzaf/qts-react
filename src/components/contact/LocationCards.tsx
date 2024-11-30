@@ -1,6 +1,9 @@
 import { type FC } from 'react';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
+import { lazy, Suspense } from 'react';
+
+const MapEmbed = lazy(() => import('./MapEmbed'));
 
 interface Location {
   title: string;
@@ -59,17 +62,15 @@ const LocationCards: FC = () => {
             <Card className="relative h-full overflow-hidden bg-white dark:bg-gray-900 rounded-xl">
               <div className="relative">
                 <div className="aspect-video w-full overflow-hidden">
-                  <iframe
-                    src={location.mapUrl}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title={`${location.title} Map`}
-                    className="transition-transform duration-300 group-hover:scale-105"
-                  />
+                  <Suspense fallback={
+                    <div className="w-full h-full bg-gray-100 dark:bg-gray-800 animate-pulse" />
+                  }>
+                    <MapEmbed
+                      src={location.mapUrl}
+                      title={location.title}
+                      className="transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </Suspense>
                 </div>
                 <div className="p-6">
                   <h3 className="text-2xl font-semibold text-[#0607E1] mb-2 group-hover:text-[#0A25C9] transition-colors duration-300">
