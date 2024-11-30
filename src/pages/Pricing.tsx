@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import PricingHeader from '@/components/pricing/PricingHeader';
 import PricingGrid from '@/components/pricing/PricingGrid';
 import CustomSolutionCard from '@/components/pricing/CustomSolutionCard';
 
@@ -11,9 +10,7 @@ import CustomSolutionCard from '@/components/pricing/CustomSolutionCard';
  */
 const Pricing: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#FFFFFF]">
-      <PricingHeader />
-      
+    <div className="min-h-screen bg-[#FFFFFF] pt-8">
       {/* Pricing Section */}
       <div className="container py-16">
         <PricingGrid />

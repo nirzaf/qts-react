@@ -1,6 +1,5 @@
 import React from 'react';
 import BlogContainer from '@/components/blog/BlogContainer';
-import BlogHeader from '@/components/blog/BlogHeader';
 import BlogContent from '@/components/blog/BlogContent';
 import useBlogPosts from '@/hooks/useBlogPosts';
 
@@ -14,7 +13,6 @@ const BlogPage: React.FC = () => {
 
   return (
     <BlogContainer>
-      <BlogHeader />
       <BlogContent posts={posts} isLoading={isLoading} />
     </BlogContainer>
   );
