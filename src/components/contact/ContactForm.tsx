@@ -15,7 +15,11 @@ interface FormData {
   timeline: string;
 }
 
-const ContactForm: FC = () => {
+interface ContactFormProps {
+  onBack: () => void;
+}
+
+const ContactForm: FC<ContactFormProps> = ({ onBack }) => {
   const [formStep, setFormStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -45,6 +49,15 @@ const ContactForm: FC = () => {
       exit={{ opacity: 0, y: -20 }}
       className="max-w-2xl mx-auto"
     >
+      <div className="mb-6 flex items-center">
+        <Button
+          variant="ghost"
+          onClick={onBack}
+          className="text-sm hover:bg-[#0607E1]/10"
+        >
+          ← Back to contact methods
+        </Button>
+      </div>
       <Card className="p-6">
         <div className="space-y-8">
           <AnimatePresence mode="wait">

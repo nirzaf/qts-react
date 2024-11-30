@@ -49,7 +49,7 @@ const AnimatedLetter: React.FC<{ letter: string; index: number }> = ({ letter, i
   </motion.span>
 );
 
-const AnimatedWord: React.FC<{ word: string }> = ({ word }) => {
+const AnimatedWord: React.FC<{ word: string; isLastWord: boolean }> = ({ word, isLastWord }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -67,7 +67,7 @@ const AnimatedWord: React.FC<{ word: string }> = ({ word }) => {
             opacity: 1, 
             y: 0, 
             rotateX: 0,
-            color: isHovered ? '#0607E1' : '#000000',
+            color: isHovered ? '#0607E1' : isLastWord ? '#0607E1' : '#000000',
           }}
           transition={{ 
             duration: 0.5,
@@ -101,7 +101,7 @@ export const HeroSection = ({
     "Businesses Reach New Heights",
     "Teams Collaborate Effectively",
     "Ideas Transform Into Reality"
-  ];
+  ].map(phrase => phrase);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -262,10 +262,11 @@ export const HeroSection = ({
                         transformStyle: 'preserve-3d'
                       }}
                     >
-                      {phrases[textIndex].split(' ').map((word, index) => (
+                      {phrases[textIndex].split(' ').map((word, index, array) => (
                         <AnimatedWord 
                           key={`${textIndex}-${index}`} 
-                          word={word} 
+                          word={word}
+                          isLastWord={index === array.length - 1}
                         />
                       ))}
                     </motion.div>
