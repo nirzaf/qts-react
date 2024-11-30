@@ -11,9 +11,9 @@ export const ImageSection: React.FC = () => {
       className="relative"
     >
       <img
-        src="https://ik.imagekit.io/quadrate/assets/img/values-3.png?updatedAt=1718024119302"
+        src="https://ik.imagekit.io/quadrate/tr:w-800/assets/img/about.jpg"
         alt="Quadrate Tech Solutions Team"
-        className="rounded-2xl shadow-lg w-full h-auto object-cover"
+        className="rounded-2xl shadow-lg w-full h-[500px] object-cover"
       />
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#0607E1]/10 to-transparent" />
     </motion.div>
