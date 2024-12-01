@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Footer } from '@/components/Footer';
 
 interface PageLayoutProps {
   children: React.ReactNode;
@@ -71,7 +70,6 @@ const PageLayout: React.FC<PageLayoutProps> = ({
           {children}
         </motion.div>
       </motion.div>
-      <Footer />
     </div>
   );
 };

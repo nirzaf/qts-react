@@ -3,6 +3,7 @@ import { Routes } from '@/routes';
 import { Toaster } from '@/components/ui/toaster';
 import HubSpotChat from '@/components/chat/HubSpotChat';
 import { Navigation } from '@/components/Navigation';
+import { Footer } from '@/components/Footer';
 
 const App: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const App: React.FC = () => {
         <Toaster />
         <HubSpotChat />
       </Suspense>
+      <Footer />
     </>
   );
 };

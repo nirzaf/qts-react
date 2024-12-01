@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Footer } from '@/components/Footer';
 
 interface Props {
   children: React.ReactNode;
@@ -29,8 +28,6 @@ export const MainLayout = ({
       <main className="flex-1">
         {children}
       </main>
-
-      <Footer />
     </div>
   );
 };
