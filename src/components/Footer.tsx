@@ -28,7 +28,12 @@ export const Footer: React.FC = () => {
               Empowering businesses with innovative digital solutions and cutting-edge technology.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
+              <a 
+                href="https://www.facebook.com/quadrate.lk/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200"
+              >
                 <Facebook className="h-5 w-5" />
               </a>
               <a href="#" className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
@@ -37,7 +42,12 @@ export const Footer: React.FC = () => {
               <a href="#" className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
+              <a 
+                href="https://lk.linkedin.com/company/quadrate-tech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200"
+              >
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>

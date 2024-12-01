@@ -46,7 +46,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
         variants={containerVariants}
       >
         <motion.div
-          className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+          className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-16"
           variants={containerVariants}
         >
           {(title || subtitle) && (

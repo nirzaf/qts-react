@@ -31,11 +31,11 @@ const locations: Location[] = [
 
 const LocationCards: FC = () => {
   return (
-    <div className="py-12">
-      <h2 className="font-montserrat font-bold tracking-tight text-2xl md:text-3xl text-center mb-8">
+    <div className="pb-0 -mb-16">
+      <h2 className="font-montserrat font-bold tracking-tight text-2xl md:text-3xl text-center mb-6">
         Our Global Presence
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {locations.map((location, index) => (
           <motion.div
             key={location.title}
