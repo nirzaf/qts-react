@@ -5,7 +5,7 @@ import { ImageContentProps } from '../types';
 export const ImageSection: React.FC<ImageContentProps> = ({
   className = '',
   variants,
-  src = '/images/about/office.jpg',
+  src = 'https://ik.imagekit.io/quadrate/assets/img/about.jpg?updatedAt=1718024112686',
   alt = 'QTS Office'
 }) => {
   return (

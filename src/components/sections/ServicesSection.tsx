@@ -109,11 +109,14 @@ export const ServicesSection: React.FC = () => {
 
         <div className="mx-auto mt-12 text-center">
           <Button 
-            size="lg" 
-            className="bg-[#0607E1] hover:bg-[#0607E1]/90 text-[#FFFFFF] transition-all duration-300"
+            asChild
+            className="relative inline-flex w-fit items-center justify-center rounded-md bg-[#000000] px-4 py-2 text-sm font-medium text-[#FFFFFF] hover:bg-[#000000]/90 transition-colors duration-200 overflow-hidden group"
           >
-            <a href="https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions">
-              Book a Consultation
+            <a href="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions">
+              <span className="relative z-10">Book a Meeting</span>
+              <div className="absolute inset-0 overflow-hidden">
+                <div className="torch-wave absolute w-[200%] h-full top-0 -left-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+              </div>
             </a>
           </Button>
         </div>

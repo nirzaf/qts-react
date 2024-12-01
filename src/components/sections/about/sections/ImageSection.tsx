@@ -35,7 +35,7 @@ export const ImageSection: React.FC = () => {
       className="relative"
     >
       <img
-        src="https://ik.imagekit.io/quadrate/tr:w-800/assets/img/about.jpg"
+        src="https://ik.imagekit.io/quadrate/assets/img/about.jpg?updatedAt=1718024112686"
         alt="Quadrate Tech Solutions Team"
         className="rounded-2xl shadow-lg w-full h-[500px] object-cover"
       />
