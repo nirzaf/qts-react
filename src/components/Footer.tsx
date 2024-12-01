@@ -36,10 +36,20 @@ export const Footer: React.FC = () => {
               >
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
+              <a 
+                href="https://x.com/quadrate_lk?mx=2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200"
+              >
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200">
+              <a 
+                href="https://www.instagram.com/quadrate.lk/?hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#000000]/70 hover:text-[#000000] transition-colors duration-200"
+              >
                 <Instagram className="h-5 w-5" />
               </a>
               <a 
