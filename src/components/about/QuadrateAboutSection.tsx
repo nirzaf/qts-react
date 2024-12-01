@@ -35,9 +35,9 @@ export const QuadrateAboutSection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-6"
           >
-            <h2 className="text-4xl font-bold">
-              <span className="text-[#0607E1]">INNOVATIVE</span>{' '}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0607E1] to-blue-500">
+            <h2 className="text-2xl md:text-3xl font-montserrat font-bold">
+              <span className="text-black">INNOVATIVE</span>{' '}
+              <span className="text-black">
                 TECH SOLUTIONS
               </span>
             </h2>

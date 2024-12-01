@@ -66,7 +66,7 @@ export const AboutContent: React.FC = () => {
             { year: '2019', title: 'Founded', description: 'Started with a vision to transform digital landscape' },
             { year: '2020', title: 'First Major Project', description: 'Successfully delivered enterprise-level solutions' },
             { year: '2021', title: 'Team Expansion', description: 'Grew our talented team of experts' }
-          ].map((item, index) => (
+          ].map((item) => (
             <motion.div
               key={item.year}
               variants={itemVariants}
