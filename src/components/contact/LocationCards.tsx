@@ -1,9 +1,5 @@
 import { type FC } from 'react';
-import { motion } from 'framer-motion';
-import { Card } from '@/components/ui/card';
-import { lazy, Suspense } from 'react';
-
-const MapEmbed = lazy(() => import('./MapEmbed'));
+import LocationCard from './LocationCard';
 
 interface Location {
   title: string;
@@ -37,40 +33,11 @@ const LocationCards: FC = () => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {locations.map((location, index) => (
-          <motion.div
+          <LocationCard
             key={location.title}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ 
-              opacity: 1, 
-              y: 0,
-              transition: {
-                delay: index * 0.2,
-                duration: 0.5
-              }
-            }}
-            whileHover={{ 
-              scale: 1.02,
-              transition: { duration: 0.2 }
-            }}
-          >
-            <Card className="overflow-hidden h-full border border-[#0607E1]/10 hover:border-[#0607E1]/20 transition-colors duration-300">
-              <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">{location.title}</h3>
-                <p className="text-[#000000]/70 mb-4">{location.address}</p>
-              </div>
-              <div className="h-[300px] relative">
-                <Suspense fallback={
-                  <div className="w-full h-full bg-[#0607E1]/5 animate-pulse" />
-                }>
-                  <MapEmbed
-                    src={location.mapUrl}
-                    title={location.title}
-                    className="border-t border-[#0607E1]/10"
-                  />
-                </Suspense>
-              </div>
-            </Card>
-          </motion.div>
+            {...location}
+            index={index}
+          />
         ))}
       </div>
     </div>
