@@ -6,6 +6,7 @@ import compression from 'vite-plugin-compression'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
   plugins: [
     react(),
     compression({
@@ -25,6 +26,15 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
+    }
+  },
+  server: {
+    port: 3000,
+    host: true
+  },
+  preview: {
+    headers: {
+      'Cache-Control': 'public, max-age=31536000'
     }
   },
   build: {
@@ -61,10 +71,6 @@ export default defineConfig({
     reportCompressedSize: true,
     chunkSizeWarningLimit: 1000
   },
-  server: {
-    port: 3000,
-    host: true
-  },
   optimizeDeps: {
     include: [
       'react', 
@@ -86,11 +92,6 @@ export default defineConfig({
     ],
     esbuildOptions: {
       target: 'es2022'
-    }
-  },
-  preview: {
-    headers: {
-      'Cache-Control': 'public, max-age=31536000'
     }
   }
 })
