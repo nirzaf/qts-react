@@ -91,6 +91,7 @@ const Contact: FC = () => {
           >
             <ContactFormSubmission
               formData={formData}
+              setFormData={setFormData}
               isSubmitting={isSubmitting}
               submitStatus={submitStatus}
               onSubmit={handleSubmit}

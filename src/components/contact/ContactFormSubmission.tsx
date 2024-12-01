@@ -1,11 +1,4 @@
 import { type FC, FormEvent } from 'react';
-import { motion } from 'framer-motion';
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
 
 interface FormData {
   name: string;
@@ -16,6 +9,7 @@ interface FormData {
 
 interface ContactFormSubmissionProps {
   formData: FormData;
+  setFormData: (data: FormData) => void;
   isSubmitting: boolean;
   submitStatus: 'success' | 'error' | null;
   onSubmit: (e: FormEvent) => Promise<void>;
@@ -24,6 +18,7 @@ interface ContactFormSubmissionProps {
 
 const ContactFormSubmission: FC<ContactFormSubmissionProps> = ({
   formData,
+  setFormData,
   isSubmitting,
   submitStatus,
   onSubmit,
@@ -40,7 +35,7 @@ const ContactFormSubmission: FC<ContactFormSubmissionProps> = ({
           id="name"
           required
           value={formData.name}
-          onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#0607E1] focus:ring-[#0607E1]"
         />
       </div>
@@ -54,7 +49,7 @@ const ContactFormSubmission: FC<ContactFormSubmissionProps> = ({
           id="email"
           required
           value={formData.email}
-          onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#0607E1] focus:ring-[#0607E1]"
         />
       </div>
@@ -68,7 +63,7 @@ const ContactFormSubmission: FC<ContactFormSubmissionProps> = ({
           id="subject"
           required
           value={formData.subject}
-          onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value }))}
+          onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#0607E1] focus:ring-[#0607E1]"
         />
       </div>
@@ -82,7 +77,7 @@ const ContactFormSubmission: FC<ContactFormSubmissionProps> = ({
           required
           rows={4}
           value={formData.message}
-          onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#0607E1] focus:ring-[#0607E1]"
         />
       </div>
