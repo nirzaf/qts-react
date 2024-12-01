@@ -1,13 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import PageLayout from '@/layouts/PageLayout';
 import PricingGrid from '@/components/pricing/PricingGrid';
 import CustomSolutionCard from '@/components/pricing/CustomSolutionCard';
 
 /**
  * Pricing page component that displays pricing plans and custom solutions
  * Features:
- * - Clean, minimal design with Chrysler Blue accents
- * - Subtle gradient backgrounds with 5% blue opacity
+ * - Clean, minimal design with black/white scheme
+ * - Subtle gradient backgrounds with 5% black opacity
  * - Smooth animations for enhanced engagement
  * - Responsive and mobile-friendly layout
  * - Clear visual hierarchy with consistent spacing
@@ -37,19 +38,19 @@ const Pricing: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-white to-[#0607E1]/5">
+    <PageLayout>
       <motion.div 
-        className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+        className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
         {/* Header Section */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-8"
           variants={itemVariants}
         >
-          <p className="text-[#000000]/70 text-lg max-w-2xl mx-auto">
+          <p className="text-black/70 text-lg max-w-2xl mx-auto">
             Choose the perfect plan for your needs. All plans include our core features.
           </p>
         </motion.div>
@@ -57,7 +58,7 @@ const Pricing: React.FC = () => {
         {/* Pricing Grid Section */}
         <motion.div
           variants={itemVariants}
-          className="mb-16"
+          className="mb-12"
         >
           <PricingGrid />
         </motion.div>
@@ -65,8 +66,8 @@ const Pricing: React.FC = () => {
         {/* Custom Solution Section */}
         <motion.div
           variants={itemVariants}
-          className="mt-16 max-w-4xl mx-auto bg-white/80 backdrop-blur-sm 
-                     border border-[#0607E1]/10 rounded-lg shadow-lg"
+          className="mt-12 max-w-4xl mx-auto bg-white/80 backdrop-blur-sm 
+                     border border-black/10 rounded-lg shadow-lg"
         >
           <CustomSolutionCard />
         </motion.div>
@@ -74,21 +75,21 @@ const Pricing: React.FC = () => {
         {/* FAQ or Additional Info Section */}
         <motion.div
           variants={itemVariants}
-          className="mt-24 text-center"
+          className="mt-16 text-center"
         >
-          <p className="text-[#000000]/60">
+          <p className="text-black/60">
             Have questions about our pricing? {' '}
             <a 
               href="/contact" 
-              className="text-[#0607E1] hover:text-[#0A25C9] transition-colors duration-200 
-                       border-b border-[#0607E1]/20 hover:border-[#0A25C9]"
+              className="text-black hover:text-black/80 transition-colors duration-200 
+                       border-b border-black/20 hover:border-black/40"
             >
               Contact our team
             </a>
           </p>
         </motion.div>
       </motion.div>
-    </div>
+    </PageLayout>
   );
 };
 

@@ -1,5 +1,6 @@
 import { type FC, useState } from 'react';
 import { motion } from 'framer-motion';
+import PageLayout from '@/layouts/PageLayout';
 import ContactHeader from '@/components/contact/ContactHeader';
 import ContactForm from '@/components/contact/ContactForm';
 import ContactBackground from '@/components/contact/ContactBackground';
@@ -28,7 +29,7 @@ const Contact: FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#FFFFFF] text-[#000000]">
+    <PageLayout>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -70,7 +71,7 @@ const Contact: FC = () => {
           <LocationCards />
         </motion.div>
       </ContactContainer>
-    </div>
+    </PageLayout>
   );
 };
 
