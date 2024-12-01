@@ -65,19 +65,21 @@ export const ExperienceSection: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300 bg-white/80 backdrop-blur-sm border-black/5">
-                  <div className="flex justify-center mb-4">
-                    <Icon className="w-8 h-8 text-[#0607E1]" />
+                <Card className="h-full p-6 text-center hover:shadow-lg transition-shadow duration-300 bg-white/80 backdrop-blur-sm border-black/5">
+                  <div className="flex flex-col h-full">
+                    <div className="flex justify-center mb-4">
+                      <Icon className="w-8 h-8 text-[#0607E1]" />
+                    </div>
+                    <div className="text-3xl font-bold text-[#000000] mb-2">
+                      {stat.number}
+                    </div>
+                    <div className="text-lg font-semibold text-[#000000] mb-2">
+                      {stat.label}
+                    </div>
+                    <p className="text-sm text-[#000000]/70 mt-auto">
+                      {stat.description}
+                    </p>
                   </div>
-                  <div className="text-3xl font-bold text-[#000000] mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-lg font-semibold text-[#000000] mb-2">
-                    {stat.label}
-                  </div>
-                  <p className="text-sm text-[#000000]/70">
-                    {stat.description}
-                  </p>
                 </Card>
               </motion.div>
             );
