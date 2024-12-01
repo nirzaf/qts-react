@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { StorySection } from './sections/StorySection';
-import { ValuesSection } from './sections/ValuesSection';
-import { ImageSection } from './sections/ImageSection';
+import { StorySection } from '@/components/about/sections/StorySection';
+import { ValuesSection } from '@/components/about/sections/ValuesSection';
+import { ImageSection } from '@/components/about/sections/ImageSection';
 
 // Predefined animation variants with simple, stable configurations
 const containerVariants: Variants = {
@@ -56,11 +56,11 @@ export const AboutContent: React.FC = () => {
             variants={contentVariants}
             className="space-y-8"
           >
-            <StorySection />
-            <ValuesSection />
+            <StorySection variants={contentVariants} />
+            <ValuesSection variants={contentVariants} />
           </motion.div>
           
-          <ImageSection />
+          <ImageSection variants={contentVariants} />
         </div>
       </motion.section>
     </AnimatePresence>
