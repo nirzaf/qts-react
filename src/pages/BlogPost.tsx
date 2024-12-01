@@ -9,7 +9,7 @@ import useBlogPost from '@/hooks/useBlogPost';
 
 // Lazy load heavy components
 const ReactMarkdown = lazy(() => import('react-markdown'));
-const SyntaxHighlighter = lazy(() => 
+const SyntaxHighlighter = lazy(() =>
   import('react-syntax-highlighter').then(mod => ({ default: mod.Prism }))
 );
 
