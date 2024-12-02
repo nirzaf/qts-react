@@ -1,25 +1,63 @@
-import React from 'react';
-import { Routes as RouterRoutes, Route } from 'react-router-dom';
-import Home from '@/pages/Home';
-import About from '@/pages/About';
-import Services from '@/pages/Services';
-import Blog from '@/pages/Blog';
-import BlogPost from '@/pages/BlogPost';
-import Contact from '@/pages/Contact';
-import Pricing from '@/pages/Pricing';
-import NotFound from '@/pages/404';
+import { lazy } from 'react';
+import { useRoutes } from 'react-router-dom';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
 
-export const Routes: React.FC = () => {
-  return (
-    <RouterRoutes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/services" element={<Services />} />
-      <Route path="/blog" element={<Blog />} />
-      <Route path="/blog/:id" element={<BlogPost />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/pricing" element={<Pricing />} />
-      <Route path="*" element={<NotFound />} />
-    </RouterRoutes>
-  );
+const Home = lazy(() => import('@/pages/Home'));
+const About = lazy(() => import('@/pages/About'));
+const Services = lazy(() => import('@/pages/Services'));
+const Blog = lazy(() => import('@/pages/Blog'));
+const Contact = lazy(() => import('@/pages/Contact'));
+const Pricing = lazy(() => import('@/pages/Pricing'));
+const AdminLogin = lazy(() => import('@/pages/AdminLogin'));
+const AdminBlogs = lazy(() => import('@/pages/AdminBlogs'));
+const BlogPost = lazy(() => import('@/pages/BlogPost'));
+const NotFound = lazy(() => import('@/pages/404'));
+
+export const Routes = () => {
+  return useRoutes([
+    {
+      path: '/',
+      element: <Home />
+    },
+    {
+      path: '/about',
+      element: <About />
+    },
+    {
+      path: '/services',
+      element: <Services />
+    },
+    {
+      path: '/blog',
+      element: <Blog />
+    },
+    {
+      path: '/blog/:id',
+      element: <BlogPost />
+    },
+    {
+      path: '/contact',
+      element: <Contact />
+    },
+    {
+      path: '/pricing',
+      element: <Pricing />
+    },
+    {
+      path: '/admin/login',
+      element: <AdminLogin />
+    },
+    {
+      path: '/admin/blogs',
+      element: (
+        <ProtectedRoute>
+          <AdminBlogs />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path: '*',
+      element: <NotFound />
+    }
+  ]);
 };

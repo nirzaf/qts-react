@@ -4,10 +4,11 @@ import { Toaster } from '@/components/ui/toaster';
 import HubSpotChat from '@/components/chat/HubSpotChat';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import { AuthProvider } from '@/lib/auth/AuthContext';
 
 const App: React.FC = () => {
   return (
-    <>
+    <AuthProvider>
       <Navigation />
       <Suspense fallback={<div>Loading...</div>}>
         <Routes />
@@ -15,7 +16,7 @@ const App: React.FC = () => {
         <HubSpotChat />
       </Suspense>
       <Footer />
-    </>
+    </AuthProvider>
   );
 };
 
