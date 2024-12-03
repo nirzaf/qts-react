@@ -189,22 +189,38 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <span className="mx-3"></span>
 
                 {/* TECH SOLUTIONS */}
-                <div className="inline-flex justify-center lg:justify-start">
+                <div className="inline-flex justify-center lg:justify-start overflow-hidden">
                   {techSolutions.map((letter, index) => (
-                    <motion.span
+                    <motion.div
                       key={`tech-solutions-${index}`}
-                      variants={letterAnimation}
-                      className="text-2xl md:text-3xl lg:text-4xl text-[#000000] inline-block transform cursor-default mx-[1px]
-                        hover:text-[#0607E1] hover:scale-110 transition-colors duration-300"
-                      whileHover={{ 
-                        scale: 1.2,
-                        rotate: -10,
-                        color: "#0607E1",
-                        transition: { duration: 0.2 }
-                      }}
+                      className="relative"
                     >
-                      {letter === ' ' ? '\u00A0\u00A0' : letter}
-                    </motion.span>
+                      <motion.span
+                        custom={index}
+                        variants={rollAnimation}
+                        initial="hidden"
+                        animate="show"
+                        whileHover={{ 
+                          scale: 1.2,
+                          rotate: -10,
+                          color: "#0607E1",
+                          transition: { duration: 0.2 }
+                        }}
+                        className="text-2xl md:text-3xl lg:text-4xl text-[#000000] inline-block transform cursor-default mx-[1px]
+                          hover:text-[#0607E1] transition-colors duration-300 origin-bottom"
+                        onAnimationComplete={() => {
+                          if (index === techSolutions.length - 1) {
+                            const element = document.querySelector(`#tech-${index}`);
+                            if (element) {
+                              motion.animate(element, bounceAnimation.animate);
+                            }
+                          }
+                        }}
+                        id={`tech-${index}`}
+                      >
+                        {letter === ' ' ? '\u00A0\u00A0' : letter}
+                      </motion.span>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
