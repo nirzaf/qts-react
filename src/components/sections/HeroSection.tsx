@@ -171,11 +171,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                           hover:text-[#0607E1] transition-colors duration-300 origin-bottom"
                         onAnimationComplete={() => {
                           if (index === companyName.length - 1) {
-                            document.querySelectorAll('.rolling-letter').forEach((el) => {
-                              (el as HTMLElement).style.animation = 'bounce 0.3s ease-out';
-                            });
+                            const element = document.querySelector(`#letter-${index}`);
+                            if (element) {
+                              motion.animate(element, bounceAnimation.animate);
+                            }
                           }
                         }}
+                        id={`letter-${index}`}
                       >
                         {letter}
                       </motion.span>
@@ -268,12 +270,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       {/* Decorative Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-[#0607E1]/5 to-transparent blur-3xl" />
       <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-[#0607E1]/5 to-transparent blur-3xl" />
-      <style jsx global>{`
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-2px); }
-        }
-      `}</style>
     </section>
   );
 };
