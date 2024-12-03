@@ -28,11 +28,20 @@ const AdminLogin: React.FC = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [dbConnected, setDbConnected] = useState(false);
+  const [keepLoggedIn, setKeepLoggedIn] = useState(false);
   const navigate = useNavigate();
   const { setAdmin } = useAuth();
 
   useEffect(() => {
     checkConnection();
+    // Try to get saved credentials
+    const savedCredentials = localStorage.getItem('savedCredentials');
+    if (savedCredentials) {
+      const { username: savedUsername, password: savedPassword } = JSON.parse(savedCredentials);
+      setUsername(savedUsername);
+      setPassword(savedPassword);
+      setKeepLoggedIn(true);
+    }
   }, []);
 
   const checkConnection = async () => {
@@ -91,6 +100,19 @@ const AdminLogin: React.FC = () => {
 
       if (admin && admin.password === password) {
         console.log('Login successful');
+        
+        // Save credentials if keep logged in is checked
+        if (keepLoggedIn) {
+          const credentials = {
+            username: username.trim(),
+            password: password,
+            savedAt: new Date().toISOString()
+          };
+          localStorage.setItem('savedCredentials', JSON.stringify(credentials));
+        } else {
+          localStorage.removeItem('savedCredentials');
+        }
+        
         setAdmin(admin);
         navigate('/admin/blogs');
       } else {
@@ -152,6 +174,22 @@ const AdminLogin: React.FC = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <input
+                id="keep-logged-in"
+                name="keep-logged-in"
+                type="checkbox"
+                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                checked={keepLoggedIn}
+                onChange={(e) => setKeepLoggedIn(e.target.checked)}
+              />
+              <label htmlFor="keep-logged-in" className="ml-2 block text-sm text-gray-900">
+                Keep me logged in
+              </label>
             </div>
           </div>
 
