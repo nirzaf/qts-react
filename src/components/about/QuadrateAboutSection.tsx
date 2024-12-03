@@ -30,17 +30,50 @@ export const QuadrateAboutSection: React.FC = () => {
     <div className="container py-16">
       <div className="grid lg:grid-cols-2 gap-12">
         <div className="space-y-8">
+          <div className="overflow-hidden">
+            <motion.h2
+              className="text-2xl md:text-3xl font-montserrat font-bold inline-block"
+              initial={{ 
+                x: -150,
+                rotateX: -90,
+                y: 30,
+                opacity: 0
+              }}
+              animate={{ 
+                x: 0,
+                rotateX: 0,
+                y: 0,
+                opacity: 1
+              }}
+              transition={{
+                duration: 1.5,
+                ease: [0.23, 1, 0.32, 1],
+                rotateX: {
+                  duration: 1.5,
+                  ease: [0.23, 1, 0.32, 1]
+                },
+                y: {
+                  duration: 1.5,
+                  ease: [0.23, 1, 0.32, 1]
+                },
+                opacity: { duration: 0.5 }
+              }}
+              style={{
+                transformOrigin: "bottom",
+                perspective: "800px",
+                transformStyle: "preserve-3d",
+                backfaceVisibility: "hidden"
+              }}
+            >
+              <span className="text-black inline-block">INNOVATIVE TECH SOLUTIONS</span>
+            </motion.h2>
+          </div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="space-y-6"
           >
-            <h2 className="text-2xl md:text-3xl font-montserrat font-bold">
-              <span className="text-black">INNOVATIVE</span>{' '}
-              <span className="text-black">
-                TECH SOLUTIONS
-              </span>
-            </h2>
             <p className="text-gray-600 leading-relaxed text-lg">
               At <span className="font-semibold text-[#0607E1]">Quadrate Tech Solutions</span>, 
               we are passionate about transforming businesses through cutting-edge technology.
