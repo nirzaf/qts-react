@@ -37,22 +37,26 @@ const letterContainer = {
   }
 };
 
-const letterAnimation = {
+const cuteAnimation = {
   hidden: { 
+    y: -20,
+    rotateX: -45,
     opacity: 0,
-    y: 20,
-    rotateX: -90
+    scale: 0.8
   },
-  show: {
-    opacity: 1,
+  show: (i: number) => ({
     y: 0,
     rotateX: 0,
+    opacity: 1,
+    scale: 1,
     transition: {
       type: "spring",
-      damping: 12,
-      stiffness: 200
+      damping: 15,
+      stiffness: 100,
+      duration: 0.8,
+      delay: i * 0.08
     }
-  }
+  })
 };
 
 const item = {
@@ -68,34 +72,70 @@ const item = {
   }
 };
 
-const rollAnimation = {
+const roll3DAnimation = {
   hidden: { 
     x: -1000,
+    rotateX: -180,
+    rotateY: -180,
     rotate: -360,
-    opacity: 0
+    opacity: 0,
+    z: -300,
+    scale: 0.5
   },
   show: (i: number) => ({
     x: 0,
+    rotateX: 0,
+    rotateY: 0,
     rotate: 0,
     opacity: 1,
+    z: 0,
+    scale: 1,
     transition: {
       x: {
         type: "spring",
-        damping: 20,
-        stiffness: 100,
-        duration: 1.5,
-        delay: i * 0.1
+        damping: 12,
+        stiffness: 70,
+        duration: 2,
+        delay: i * 0.12
+      },
+      rotateX: {
+        type: "spring",
+        damping: 12,
+        stiffness: 70,
+        duration: 2,
+        delay: i * 0.12
+      },
+      rotateY: {
+        type: "spring",
+        damping: 12,
+        stiffness: 70,
+        duration: 2,
+        delay: i * 0.12
       },
       rotate: {
         type: "spring",
-        damping: 20,
-        stiffness: 100,
-        duration: 1.5,
-        delay: i * 0.1
+        damping: 12,
+        stiffness: 70,
+        duration: 2,
+        delay: i * 0.12
       },
       opacity: {
-        duration: 0.5,
-        delay: i * 0.1
+        duration: 0.8,
+        delay: i * 0.12
+      },
+      z: {
+        type: "spring",
+        damping: 12,
+        stiffness: 70,
+        duration: 2,
+        delay: i * 0.12
+      },
+      scale: {
+        type: "spring",
+        damping: 12,
+        stiffness: 70,
+        duration: 2,
+        delay: i * 0.12
       }
     }
   })
@@ -111,6 +151,84 @@ const bounceAnimation = {
       repeat: 1
     }
   }
+};
+
+const textStyle3D = {
+  textShadow: `
+    1px 1px 0px #6a6a6a,
+    2px 2px 0px #7a7a7a,
+    3px 3px 0px #8a8a8a,
+    4px 4px 8px rgba(0,0,0,0.2)
+  `
+};
+
+const quadrate3DAnimation = {
+  hidden: { 
+    x: -1000,
+    rotateX: -180,
+    rotateY: -180,
+    rotate: -360,
+    opacity: 0,
+    z: -300,
+    scale: 0.5
+  },
+  show: (i: number) => ({
+    x: 0,
+    rotateX: 0,
+    rotateY: 0,
+    rotate: 0,
+    opacity: 1,
+    z: 0,
+    scale: 1,
+    transition: {
+      x: {
+        type: "spring",
+        damping: 12,
+        stiffness: 70,
+        duration: 2,
+        delay: i * 0.12
+      },
+      rotateX: {
+        type: "spring",
+        damping: 12,
+        stiffness: 70,
+        duration: 2,
+        delay: i * 0.12
+      },
+      rotateY: {
+        type: "spring",
+        damping: 12,
+        stiffness: 70,
+        duration: 2,
+        delay: i * 0.12
+      },
+      rotate: {
+        type: "spring",
+        damping: 12,
+        stiffness: 70,
+        duration: 2,
+        delay: i * 0.12
+      },
+      opacity: {
+        duration: 0.8,
+        delay: i * 0.12
+      },
+      z: {
+        type: "spring",
+        damping: 12,
+        stiffness: 70,
+        duration: 2,
+        delay: i * 0.12
+      },
+      scale: {
+        type: "spring",
+        damping: 12,
+        stiffness: 70,
+        duration: 2,
+        delay: i * 0.12
+      }
+    }
+  })
 };
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
@@ -145,37 +263,40 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Left Column - Text Content */}
           <motion.div variants={item} className="text-center lg:text-left lg:w-1/2">
             {/* Main Title */}
-            <div className="relative mb-8 overflow-hidden">
+            <div className="relative mb-8 overflow-hidden" style={{ perspective: '1200px' }}>
               <motion.div
                 variants={letterContainer}
                 className="font-montserrat font-bold tracking-tight inline-flex flex-wrap whitespace-nowrap"
+                style={{ transformStyle: 'preserve-3d' }}
               >
-                {/* QUADRATE with Rolling Animation */}
-                <div className="inline-flex justify-center lg:justify-start overflow-hidden">
+                {/* QUADRATE with Cute Animation */}
+                <div className="inline-flex justify-center lg:justify-start overflow-hidden" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
                   {companyName.map((letter, index) => (
                     <motion.div
                       key={`quadrate-${index}`}
                       className="relative"
+                      style={{ transformStyle: 'preserve-3d' }}
                     >
                       <motion.span
                         custom={index}
-                        variants={rollAnimation}
+                        variants={cuteAnimation}
                         initial="hidden"
                         animate="show"
                         whileHover={{ 
-                          scale: 1.2,
+                          y: -5,
                           color: "#0607E1",
-                          transition: { duration: 0.2 }
+                          transition: { 
+                            type: "spring",
+                            damping: 10,
+                            stiffness: 300
+                          }
                         }}
                         className="text-4xl md:text-5xl lg:text-6xl text-[#000000] inline-block transform cursor-default mx-[1px]
-                          hover:text-[#0607E1] transition-colors duration-300 origin-bottom"
-                        onAnimationComplete={() => {
-                          if (index === companyName.length - 1) {
-                            const element = document.querySelector(`#letter-${index}`);
-                            if (element) {
-                              motion.animate(element, bounceAnimation.animate);
-                            }
-                          }
+                          hover:text-[#0607E1] transition-all duration-200 origin-bottom font-bold"
+                        style={{ 
+                          backfaceVisibility: 'visible',
+                          transformStyle: 'preserve-3d',
+                          ...textStyle3D
                         }}
                         id={`letter-${index}`}
                       >
@@ -188,37 +309,38 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 {/* Space between words */}
                 <span className="mx-3"></span>
 
-                {/* TECH SOLUTIONS */}
-                <div className="inline-flex justify-center lg:justify-start overflow-hidden">
+                {/* TECH SOLUTIONS with Cute Animation */}
+                <div className="inline-flex justify-center lg:justify-start overflow-hidden" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
                   {techSolutions.map((letter, index) => (
                     <motion.div
                       key={`tech-solutions-${index}`}
                       className="relative"
+                      style={{ transformStyle: 'preserve-3d' }}
                     >
                       <motion.span
                         custom={index}
-                        variants={rollAnimation}
+                        variants={cuteAnimation}
                         initial="hidden"
                         animate="show"
                         whileHover={{ 
-                          scale: 1.2,
-                          rotate: -10,
+                          y: -5,
                           color: "#0607E1",
-                          transition: { duration: 0.2 }
+                          transition: { 
+                            type: "spring",
+                            damping: 10,
+                            stiffness: 300
+                          }
                         }}
                         className="text-2xl md:text-3xl lg:text-4xl text-[#000000] inline-block transform cursor-default mx-[1px]
-                          hover:text-[#0607E1] transition-colors duration-300 origin-bottom"
-                        onAnimationComplete={() => {
-                          if (index === techSolutions.length - 1) {
-                            const element = document.querySelector(`#tech-${index}`);
-                            if (element) {
-                              motion.animate(element, bounceAnimation.animate);
-                            }
-                          }
+                          hover:text-[#0607E1] transition-all duration-200 origin-bottom font-bold"
+                        style={{ 
+                          backfaceVisibility: 'visible',
+                          transformStyle: 'preserve-3d',
+                          ...textStyle3D
                         }}
                         id={`tech-${index}`}
                       >
-                        {letter === ' ' ? '\u00A0\u00A0' : letter}
+                        {letter === ' ' ? '\u00A0' : letter}
                       </motion.span>
                     </motion.div>
                   ))}
