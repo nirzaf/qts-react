@@ -66,83 +66,16 @@ export const Navigation: React.FC = () => {
             variants={containerVariants}
           >
             <Link to="/" className="flex items-center space-x-4">
-              <img
-                src="https://ik.imagekit.io/quadrate/QTS%20Logo%20primary.png?updatedAt=1732912040014"
-                alt="QTS Logo"
-                className="h-8 w-auto brightness-[0.7] contrast-[1.4] [filter:saturate(1.2)_hue-rotate(-10deg)]"
-              />
-              <div className="flex items-center">
-                {['Q', 'T', 'S'].map((letter, i) => (
-                  <motion.div
-                    key={letter}
-                    custom={i}
-                    initial="initial"
-                    animate="animate"
-                    variants={letterVariants}
-                    className="relative px-[1px]"
-                  >
-                    <div className="relative">
-                      {/* Main Letter */}
-                      <span className={`
-                        relative z-20
-                        text-3xl font-black
-                        inline-block
-                        px-1
-                        ${i === 0 
-                          ? 'text-[#0607E1]' 
-                          : i === 1
-                          ? 'text-[#0607E1]/90'
-                          : 'text-[#0607E1]/80'
-                        }
-                      `}>
-                        {letter}
-                      </span>
-
-                      {/* Background Highlight */}
-                      <div className={`
-                        absolute inset-0 z-10
-                        bg-gradient-to-br from-[#FFFFFF] to-[#0607E1]/5
-                        rounded-sm
-                        transform rotate-3
-                        transition-transform duration-300
-                        group-hover:rotate-6
-                      `} />
-
-                      {/* Decorative Line */}
-                      <motion.div
-                        className={`
-                          absolute -bottom-0.5 left-0 right-0
-                          h-[2px]
-                          bg-[#0607E1]
-                          rounded-full
-                          origin-left
-                          ${i === 0 
-                            ? 'opacity-100' 
-                            : i === 1
-                            ? 'opacity-80'
-                            : 'opacity-60'
-                          }
-                        `}
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        transition={{
-                          delay: i * 0.2,
-                          duration: 0.5,
-                          ease: "easeOut"
-                        }}
-                      />
-
-                      {/* Hover Glow Effect */}
-                      <div className={`
-                        absolute -inset-2 z-0
-                        bg-[#0607E1]/5
-                        rounded-lg blur-lg
-                        opacity-0 transition-opacity duration-300
-                        group-hover:opacity-100
-                      `} />
-                    </div>
-                  </motion.div>
-                ))}
+              <div className="relative">
+                <div className="absolute inset-0 bg-blue-900/20 rounded-full blur-md transform scale-110" />
+                <img
+                  src="https://ik.imagekit.io/quadrate/QTS%20Logo%20primary.png?updatedAt=1732912040014"
+                  alt="QTS Logo"
+                  className="h-12 w-auto relative z-10 brightness-[0.45] contrast-[2.5] [filter:saturate(1.4)_hue-rotate(-15deg)] drop-shadow-lg [mix-blend-mode:color-burn]"
+                  style={{
+                    filter: "brightness(0.45) contrast(2.5) saturate(1.4) hue-rotate(-15deg) drop-shadow(0 4px 6px rgba(0, 0, 139, 0.3))"
+                  }}
+                />
               </div>
             </Link>
           </motion.div>
