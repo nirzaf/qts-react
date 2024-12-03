@@ -6,7 +6,7 @@ export const QuickLinks: React.FC = () => {
     <div>
       <h3 className="text-sm font-semibold text-[#000000] mb-4">Quick Links</h3>
       <ul className="space-y-3">
-        {['About Us', 'Services', 'Pricing', 'Blog'].map((link) => (
+        {['About Us', 'Services', 'Pricing'].map((link) => (
           <li key={link}>
             <Link 
               to={`/${link.toLowerCase().replace(' ', '')}`} 
