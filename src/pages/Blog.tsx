@@ -4,6 +4,7 @@ import PageLayout from '@/layouts/PageLayout';
 import BlogContainer from '@/components/blog/BlogContainer';
 import BlogContent from '@/components/blog/BlogContent';
 import useBlogPosts from '@/hooks/useBlogPosts';
+import MarkdownEditor from '@/components/markdown/MarkdownEditor';
 
 /**
  * Blog page component that displays a list of blog posts
@@ -12,6 +13,7 @@ import useBlogPosts from '@/hooks/useBlogPosts';
  */
 const BlogPage: React.FC = () => {
   const { posts, isLoading } = useBlogPosts();
+  const [content, setContent] = React.useState('');
 
   const elementVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -32,6 +34,13 @@ const BlogPage: React.FC = () => {
         variants={elementVariants}
       >
         <BlogContainer>
+          <div className="mb-8">
+            <MarkdownEditor
+              value={content}
+              onChange={setContent}
+              className="w-full"
+            />
+          </div>
           <BlogContent posts={posts} isLoading={isLoading} />
         </BlogContainer>
       </motion.div>

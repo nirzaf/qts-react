@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import MDEditor from '@uiw/react-md-editor';
 import { format } from 'date-fns';
 import { supabase } from '@/lib/supabase/blogs';
 import { BlogPreview } from '@/components/blog/BlogPreview';
+import MarkdownEditor from '@/components/markdown/MarkdownEditor';
 
 interface BlogFormData {
   id: string;
@@ -283,9 +283,9 @@ export default function AdminBlogs() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700">Content (Markdown)</label>
-          <MDEditor
+          <MarkdownEditor
             value={formData.content}
-            onChange={(value) => setFormData(prev => ({ ...prev, content: value || '' }))}
+            onChange={(value) => setFormData(prev => ({ ...prev, content: value }))}
             className="mt-1"
           />
         </div>
