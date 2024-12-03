@@ -43,7 +43,7 @@ const Home: React.FC = () => {
             <HeroBackground />
             <HeroSection
               heroImage={{
-                src: 'https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458',
+                src: 'https://ik.imagekit.io/quadrate/quadrate-tech-solutions-hero-image.jpg?updatedAt=1733250171962',
                 alt: 'Digital Solutions'
               }}
               primaryButton={{
