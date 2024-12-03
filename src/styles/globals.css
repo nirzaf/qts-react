@@ -53,7 +53,111 @@
     --ring: 240 4.9% 83.9%;
   }
 }
- 
+
+/* Blog Preview Styles */
+.markdown-preview {
+  @apply text-gray-800;
+}
+
+.markdown-preview h1 {
+  @apply text-3xl font-bold mb-6 text-gray-900;
+}
+
+.markdown-preview h2 {
+  @apply text-2xl font-semibold mb-4 text-gray-900;
+}
+
+.markdown-preview h3 {
+  @apply text-xl font-semibold mb-3 text-gray-900;
+}
+
+.markdown-preview p {
+  @apply mb-4 leading-relaxed;
+}
+
+.markdown-preview a {
+  @apply text-blue-600 hover:text-blue-800 underline;
+}
+
+.markdown-preview code {
+  @apply bg-gray-100 rounded px-2 py-1 font-mono text-sm;
+}
+
+.markdown-preview pre {
+  @apply bg-gray-100 rounded-lg p-4 mb-4 overflow-x-auto;
+}
+
+.markdown-preview pre code {
+  @apply bg-transparent p-0;
+}
+
+.markdown-preview blockquote {
+  @apply border-l-4 border-gray-300 pl-4 italic my-4;
+}
+
+.markdown-preview ul {
+  @apply list-disc list-inside mb-4;
+}
+
+.markdown-preview ol {
+  @apply list-decimal list-inside mb-4;
+}
+
+.markdown-preview li {
+  @apply mb-2;
+}
+
+.markdown-preview img {
+  @apply rounded-lg max-w-full h-auto my-4;
+}
+
+/* Additional Blog Preview Styles */
+.markdown-preview table {
+  @apply w-full border-collapse mb-4;
+}
+
+.markdown-preview th {
+  @apply bg-gray-100 border border-gray-300 px-4 py-2 text-left font-semibold;
+}
+
+.markdown-preview td {
+  @apply border border-gray-300 px-4 py-2;
+}
+
+.markdown-preview hr {
+  @apply my-8 border-t border-gray-300;
+}
+
+/* Code block syntax highlighting */
+.markdown-preview pre {
+  @apply bg-gray-900 text-gray-100 rounded-lg p-4 mb-4 overflow-x-auto;
+}
+
+.markdown-preview pre code {
+  @apply bg-transparent text-gray-100 p-0;
+  font-family: 'JetBrains Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.markdown-preview code .keyword {
+  @apply text-purple-400;
+}
+
+.markdown-preview code .string {
+  @apply text-green-400;
+}
+
+.markdown-preview code .comment {
+  @apply text-gray-500;
+}
+
+.markdown-preview code .function {
+  @apply text-blue-400;
+}
+
+.markdown-preview code .number {
+  @apply text-orange-400;
+}
+
 @layer base {
   * {
     @apply border-border;

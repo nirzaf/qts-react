@@ -4,7 +4,7 @@ config()
 import { createClient } from '@supabase/supabase-js'
 import fs from 'fs'
 import path from 'path'
-import matter from 'gray-matter'
+import { parse as parseYAML } from 'yaml'
 
 // Initialize Supabase client
 const supabaseUrl = process.env.VITE_SUPABASE_URL!
@@ -15,6 +15,23 @@ const supabase = createClient(supabaseUrl, supabaseKey, {
     persistSession: false
   }
 })
+
+function parseFrontmatter(content: string): { data: Record<string, any>; content: string } {
+  const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
+  const match = content.match(frontmatterRegex);
+
+  if (!match) {
+    throw new Error('Invalid frontmatter format');
+  }
+
+  const [, frontmatterYAML, remainingContent] = match;
+  const data = parseYAML(frontmatterYAML);
+
+  return {
+    data,
+    content: remainingContent.trim()
+  };
+}
 
 // Function to create the blogs table
 async function createBlogsTable() {
@@ -54,40 +71,58 @@ async function createBlogsTable() {
 // Function to read and parse markdown files
 async function importBlogPosts() {
   try {
-    // Use absolute path
-    const blogDir = path.join(process.cwd(), 'src', 'content', 'blog')
-    console.log('Looking for blog posts in:', blogDir)
+    const postsDirectory = path.join(process.cwd(), 'src', 'data', 'model-md-files')
+    console.log('Looking for MDX files in:', postsDirectory)
     
-    const files = fs.readdirSync(blogDir)
+    const files = fs.readdirSync(postsDirectory)
     console.log('Found files:', files)
 
     for (const file of files) {
-      if (!file.endsWith('.md')) continue
+      if (!file.endsWith('.mdx')) {
+        console.log(`Skipping non-MDX file: ${file}`)
+        continue
+      }
+
+      console.log(`Processing file: ${file}`)
+      const filePath = path.join(postsDirectory, file)
+      const fileContent = fs.readFileSync(filePath, 'utf8')
 
       try {
-        const filePath = path.join(blogDir, file)
-        console.log('Processing file:', filePath)
+        const { data, content } = parseFrontmatter(fileContent)
+        const slug = file.replace('.mdx', '')
         
-        const fileContent = fs.readFileSync(filePath, 'utf-8')
-        const { data: frontmatter, content } = matter(fileContent)
+        // Validate required fields
+        const requiredFields = ['title', 'description', 'pubDate', 'heroImage', 'category', 'tags']
+        const missingFields = requiredFields.filter(field => !data[field])
         
-        const slug = file.replace('.md', '')
-        
-        const blogPost = {
-          slug,
-          title: frontmatter.title,
-          description: frontmatter.description,
-          content,
-          pub_date: new Date(frontmatter.pubDate).toISOString(),
-          hero_image: frontmatter.heroImage,
-          category: frontmatter.category,
-          tags: frontmatter.tags,
-          author: frontmatter.author,
-          author_role: frontmatter.role,
-          author_image: frontmatter.authorImage
+        if (missingFields.length > 0) {
+          console.error(`Missing required fields in ${file}:`, missingFields)
+          throw new Error(`Missing required fields: ${missingFields.join(', ')}`)
         }
 
-        console.log('Inserting blog post:', slug)
+        // Create blog post with hardcoded author details
+        const blogPost = {
+          slug,
+          title: data.title,
+          description: data.description,
+          content,
+          pub_date: new Date(data.pubDate).toISOString(),
+          hero_image: data.heroImage,
+          category: data.category,
+          tags: data.tags,
+          // Hardcoded author details
+          author: 'Fazrin',
+          author_role: 'Admin',
+          author_image: 'https://ik.imagekit.io/quadrate/blogs/my_profile_pic.jpg?updatedAt=1732703320982'
+        }
+
+        console.log('Attempting to insert blog post:', {
+          slug: blogPost.slug,
+          title: blogPost.title,
+          pub_date: blogPost.pub_date,
+          author: blogPost.author
+        })
+
         const { error } = await supabase
           .from('blogs')
           .upsert(blogPost, {
@@ -95,16 +130,38 @@ async function importBlogPosts() {
           })
 
         if (error) {
-          console.error(`Error importing blog post ${slug}:`, error)
-        } else {
-          console.log(`Successfully imported blog post: ${slug}`)
+          console.error(`Error importing blog post ${slug}:`, {
+            message: error.message,
+            details: error.details,
+            hint: error.hint,
+            code: error.code
+          })
+          throw error
         }
-      } catch (err) {
-        console.error(`Error processing file ${file}:`, err)
+
+        console.log(`Successfully imported blog post: ${slug}`)
+      } catch (error) {
+        const errorDetails = {
+          message: error.message,
+          stack: error.stack,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        }
+        console.error(`Failed to process ${file}:`, errorDetails)
+        throw new Error(`Failed to process ${file}: ${error.message}`)
       }
     }
   } catch (err) {
-    console.error('Error in importBlogPosts:', err)
+    const errorDetails = {
+      message: err.message,
+      stack: err.stack,
+      details: err.details,
+      hint: err.hint,
+      code: err.code
+    }
+    console.error('Blog import failed:', errorDetails)
+    throw new Error(`Blog import failed: ${err.message}`)
   }
 }
 

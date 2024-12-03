@@ -8,6 +8,7 @@ interface ProtectedRouteProps {
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const { admin, loading } = useAuth();
   const location = useLocation();
+  const isDevelopment = import.meta.env.DEV;
 
   if (loading) {
     return (
@@ -15,6 +16,11 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
         <div className="text-lg">Loading...</div>
       </div>
     );
+  }
+
+  // Always allow access in development mode
+  if (isDevelopment) {
+    return <>{children}</>;
   }
 
   if (!admin) {
