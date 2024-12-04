@@ -14,7 +14,7 @@ export const ServicesSection: React.FC = () => {
       >
         <Button
           asChild
-          className="relative inline-flex items-center justify-center rounded-md bg-[#000000] px-4 py-2 text-sm font-medium text-[#FFFFFF] hover:bg-[#000000]/90 transition-colors duration-200 overflow-hidden group"
+          className="relative inline-flex items-center justify-center rounded-md bg-[#000000] py-2 text-sm font-medium text-[#FFFFFF] hover:bg-[#000000]/90 transition-colors duration-200 overflow-hidden group"
         >
           <a href="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions">
             <span className="relative z-10">Book a Meeting</span>
@@ -28,4 +28,4 @@ export const ServicesSection: React.FC = () => {
       {/* ... other content ... */}
     </section>
   );
-}; 
+};
