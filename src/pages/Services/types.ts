@@ -1,4 +1,5 @@
 import { LucideIcon } from 'lucide-react';
+import { Variants } from 'framer-motion';
 
 export interface ServiceItem {
   title: string;
@@ -7,8 +8,4 @@ export interface ServiceItem {
   gradient: string;
 }
 
-export interface AnimationVariants {
-  hidden: object;
-  visible: object;
-  hover?: object;
-}
+export type AnimationVariants = Variants;
