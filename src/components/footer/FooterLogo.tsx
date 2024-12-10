@@ -11,7 +11,7 @@ export const FooterLogo: React.FC = () => {
     >
       <Link to="/" className="flex items-center">
         <img
-          src="https://ik.imagekit.io/quadrate/QTS%20Logo%20primary.png?updatedAt=1732912040014"
+          src="https://ik.imagekit.io/quadrate/QTS%20Logo%20Primary.png?updatedAt=1733854434969"
           alt="QTS Logo"
           className="h-10 w-auto brightness-[0.7] contrast-[1.4] [filter:saturate(1.2)_hue-rotate(-10deg)]"
         />

@@ -1,7 +1,7 @@
 # Brand Assets
 
 ## Main Logos
-- Embossed Logo: https://ik.imagekit.io/quadrate/QTS%20Logo%20primary.png?updatedAt=1732912040014
+- Embossed Logo: https://ik.imagekit.io/quadrate/QTS%20Logo%20Primary.png?updatedAt=1733854434969
 
 ## Partner Logos
 ### Grommunio
