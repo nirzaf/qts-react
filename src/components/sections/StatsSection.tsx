@@ -159,9 +159,11 @@ const StatsSection: React.FC = () => {
                     className="relative mb-6 inline-flex"
                   >
                     {/* Icon Background */}
-                    <div className="absolute inset-0 bg-[#0607E1]/5 rounded-2xl blur opacity-25 group-hover:opacity-40 transition-opacity duration-500" />
-                    <div className="relative h-16 w-16 flex items-center justify-center rounded-2xl bg-[#000000]/5 group-hover:bg-[#0607E1]/5 transition-all duration-500">
-                      {React.createElement(stat.icon, { className: "h-8 w-8 text-[#000000] transform group-hover:scale-110 transition-transform duration-500" })}
+                    <div className="absolute inset-0 bg-[#0607E1]/10 rounded-2xl blur opacity-25 group-hover:opacity-40 transition-opacity duration-500" />
+                    <div className="relative h-16 w-16 flex items-center justify-center rounded-2xl bg-[#0607E1]/5 group-hover:bg-[#0607E1]/10 transition-all duration-500">
+                      {React.createElement(stat.icon, { 
+                        className: "h-8 w-8 text-[#0607E1] transform group-hover:scale-110 transition-transform duration-500" 
+                      })}
                     </div>
                   </motion.div>
 
@@ -172,7 +174,7 @@ const StatsSection: React.FC = () => {
                     transition={{ delay: index * 0.1 + 0.3 }}
                     className="relative"
                   >
-                    <div className="absolute -inset-1 bg-[#0607E1]/5 opacity-30 blur group-hover:opacity-40 transition-opacity duration-500" />
+                    <div className="absolute -inset-1 bg-[#0607E1]/10 opacity-30 blur group-hover:opacity-40 transition-opacity duration-500" />
                     <h3 className="relative font-bold text-5xl mb-3 text-[#000000] transform group-hover:scale-110 transition-transform duration-500">
                       {stat.value}
                     </h3>
@@ -187,7 +189,7 @@ const StatsSection: React.FC = () => {
                   >
                     <h4 className="text-xl font-semibold text-[#000000] mb-2 relative inline-block">
                       {stat.name}
-                      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#0607E1]/5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#0607E1]/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
                     </h4>
                   </motion.div>
 

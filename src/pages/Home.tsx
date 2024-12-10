@@ -57,63 +57,63 @@ const Home: React.FC = () => {
             />
           </section>
 
-          {/* Features Section - Updated font and colors */}
+          {/* Features Section */}
           <AnimatedSection className="bg-gradient-to-b from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
-            <div className="font-plusJakartaSans">
+            <div className="font-plusJakartaSans text-[#0607E1]">
               <Suspense fallback={<Loading />}>
                 <Features />
               </Suspense>
             </div>
           </AnimatedSection>
 
-          {/* Tech Stack Section - Updated gradient and font */}
+          {/* Tech Stack Section */}
           <AnimatedSection className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0607E1]/5 to-[#0607E1]/5" />
-            <div className="font-plusJakartaSans relative z-10">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0607E1]/5 via-[#0607E1]/3 to-[#0607E1]/5" />
+            <div className="font-plusJakartaSans relative z-10 text-[#0607E1]">
               <Suspense fallback={<Loading />}>
                 <TechStack />
               </Suspense>
             </div>
           </AnimatedSection>
 
-          {/* Services Section - Updated gradient and font */}
+          {/* Services Section */}
           <AnimatedSection className="bg-gradient-to-b from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
-            <div className="font-plusJakartaSans">
+            <div className="font-plusJakartaSans text-[#0607E1]">
               <Suspense fallback={<Loading />}>
                 <ServicesSection />
               </Suspense>
             </div>
           </AnimatedSection>
 
-          {/* Company Values Section - Updated gradient and font */}
+          {/* Company Values Section */}
           <AnimatedSection className="bg-gradient-to-b from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
-            <div className="font-plusJakartaSans">
+            <div className="font-plusJakartaSans text-[#0607E1]">
               <Suspense fallback={<Loading />}>
                 <CompanyValues />
               </Suspense>
             </div>
           </AnimatedSection>
 
-          {/* Pricing Section - Updated background and font */}
+          {/* Pricing Section */}
           <div id="pricing" className="bg-[#FFFFFF]">
-            <div className="font-plusJakartaSans">
+            <div className="font-plusJakartaSans text-[#0607E1]">
               <Suspense fallback={<Loading />}>
                 <PricingSection />
               </Suspense>
             </div>
           </div>
 
-          {/* Stats Section - Updated font */}
-          <div className="font-plusJakartaSans">
+          {/* Stats Section */}
+          <div className="font-plusJakartaSans text-[#0607E1]">
             <Suspense fallback={<Loading />}>
               <StatsSection />
             </Suspense>
           </div>
 
-          {/* Partners Section - Updated with centered text and carousel */}
+          {/* Partners Section */}
           <AnimatedSection className="relative bg-[#FFFFFF]">
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0607E1]/5 to-transparent" />
-            <div className="font-plusJakartaSans relative z-10">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0607E1]/5 via-[#0607E1]/3 to-transparent" />
+            <div className="font-plusJakartaSans relative z-10 text-[#0607E1]">
               <Suspense fallback={<Loading />}>
                 <PartnersSection
                   title="Trusted by Industry Leaders"
