@@ -35,7 +35,7 @@ export const articles: Article[] = [
     imgAlt: 'Comparison of business email solutions',
     btnExists: true,
     btnTitle: 'Learn More',
-    btnURL: 'https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions',
+    btnURL: 'https://quadratetechsolutions1.zohobookings.com/#/quadratetechsolutions',
   },
   {
     isRightSection: true,
@@ -68,6 +68,6 @@ export const articles: Article[] = [
     imgTwoAlt: 'Modern data center under construction',
     btnExists: true,
     btnTitle: 'Read more',
-    btnURL: 'https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions',
+    btnURL: 'https://quadratetechsolutions1.zohobookings.com/#/quadratetechsolutions',
   },
 ];

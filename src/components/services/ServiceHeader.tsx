@@ -43,7 +43,7 @@ const ServiceHeader: React.FC = () => {
           className="flex gap-4"
         >
           <Button size="lg" className="bg-primary hover:bg-primary/90">
-            <a href="https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions">
+            <a href="https://quadratetechsolutions1.zohobookings.com/#/quadratetechsolutions">
               Schedule a Consultation
             </a>
           </Button>

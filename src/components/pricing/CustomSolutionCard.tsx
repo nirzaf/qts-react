@@ -54,7 +54,7 @@ const CustomSolutionCard: React.FC = () => {
         {/* Right Content - CTA Section */}
         <div className="flex flex-col justify-center items-center md:items-end space-y-4">
           <motion.a
-            href="https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions"
+            href="https://quadratetechsolutions1.zohobookings.com/#/quadratetechsolutions"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#000000] text-[#FFFFFF] rounded-xl hover:bg-[#000000]/90 transition-colors group/button"

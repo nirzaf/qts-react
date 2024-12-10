@@ -22,7 +22,7 @@ const services: Service[] = [
     image: 'https://ik.imagekit.io/quadrate/assets/img/features-2.png?updatedAt=1718024113386',
     color: '#0607E1',
     icon: <FaBrain className="w-8 h-8 text-[#0607E1]" />,
-    link: 'https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions'
+    link: 'https://quadratetechsolutions1.zohobookings.com/#/quadratetechsolutions'
   },
   {
     id: 'business-mail',
@@ -31,7 +31,7 @@ const services: Service[] = [
     image: 'https://ik.imagekit.io/quadrate/assets/img/features.png?updatedAt=1718024113900',
     color: '#0A25C9',
     icon: <HiMail className="w-8 h-8 text-[#0A25C9]" />,
-    link: 'https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions'
+    link: 'https://quadratetechsolutions1.zohobookings.com/#/quadratetechsolutions'
   },
   {
     id: 'microsoft365',
@@ -40,7 +40,7 @@ const services: Service[] = [
     image: 'https://ik.imagekit.io/quadrate/assets/img/values-1.png?updatedAt=1718024118843',
     color: '#0B48D0',
     icon: <SiMicrosoft className="w-8 h-8 text-[#0B48D0]" />,
-    link: 'https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions'
+    link: 'https://quadratetechsolutions1.zohobookings.com/#/quadratetechsolutions'
   }
 ];
 

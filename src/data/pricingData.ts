@@ -23,7 +23,7 @@ export const pricingPlans: PricingPlan[] = [
     ],
     popular: false,
     ctaText: 'Get Started',
-    ctaLink: 'https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions'
+    ctaLink: 'https://quadratetechsolutions1.zohobookings.com/#/quadratetechsolutions'
   },
   {
     name: 'Professional',
@@ -41,7 +41,7 @@ export const pricingPlans: PricingPlan[] = [
     ],
     popular: true,
     ctaText: 'Get Started',
-    ctaLink: 'https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions'
+    ctaLink: 'https://quadratetechsolutions1.zohobookings.com/#/quadratetechsolutions'
   },
   {
     name: 'Enterprise',
@@ -63,6 +63,6 @@ export const pricingPlans: PricingPlan[] = [
     ],
     popular: false,
     ctaText: 'Contact Sales',
-    ctaLink: 'https://quadratetechsolutions.zohobookings.com/#/quadratetechsolutions'
+    ctaLink: 'https://quadratetechsolutions1.zohobookings.com/#/quadratetechsolutions'
   }
 ];
