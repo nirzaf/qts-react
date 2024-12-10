@@ -68,13 +68,13 @@ export const Features: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="flex flex-col relative group"
               >
-                {/* Card Background with Sky Blue Accent */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#98CCF8]/5 to-transparent rounded-2xl -z-10 group-hover:from-[#98CCF8]/10 transition-colors duration-300" />
+                {/* Card Background with Chrysler Blue Accent */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#0607E1]/5 to-transparent rounded-2xl -z-10 group-hover:from-[#0607E1]/10 transition-colors duration-300" />
                 
-                <div className="relative rounded-2xl border border-[#98CCF8]/10 bg-white/50 p-6 group-hover:border-[#98CCF8]/30 transition-all duration-300">
+                <div className="relative rounded-2xl border border-[#0607E1]/10 bg-white/50 p-6 group-hover:border-[#0607E1]/30 transition-all duration-300">
                   <dt className="flex items-center gap-x-3 text-lg font-semibold leading-7 text-[#010000]">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#98CCF8]/10 group-hover:bg-[#98CCF8]/20 transition-colors duration-300">
-                      <feature.icon className="h-6 w-6 text-[#010000]" aria-hidden="true" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#0607E1]/10 group-hover:bg-[#0607E1]/20 transition-colors duration-300">
+                      <feature.icon className="h-6 w-6 text-[#0607E1]" aria-hidden="true" />
                     </div>
                     {feature.name}
                   </dt>
@@ -84,7 +84,7 @@ export const Features: React.FC = () => {
                       <p className="mt-6">
                         <a
                           href={feature.link}
-                          className="text-sm font-semibold leading-6 text-[#010000] hover:text-[#98CCF8] transition-colors duration-300"
+                          className="text-sm font-semibold leading-6 text-[#010000] hover:text-[#0607E1] transition-colors duration-300"
                         >
                           Learn more <span aria-hidden="true">→</span>
                         </a>
