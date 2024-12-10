@@ -123,9 +123,9 @@ const ServicesPage: React.FC = () => {
                 className="group relative h-full"
               >
                 {/* Card */}
-                <div className="relative h-full p-8 rounded-2xl bg-white border border-[#0607E1]/10 shadow-lg hover:shadow-2xl transition-all duration-500">
+                <div className="relative h-full p-8 rounded-2xl bg-white border border-[#0607E1]/5 shadow-lg hover:shadow-2xl transition-all duration-500">
                   {/* Animated Background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-500`} />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-75 rounded-2xl transition-opacity duration-500`} />
                   
                   {/* Icon */}
                   <motion.div
@@ -133,16 +133,16 @@ const ServicesPage: React.FC = () => {
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   >
-                    <div className="p-4 rounded-xl bg-[#0607E1]/5 group-hover:bg-[#0607E1]/10 transition-colors duration-300">
+                    <div className="p-4 rounded-xl bg-[#0607E1]/5 group-hover:bg-[#0607E1]/5 transition-colors duration-300">
                       {React.createElement(service.icon, {
-                        className: "w-8 h-8 text-[#0607E1]"
+                        className: "w-8 h-8 text-[#0607E1]/75"
                       })}
                     </div>
                   </motion.div>
 
                   {/* Content */}
                   <div className="relative">
-                    <h3 className="text-2xl font-bold mb-3 text-[#000000] group-hover:text-[#0607E1] transition-colors duration-300">
+                    <h3 className="text-2xl font-bold mb-3 text-[#000000] group-hover:text-[#0607E1]/75 transition-colors duration-300">
                       {service.title}
                     </h3>
                     <p className="text-[#000000]/70 leading-relaxed">
