@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Code2, Globe, LineChart, Smartphone, Sparkles, Workflow, ArrowRight } from 'lucide-react';
+import { Code2, Globe, LineChart, Network, Mail, Workflow, ArrowRight } from 'lucide-react';
 import AnimatedHeading from '@/components/ui/AnimatedHeading';
 
 const services = [
@@ -21,14 +20,14 @@ const services = [
     icon: LineChart,
   },
   {
-    title: 'Mobile App Development',
-    description: 'Native and cross-platform mobile applications for iOS and Android.',
-    icon: Smartphone,
+    title: 'IT Outsourcing',
+    description: 'Comprehensive IT support and management services for your business needs.',
+    icon: Network,
   },
   {
-    title: 'UI/UX Design',
-    description: 'User-centered design that creates engaging digital experiences.',
-    icon: Sparkles,
+      title: 'Business Email',
+      description: 'Professional email solutions for secure and reliable business communication.',
+      icon: Mail,
   },
   {
     title: 'Business Process Automation',
@@ -66,11 +65,11 @@ export const ServicesSection: React.FC = () => {
                 
                 {/* Icon Container */}
                 <motion.div
-                  className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-[#FFFFFF] shadow-sm border border-[#000000]/5"
+                  className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-[#FFFFFF] shadow-sm border border-[#0607E1]/10"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <service.icon className="h-6 w-6 text-[#000000]" />
+                  <service.icon className="h-6 w-6 text-[#0607E1]" />
                 </motion.div>
 
                 {/* Content */}
@@ -95,7 +94,7 @@ export const ServicesSection: React.FC = () => {
 
                 {/* Learn More Link */}
                 <motion.div 
-                  className="mt-3 inline-flex items-center gap-1 text-sm text-[#000000] group-hover:text-[#0607E1] transition-colors duration-300"
+                  className="mt-3 inline-flex items-center gap-1 text-sm text-[#0607E1]/80 group-hover:text-[#0607E1] transition-colors duration-300"
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
@@ -105,20 +104,6 @@ export const ServicesSection: React.FC = () => {
               </motion.div>
             </motion.div>
           ))}
-        </div>
-
-        <div className="mx-auto mt-12 text-center">
-          <Button 
-            asChild
-            className="relative inline-flex w-fit items-center justify-center rounded-md bg-[#000000] px-4 py-2 text-sm font-medium text-[#FFFFFF] hover:bg-[#000000]/90 transition-colors duration-200 overflow-hidden group"
-          >
-            <a href="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions">
-              <span className="relative z-10">Book a Meeting</span>
-              <div className="absolute inset-0 overflow-hidden">
-                <div className="torch-wave absolute w-[200%] h-full top-0 -left-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-              </div>
-            </a>
-          </Button>
         </div>
       </div>
     </section>
