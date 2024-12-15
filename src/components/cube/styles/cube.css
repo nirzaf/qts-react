@@ -6,7 +6,8 @@
   position: relative;
   margin-left: auto; /* Push to the right */
   margin-right: 10%; /* Set to 10% of container width */
-  transform: scale(0.9); /* Increased scale from 0.8 */
+  /* Adjust container to align with top vertex */
+  transform: scale(0.9) translateY(125px);
 }
 
 .cube {
@@ -14,16 +15,18 @@
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transform-origin: center;
-  transform: translateZ(-125px) rotateX(-25deg) rotateY(45deg); /* Adjusted translateZ for new size */
-  animation: rotate 30s linear infinite;
+  /* Set transform origin to top vertex */
+  transform-origin: 50% 0;
+  /* Initial position tilted on vertex */
+  transform: rotateX(-35deg) rotateZ(-45deg);
+  animation: spinOnVertex 30s linear infinite;
 }
 
-@keyframes rotate {
+@keyframes spinOnVertex {
   from {
-    transform: translateZ(-125px) rotateX(-25deg) rotateY(0deg);
+    transform: rotateX(-35deg) rotateZ(-45deg) rotateY(0deg);
   }
   to {
-    transform: translateZ(-125px) rotateX(-25deg) rotateY(360deg);
+    transform: rotateX(-35deg) rotateZ(-45deg) rotateY(360deg);
   }
 }
