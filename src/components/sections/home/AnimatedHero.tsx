@@ -53,25 +53,13 @@ export const AnimatedHero: React.FC<AnimatedHeroProps> = ({
 
   return (
     <motion.div
-      className={className}
+      variants={fadeInUpVariants}
       initial="hidden"
       animate="visible"
-      variants={{
-        hidden: {
-          ...fadeInUpVariants.hidden,
-          transition: { duration: 0.6 }
-        },
-        visible: {
-          ...fadeInUpVariants.visible,
-          transition: { duration: 0.6, delay: animationDelay }
-        }
-      }}
+      transition={{ delay: animationDelay }}
+      className={className}
     >
       <HeroSection
-        heroImage={{
-          src: heroData.backgroundImage,
-          alt: "Hero Background"
-        }}
         primaryButton={heroData.primaryButton}
         secondaryButton={heroData.secondaryButton}
       />
