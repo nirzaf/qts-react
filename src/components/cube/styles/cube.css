@@ -1,12 +1,12 @@
 .cube-container {
   perspective: 1500px;
-  width: 200px;
-  height: 200px;
+  width: 250px; /* Increased from 200px */
+  height: 250px; /* Increased from 200px */
   transform-style: preserve-3d;
   position: relative;
   margin-left: auto; /* Push to the right */
-  margin-right: 2rem; /* Add some right margin */
-  transform: scale(0.8); /* Slightly reduce size to ensure visibility */
+  margin-right: 10%; /* Set to 10% of container width */
+  transform: scale(0.9); /* Increased scale from 0.8 */
 }
 
 .cube {
@@ -15,15 +15,15 @@
   height: 100%;
   transform-style: preserve-3d;
   transform-origin: center;
-  transform: translateZ(-100px) rotateX(-25deg) rotateY(45deg);
+  transform: translateZ(-125px) rotateX(-25deg) rotateY(45deg); /* Adjusted translateZ for new size */
   animation: rotate 30s linear infinite;
 }
 
 @keyframes rotate {
   from {
-    transform: translateZ(-100px) rotateX(-25deg) rotateY(0deg);
+    transform: translateZ(-125px) rotateX(-25deg) rotateY(0deg);
   }
   to {
-    transform: translateZ(-100px) rotateX(-25deg) rotateY(360deg);
+    transform: translateZ(-125px) rotateX(-25deg) rotateY(360deg);
   }
 }

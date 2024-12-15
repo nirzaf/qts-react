@@ -1,7 +1,7 @@
 .face {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 250px; /* Increased from 200px */
+  height: 250px; /* Increased from 200px */
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(5px);
@@ -35,13 +35,13 @@
     0 0 0 1px rgba(128, 128, 128, 0.4);
 }
 
-/* Position faces with adjusted transforms */
-.front  { transform: rotateY(0deg) translateZ(100px); }
-.back   { transform: rotateY(180deg) translateZ(100px); }
-.right  { transform: rotateY(90deg) translateZ(100px); }
-.left   { transform: rotateY(-90deg) translateZ(100px); }
-.top    { transform: rotateX(90deg) translateZ(100px); }
-.bottom { transform: rotateX(-90deg) translateZ(100px); }
+/* Position faces with adjusted transforms for larger size */
+.front  { transform: rotateY(0deg) translateZ(125px); }
+.back   { transform: rotateY(180deg) translateZ(125px); }
+.right  { transform: rotateY(90deg) translateZ(125px); }
+.left   { transform: rotateY(-90deg) translateZ(125px); }
+.top    { transform: rotateX(90deg) translateZ(125px); }
+.bottom { transform: rotateX(-90deg) translateZ(125px); }
 
 /* Add edge lines */
 .face::after {

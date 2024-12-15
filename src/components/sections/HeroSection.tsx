@@ -111,8 +111,8 @@ export const HeroSection = ({
     <motion.section className="relative overflow-hidden bg-[#FFFFFF] pt-24 pb-20">
       <div className="container relative z-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative flex flex-col-reverse lg:flex-row items-start justify-between gap-8 lg:gap-16">
-            <div className="flex-1 space-y-8 pt-12">
+          <div className="relative flex flex-col-reverse lg:flex-row items-start justify-between gap-8 lg:gap-12">
+            <div className="flex-1 space-y-8 pt-12 lg:max-w-[60%]">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -304,7 +304,7 @@ export const HeroSection = ({
 
             </div>
             
-            <div className="w-full lg:w-auto pt-8">
+            <div className="w-full lg:w-auto pt-8 lg:pt-4">
               <RotatingCube />
             </div>
           </div>
