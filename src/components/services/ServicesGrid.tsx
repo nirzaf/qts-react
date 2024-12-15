@@ -1,7 +1,6 @@
 import React from 'react';
-import { FaBrain } from 'react-icons/fa';
+import { FaBrain, FaMicrosoft } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
-import { SiMicrosoft } from 'react-icons/si';
 import ServiceCard from './ServiceCard';
 
 interface Service {
@@ -39,7 +38,7 @@ const services: Service[] = [
     description: 'Seamless business intelligence and productivity solutions',
     image: 'https://ik.imagekit.io/quadrate/assets/img/values-1.png?updatedAt=1718024118843',
     color: '#0B48D0',
-    icon: <SiMicrosoft className="w-8 h-8 text-[#0B48D0]" />,
+    icon: <FaMicrosoft className="w-8 h-8 text-[#0B48D0]" />,
     link: 'https://quadratetechsolutions1.zohobookings.com/#/quadratetechsolutions'
   }
 ];
