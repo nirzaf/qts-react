@@ -42,10 +42,6 @@ const Home: React.FC = () => {
           <section className="relative overflow-hidden">
             <HeroBackground />
             <HeroSection
-              heroImage={{
-                src: 'https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458',
-                alt: 'Digital Solutions'
-              }}
               primaryButton={{
                 text: "Get Started",
                 onClick: handleGetStarted
