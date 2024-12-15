@@ -1,0 +1,67 @@
+:root {
+  --cube-size: min(250px, 25vw); /* Responsive base size */
+  --cube-margin: max(2rem, 5vw);
+}
+
+.cube-container {
+  perspective: 150rem;
+  width: var(--cube-size);
+  height: var(--cube-size);
+  transform-style: preserve-3d;
+  position: relative;
+  margin-left: auto;
+  margin-right: var(--cube-margin);
+  transform: scale(0.9);
+}
+
+.cube {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform-origin: center;
+  transform: translateZ(calc(var(--cube-size) * -0.5)) rotateX(-25deg) rotateY(45deg);
+  animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: translateZ(calc(var(--cube-size) * -0.5)) rotateX(-25deg) rotateY(0deg);
+  }
+  to {
+    transform: translateZ(calc(var(--cube-size) * -0.5)) rotateX(-25deg) rotateY(360deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  :root {
+    --cube-size: min(200px, 30vw);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --cube-size: min(180px, 35vw);
+  }
+  
+  .cube-container {
+    margin: 2rem auto;
+    transform: scale(0.85);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --cube-size: min(150px, 40vw);
+  }
+  
+  .cube-container {
+    margin: 1.5rem auto;
+    transform: scale(0.8);
+  }
+  
+  .cube {
+    animation-duration: 25s; /* Slightly faster on mobile */
+  }
+}
