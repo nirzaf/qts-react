@@ -1,4 +1,4 @@
-# Comprehensive Research Report on Quadrate Tech Solutions
+# Quadrate Tech Solutions
 
 ## Company Overview  
 
