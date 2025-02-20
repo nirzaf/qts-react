@@ -8,22 +8,33 @@ interface PartnersSectionProps {
 
 const PartnersSection: React.FC<PartnersSectionProps> = ({ title, description }) => {
   const partnerLogos = [
-    // Regular Clients
+    {
+      src: "https://ik.imagekit.io/quadrate/assets/img/clients/clickup%20logo.svg?updatedAt=1726851551105",
+      alt: "ClickUp"
+    },
+    {
+      src: "https://ik.imagekit.io/quadrate/assets/img/clients/zoho.png?updatedAt=1725572927006",
+      alt: "Zoho"
+    },
     {
       src: "https://ik.imagekit.io/quadrate/assets/img/clients/client-1.png?updatedAt=1725572926790",
       alt: "Client 1"
+    },
+    {
+      src: "https://ik.imagekit.io/quadrate/assets/img/clients/hotpic-site-1200x675-2-675x675.png?updatedAt=1740093989532",
+      alt: "Hotpic"
     },
     {
       src: "https://ik.imagekit.io/quadrate/assets/img/clients/client-2.png?updatedAt=1725572926836",
       alt: "Client 2"
     },
     {
-      src: "https://ik.imagekit.io/quadrate/assets/img/clients/client-3.png?updatedAt=1725572926671",
-      alt: "Client 3"
+      src: "https://ik.imagekit.io/quadrate/assets/img/clients/client-8.png?updatedAt=1725572926833",
+      alt: "Client 8"
     },
     {
-      src: "https://ik.imagekit.io/quadrate/assets/img/clients/client-4.png?updatedAt=1725572926848",
-      alt: "Client 4"
+      src: "https://ik.imagekit.io/quadrate/assets/img/clients/client-3.png?updatedAt=1725572926671",
+      alt: "Client 3"
     },
     {
       src: "https://ik.imagekit.io/quadrate/assets/img/clients/client-5.png?updatedAt=1725572926845",
@@ -32,31 +43,6 @@ const PartnersSection: React.FC<PartnersSectionProps> = ({ title, description })
     {
       src: "https://ik.imagekit.io/quadrate/assets/img/clients/client-6.png?updatedAt=1725572926840",
       alt: "Client 6"
-    },
-    {
-      src: "https://ik.imagekit.io/quadrate/assets/img/clients/client-7.png?updatedAt=1725572926842",
-      alt: "Client 7"
-    },
-    {
-      src: "https://ik.imagekit.io/quadrate/assets/img/clients/client-8.png?updatedAt=1725572926833",
-      alt: "Client 8"
-    },
-    {
-      src: "https://ik.imagekit.io/quadrate/assets/grommunio%20Logo%20-%20transparent.png?updatedAt=1719435693334",
-      alt: "Grommunio"
-    },
-    // Featured Clients
-    {
-      src: "https://ik.imagekit.io/quadrate/assets/img/clients/zoho.png?updatedAt=1725572927006",
-      alt: "Zoho"
-    },
-    {
-      src: "https://ik.imagekit.io/quadrate/assets/img/clients/barakat-removebg-preview.png?updatedAt=1725573614220",
-      alt: "Barakat"
-    },
-    {
-      src: "https://ik.imagekit.io/quadrate/assets/img/clients/clickup%20logo@2x.png?updatedAt=1726851526358",
-      alt: "ClickUp"
     }
   ];
 
