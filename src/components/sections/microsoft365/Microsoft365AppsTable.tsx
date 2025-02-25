@@ -1,9 +1,31 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
+type AppData = {
+  name: string;
+  icon: string;
+  description: string;
+  plan: string;
+  features: string[];
+};
+
+type AppsDataType = {
+  [key: string]: AppData[];
+};
+
+type LicenseDetailsType = {
+  installable: string;
+  phones: string;
+};
+
+type CategoryType = {
+  id: string;
+  name: string;
+};
 
 const Microsoft365AppsTable = () => {
   const [activeTab, setActiveTab] = useState('business');
 
-  const categories = [
+  const categories: CategoryType[] = [
     { id: 'business', name: 'Business Apps' },
     { id: 'office', name: 'Office Apps' },
     { id: 'collaboration', name: 'Collaboration & Communication' },
@@ -11,7 +33,7 @@ const Microsoft365AppsTable = () => {
   ];
 
   // Apps data organized by category
-  const appsData = {
+  const appsData: AppsDataType = {
     business: [
       { name: 'Power BI', icon: '📊', description: 'Analytics and data visualization tool', plan: 'Included', features: ['Analyze in Excel and Power BI', 'App workspaces', 'Connect to cloud and on-premise data', 'Enterprise distribution', 'Export to PowerPoint, Excel, CSV', 'Peer-to-peer sharing and collaboration', 'Publish to the Power BI service'] },
       { name: 'Flow', icon: '🔄', description: 'Workflow automation tool', plan: 'Flow for Office 365 Plan 2', features: [] },
@@ -54,7 +76,7 @@ const Microsoft365AppsTable = () => {
     ]
   };
 
-  const licenseDetails = {
+  const licenseDetails: LicenseDetailsType = {
     installable: '5 per user',
     phones: '5 per user/device'
   };

@@ -1,4 +1,3 @@
-import React from 'react';
 import Microsoft365AppsTable from '../components/sections/microsoft365/Microsoft365AppsTable';
 
 const Microsoft365PremiumPackageDetails = () => {
