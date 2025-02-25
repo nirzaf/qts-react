@@ -12,6 +12,7 @@ import BlogPost from '@/pages/BlogPost';
 import Contact from '@/pages/Contact';
 import Pricing from '@/pages/Pricing';
 import NotFound from '@/pages/404';
+import Microsoft365PremiumPackageDetails from '@/pages/Microsoft365PremiumPackageDetails';
 
 // Redirect component for handling undefined routes
 const RedirectToHome: React.FC = () => {
@@ -36,6 +37,7 @@ const App: React.FC = () => {
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="/microsoft-365-premium-package-details" element={<Microsoft365PremiumPackageDetails />} />
             <Route path="/404" element={<NotFound />} />
             <Route path="*" element={<RedirectToHome />} />
           </Routes>
