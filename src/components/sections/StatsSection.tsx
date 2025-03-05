@@ -13,7 +13,7 @@ const stats = [
   {
     name: 'Projects Completed',
     value: '200+',
-    description: 'Successful project deliveries',
+    description: 'Successful deliveries',
     icon: Code2,
     label: 'Projects Completed',
   },
