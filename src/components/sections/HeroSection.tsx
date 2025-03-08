@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import RotatingCube from '../cube/RotatingCube';
+import ThreeHeroScene from '../three/ThreeHeroScene';
 
 interface HeroSectionProps {
   primaryButton: {
@@ -85,6 +85,7 @@ const AnimatedWord: React.FC<{ word: string; isLastWord: boolean }> = ({ word, i
     </motion.div>
   );
 };
+// Text content components remain unchanged
 
 export const HeroSection = ({
   primaryButton,
@@ -304,11 +305,10 @@ export const HeroSection = ({
               </motion.div>
 
             </div>
-            
-            {/* Cube Container */}
+            {/* Three.js Scene Container - Replacing the Cube */}
             <div className="w-full lg:w-auto pt-4 lg:pt-2 flex justify-center lg:justify-end">
               <div className="relative w-full lg:w-auto flex justify-center lg:justify-end">
-                <RotatingCube />
+                <ThreeHeroScene />
               </div>
             </div>
           </div>

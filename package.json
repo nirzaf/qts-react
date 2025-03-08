@@ -20,9 +20,12 @@
     "@radix-ui/react-tabs": "^1.1.1",
     "@radix-ui/react-toast": "^1.2.2",
     "@radix-ui/react-tooltip": "^1.1.4",
+    "@react-three/drei": "^9.99.7",
+    "@react-three/fiber": "^8.15.19",
     "@supabase/supabase-js": "^2.46.2",
     "@types/node": "^22.10.0",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "@types/three": "^0.174.0",
     "@vercel/speed-insights": "^1.1.0",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
@@ -44,7 +47,8 @@
     "react-syntax-highlighter": "^15.6.1",
     "tailwind-merge": "^2.5.5",
     "tailwindcss": "^3.4.15",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.174.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
