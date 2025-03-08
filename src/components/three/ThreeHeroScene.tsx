@@ -219,6 +219,7 @@ const Scene = () => {
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
       <ParticleField />
       <LogoCube />
+      <FloatingText />
       <CameraControls />
     </>
   );
