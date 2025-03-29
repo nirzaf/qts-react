@@ -21,14 +21,19 @@
   transform-style: preserve-3d;
   transform-origin: center;
   transform: translateZ(calc(var(--cube-size) * -0.5)) rotateX(-25deg) rotateY(45deg);
-  animation: rotate 30s linear infinite;
+  animation: rotate 40s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(0, 51, 160, 0.2);
+  background-color: transparent;
 }
 
 @keyframes rotate {
-  from {
+  0% {
     transform: translateZ(calc(var(--cube-size) * -0.5)) rotateX(-25deg) rotateY(0deg);
   }
-  to {
+  50% {
+    transform: translateZ(calc(var(--cube-size) * -0.5)) rotateX(-20deg) rotateY(180deg);
+  }
+  100% {
     transform: translateZ(calc(var(--cube-size) * -0.5)) rotateX(-25deg) rotateY(360deg);
   }
 }
