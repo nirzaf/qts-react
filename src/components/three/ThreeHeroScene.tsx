@@ -1,7 +1,7 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import * as THREE from 'three';
 // Replace the direct three.js import with the drei version
-import { OrbitControls, Text } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Canvas } from '@react-three/fiber';
 
@@ -77,18 +77,24 @@ const ParticleField = () => {
 const LogoCube = () => {
   const meshRef = useRef<THREE.Mesh>(null);
   const edgesRef = useRef<THREE.LineSegments>(null);
+  const lightRef = useRef<THREE.PointLight>(null);
   const [hovered, setHovered] = useState(false);
   const [active, setActive] = useState(false);
   const texture = new THREE.TextureLoader().load('https://ik.imagekit.io/mhvgbp9xk/QTS%20Logo%20primary.png?updatedAt=1734248002023');
   
-  useFrame(() => {
-    if (meshRef.current && edgesRef.current) {
+  useFrame(({ clock }) => {
+    if (meshRef.current && edgesRef.current && lightRef.current) {
       // Continuous rotation
       meshRef.current.rotation.y += 0.005;
       meshRef.current.rotation.x += 0.002;
       
       // Apply same rotation to edges
       edgesRef.current.rotation.copy(meshRef.current.rotation);
+      
+      // Pulsating light intensity for better glow effect
+      const time = clock.getElapsedTime();
+      const pulseIntensity = 0.5 + Math.sin(time * 2) * 0.2;
+      lightRef.current.intensity = pulseIntensity;
       
       // Scale effect on hover
       const targetScale = hovered ? 1.2 : 1;
@@ -120,37 +126,50 @@ const LogoCube = () => {
   
   return (
     <group>
+      {/* Add point light for enhanced glow effect */}
+      <pointLight
+        ref={lightRef}
+        position={[0, 0, 5]}
+        intensity={0.8}
+        distance={10}
+        color="#ffffff"
+      />
+      
       <mesh
         ref={meshRef}
         position={[0, 0, 0]}
         onClick={() => setActive(!active)}
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
+        castShadow
+        receiveShadow
       >
         <boxGeometry args={[cubeSize, cubeSize, cubeSize]} />
         <meshStandardMaterial 
           color="white" 
-          metalness={0.0}
-          roughness={0.0}
-          emissive="#000000"
-          transparent={false}
-          opacity={1.0}
+          metalness={0.2}
+          roughness={0.05}
+          emissive="#ffffff"
+          emissiveIntensity={0.6}
+          transparent={true}
+          opacity={0.95}
         >
           <primitive attach="map" object={texture} />
         </meshStandardMaterial>
       </mesh>
       
-      {/* Add dark edge lines to make cube faces more visible */}
+      {/* Add subtle edge lines to make cube faces more visible */}
       <lineSegments ref={edgesRef} position={[0, 0, 0]}>
         <primitive object={edgesGeometry} attach="geometry" />
-        <lineBasicMaterial color="#222222" linewidth={2} />
+        <lineBasicMaterial color="#444444" linewidth={1.5} transparent opacity={0.7} />
       </lineSegments>
     </group>
-  );
+  )
 };
 
 // Floating text that follows mouse
-const FloatingText = () => {
+// Commenting out the unused FloatingText component to fix build error
+/* const FloatingText = () => {
   const textRef = useRef<THREE.Mesh>(null);
   const { viewport, mouse } = useThree();
   
@@ -167,13 +186,9 @@ const FloatingText = () => {
         (mouse.y * viewport.height) / 2,
         0.1
       );
-      
-      // Gentle floating animation
-      textRef.current.rotation.x = Math.sin(Date.now() * 0.001) * 0.1;
-      textRef.current.rotation.y = Math.cos(Date.now() * 0.001) * 0.1;
     }
   });
-  
+
   return (
     <mesh ref={textRef} position={[0, 0, -5]}>
       <Text
@@ -191,7 +206,7 @@ const FloatingText = () => {
       </Text>
     </mesh>
   );
-};
+}; */
 
 // Camera controls component
 const CameraControls = () => {
@@ -224,18 +239,15 @@ const Scene = () => {
   );
 };
 
-// Main component with canvas
-const ThreeHeroScene: React.FC = () => {
+// Main ThreeHeroScene component
+const ThreeHeroScene = () => {
   return (
-    <div className="three-hero-container" style={{ width: '100%', height: '400px' }}>
-      <Canvas
-        camera={{ position: [0, 0, 10], fov: 50 }}
-        dpr={[1, 2]}
-        style={{ background: 'transparent' }}
-      >
-        <Scene />
-      </Canvas>
-    </div>
+    <Canvas
+      camera={{ position: [0, 0, 15], fov: 60 }}
+      style={{ height: '100vh' }}
+    >
+      <Scene />
+    </Canvas>
   );
 };
 
