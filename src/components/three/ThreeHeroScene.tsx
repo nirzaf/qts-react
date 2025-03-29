@@ -137,7 +137,7 @@ const LogoCube = () => {
       
       <mesh
         ref={meshRef}
-        position={[0, 0, 0]}
+        position={[0, 4, 0]}
         onClick={() => setActive(!active)}
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
@@ -145,21 +145,16 @@ const LogoCube = () => {
         receiveShadow
       >
         <boxGeometry args={[cubeSize, cubeSize, cubeSize]} />
-        <meshStandardMaterial 
-          color="white" 
-          metalness={0.2}
-          roughness={0.05}
-          emissive="#ffffff"
-          emissiveIntensity={0.6}
+        <meshBasicMaterial
           transparent={true}
-          opacity={0.95}
+          opacity={1}
         >
           <primitive attach="map" object={texture} />
-        </meshStandardMaterial>
+        </meshBasicMaterial>
       </mesh>
       
       {/* Add subtle edge lines to make cube faces more visible */}
-      <lineSegments ref={edgesRef} position={[0, 0, 0]}>
+      <lineSegments ref={edgesRef} position={[0, 4, 0]}>
         <primitive object={edgesGeometry} attach="geometry" />
         <lineBasicMaterial color="#444444" linewidth={1.5} transparent opacity={0.7} />
       </lineSegments>
