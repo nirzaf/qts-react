@@ -90,7 +90,7 @@ const AnimatedWord: React.FC<{ word: string; isLastWord: boolean }> = ({ word, i
 export const HeroSection = ({
   primaryButton,
   secondaryButton,
-}: HeroSectionProps): JSX.Element => {
+}: HeroSectionProps): React.ReactElement => {
   const [textIndex, setTextIndex] = useState(0);
   const phrases = [
     "Transform Your Digital Presence",

@@ -209,7 +209,8 @@ const CameraControls = () => {
   
   return (
     <OrbitControls
-      args={[camera, gl.domElement]}
+      camera={camera}
+      domElement={gl.domElement}
       enableZoom={false}
       enablePan={false}
       enableDamping
