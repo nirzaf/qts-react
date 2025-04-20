@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
  */
 const ThreeHeroScene: React.FC = () => {
   return (
-    <div className="relative w-full h-[400px] md:h-[450px] lg:h-[500px] overflow-hidden">
+    <div className="relative w-full h-0 md:h-[350px] lg:h-[400px] overflow-hidden hidden md:block">
       {/* Background gradient */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-r from-[#0607E1]/5 via-[#4D0AFF]/3 to-transparent"
@@ -20,9 +20,9 @@ const ThreeHeroScene: React.FC = () => {
       {/* Service text animation */}
       <ServiceTextStorm />
 
-      {/* Company logo */}
+      {/* Company logo - hidden on mobile */}
       <motion.div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 hidden md:block"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{

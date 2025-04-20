@@ -51,18 +51,20 @@ export default function ServiceTextStorm() {
     // Create initial particles
     const createParticles = () => {
       const newParticles: TextParticle[] = [];
-      const count = 40; // Reduced count for better readability of longer text
+      // Responsive count - fewer particles on mobile
+      const isMobile = window.innerWidth < 768;
+      const count = isMobile ? 10 : 20; // Reduced particle count
 
       for (let i = 0; i < count; i++) {
         newParticles.push({
           id: i,
-          x: Math.random() * 100, // Random starting position (%)
-          y: Math.random() * 100,
-          size: Math.random() * 0.6 + 0.7, // Random size between 0.7 and 1.3rem for text
-          opacity: Math.random() * 0.5 + 0.3, // Random opacity between 0.3 and 0.8
+          x: Math.random() * 80 + 10, // Random starting position (10-90%)
+          y: Math.random() * 80 + 10, // Random starting position (10-90%)
+          size: Math.random() * 0.4 + (isMobile ? 0.5 : 0.6), // Smaller text overall
+          opacity: Math.random() * 0.3 + 0.2, // Lower opacity for better text visibility
           value: generateValue(),
-          duration: Math.random() * 30 + 40, // Medium speed movement (40-70 seconds)
-          delay: Math.random() * 15 // Medium delay for staggered animation
+          duration: Math.random() * 20 + (isMobile ? 30 : 25), // Faster animation
+          delay: Math.random() * (isMobile ? 5 : 10) // Less delay overall
         });
       }
 
@@ -74,44 +76,46 @@ export default function ServiceTextStorm() {
     // Regenerate particles periodically
     const intervalId = setInterval(() => {
       createParticles();
-    }, 40000); // Regenerate every 40 seconds
+    }, 30000); // Regenerate every 30 seconds
 
     return () => clearInterval(intervalId);
   }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+      {/* Container to limit animation area */}
+      <div className="relative h-full w-full">
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
           className="absolute font-sans text-blue-500/80 font-medium whitespace-nowrap"
           initial={{
-            x: `${particle.x}vw`,
-            y: `${particle.y}vh`,
+            x: `${particle.x}%`,
+            y: `${particle.y}%`,
             opacity: 0,
             scale: 0,
             filter: 'blur(1px)'
           }}
           animate={{
             x: [
-              `${particle.x}vw`,
-              `${(particle.x + 10) % 100}vw`,
-              `${(particle.x + 25) % 100}vw`,
-              `${(particle.x + 40) % 100}vw`,
-              `${(particle.x + 55) % 100}vw`,
-              `${(particle.x + 70) % 100}vw`,
-              `${(particle.x + 85) % 100}vw`,
-              `${(particle.x + 100) % 100}vw`
+              `${particle.x}%`,
+              `${(particle.x + 10) % 100}%`,
+              `${(particle.x + 25) % 100}%`,
+              `${(particle.x + 40) % 100}%`,
+              `${(particle.x + 55) % 100}%`,
+              `${(particle.x + 70) % 100}%`,
+              `${(particle.x + 85) % 100}%`,
+              `${(particle.x + 100) % 100}%`
             ],
             y: [
-              `${particle.y}vh`,
-              `${(particle.y + 10) % 100}vh`,
-              `${(particle.y + 20) % 100}vh`,
-              `${(particle.y + 30) % 100}vh`,
-              `${(particle.y + 40) % 100}vh`,
-              `${(particle.y + 50) % 100}vh`,
-              `${(particle.y + 60) % 100}vh`,
-              `${(particle.y + 70) % 100}vh`
+              `${particle.y}%`,
+              `${(particle.y + 10) % 100}%`,
+              `${(particle.y + 20) % 100}%`,
+              `${(particle.y + 30) % 100}%`,
+              `${(particle.y + 40) % 100}%`,
+              `${(particle.y + 50) % 100}%`,
+              `${(particle.y + 60) % 100}%`,
+              `${(particle.y + 70) % 100}%`
             ],
             opacity: [0, particle.opacity * 0.7, particle.opacity, particle.opacity, particle.opacity, particle.opacity * 0.7, particle.opacity * 0.3, 0],
             scale: [0, 0.8, 1, 1, 1, 0.9, 0.7, 0],
@@ -132,6 +136,7 @@ export default function ServiceTextStorm() {
           {particle.value}
         </motion.div>
       ))}
+      </div>
     </div>
   );
 }
