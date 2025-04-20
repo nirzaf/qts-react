@@ -33,7 +33,7 @@ const Home: React.FC = () => {
 
   try {
     return (
-      <div className="relative bg-[#FFFFFF]">
+      <div className="relative bg-transparent">
         <BackgroundElements />
 
         {/* Content Container */}
@@ -41,16 +41,18 @@ const Home: React.FC = () => {
           {/* Hero Section */}
           <section className="relative overflow-hidden">
             <HeroBackground />
-            <HeroSection
-              primaryButton={{
-                text: "Get Started",
-                onClick: handleGetStarted
-              }}
-              secondaryButton={{
-                text: "Learn More",
-                onClick: handleLearnMore
-              }}
-            />
+            <div className="relative z-10">
+              <HeroSection
+                primaryButton={{
+                  text: "Get Started",
+                  onClick: handleGetStarted
+                }}
+                secondaryButton={{
+                  text: "Learn More",
+                  onClick: handleLearnMore
+                }}
+              />
+            </div>
           </section>
 
           {/* Features Section */}

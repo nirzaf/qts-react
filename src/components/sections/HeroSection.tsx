@@ -15,13 +15,13 @@ interface HeroSectionProps {
 
 const AnimatedLetter: React.FC<{ letter: string; index: number }> = ({ letter, index }) => (
   <motion.span
-    initial={{ 
+    initial={{
       opacity: 0,
       x: -100,
       rotate: -180,
       scale: 0
     }}
-    animate={{ 
+    animate={{
       opacity: 1,
       x: 0,
       rotate: 0,
@@ -60,13 +60,13 @@ const AnimatedWord: React.FC<{ word: string; isLastWord: boolean }> = ({ word, i
         <motion.span
           key={index}
           initial={{ opacity: 0, y: 40, rotateX: -90 }}
-          animate={{ 
-            opacity: 1, 
-            y: 0, 
+          animate={{
+            opacity: 1,
+            y: 0,
             rotateX: 0,
             color: isHovered ? '#0607E1' : isLastWord ? '#0607E1' : '#000000',
           }}
-          transition={{ 
+          transition={{
             duration: 0.5,
             delay: index * 0.03,
             type: "spring",
@@ -74,7 +74,7 @@ const AnimatedWord: React.FC<{ word: string; isLastWord: boolean }> = ({ word, i
             damping: 15
           }}
           className="inline-block transform-gpu font-plusJakartaSans"
-          style={{ 
+          style={{
             display: 'inline-block',
             backfaceVisibility: 'hidden'
           }}
@@ -109,7 +109,7 @@ export const HeroSection = ({
   }, []);
 
   return (
-    <motion.section className="relative overflow-hidden bg-[#FFFFFF] pt-16 pb-20">
+    <motion.section className="relative overflow-hidden bg-transparent pt-12 pb-16">
       <div className="container relative z-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="relative flex flex-col-reverse lg:flex-row items-start justify-between gap-8 lg:gap-12">
@@ -122,17 +122,17 @@ export const HeroSection = ({
                 className="space-y-6"
               >
                 {/* Company Name - Updated Font */}
-                <motion.h2 
+                <motion.h2
                   className="text-2xl lg:text-3xl font-bold tracking-tight min-h-[60px] flex items-center justify-center lg:justify-start overflow-visible
                     font-montserrat relative z-20"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ 
+                  transition={{
                     duration: 0.8,
                     delay: 0.2,
                   }}
                 >
-                  <motion.div 
+                  <motion.div
                     className="flex flex-wrap justify-center lg:justify-start tracking-tighter py-2 w-full"
                     initial={{ x: -100 }}
                     animate={{ x: 0 }}
@@ -154,10 +154,10 @@ export const HeroSection = ({
                     {/* Second Line - Tech Solutions */}
                     <div className="w-full text-center lg:text-left lg:w-auto lg:inline">
                       {"TECH SOLUTIONS".split('').map((letter, index) => (
-                        <AnimatedLetter 
-                          key={`second-${index}`} 
-                          letter={letter} 
-                          index={index + "QUADRATE".length} 
+                        <AnimatedLetter
+                          key={`second-${index}`}
+                          letter={letter}
+                          index={index + "QUADRATE".length}
                         />
                       ))}
                     </div>
@@ -168,7 +168,7 @@ export const HeroSection = ({
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
+                  transition={{
                     duration: 0.8,
                     delay: 0.4,
                     ease: [0.43, 0.13, 0.23, 0.96]
@@ -189,19 +189,19 @@ export const HeroSection = ({
                     >
                       ▼
                     </motion.div>
-                    
+
                     {/* Helps Text */}
-                    <motion.h3 
+                    <motion.h3
                       className="text-2xl lg:text-3xl font-semibold relative z-10 cursor-pointer
                         bg-gradient-to-r from-[#0607E1] via-[#0A25C9] to-[#0607E1] bg-clip-text text-transparent
                         transition-all duration-500 ease-in-out transform-gpu
                         font-outfit px-6"
                       initial={{ rotateX: -30, y: 20, opacity: 0 }}
                       animate={{ rotateX: 0, y: 0, opacity: 1 }}
-                      whileHover={{ 
+                      whileHover={{
                         scale: 1.05,
                         y: -2,
-                        transition: { 
+                        transition: {
                           type: "spring",
                           stiffness: 400,
                           damping: 10
@@ -210,7 +210,7 @@ export const HeroSection = ({
                     >
                       Helps
                     </motion.h3>
-                    
+
                     {/* Decorative underline */}
                     <motion.div
                       className="h-[2px] bg-gradient-to-r from-transparent via-[#0607E1] to-transparent mt-1"
@@ -222,7 +222,7 @@ export const HeroSection = ({
                 </motion.div>
 
                 {/* Main Heading - Enhanced Animation */}
-                <motion.h1 
+                <motion.h1
                   className="text-4xl lg:text-5xl font-bold tracking-tight h-[100px] flex items-center justify-center lg:justify-start -mt-2
                     font-plusJakartaSans antialiased perspective-1000"
                   initial={{ opacity: 0 }}
@@ -233,36 +233,36 @@ export const HeroSection = ({
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={textIndex}
-                        initial={{ 
+                        initial={{
                           opacity: 0,
                           rotateX: -90,
                           y: 50
                         }}
-                        animate={{ 
+                        animate={{
                           opacity: 1,
                           rotateX: 0,
                           y: 0
                         }}
-                        exit={{ 
+                        exit={{
                           opacity: 0,
                           rotateX: 90,
                           y: -50
                         }}
-                        transition={{ 
+                        transition={{
                           duration: 0.5,
                           type: "spring",
                           stiffness: 150,
                           damping: 20
                         }}
                         className="flex flex-wrap justify-center lg:justify-start transform-gpu"
-                        style={{ 
+                        style={{
                           backfaceVisibility: 'hidden',
                           transformStyle: 'preserve-3d'
                         }}
                       >
                         {phrases[textIndex].split(' ').map((word, index, array) => (
-                          <AnimatedWord 
-                            key={`${textIndex}-${index}`} 
+                          <AnimatedWord
+                            key={`${textIndex}-${index}`}
                             word={word}
                             isLastWord={index === array.length - 1}
                           />
@@ -277,7 +277,7 @@ export const HeroSection = ({
                   className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
+                  transition={{
                     duration: 0.8,
                     delay: 0.8,
                     ease: [0.43, 0.13, 0.23, 0.96]

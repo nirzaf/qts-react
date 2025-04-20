@@ -12,11 +12,11 @@ import CTASection from './Services/components/CTASection';
 const ServicesPage: React.FC = () => {
   return (
     <PageLayout>
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden min-h-screen">
         <BackgroundEffects />
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-4">
+        <div className="relative z-20 container mx-auto px-4">
           <HeroSection />
 
           {/* Services Grid */}
