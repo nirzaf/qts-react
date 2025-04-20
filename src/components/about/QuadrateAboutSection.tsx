@@ -92,7 +92,7 @@ export const QuadrateAboutSection: React.FC = () => {
         >
           <div className="absolute inset-0 bg-gradient-to-br from-[#0607E1]/10 to-transparent rounded-lg" />
           <img 
-            src="https://ik.imagekit.io/quadrate/assets/img/about.jpg?updatedAt=1718024112686" 
+            src="https://ik.imagekit.io/quadrate/assets/img/about-qts.jpeg?updatedAt=1745178529582" 
             alt="Quadrate Tech Solutions Team"
             className="rounded-lg shadow-lg w-full h-full object-cover"
           />
