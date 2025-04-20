@@ -4,5 +4,11 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "buildCommand": "pnpm build",
+  "installCommand": "pnpm install",
+  "framework": "vite",
+  "github": {
+    "silent": true
+  }
 }
