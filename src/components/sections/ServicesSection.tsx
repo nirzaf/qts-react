@@ -1,9 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Globe, LineChart, Network, Mail, Workflow, ArrowRight } from 'lucide-react';
-import AnimatedHeading from '@/components/ui/AnimatedHeading';
 
-const services = [
+// Placeholder for AnimatedHeading - Replace with your actual component import
+const AnimatedHeading = ({ text, className }: { text: string; className?: string }) => (
+  <h2 className={`text-3xl font-bold text-center text-[#000000] ${className}`}>
+    {text}
+  </h2>
+);
+
+// Define the structure for each service item
+interface Service {
+  title: string;
+  description: string;
+  icon: React.ElementType; // Use React.ElementType for component types
+}
+
+// Array of service objects
+const services: Service[] = [
   {
     title: 'Custom Software Development',
     description: 'Tailored software solutions designed to meet your unique business requirements.',
@@ -36,67 +50,97 @@ const services = [
   },
 ];
 
+// Define floating animation using Framer Motion's animate prop
+
+// Framer Motion Variants for the icon's 2D effect (Simplified)
+const iconVariants = {
+  initial: {
+    scale: 1,
+    rotate: 0,
+    transition: { type: 'spring', stiffness: 300, damping: 20 }
+  },
+  hover: {
+    scale: 1.15,  // Increased scale slightly for visibility
+    rotate: -8,   // Simple rotation
+    transition: { type: 'spring', stiffness: 300, damping: 15 }
+  }
+};
+
+// ServicesSection Component
 export const ServicesSection: React.FC = () => {
   return (
-    <section className="py-16">
-      <div className="container">
-        <AnimatedHeading 
-          text="Our Services" 
-          className="mb-8"
+    <section className="py-16 bg-gradient-to-b from-[#FFFFFF] to-[#F0F4FF]">
+      <div className="container mx-auto px-4">
+        {/* Animated Heading Component */}
+        <AnimatedHeading
+          text="Our Services"
+          className="mb-12"
         />
-        <div className="mx-auto grid max-w-7xl gap-4 lg:grid-cols-3">
+        {/* Grid for Service Cards */}
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 place-items-center">
           {services.map((service, index) => (
+            // Card Item - Removed perspective style
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="group relative"
+              initial="initial" // Set initial variant state for children
+              whileHover="hover" // Set hover variant state for children
+              viewport={{ once: true }} // Keep viewport setting for entrance animation
+              transition={{ duration: 0.5, delay: index * 0.1 }} // Entrance transition
+              className="group relative" // Group class still useful for non-transform hover effects
+              // Removed style={{ perspective: '1000px' }}
             >
-              {/* Card Container */}
+              {/* Card Container - Removed transformStyle */}
               <motion.div
-                className="relative overflow-hidden rounded-xl bg-[#FFFFFF] p-6 shadow-sm border border-[#000000]/5 hover:border-[#000000]/10 transition-all duration-300"
-                whileHover={{ scale: 1.02, y: -5 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="relative overflow-hidden rounded-xl bg-[#FFFFFF] p-6 shadow-lg border border-[#000000]/10 group-hover:shadow-xl group-hover:border-[#0607E1]/30 transition-all duration-300 ease-in-out h-full w-full flex flex-col items-center justify-start text-center"
+                // Removed style={{ transformStyle: 'preserve-3d' }}
+                // Add subtle card lift separate from icon pop
+                variants={{
+                  initial: { scale: 1, y: 0 },
+                  hover: { scale: 1.02, y: -5 }
+                }}
+                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
               >
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-[#000000]/5 opacity-0 group-hover:opacity-100 transition-all duration-300" />
-                
-                {/* Icon Container */}
+                {/* Icon Container - Using simplified 2D variants */}
+                <div className="w-full flex justify-center items-center py-2">
+                  <motion.div
+                    className="mb-6 flex h-24 w-24 items-center justify-center rounded-lg bg-[#FFFFFF] shadow-md border border-[#0607E1]/20 group-hover:shadow-lg group-hover:bg-[#E8E9FF] transition-all duration-300 ease-in-out" // Increased size and centered with mx-auto
+                    variants={iconVariants} // Apply the simplified 2D variants
+                    animate={{
+                      y: [0, -10, 0],
+                      transition: {
+                        duration: 3,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut"
+                      }
+                    }}
+                  >
+                    {/* Icon Component */}
+                    <service.icon className="h-12 w-12 text-[#0607E1] transition-colors duration-300" />
+                  </motion.div>
+                </div>
+
+                {/* Content Section - Removed translateZ style */}
+                <div className="flex-grow">
+                  {/* Service Title */}
+                  <h3
+                    className="mb-2 text-lg font-semibold text-[#000000]"
+                  >
+                    {service.title}
+                  </h3>
+                  {/* Service Description */}
+                  <p
+                    className="text-[#000000]/70 text-sm leading-relaxed mb-4"
+                  >
+                    {service.description}
+                  </p>
+                </div>
+
+                {/* Learn More Link - Removed translateZ style */}
                 <motion.div
-                  className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-[#FFFFFF] shadow-sm border border-[#0607E1]/10"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <service.icon className="h-6 w-6 text-[#0607E1]" />
-                </motion.div>
-
-                {/* Content */}
-                <motion.h3
-                  className="mb-1.5 text-lg font-semibold text-[#000000]"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                >
-                  {service.title}
-                </motion.h3>
-                <motion.p
-                  className="text-[#000000]/70 text-sm leading-relaxed"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  {service.description}
-                </motion.p>
-
-                {/* Learn More Link */}
-                <motion.div 
-                  className="mt-3 inline-flex items-center gap-1 text-sm text-[#0607E1]/80 group-hover:text-[#0607E1] transition-colors duration-300"
-                  whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="mt-auto inline-flex items-center gap-1 text-sm text-[#0607E1]/80 group-hover:text-[#0607E1] transition-colors duration-300 cursor-pointer"
+                  whileHover={{ x: 5, scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
                 >
                   <span className="font-medium">Learn more</span>
                   <ArrowRight className="h-4 w-4" />
