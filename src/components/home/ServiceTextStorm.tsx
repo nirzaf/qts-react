@@ -14,16 +14,16 @@ interface TextParticle {
 
 export default function ServiceTextStorm() {
   const [particles, setParticles] = useState<TextParticle[]>([]);
-  
+
   useEffect(() => {
     // List of services and related terms provided by Quadrate Tech Solutions
     const serviceTexts = [
-      'Custom Software Development',
+      'Software Development',
       'Web Development',
       'Digital Marketing',
       'IT Outsourcing',
       'Business Email',
-      'Business Process Automation',
+      'Automation',
       'React',
       'TypeScript',
       'Node.js',
@@ -42,7 +42,7 @@ export default function ServiceTextStorm() {
       'Performance',
       'Scalable Solutions'
     ];
-    
+
     // Generate a random service text
     const generateValue = () => {
       return serviceTexts[Math.floor(Math.random() * serviceTexts.length)];
@@ -52,7 +52,7 @@ export default function ServiceTextStorm() {
     const createParticles = () => {
       const newParticles: TextParticle[] = [];
       const count = 40; // Reduced count for better readability of longer text
-      
+
       for (let i = 0; i < count; i++) {
         newParticles.push({
           id: i,
@@ -61,24 +61,24 @@ export default function ServiceTextStorm() {
           size: Math.random() * 0.6 + 0.7, // Random size between 0.7 and 1.3rem for text
           opacity: Math.random() * 0.5 + 0.3, // Random opacity between 0.3 and 0.8
           value: generateValue(),
-          duration: Math.random() * 40 + 30, // Slower movement (30-70 seconds)
-          delay: Math.random() * 15 // Random delay for staggered animation
+          duration: Math.random() * 30 + 40, // Medium speed movement (40-70 seconds)
+          delay: Math.random() * 15 // Medium delay for staggered animation
         });
       }
-      
+
       setParticles(newParticles);
     };
-    
+
     createParticles();
-    
+
     // Regenerate particles periodically
     const intervalId = setInterval(() => {
       createParticles();
-    }, 30000); // Regenerate every 30 seconds
-    
+    }, 40000); // Regenerate every 40 seconds
+
     return () => clearInterval(intervalId);
   }, []);
-  
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
       {particles.map((particle) => (
