@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from '@/components/ui/toaster';
 import HubSpotChat from '@/components/chat/HubSpotChat';
 import { Navigation } from '@/components/Navigation';
@@ -25,11 +26,12 @@ const RedirectToHome: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <div className="app">
-      <Navigation />
-      <main>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
+    <HelmetProvider>
+      <div className="app">
+        <Navigation />
+        <main>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
@@ -40,13 +42,14 @@ const App: React.FC = () => {
             <Route path="/microsoft-365-premium-package-details" element={<Microsoft365PremiumPackageDetails />} />
             <Route path="/404" element={<NotFound />} />
             <Route path="*" element={<RedirectToHome />} />
-          </Routes>
-          <Toaster />
-          <HubSpotChat />
-        </Suspense>
-      </main>
-      <Footer />
-    </div>
+            </Routes>
+            <Toaster />
+            <HubSpotChat />
+          </Suspense>
+        </main>
+        <Footer />
+      </div>
+    </HelmetProvider>
   );
 };
 

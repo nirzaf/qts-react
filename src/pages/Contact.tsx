@@ -8,6 +8,8 @@ import LocationCards from '@/components/contact/LocationCards';
 import ContactPageLayout from '@/components/contact/ContactPageLayout';
 import ContactFormSubmission from '@/components/contact/ContactFormSubmission';
 import { contactMethods } from '@/data/contactData';
+import SEO from '@/components/seo/SEO';
+import { generateOrganizationSchema, generateWebPageSchema, generateLocalBusinessSchema, defaultOrganization } from '@/utils/structuredData';
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -61,8 +63,37 @@ const Contact: FC = () => {
     }
   };
 
+  // Generate structured data for the contact page
+  const organizationSchema = generateOrganizationSchema(defaultOrganization);
+  const webPageSchema = generateWebPageSchema({
+    title: 'Contact Us | Quadrate Tech Solutions',
+    description: 'Get in touch with Quadrate Tech Solutions. Contact us for software development, web development, digital marketing, and IT services.',
+    url: 'https://quadratetechsolutions.com/contact',
+  });
+  const localBusinessSchema = generateLocalBusinessSchema({
+    ...defaultOrganization,
+    address: 'Sri Lanka',
+    telephone: '+94 77 123 4567',
+    geo: {
+      latitude: 7.8731,
+      longitude: 80.7718
+    }
+  });
+
+  // Combine structured data
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [organizationSchema, webPageSchema, localBusinessSchema]
+  };
+
   return (
     <PageLayout>
+      <SEO
+        title="Contact Us | Quadrate Tech Solutions"
+        description="Get in touch with Quadrate Tech Solutions. Contact us for software development, web development, digital marketing, and IT services."
+        keywords="contact Quadrate, tech support, software development contact, web development inquiry, digital marketing services, IT consultation"
+        structuredData={structuredData}
+      />
       <ContactPageLayout>
         <motion.div
           initial={{ opacity: 0, y: -20 }}

@@ -8,6 +8,8 @@ interface Post {
   category: string;
   tags: string[];
   content: string;
+  author?: string;
+  authorImage?: string;
 }
 
 export const useBlogPost = (slug: string | undefined) => {
@@ -19,7 +21,7 @@ export const useBlogPost = (slug: string | undefined) => {
       try {
         const response = await fetch(`/content/blog/${slug}.md`);
         const text = await response.text();
-        
+
         // Parse frontmatter and content
         const [, frontmatter, content] = text.split('---');
         const metadata = frontmatter.split('\n').reduce((acc, line) => {

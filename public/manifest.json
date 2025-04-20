@@ -1,0 +1,21 @@
+{
+  "name": "Quadrate Tech Solutions",
+  "short_name": "QTS",
+  "description": "Quadrate Tech Solutions offers custom software development, web development, digital marketing, IT outsourcing, and business automation services.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0607E1",
+  "icons": [
+    {
+      "src": "https://ik.imagekit.io/quadrate/QTS%20Logo%20Primary.png?updatedAt=1733854434969",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://ik.imagekit.io/quadrate/QTS%20Logo%20Primary.png?updatedAt=1733854434969",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

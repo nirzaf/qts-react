@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 import PageLayout from '@/layouts/PageLayout';
 import PricingGrid from '@/components/pricing/PricingGrid';
 import CustomSolutionCard from '@/components/pricing/CustomSolutionCard';
+import SEO from '@/components/seo/SEO';
+import { generateOrganizationSchema, generateWebPageSchema, defaultOrganization } from '@/utils/structuredData';
+import { pricingPlans } from '@/data/home-page/pricing';
 
 /**
  * Pricing page component that displays pricing plans and custom solutions
@@ -37,9 +40,41 @@ const Pricing: React.FC = () => {
     }
   };
 
+  // Generate structured data for the pricing page
+  const organizationSchema = generateOrganizationSchema(defaultOrganization);
+  const webPageSchema = generateWebPageSchema({
+    title: 'Pricing | Quadrate Tech Solutions',
+    description: 'Explore our transparent pricing plans for software development, web development, digital marketing, and IT services. Find the perfect plan for your business needs.',
+    url: 'https://quadratetechsolutions.com/pricing',
+  });
+
+  // Generate pricing data for structured data
+  const pricingData = {
+    '@context': 'https://schema.org',
+    '@type': 'PriceSpecification',
+    priceCurrency: 'USD',
+    price: pricingPlans[0].price,
+    minPrice: pricingPlans[0].price,
+    maxPrice: pricingPlans[pricingPlans.length - 1].price,
+    validFrom: '2025-01-01',
+    validThrough: '2025-12-31'
+  };
+
+  // Combine structured data
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [organizationSchema, webPageSchema, pricingData]
+  };
+
   return (
     <PageLayout>
-      <motion.div 
+      <SEO
+        title="Pricing | Quadrate Tech Solutions"
+        description="Explore our transparent pricing plans for software development, web development, digital marketing, and IT services. Find the perfect plan for your business needs."
+        keywords="pricing plans, software development cost, web development packages, digital marketing pricing, IT services rates, affordable tech solutions"
+        structuredData={structuredData}
+      />
+      <motion.div
         className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12"
         initial="hidden"
         animate="visible"
@@ -66,7 +101,7 @@ const Pricing: React.FC = () => {
         {/* Custom Solution Section */}
         <motion.div
           variants={itemVariants}
-          className="mt-12 max-w-4xl mx-auto bg-white/80 backdrop-blur-sm 
+          className="mt-12 max-w-4xl mx-auto bg-white/80 backdrop-blur-sm
                      border border-black/10 rounded-lg shadow-lg"
         >
           <CustomSolutionCard />
@@ -79,9 +114,9 @@ const Pricing: React.FC = () => {
         >
           <p className="text-black/60">
             Have questions about our pricing? {' '}
-            <a 
-              href="/contact" 
-              className="text-black hover:text-black/80 transition-colors duration-200 
+            <a
+              href="/contact"
+              className="text-black hover:text-black/80 transition-colors duration-200
                        border-b border-black/20 hover:border-black/40"
             >
               Contact our team

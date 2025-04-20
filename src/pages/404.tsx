@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, ArrowLeft, Search } from 'lucide-react';
+import SEO from '@/components/seo/SEO';
 
 const fadeIn = {
   initial: { opacity: 0 },
@@ -29,19 +30,24 @@ const NotFoundPage: React.FC = () => {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.section 
+      <SEO
+        title="Page Not Found | 404 Error | Quadrate Tech Solutions"
+        description="We couldn't find the page you were looking for. Please check the URL or navigate back to our homepage."
+        noIndex={true}
+      />
+      <motion.section
         {...fadeIn}
         className="relative min-h-[calc(100vh-4rem)] bg-gradient-to-b from-white to-gray-50/50"
       >
         {/* Background decoration */}
         <div className="absolute inset-0 overflow-hidden">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.3 }}
             transition={{ duration: 1 }}
             className="absolute top-1/4 right-1/4 w-1/3 h-1/3 bg-blue-100 rounded-full blur-3xl"
           />
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.3 }}
             transition={{ duration: 1, delay: 0.2 }}
@@ -50,12 +56,12 @@ const NotFoundPage: React.FC = () => {
         </div>
 
         <div className="container relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-8 md:py-12 lg:py-24">
-          <motion.div 
+          <motion.div
             {...scaleIn}
             className="flex flex-col items-center space-y-6 text-center"
           >
             {/* 404 Text */}
-            <motion.h1 
+            <motion.h1
               {...slideDown}
               className="font-bold text-8xl md:text-9xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600"
             >
@@ -63,7 +69,7 @@ const NotFoundPage: React.FC = () => {
             </motion.h1>
 
             {/* Message */}
-            <motion.div 
+            <motion.div
               {...slideDown}
               className="space-y-2"
             >
@@ -74,11 +80,11 @@ const NotFoundPage: React.FC = () => {
             </motion.div>
 
             {/* Action Buttons */}
-            <motion.div 
+            <motion.div
               {...slideDown}
               className="flex flex-col sm:flex-row gap-4 mt-8"
             >
-              <Button 
+              <Button
                 onClick={() => navigate(-1)}
                 variant="outline"
                 className="flex items-center gap-2"
@@ -86,16 +92,16 @@ const NotFoundPage: React.FC = () => {
                 <ArrowLeft className="w-4 h-4" />
                 Go Back
               </Button>
-              
-              <Button 
+
+              <Button
                 onClick={() => navigate('/')}
                 className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
               >
                 <Home className="w-4 h-4" />
                 Return Home
               </Button>
-              
-              <Button 
+
+              <Button
                 onClick={() => navigate('/search')}
                 variant="outline"
                 className="flex items-center gap-2"
@@ -106,7 +112,7 @@ const NotFoundPage: React.FC = () => {
             </motion.div>
 
             {/* Helpful Links */}
-            <motion.div 
+            <motion.div
               {...slideDown}
               className="mt-12 pt-8 border-t border-gray-200"
             >

@@ -6,6 +6,8 @@ import BackgroundElements from '@/components/home/BackgroundElements';
 import HeroBackground from '@/components/home/HeroBackground';
 import ErrorFallback from '@/components/home/ErrorFallback';
 import Loading from '@/components/ui/loading';
+import SEO from '@/components/seo/SEO';
+import { generateOrganizationSchema, generateWebPageSchema, defaultOrganization } from '@/utils/structuredData';
 
 // Lazy load heavy components
 const Features = lazy(() => import('@/components/sections/features/Features'));
@@ -31,9 +33,31 @@ const Home: React.FC = () => {
   const handleGetStarted = () => navigate('/contact');
   const handleLearnMore = () => navigate('/about');
 
+  // Generate structured data for the home page
+  const organizationSchema = generateOrganizationSchema(defaultOrganization);
+  const webPageSchema = generateWebPageSchema({
+    title: 'Quadrate Tech Solutions | Leading Software Development Company in Sri Lanka',
+    description: 'Quadrate Tech Solutions offers custom software development, web development, digital marketing, IT outsourcing, and business automation services to help businesses grow.',
+    url: 'https://quadratetechsolutions.com',
+    image: 'https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458'
+  });
+
+  // Combine structured data
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [organizationSchema, webPageSchema]
+  };
+
   try {
     return (
       <div className="relative bg-transparent">
+        <SEO
+          title="Quadrate Tech Solutions | Leading Software Development Company in Sri Lanka"
+          description="Quadrate Tech Solutions offers custom software development, web development, digital marketing, IT outsourcing, and business automation services to help businesses grow."
+          keywords="software development, web development, digital marketing, IT outsourcing, business automation, Sri Lanka, custom software, web design"
+          image="https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458"
+          structuredData={structuredData}
+        />
         <BackgroundElements />
 
         {/* Content Container */}

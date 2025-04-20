@@ -6,6 +6,8 @@ import BlogPostHeader from '@/components/blog/BlogPostHeader';
 import BlogPostImage from '@/components/blog/BlogPostImage';
 import BlogPostNotFound from '@/components/blog/BlogPostNotFound';
 import useBlogPost from '@/hooks/useBlogPost';
+import SEO from '@/components/seo/SEO';
+import { generateBlogPostSchema, generateOrganizationSchema, defaultOrganization } from '@/utils/structuredData';
 
 // Lazy load heavy components
 const ReactMarkdown = lazy(() => import('react-markdown'));
@@ -72,8 +74,39 @@ const BlogPostPage: React.FC = () => {
     return <BlogPostNotFound />;
   }
 
+  // Generate structured data for the blog post
+  const organizationSchema = generateOrganizationSchema(defaultOrganization);
+  const blogPostSchema = generateBlogPostSchema({
+    title: post.title,
+    description: post.description,
+    url: `https://quadratetechsolutions.com/blog/${slug}`,
+    image: post.heroImage,
+    datePublished: post.pubDate,
+    author: {
+      name: post.author || 'Quadrate Tech Solutions',
+      url: 'https://quadratetechsolutions.com/about'
+    }
+  });
+
+  // Combine structured data
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [organizationSchema, blogPostSchema]
+  };
+
+  // Generate keywords from tags
+  const keywords = post.tags ? post.tags.join(', ') : '';
+
   return (
     <BlogPostContainer>
+      <SEO
+        title={`${post.title} | Quadrate Tech Solutions Blog`}
+        description={post.description}
+        keywords={keywords}
+        image={post.heroImage}
+        article={true}
+        structuredData={structuredData}
+      />
       <BlogPostHeader
         title={post.title}
         description={post.description}
