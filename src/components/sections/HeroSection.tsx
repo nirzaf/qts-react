@@ -109,12 +109,16 @@ export const HeroSection = ({
   }, []);
 
   return (
-    <motion.section className="relative overflow-hidden bg-transparent pt-12 pb-16">
+    <motion.section
+      className="relative overflow-hidden bg-transparent pt-12 pb-16"
+      aria-label="Hero section"
+      role="region"
+    >
       <div className="container relative z-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="relative flex flex-col-reverse lg:flex-row items-start justify-between gap-8 lg:gap-12">
             {/* Text Content */}
-            <div className="flex-1 space-y-8 pt-6 lg:max-w-[60%]">
+            <header className="flex-1 space-y-8 pt-6 lg:max-w-[60%]">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -273,7 +277,7 @@ export const HeroSection = ({
                 </motion.h1>
 
                 {/* Buttons */}
-                <motion.div
+                <motion.nav
                   className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -282,10 +286,12 @@ export const HeroSection = ({
                     delay: 0.8,
                     ease: [0.43, 0.13, 0.23, 0.96]
                   }}
+                  aria-label="Primary navigation"
                 >
                   <button
                     onClick={primaryButton.onClick}
                     className="relative px-8 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors duration-300 overflow-hidden group"
+                    aria-label={primaryButton.text}
                   >
                     <span className="relative z-10">{primaryButton.text}</span>
                     <div className="absolute inset-0 overflow-hidden">
@@ -295,22 +301,23 @@ export const HeroSection = ({
                   <button
                     onClick={secondaryButton.onClick}
                     className="relative px-8 py-3 border-2 border-black text-black rounded-lg hover:bg-black hover:text-white transition-colors duration-300 overflow-hidden group"
+                    aria-label={secondaryButton.text}
                   >
                     <span className="relative z-10">{secondaryButton.text}</span>
                     <div className="absolute inset-0 overflow-hidden opacity-50">
                       <div className="torch-wave absolute w-[200%] h-full top-0 -left-full bg-gradient-to-r from-transparent via-black/10 to-transparent transform group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                     </div>
                   </button>
-                </motion.div>
+                </motion.nav>
               </motion.div>
 
-            </div>
+            </header>
             {/* Three.js Scene Container - Replacing the Cube */}
-            <div className="w-full lg:w-auto pt-4 lg:pt-2 flex justify-center lg:justify-end">
+            <aside className="w-full lg:w-auto pt-4 lg:pt-2 flex justify-center lg:justify-end" aria-label="3D visualization">
               <div className="relative w-full lg:w-auto flex justify-center lg:justify-end">
                 <ThreeHeroScene />
               </div>
-            </div>
+            </aside>
           </div>
         </div>
       </div>

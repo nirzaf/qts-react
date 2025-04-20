@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import SEOLink from './ui/SEOLink';
 
 export const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,8 +19,8 @@ export const Navigation: React.FC = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" role="banner">
+      <nav className="container mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <motion.div
@@ -27,14 +28,14 @@ export const Navigation: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <Link to="/" className="flex items-center space-x-2">
+            <SEOLink to="/" className="flex items-center space-x-2" ariaLabel="Quadrate Tech Solutions Home">
               <img
                 src="https://ik.imagekit.io/quadrate/QTS%20Logo%20Primary.png?updatedAt=1733854434969"
                 alt="QTS Logo"
                 className="h-8 w-auto brightness-[0.7] contrast-[1.4] [filter:saturate(1.2)_hue-rotate(-10deg)]"
               />
               <span className="font-bold text-lg">QTS</span>
-            </Link>
+            </SEOLink>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -45,10 +46,11 @@ export const Navigation: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
-                <Link
+                <SEOLink
                   to={link.to}
                   className={`text-sm font-medium transition-colors hover:text-[#0607E1] relative
                     ${location.pathname === link.to ? 'text-[#0607E1]' : 'text-gray-700'}`}
+                  ariaLabel={`Navigate to ${link.label}`}
                 >
                   {link.label}
                   {location.pathname === link.to && (
@@ -57,7 +59,7 @@ export const Navigation: React.FC = () => {
                       layoutId="underline"
                     />
                   )}
-                </Link>
+                </SEOLink>
               </motion.div>
             ))}
 
@@ -66,17 +68,17 @@ export const Navigation: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <a
-                href="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions"
-                target="_blank"
-                rel="noopener noreferrer"
+              <SEOLink
+                to="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions"
+                external={true}
                 className="relative inline-flex items-center justify-center rounded-md bg-[#000000] px-4 py-2 text-sm font-medium text-[#FFFFFF] hover:bg-[#000000]/90 transition-colors duration-200 overflow-hidden group"
+                ariaLabel="Book a meeting with Quadrate Tech Solutions"
               >
                 <span className="relative z-10">Book a Meeting</span>
                 <div className="absolute inset-0 overflow-hidden">
                   <div className="torch-wave absolute w-[200%] h-full top-0 -left-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                 </div>
-              </a>
+              </SEOLink>
             </motion.div>
           </div>
 
@@ -87,14 +89,14 @@ export const Navigation: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <a
-                href="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions"
-                target="_blank"
-                rel="noopener noreferrer"
+              <SEOLink
+                to="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions"
+                external={true}
                 className="relative inline-flex items-center justify-center rounded-md bg-[#000000] px-3 py-1.5 text-sm font-medium text-[#FFFFFF] hover:bg-[#000000]/90 transition-colors duration-200"
+                ariaLabel="Book a meeting with Quadrate Tech Solutions"
               >
                 <span className="relative z-10">Book a Meeting</span>
-              </a>
+              </SEOLink>
             </motion.div>
             <button
               onClick={toggleMenu}
@@ -127,14 +129,15 @@ export const Navigation: React.FC = () => {
                     whileHover={{ x: 4 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
-                    <Link
+                    <SEOLink
                       to={link.to}
                       onClick={() => setIsOpen(false)}
                       className={`block px-3 py-2 rounded-md text-base font-medium transition-colors hover:text-[#0607E1] hover:bg-gray-50
                         ${location.pathname === link.to ? 'text-[#0607E1] bg-gray-50' : 'text-gray-700'}`}
+                      ariaLabel={`Navigate to ${link.label}`}
                     >
                       {link.label}
-                    </Link>
+                    </SEOLink>
                   </motion.div>
                 ))}
               </div>

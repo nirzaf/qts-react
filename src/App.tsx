@@ -1,19 +1,23 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, lazy } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from '@/components/ui/toaster';
 import HubSpotChat from '@/components/chat/HubSpotChat';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
-import Home from '@/pages/Home';
-import About from '@/pages/About';
-import Services from '@/pages/Services';
-import Blog from '@/pages/Blog';
-import BlogPost from '@/pages/BlogPost';
-import Contact from '@/pages/Contact';
-import Pricing from '@/pages/Pricing';
-import NotFound from '@/pages/404';
-import Microsoft365PremiumPackageDetails from '@/pages/Microsoft365PremiumPackageDetails';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import { skipNavProps } from '@/utils/a11y';
+
+// Lazy load all page components for better performance
+const Home = lazy(() => import('@/pages/Home'));
+const About = lazy(() => import('@/pages/About'));
+const Services = lazy(() => import('@/pages/Services'));
+const Blog = lazy(() => import('@/pages/Blog'));
+const BlogPost = lazy(() => import('@/pages/BlogPost'));
+const Contact = lazy(() => import('@/pages/Contact'));
+const Pricing = lazy(() => import('@/pages/Pricing'));
+const NotFound = lazy(() => import('@/pages/404'));
+const Microsoft365PremiumPackageDetails = lazy(() => import('@/pages/Microsoft365PremiumPackageDetails'));
 
 // Redirect component for handling undefined routes
 const RedirectToHome: React.FC = () => {
@@ -28,9 +32,10 @@ const App: React.FC = () => {
   return (
     <HelmetProvider>
       <div className="app">
+        <a {...skipNavProps('main-content')}>Skip to main content</a>
         <Navigation />
-        <main>
-          <Suspense fallback={<div>Loading...</div>}>
+        <main id="main-content" tabIndex={-1}>
+          <Suspense fallback={<LoadingSpinner size="large" text="Loading content..." />}>
             <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />

@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { Code2, Globe, LineChart, Network, Mail, Workflow, ArrowRight } from 'lucide-react';
 
 // Placeholder for AnimatedHeading - Replace with your actual component import
-const AnimatedHeading = ({ text, className }: { text: string; className?: string }) => (
-  <h2 className={`text-3xl font-bold text-center text-[#000000] ${className}`}>
+const AnimatedHeading = ({ text, className, id }: { text: string; className?: string; id?: string }) => (
+  <h2 id={id} className={`text-3xl font-bold text-center text-[#000000] ${className}`}>
     {text}
   </h2>
 );
@@ -69,26 +69,33 @@ const iconVariants = {
 // ServicesSection Component
 export const ServicesSection: React.FC = () => {
   return (
-    <section className="py-16 bg-gradient-to-b from-[#FFFFFF] to-[#F0F4FF]">
+    <section
+      className="py-16 bg-gradient-to-b from-[#FFFFFF] to-[#F0F4FF]"
+      aria-labelledby="services-heading"
+      id="services"
+    >
       <div className="container mx-auto px-4">
         {/* Animated Heading Component */}
-        <AnimatedHeading
-          text="Our Services"
-          className="mb-12"
-        />
+        <header className="mb-12">
+          <AnimatedHeading
+            text="Our Services"
+            className=""
+            id="services-heading"
+          />
+        </header>
         {/* Grid for Service Cards */}
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 place-items-center">
+        <ul className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 place-items-center list-none p-0" aria-label="Services list">
           {services.map((service, index) => (
             // Card Item - Removed perspective style
-            <motion.div
-              key={service.title}
-              initial="initial" // Set initial variant state for children
-              whileHover="hover" // Set hover variant state for children
-              viewport={{ once: true }} // Keep viewport setting for entrance animation
-              transition={{ duration: 0.5, delay: index * 0.1 }} // Entrance transition
-              className="group relative" // Group class still useful for non-transform hover effects
-              // Removed style={{ perspective: '1000px' }}
-            >
+            <li key={service.title}>
+              <motion.article
+                initial="initial" // Set initial variant state for children
+                whileHover="hover" // Set hover variant state for children
+                viewport={{ once: true }} // Keep viewport setting for entrance animation
+                transition={{ duration: 0.5, delay: index * 0.1 }} // Entrance transition
+                className="group relative" // Group class still useful for non-transform hover effects
+                aria-labelledby={`service-title-${index}`}
+              >
               {/* Card Container - Removed transformStyle */}
               <motion.div
                 className="relative overflow-hidden rounded-xl bg-[#FFFFFF] p-6 shadow-lg border border-[#000000]/10 group-hover:shadow-xl group-hover:border-[#0607E1]/30 transition-all duration-300 ease-in-out h-full w-full flex flex-col items-center justify-start text-center"
@@ -124,6 +131,7 @@ export const ServicesSection: React.FC = () => {
                 <div className="flex-grow">
                   {/* Service Title */}
                   <h3
+                    id={`service-title-${index}`}
                     className="mb-2 text-lg font-semibold text-[#000000]"
                   >
                     {service.title}
@@ -143,12 +151,13 @@ export const ServicesSection: React.FC = () => {
                   transition={{ type: "spring", stiffness: 400, damping: 15 }}
                 >
                   <span className="font-medium">Learn more</span>
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </motion.div>
               </motion.div>
-            </motion.div>
+              </motion.article>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
