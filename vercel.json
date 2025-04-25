@@ -5,8 +5,8 @@
       "destination": "/index.html"
     }
   ],
-  "buildCommand": "pnpm build",
-  "installCommand": "pnpm install",
+  "buildCommand": "npm run build",
+  "installCommand": "npm install --legacy-peer-deps",
   "framework": "vite",
   "github": {
     "silent": true

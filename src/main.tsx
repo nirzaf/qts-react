@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import './styles/globals.css';
 import App from './App';
 import { registerServiceWorker } from './utils/serviceWorker';
@@ -16,6 +17,7 @@ if (rootElement.hasChildNodes() && import.meta.env.PROD) {
     <StrictMode>
       <BrowserRouter>
         <App />
+        <Analytics />
       </BrowserRouter>
     </StrictMode>
   );
@@ -24,6 +26,7 @@ if (rootElement.hasChildNodes() && import.meta.env.PROD) {
     <StrictMode>
       <BrowserRouter>
         <App />
+        <Analytics />
       </BrowserRouter>
     </StrictMode>
   );
