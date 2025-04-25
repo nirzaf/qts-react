@@ -4,12 +4,18 @@ interface Post {
   title: string;
   description: string;
   pubDate: string;
+  modifiedDate?: string;
   heroImage: string;
   category: string;
   tags: string[];
   content: string;
   author?: string;
   authorImage?: string;
+  authorBio?: string;
+  readingTime?: number;
+  slug?: string;
+  url?: string;
+  relatedPosts?: string[];
 }
 
 export const useBlogPost = (slug: string | undefined) => {
@@ -32,10 +38,32 @@ export const useBlogPost = (slug: string | undefined) => {
           return acc;
         }, {} as any);
 
+        // Process content
+        const processedContent = content.trim();
+
+        // Calculate reading time
+        const wordCount = processedContent.split(/\s+/).length;
+        const readingTime = Math.ceil(wordCount / 200); // Assuming 200 words per minute
+
+        // Process tags
+        const processedTags = metadata.tags
+          ? metadata.tags.replace(/[\[\]]/g, '').split(',').map((tag: string) => tag.trim())
+          : [];
+
+        // Set default modified date if not provided
+        const modifiedDate = metadata.modifiedDate || metadata.pubDate;
+
+        // Create URL
+        const url = `https://quadratetechsolutions.com/blog/${slug}`;
+
         setPost({
           ...metadata,
-          content: content.trim(),
-          tags: metadata.tags.replace(/[\[\]]/g, '').split(',').map((tag: string) => tag.trim())
+          content: processedContent,
+          tags: processedTags,
+          modifiedDate,
+          readingTime,
+          slug,
+          url
         });
       } catch (error) {
         console.error('Error loading blog post:', error);

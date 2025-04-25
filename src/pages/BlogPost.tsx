@@ -1,13 +1,22 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import Loading from '@/components/ui/loading';
 import BlogPostContainer from '@/components/blog/BlogPostContainer';
 import BlogPostHeader from '@/components/blog/BlogPostHeader';
-import BlogPostImage from '@/components/blog/BlogPostImage';
+// import BlogPostImage from '@/components/blog/BlogPostImage';
 import BlogPostNotFound from '@/components/blog/BlogPostNotFound';
 import useBlogPost from '@/hooks/useBlogPost';
 import SEO from '@/components/seo/SEO';
-import { generateBlogPostSchema, generateOrganizationSchema, defaultOrganization } from '@/utils/structuredData';
+import SchemaMarkup from '@/components/seo/SchemaMarkup';
+import Breadcrumbs from '@/components/navigation/Breadcrumbs';
+import OptimizedImage from '@/components/ui/OptimizedImage';
+import LazyLoad from '@/components/ui/LazyLoad';
+import {
+  generateBlogPostSchema,
+  generateOrganizationSchema,
+  generateBreadcrumbSchema,
+  defaultOrganization
+} from '@/utils/structuredData';
 
 // Lazy load heavy components
 const ReactMarkdown = lazy(() => import('react-markdown'));
@@ -46,12 +55,10 @@ const MarkdownContent: React.FC<{ content: string }> = ({ content }) => {
             );
           },
           img: ({ src, alt }) => (
-            <img
-              src={src}
-              alt={alt}
-              loading="lazy"
-              className="w-full h-auto"
-              decoding="async"
+            <OptimizedImage
+              src={src || ''}
+              alt={alt || 'Blog image'}
+              className="w-full h-auto my-4 rounded-lg"
             />
           ),
         }}
@@ -74,25 +81,49 @@ const BlogPostPage: React.FC = () => {
     return <BlogPostNotFound />;
   }
 
+  const location = useLocation();
+
+  // Calculate estimated reading time
+  const wordCount = post.content.split(/\s+/).length;
+  const readingTime = Math.ceil(wordCount / 200); // Assuming 200 words per minute reading speed
+
+  // Generate breadcrumb items
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://quadratetechsolutions.com/' },
+    { name: 'Blog', url: 'https://quadratetechsolutions.com/blog' },
+    { name: post.title, url: `https://quadratetechsolutions.com${location.pathname}` }
+  ];
+
   // Generate structured data for the blog post
   const organizationSchema = generateOrganizationSchema(defaultOrganization);
+
   const blogPostSchema = generateBlogPostSchema({
     title: post.title,
     description: post.description,
     url: `https://quadratetechsolutions.com/blog/${slug}`,
     image: post.heroImage,
     datePublished: post.pubDate,
+    dateModified: post.modifiedDate || post.pubDate,
     author: {
       name: post.author || 'Quadrate Tech Solutions',
-      url: 'https://quadratetechsolutions.com/about'
-    }
+      url: 'https://quadratetechsolutions.com/about',
+      image: post.authorImage || 'https://ik.imagekit.io/quadrate/blogs/avatar.png',
+      jobTitle: 'Content Writer'
+    },
+    category: post.category,
+    tags: post.tags,
+    wordCount: wordCount,
+    articleSection: post.category
   });
 
+  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems);
+
   // Combine structured data
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@graph': [organizationSchema, blogPostSchema]
-  };
+  const structuredData = [
+    organizationSchema,
+    blogPostSchema,
+    breadcrumbSchema
+  ];
 
   // Generate keywords from tags
   const keywords = post.tags ? post.tags.join(', ') : '';
@@ -105,8 +136,24 @@ const BlogPostPage: React.FC = () => {
         keywords={keywords}
         image={post.heroImage}
         article={true}
-        structuredData={structuredData}
+        publishedTime={post.pubDate}
+        modifiedTime={post.modifiedDate || post.pubDate}
+        author={post.author || 'Quadrate Tech Solutions'}
+        category={post.category}
+        tags={post.tags}
+        language="en"
+        canonicalUrl={`https://quadratetechsolutions.com${location.pathname}`}
       />
+      <SchemaMarkup schema={structuredData} />
+
+      <Breadcrumbs
+        customPaths={[
+          { path: '/blog', label: 'Blog' },
+          { path: location.pathname, label: post.title }
+        ]}
+        className="mb-6 text-sm"
+      />
+
       <BlogPostHeader
         title={post.title}
         description={post.description}
@@ -114,9 +161,53 @@ const BlogPostPage: React.FC = () => {
         category={post.category}
         tags={post.tags}
       />
-      <BlogPostImage src={post.heroImage} alt={post.title} />
-      <div className="prose prose-gray dark:prose-invert max-w-none">
+
+      <div className="mb-4 text-sm text-gray-600">
+        <span>{readingTime} min read</span> • <span>By {post.author || 'Quadrate Tech Solutions'}</span>
+      </div>
+
+      <OptimizedImage
+        src={post.heroImage}
+        alt={post.title}
+        className="w-full rounded-lg mb-8 aspect-video"
+        priority={true}
+      />
+
+      <LazyLoad className="prose prose-gray dark:prose-invert max-w-none">
         <MarkdownContent content={post.content} />
+      </LazyLoad>
+
+      <div className="mt-12 pt-6 border-t border-gray-200">
+        <h3 className="text-xl font-bold mb-4">Share this article</h3>
+        <div className="flex space-x-4">
+          <a
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://quadratetechsolutions.com${location.pathname}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:text-blue-700"
+            aria-label="Share on Twitter"
+          >
+            Twitter
+          </a>
+          <a
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://quadratetechsolutions.com${location.pathname}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-700 hover:text-blue-900"
+            aria-label="Share on LinkedIn"
+          >
+            LinkedIn
+          </a>
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://quadratetechsolutions.com${location.pathname}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-900 hover:text-blue-700"
+            aria-label="Share on Facebook"
+          >
+            Facebook
+          </a>
+        </div>
       </div>
     </BlogPostContainer>
   );

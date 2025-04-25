@@ -27,14 +27,20 @@
   <link rel="apple-touch-icon"
     href="https://ik.imagekit.io/quadrate/QTS%20Logo%20Primary.png?updatedAt=1733854434969" />
   <meta name="theme-color" content="#0607E1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <meta name="description" content="Quadrate Tech Solutions offers custom software development, web development, digital marketing, IT outsourcing, and business automation services to help businesses grow." />
-  <meta name="keywords" content="software development, web development, digital marketing, IT outsourcing, business automation, Sri Lanka, custom software, web design" />
+  <meta name="keywords" content="software development, web development, digital marketing, IT outsourcing, business automation, Sri Lanka, custom software, web design, mobile app development, cloud solutions" />
   <meta name="author" content="Quadrate Tech Solutions" />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="language" content="English" />
   <meta name="revisit-after" content="7 days" />
   <meta name="generator" content="Vite" />
+  <meta name="google-site-verification" content="your-verification-code" />
+  <meta name="msvalidate.01" content="your-bing-verification-code" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="application-name" content="Quadrate Tech Solutions" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
@@ -42,6 +48,10 @@
   <meta property="og:title" content="Quadrate Tech Solutions | Leading Software Development Company in Sri Lanka" />
   <meta property="og:description" content="Quadrate Tech Solutions offers custom software development, web development, digital marketing, IT outsourcing, and business automation services to help businesses grow." />
   <meta property="og:image" content="https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Quadrate Tech Solutions" />
+  <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -49,14 +59,71 @@
   <meta name="twitter:title" content="Quadrate Tech Solutions | Leading Software Development Company in Sri Lanka" />
   <meta name="twitter:description" content="Quadrate Tech Solutions offers custom software development, web development, digital marketing, IT outsourcing, and business automation services to help businesses grow." />
   <meta name="twitter:image" content="https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458" />
+  <meta name="twitter:site" content="@quadratetech" />
+  <meta name="twitter:creator" content="@quadratetech" />
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://quadratetechsolutions.com/" />
+
+  <!-- RSS Feed -->
+  <link rel="alternate" type="application/rss+xml" title="Quadrate Tech Solutions Blog" href="https://quadratetechsolutions.com/rss.xml" />
+
+  <!-- Preconnect to External Domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://ik.imagekit.io" crossorigin />
 
   <!-- Web App Manifest -->
   <link rel="manifest" href="/manifest.json" />
 
   <title>Quadrate Tech Solutions | Leading Software Development Company in Sri Lanka</title>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Quadrate Tech Solutions",
+      "url": "https://quadratetechsolutions.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ik.imagekit.io/quadrate/QTS%20Logo%20Primary.png?updatedAt=1733854434969"
+      },
+      "description": "Quadrate Tech Solutions offers custom software development, web development, digital marketing, IT outsourcing, and business automation services to help businesses grow.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Sri Lanka"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+94 77 123 4567",
+        "contactType": "customer service",
+        "email": "info@quadratetechsolutions.com"
+      },
+      "sameAs": [
+        "https://www.facebook.com/quadratetechsolutions",
+        "https://www.linkedin.com/company/quadrate-tech-solutions",
+        "https://twitter.com/quadratetech",
+        "https://www.instagram.com/quadratetechsolutions/",
+        "https://github.com/quadratetechsolutions"
+      ]
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://quadratetechsolutions.com",
+      "name": "Quadrate Tech Solutions",
+      "description": "Quadrate Tech Solutions offers custom software development, web development, digital marketing, IT outsourcing, and business automation services to help businesses grow.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://quadratetechsolutions.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -67,8 +134,9 @@
     <!-- End Google Tag Manager (noscript) -->
   <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/144768548.js"></script>
   <!-- End of HubSpot Embed Code -->
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
+  <div id="root"><!--app-html--></div>
+  <!--app-head-->
+  <script type="module" src="/src/entry-client.tsx"></script>
 </body>
 
 </html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://quadratetechsolutions.com/about</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ik.imagekit.io/quadrate/videos/intro-thumbnail.jpg</video:thumbnail_loc>
+      <video:title>Quadrate Tech Solutions Introduction</video:title>
+      <video:description>Learn about Quadrate Tech Solutions and our services</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=example1</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/example1</video:player_loc>
+      <video:duration>120</video:duration>
+      <video:publication_date>2023-01-15T08:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://quadratetechsolutions.com/services</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ik.imagekit.io/quadrate/videos/webdev-thumbnail.jpg</video:thumbnail_loc>
+      <video:title>Web Development Process</video:title>
+      <video:description>Our approach to web development projects</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=example2</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/example2</video:player_loc>
+      <video:duration>180</video:duration>
+      <video:publication_date>2023-02-20T10:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+  </url>
+</urlset>

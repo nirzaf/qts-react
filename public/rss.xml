@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+  xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+>
+  <channel>
+    <title>Quadrate Tech Solutions Blog</title>
+    <atom:link href="https://quadratetechsolutions.com/rss.xml" rel="self" type="application/rss+xml" />
+    <link>https://quadratetechsolutions.com</link>
+    <description>Latest articles from Quadrate Tech Solutions on software development, web development, digital marketing, and IT trends.</description>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 25 Apr 2025 11:05:56 GMT</lastBuildDate>
+    <sy:updatePeriod>daily</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <image>
+      <url>https://quadratetechsolutions.com/logo.png</url>
+      <title>Quadrate Tech Solutions Blog</title>
+      <link>https://quadratetechsolutions.com</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
+    
+    <item>
+      <title><![CDATA[The Future is Delightful: A Peek into What's Next for C# 13]]></title>
+      <link>https://quadratetechsolutions.com/blog/csharp-13-future</link>
+      <guid>https://quadratetechsolutions.com/blog/csharp-13-future</guid>
+      <pubDate>Fri, 21 Jun 2024 21:00:00 GMT</pubDate>
+      <description><![CDATA[Exploring upcoming features and design philosophy for C# 13 and beyond]]></description>
+      <content:encoded><![CDATA[<img src="https://ik.imagekit.io/quadrate/blogs/csharp-13.webp?updatedAt=1732702078737" alt="The Future is Delightful: A Peek into What's Next for C# 13" />
+Exploring upcoming features and design philosophy for C# 13 and beyond]]></content:encoded>
+      <author>M.F.M Fazrin</author>
+      <category><![CDATA[Programming]]></category>
+      <category><![CDATA[C#]]></category>
+      <category><![CDATA[programming]]></category>
+      <category><![CDATA[language-design]]></category>
+      <category><![CDATA[future-features]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Integrating ElasticSearch with .NET Web API: A Comprehensive Guide]]></title>
+      <link>https://quadratetechsolutions.com/blog/elasticsearch-dotnet-guide</link>
+      <guid>https://quadratetechsolutions.com/blog/elasticsearch-dotnet-guide</guid>
+      <pubDate>Fri, 09 Feb 2024 21:00:00 GMT</pubDate>
+      <description><![CDATA[Learn how to set up ElasticSearch locally and integrate it with a .NET Web API for powerful search capabilities]]></description>
+      <content:encoded><![CDATA[<img src="https://ik.imagekit.io/quadrate/blogs/elastic-search.webp?updatedAt=1732702078768" alt="Integrating ElasticSearch with .NET Web API: A Comprehensive Guide" />
+Learn how to set up ElasticSearch locally and integrate it with a .NET Web API for powerful search capabilities]]></content:encoded>
+      <author>Fazrin</author>
+      <category><![CDATA[Development]]></category>
+      <category><![CDATA[elasticsearch]]></category>
+      <category><![CDATA[dotnet]]></category>
+      <category><![CDATA[webapi]]></category>
+      <category><![CDATA[docker]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Supercharge Your Applications with Azure Functions v4, C# and .NET 8: A Deep Dive]]></title>
+      <link>https://quadratetechsolutions.com/blog/azure-functions-v4-guide</link>
+      <guid>https://quadratetechsolutions.com/blog/azure-functions-v4-guide</guid>
+      <pubDate>Sun, 02 Jun 2024 21:00:00 GMT</pubDate>
+      <description><![CDATA[Explore the power of Azure Functions v4, C# 12, and .NET 8 for building efficient and scalable serverless applications]]></description>
+      <content:encoded><![CDATA[<img src="https://ik.imagekit.io/quadrate/blogs/azure-functions.webp?updatedAt=1732702078841" alt="Supercharge Your Applications with Azure Functions v4, C# and .NET 8: A Deep Dive" />
+Explore the power of Azure Functions v4, C# 12, and .NET 8 for building efficient and scalable serverless applications]]></content:encoded>
+      <author>M.F.M Fazrin</author>
+      <category><![CDATA[Cloud Computing]]></category>
+      <category><![CDATA[Azure Functions]]></category>
+      <category><![CDATA[C#]]></category>
+      <category><![CDATA[.NET 8]]></category>
+      <category><![CDATA[serverless]]></category>
+    </item>
+  </channel>
+</rss>

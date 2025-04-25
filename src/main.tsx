@@ -3,6 +3,7 @@ import { createRoot, hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './styles/globals.css';
 import App from './App';
+import { registerServiceWorker } from './utils/serviceWorker';
 
 const rootElement = document.getElementById('root');
 
@@ -26,4 +27,9 @@ if (rootElement.hasChildNodes() && import.meta.env.PROD) {
       </BrowserRouter>
     </StrictMode>
   );
+}
+
+// Register service worker for production
+if (import.meta.env.PROD) {
+  registerServiceWorker();
 }

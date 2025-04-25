@@ -7,7 +7,15 @@ import HeroBackground from '@/components/home/HeroBackground';
 import ErrorFallback from '@/components/home/ErrorFallback';
 import Loading from '@/components/ui/loading';
 import SEO from '@/components/seo/SEO';
-import { generateOrganizationSchema, generateWebPageSchema, defaultOrganization } from '@/utils/structuredData';
+import SchemaMarkup from '@/components/seo/SchemaMarkup';
+// import LazyLoad from '@/components/ui/LazyLoad';
+import {
+  generateOrganizationSchema,
+  generateWebPageSchema,
+  generateLocalBusinessSchema,
+  generateServiceSchema,
+  defaultOrganization
+} from '@/utils/structuredData';
 
 // Lazy load heavy components
 const Features = lazy(() => import('@/components/sections/features/Features'));
@@ -35,18 +43,65 @@ const Home: React.FC = () => {
 
   // Generate structured data for the home page
   const organizationSchema = generateOrganizationSchema(defaultOrganization);
+
   const webPageSchema = generateWebPageSchema({
     title: 'Quadrate Tech Solutions | Leading Software Development Company in Sri Lanka',
     description: 'Quadrate Tech Solutions offers custom software development, web development, digital marketing, IT outsourcing, and business automation services to help businesses grow.',
     url: 'https://quadratetechsolutions.com',
-    image: 'https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458'
+    image: 'https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458',
+    datePublished: '2023-01-01',
+    dateModified: new Date().toISOString().split('T')[0],
+    speakable: true
   });
 
-  // Combine structured data
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@graph': [organizationSchema, webPageSchema]
-  };
+  const localBusinessSchema = generateLocalBusinessSchema({
+    ...defaultOrganization,
+    geo: {
+      latitude: 7.8731,
+      longitude: 80.7718
+    },
+    openingHours: [
+      'Monday-Friday 09:00-17:00',
+      'Saturday 10:00-15:00'
+    ],
+    priceRange: '$$'
+  });
+
+  // Generate service schemas for main services
+  const webDevServiceSchema = generateServiceSchema({
+    name: 'Web Development Services',
+    description: 'Custom web application development using modern technologies like React, Angular, and Node.js.',
+    url: 'https://quadratetechsolutions.com/services#web-development',
+    provider: defaultOrganization,
+    category: 'Web Development',
+    areaServed: 'Worldwide',
+    offers: [
+      {
+        name: 'Custom Web Application',
+        price: '5000',
+        priceCurrency: 'USD',
+        availability: 'InStock'
+      }
+    ]
+  });
+
+  const mobileDevServiceSchema = generateServiceSchema({
+    name: 'Mobile App Development',
+    description: 'Native and cross-platform mobile application development for iOS and Android.',
+    url: 'https://quadratetechsolutions.com/services#mobile-development',
+    provider: defaultOrganization,
+    category: 'Mobile Development',
+    areaServed: 'Worldwide'
+  });
+
+  // Combine all structured data
+  const structuredData = [
+    organizationSchema,
+    webPageSchema,
+    localBusinessSchema,
+    webDevServiceSchema,
+    mobileDevServiceSchema
+  ];
 
   try {
     return (
@@ -54,10 +109,23 @@ const Home: React.FC = () => {
         <SEO
           title="Quadrate Tech Solutions | Leading Software Development Company in Sri Lanka"
           description="Quadrate Tech Solutions offers custom software development, web development, digital marketing, IT outsourcing, and business automation services to help businesses grow."
-          keywords="software development, web development, digital marketing, IT outsourcing, business automation, Sri Lanka, custom software, web design"
+          keywords="software development, web development, digital marketing, IT outsourcing, business automation, Sri Lanka, custom software, web design, mobile app development, cloud solutions"
           image="https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458"
-          structuredData={structuredData}
+          author="Quadrate Tech Solutions"
+          language="en"
+          preload={[
+            {
+              href: "https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458",
+              as: "image",
+              type: "image/avif"
+            },
+            {
+              href: "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap",
+              as: "style"
+            }
+          ]}
         />
+        <SchemaMarkup schema={structuredData} />
         <BackgroundElements />
 
         {/* Content Container */}

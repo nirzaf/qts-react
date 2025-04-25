@@ -1,0 +1,126 @@
+/* Accessibility Styles */
+
+/* High Contrast Mode */
+.high-contrast {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --link-color: #ffff00;
+  --heading-color: #00ffff;
+  --border-color: #ffffff;
+  --focus-color: #ff00ff;
+}
+
+.high-contrast body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.high-contrast h1, 
+.high-contrast h2, 
+.high-contrast h3, 
+.high-contrast h4, 
+.high-contrast h5, 
+.high-contrast h6 {
+  color: var(--heading-color);
+}
+
+.high-contrast a {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.high-contrast button,
+.high-contrast input,
+.high-contrast select,
+.high-contrast textarea {
+  border: 2px solid var(--border-color);
+}
+
+.high-contrast *:focus {
+  outline: 3px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+/* Large Text Mode */
+.large-text {
+  --base-font-size: 20px;
+  --heading-scale: 1.2;
+}
+
+.large-text body {
+  font-size: var(--base-font-size);
+  line-height: 1.5;
+}
+
+.large-text h1 {
+  font-size: calc(var(--base-font-size) * 2.5 * var(--heading-scale));
+}
+
+.large-text h2 {
+  font-size: calc(var(--base-font-size) * 2 * var(--heading-scale));
+}
+
+.large-text h3 {
+  font-size: calc(var(--base-font-size) * 1.75 * var(--heading-scale));
+}
+
+.large-text h4 {
+  font-size: calc(var(--base-font-size) * 1.5 * var(--heading-scale));
+}
+
+.large-text h5 {
+  font-size: calc(var(--base-font-size) * 1.25 * var(--heading-scale));
+}
+
+.large-text h6 {
+  font-size: calc(var(--base-font-size) * 1.1 * var(--heading-scale));
+}
+
+.large-text button,
+.large-text input,
+.large-text select,
+.large-text textarea {
+  font-size: var(--base-font-size);
+  padding: 0.75rem;
+}
+
+/* Focus Styles */
+*:focus-visible {
+  outline: 3px solid #0607E1;
+  outline-offset: 2px;
+}
+
+/* Skip Link */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only.focus-visible,
+.sr-only:focus-visible {
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  z-index: 9999;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

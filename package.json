@@ -5,10 +5,21 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run build:client",
+    "build:client": "tsc -b && vite build --outDir dist",
+    "build:server": "echo \"Skipping server build for now\"",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "pnpm build && cd dist && git init && git add . && git commit -m 'Deploy' && git push --force https://github.com/nirzaf/qts-react.git main:gh-pages"
+    "start": "NODE_ENV=production node server.js",
+    "deploy": "npm run build && cd dist && git init && git add . && git commit -m 'Deploy' && git push --force https://github.com/nirzaf/qts-react.git main:gh-pages",
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "generate-image-sitemap": "node scripts/generate-image-sitemap.js",
+    "generate-video-sitemap": "node scripts/generate-video-sitemap.js",
+    "generate-news-sitemap": "node scripts/generate-news-sitemap.js",
+    "generate-robots": "node scripts/generate-robots.js",
+    "generate-rss": "node scripts/generate-rss.js",
+    "generate-seo": "npm run generate-sitemap && npm run generate-image-sitemap && npm run generate-video-sitemap && npm run generate-news-sitemap && npm run generate-robots && npm run generate-rss",
+    "prebuild": "npm run generate-seo"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.3",
@@ -32,7 +43,9 @@
     "autoprefixer": "^10.4.21",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "compression": "^1.7.4",
     "date-fns": "^4.1.0",
+    "express": "^4.18.3",
     "framer-motion": "^12.6.3",
     "i18next": "^24.2.3",
     "i18next-browser-languagedetector": "^8.0.4",
@@ -50,10 +63,12 @@
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.5.2",
     "react-syntax-highlighter": "^15.6.1",
+    "sitemap": "^7.1.2",
     "tailwind-merge": "^3.2.0",
     "tailwindcss": "3.4.1",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.175.0"
+    "three": "^0.175.0",
+    "web-vitals": "^3.5.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.24.0",
@@ -68,8 +83,8 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
     "npm-check-updates": "^17.1.16",
-
     "rollup-plugin-visualizer": "^5.14.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.29.1",
     "vite": "^6.3.2",
