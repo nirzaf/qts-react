@@ -35,12 +35,13 @@ const WebVitalsReporter = () => {
     // Only run in production and in the browser
     if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
       // Dynamically import web-vitals to avoid increasing the bundle size in development
-      import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-        getCLS(sendToAnalytics); // Cumulative Layout Shift
-        getFID(sendToAnalytics); // First Input Delay
-        getFCP(sendToAnalytics); // First Contentful Paint
-        getLCP(sendToAnalytics); // Largest Contentful Paint
-        getTTFB(sendToAnalytics); // Time to First Byte
+      import('web-vitals').then((webVitals) => {
+        // Web Vitals v4.x has a different API
+        webVitals.onCLS(sendToAnalytics); // Cumulative Layout Shift
+        webVitals.onFID(sendToAnalytics); // First Input Delay
+        webVitals.onFCP(sendToAnalytics); // First Contentful Paint
+        webVitals.onLCP(sendToAnalytics); // Largest Contentful Paint
+        webVitals.onTTFB(sendToAnalytics); // Time to First Byte
       });
     }
   }, []);
