@@ -45,8 +45,8 @@ const Home: React.FC = () => {
   const organizationSchema = generateOrganizationSchema(defaultOrganization);
 
   const webPageSchema = generateWebPageSchema({
-    title: 'Quadrate Tech Solutions | Leading Software Development Company in Sri Lanka',
-    description: 'Quadrate Tech Solutions offers custom software development, web development, digital marketing, IT outsourcing, and business automation services to help businesses grow.',
+    title: 'Quadrate Tech Solutions | Software Development',
+    description: 'Custom software development, web development, digital marketing, and IT services to help your business grow.',
     url: 'https://quadratetechsolutions.com',
     image: 'https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458',
     datePublished: '2023-01-01',
@@ -107,8 +107,8 @@ const Home: React.FC = () => {
     return (
       <div className="relative bg-transparent">
         <SEO
-          title="Quadrate Tech Solutions | Leading Software Development Company in Sri Lanka"
-          description="Quadrate Tech Solutions offers custom software development, web development, digital marketing, IT outsourcing, and business automation services to help businesses grow."
+          title="Quadrate Tech Solutions | Software Development"
+          description="Custom software development, web development, digital marketing, and IT services to help your business grow."
           keywords="software development, web development, digital marketing, IT outsourcing, business automation, Sri Lanka, custom software, web design, mobile app development, cloud solutions"
           image="https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458"
           author="Quadrate Tech Solutions"

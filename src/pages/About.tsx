@@ -10,8 +10,8 @@ const AboutPage: React.FC = () => {
   // Generate structured data for the about page
   const organizationSchema = generateOrganizationSchema(defaultOrganization);
   const webPageSchema = generateWebPageSchema({
-    title: 'About Quadrate Tech Solutions | Our Story, Mission & Vision',
-    description: 'Learn about Quadrate Tech Solutions, our journey, mission, vision, and the experienced team behind our innovative IT solutions and services.',
+    title: 'About Quadrate Tech Solutions | Our Story',
+    description: 'Learn about our journey, mission, vision, and the team behind our innovative IT solutions and services.',
     url: 'https://quadratetechsolutions.com/about',
   });
 
@@ -24,8 +24,8 @@ const AboutPage: React.FC = () => {
   return (
     <PageLayout>
       <SEO
-        title="About Quadrate Tech Solutions | Our Story, Mission & Vision"
-        description="Learn about Quadrate Tech Solutions, our journey, mission, vision, and the experienced team behind our innovative IT solutions and services."
+        title="About Quadrate Tech Solutions | Our Story"
+        description="Learn about our journey, mission, vision, and the team behind our innovative IT solutions and services."
         keywords="about Quadrate, tech company Sri Lanka, IT solutions mission, software development team, company vision, tech expertise"
         structuredData={structuredData}
       />
