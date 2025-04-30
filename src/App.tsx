@@ -1,6 +1,5 @@
 import React, { Suspense, useEffect, lazy } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from '@/components/ui/toaster';
 import HubSpotChat from '@/components/chat/HubSpotChat';
 import { Navigation } from '@/components/Navigation';
@@ -9,6 +8,7 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import WebVitalsReporter from '@/components/performance/WebVitalsReporter';
 import A11yFeatures from '@/components/accessibility/A11yFeatures';
 import SEOAudit from '@/components/seo/SEOAudit';
+import ErrorBoundary from '@/components/ErrorBoundary';
 
 // Lazy load all page components for better performance
 const Home = lazy(() => import('@/pages/Home'));
@@ -20,6 +20,7 @@ const Contact = lazy(() => import('@/pages/Contact'));
 const Pricing = lazy(() => import('@/pages/Pricing'));
 const NotFound = lazy(() => import('@/pages/404'));
 const Microsoft365PremiumPackageDetails = lazy(() => import('@/pages/Microsoft365PremiumPackageDetails'));
+const InterviewAssessment = lazy(() => import('@/pages/InterviewAssessment'));
 
 // Redirect component for handling undefined routes
 const RedirectToHome: React.FC = () => {
@@ -32,7 +33,7 @@ const RedirectToHome: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <HelmetProvider>
+    <ErrorBoundary>
       <div className="app">
         {/* Web Vitals Monitoring */}
         <WebVitalsReporter />
@@ -42,29 +43,32 @@ const App: React.FC = () => {
 
         <Navigation />
         <main id="main-content" tabIndex={-1}>
-          <Suspense fallback={<LoadingSpinner size="large" text="Loading content..." />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:id" element={<BlogPost />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/pricing" element={<Pricing />} />
-              <Route path="/microsoft-365-premium-package-details" element={<Microsoft365PremiumPackageDetails />} />
-              <Route path="/404" element={<NotFound />} />
-              <Route path="*" element={<RedirectToHome />} />
-            </Routes>
-            <Toaster />
-            <HubSpotChat />
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense fallback={<LoadingSpinner size="large" text="Loading content..." />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:id" element={<BlogPost />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/pricing" element={<Pricing />} />
+                <Route path="/microsoft-365-premium-package-details" element={<Microsoft365PremiumPackageDetails />} />
+                <Route path="/interview-assessment" element={<InterviewAssessment />} />
+                <Route path="/404" element={<NotFound />} />
+                <Route path="*" element={<RedirectToHome />} />
+              </Routes>
+              <Toaster />
+              <HubSpotChat />
+            </Suspense>
+          </ErrorBoundary>
         </main>
         <Footer />
 
         {/* SEO Audit Tool - only visible in development */}
         <SEOAudit showInProduction={false} />
       </div>
-    </HelmetProvider>
+    </ErrorBoundary>
   );
 };
 

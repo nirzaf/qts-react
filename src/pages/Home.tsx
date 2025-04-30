@@ -25,6 +25,7 @@ const PricingSection = lazy(() => import('@/components/sections/PricingSection')
 const StatsSection = lazy(() => import('@/components/sections/StatsSection'));
 const PartnersSection = lazy(() => import('@/components/sections/PartnersSection'));
 const CompanyValues = lazy(() => import('@/components/sections/home/CompanyValues'));
+const InterviewAssessmentCTA = lazy(() => import('@/components/home/InterviewAssessmentCTA'));
 
 /**
  * Home page component displaying various sections about Quadrate Tech Solutions
@@ -197,6 +198,13 @@ const Home: React.FC = () => {
           <div className="font-plusJakartaSans text-[#0607E1]">
             <Suspense fallback={<Loading />}>
               <StatsSection />
+            </Suspense>
+          </div>
+
+          {/* Interview Assessment CTA */}
+          <div className="font-plusJakartaSans">
+            <Suspense fallback={<Loading />}>
+              <InterviewAssessmentCTA />
             </Suspense>
           </div>
 
