@@ -142,14 +142,53 @@ const InterviewAssessment: React.FC = () => {
     // Save answers to local storage
     localStorage.setItem(LS_KEYS.ANSWERS, JSON.stringify(updatedAnswers));
 
-    if (isTimeUp) {
-      setShowTimeUpModal(true);
-      setPageState({
-        ...pageState,
-        answers: updatedAnswers,
-        isTimeUp: true,
-      });
-    } else {
+    // Use setTimeout to ensure the state update happens after the current execution context
+    // This helps prevent the button from getting stuck in the loading state
+    setTimeout(() => {
+      if (isTimeUp) {
+        setShowTimeUpModal(true);
+        setPageState({
+          ...pageState,
+          answers: updatedAnswers,
+          isTimeUp: true,
+        });
+      } else {
+        // Move to the next page
+        const nextPage = pageState.currentPage + 1;
+
+        if (nextPage > TOTAL_PAGES) {
+          // All pages completed, move to completion page
+          setPageState({
+            ...pageState,
+            currentPage: TOTAL_PAGES + 1, // Completion page
+            answers: updatedAnswers,
+            isTimeUp: false,
+          });
+
+          // Save current page to local storage
+          localStorage.setItem(LS_KEYS.CURRENT_PAGE, String(TOTAL_PAGES + 1));
+        } else {
+          setPageState({
+            ...pageState,
+            currentPage: nextPage,
+            timeRemaining: TIME_LIMIT_PER_PAGE,
+            answers: updatedAnswers,
+            isTimeUp: false,
+          });
+
+          // Save current page to local storage
+          localStorage.setItem(LS_KEYS.CURRENT_PAGE, String(nextPage));
+        }
+      }
+    }, 0);
+  };
+
+  // Handle time up modal continue button
+  const handleTimeUpContinue = () => {
+    setShowTimeUpModal(false);
+
+    // Use setTimeout to ensure the state update happens after the current execution context
+    setTimeout(() => {
       // Move to the next page
       const nextPage = pageState.currentPage + 1;
 
@@ -158,7 +197,6 @@ const InterviewAssessment: React.FC = () => {
         setPageState({
           ...pageState,
           currentPage: TOTAL_PAGES + 1, // Completion page
-          answers: updatedAnswers,
           isTimeUp: false,
         });
 
@@ -169,44 +207,13 @@ const InterviewAssessment: React.FC = () => {
           ...pageState,
           currentPage: nextPage,
           timeRemaining: TIME_LIMIT_PER_PAGE,
-          answers: updatedAnswers,
           isTimeUp: false,
         });
 
         // Save current page to local storage
         localStorage.setItem(LS_KEYS.CURRENT_PAGE, String(nextPage));
       }
-    }
-  };
-
-  // Handle time up modal continue button
-  const handleTimeUpContinue = () => {
-    setShowTimeUpModal(false);
-
-    // Move to the next page
-    const nextPage = pageState.currentPage + 1;
-
-    if (nextPage > TOTAL_PAGES) {
-      // All pages completed, move to completion page
-      setPageState({
-        ...pageState,
-        currentPage: TOTAL_PAGES + 1, // Completion page
-        isTimeUp: false,
-      });
-
-      // Save current page to local storage
-      localStorage.setItem(LS_KEYS.CURRENT_PAGE, String(TOTAL_PAGES + 1));
-    } else {
-      setPageState({
-        ...pageState,
-        currentPage: nextPage,
-        timeRemaining: TIME_LIMIT_PER_PAGE,
-        isTimeUp: false,
-      });
-
-      // Save current page to local storage
-      localStorage.setItem(LS_KEYS.CURRENT_PAGE, String(nextPage));
-    }
+    }, 0);
   };
 
   // Submit assessment to database
