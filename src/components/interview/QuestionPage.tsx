@@ -72,8 +72,11 @@ const QuestionPage: React.FC<QuestionPageProps> = ({
     setIsNavigating(false);
   }, [pageNumber]);
 
-  // Calculate progress
-  const progress = ((timeLimit - timeRemaining) / timeLimit) * 100;
+  // Calculate page progress (which page we're on out of total)
+  const pageProgress = (pageNumber / totalPages) * 100;
+
+  // Calculate time progress (how much time has elapsed)
+  const timeProgress = ((timeLimit - timeRemaining) / timeLimit) * 100;
 
   return (
     <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
@@ -83,21 +86,40 @@ const QuestionPage: React.FC<QuestionPageProps> = ({
             Page {pageNumber} of {totalPages}
           </h2>
           <div className="text-right">
-            <div className={`text-lg font-semibold ${timeRemaining < 60 ? 'text-red-600 animate-pulse' : 'text-gray-700'}`}>
-              Time Remaining: {formatTime(timeRemaining)}
-            </div>
             <div className="text-sm text-gray-500">
               Answer all questions before time runs out
             </div>
           </div>
         </div>
 
-        {/* Progress bar */}
-        <div className="w-full bg-gray-200 rounded-full h-2.5">
-          <div
-            className="bg-blue-600 h-2.5 rounded-full transition-all duration-1000 ease-linear"
-            style={{ width: `${progress}%` }}
-          ></div>
+        {/* Page progress bar */}
+        <div className="mb-2">
+          <div className="flex justify-between text-xs text-gray-600 mb-1">
+            <span>Page Progress</span>
+            <span>{pageNumber} of {totalPages}</span>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-2.5">
+            <div
+              className="bg-green-600 h-2.5 rounded-full transition-all duration-300 ease-out"
+              style={{ width: `${pageProgress}%` }}
+            ></div>
+          </div>
+        </div>
+
+        {/* Time progress bar */}
+        <div>
+          <div className="flex justify-between text-xs text-gray-600 mb-1">
+            <span>Time Remaining</span>
+            <span>{formatTime(timeRemaining)}</span>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-2.5">
+            <div
+              className={`h-2.5 rounded-full transition-all duration-1000 ease-linear ${
+                timeRemaining < 60 ? 'bg-red-600' : 'bg-blue-600'
+              }`}
+              style={{ width: `${100 - timeProgress}%` }}
+            ></div>
+          </div>
         </div>
       </div>
 
