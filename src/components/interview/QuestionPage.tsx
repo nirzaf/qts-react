@@ -67,6 +67,11 @@ const QuestionPage: React.FC<QuestionPageProps> = ({
     return () => clearInterval(timer);
   }, [timeRemaining]);
 
+  // Reset navigation state when page number changes
+  useEffect(() => {
+    setIsNavigating(false);
+  }, [pageNumber]);
+
   // Calculate progress
   const progress = ((timeLimit - timeRemaining) / timeLimit) * 100;
 
