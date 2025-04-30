@@ -1,6 +1,6 @@
 import React from 'react';
 import { hydrateRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Analytics } from '@vercel/analytics/react';
 import App from './App';
@@ -11,10 +11,10 @@ hydrateRoot(
   document.getElementById('root')!,
   <React.StrictMode>
     <HelmetProvider>
-      <BrowserRouter>
+      <HashRouter>
         <App />
         <Analytics />
-      </BrowserRouter>
+      </HashRouter>
     </HelmetProvider>
   </React.StrictMode>
 );

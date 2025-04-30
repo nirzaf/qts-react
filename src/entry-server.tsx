@@ -1,13 +1,8 @@
 import { renderToString } from 'react-dom/server';
 import { HelmetProvider, HelmetServerState } from 'react-helmet-async';
 import { Analytics } from '@vercel/analytics/react';
+import { StaticRouter } from 'react-router-dom/server';
 import App from './App';
-
-// Temporary workaround for StaticRouter
-// @ts-ignore
-const StaticRouter = ({ location, children }) => {
-  return <>{children}</>;
-};
 
 export function render(url: string, context: any = {}) {
   const helmetContext: { helmet?: HelmetServerState } = {};

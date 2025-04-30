@@ -41,7 +41,9 @@ const SEO: React.FC<SEOProps> = ({
 }) => {
   const { pathname } = useLocation();
   const siteUrl = 'https://quadratetechsolutions.com';
-  const url = `${siteUrl}${pathname}`;
+  // For hash routing, we need to use the path without the hash for SEO purposes
+  const cleanPathname = pathname === '/' ? '' : pathname;
+  const url = `${siteUrl}${cleanPathname}`;
   const defaultCanonical = canonicalUrl || url;
 
   // Format structured data for output

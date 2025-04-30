@@ -8,6 +8,9 @@ export const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
+  // With hash routing, we need to check the pathname part of the location
+  const currentPath = location.pathname;
+
   const navLinks = [
     { to: '/', label: 'Home' },
     { to: '/about', label: 'About' },
@@ -49,11 +52,11 @@ export const Navigation: React.FC = () => {
                 <SEOLink
                   to={link.to}
                   className={`text-sm font-medium transition-colors hover:text-[#0607E1] relative
-                    ${location.pathname === link.to ? 'text-[#0607E1]' : 'text-gray-700'}`}
+                    ${currentPath === link.to ? 'text-[#0607E1]' : 'text-gray-700'}`}
                   ariaLabel={`Navigate to ${link.label}`}
                 >
                   {link.label}
-                  {location.pathname === link.to && (
+                  {currentPath === link.to && (
                     <motion.div
                       className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#0607E1]"
                       layoutId="underline"
@@ -133,7 +136,7 @@ export const Navigation: React.FC = () => {
                       to={link.to}
                       onClick={() => setIsOpen(false)}
                       className={`block px-3 py-2 rounded-md text-base font-medium transition-colors hover:text-[#0607E1] hover:bg-gray-50
-                        ${location.pathname === link.to ? 'text-[#0607E1] bg-gray-50' : 'text-gray-700'}`}
+                        ${currentPath === link.to ? 'text-[#0607E1] bg-gray-50' : 'text-gray-700'}`}
                       ariaLabel={`Navigate to ${link.label}`}
                     >
                       {link.label}

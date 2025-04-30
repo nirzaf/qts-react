@@ -39,8 +39,10 @@ const SEOHead: React.FC<SEOHeadProps> = ({
 }) => {
   const { pathname } = useLocation();
   const siteUrl = 'https://quadratetechsolutions.com';
-  const url = canonicalUrl || `${siteUrl}${pathname}`;
-  
+  // For hash routing, we need to use the path without the hash for SEO purposes
+  const cleanPathname = pathname === '/' ? '' : pathname;
+  const url = canonicalUrl || `${siteUrl}${cleanPathname}`;
+
   return (
     <Helmet>
       {/* Basic Meta Tags */}
@@ -49,13 +51,13 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       {keywords && <meta name="keywords" content={keywords} />}
       <meta name="author" content={author} />
       <link rel="canonical" href={url} />
-      
+
       {/* Robots Control */}
-      <meta 
-        name="robots" 
-        content={noIndex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} 
+      <meta
+        name="robots"
+        content={noIndex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}
       />
-      
+
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
       <meta property="og:url" content={url} />
@@ -66,7 +68,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property="og:image:height" content="630" />
       <meta property="og:site_name" content="Quadrate Tech Solutions" />
       <meta property="og:locale" content="en_US" />
-      
+
       {/* Article Specific Meta Tags */}
       {type === 'article' && publishedTime && (
         <meta property="article:published_time" content={publishedTime} />
@@ -80,7 +82,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       {type === 'article' && tags.length > 0 && tags.map(tag => (
         <meta key={tag} property="article:tag" content={tag} />
       ))}
-      
+
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@quadratetech" />
@@ -89,7 +91,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
-      
+
       {/* Additional SEO elements passed as children */}
       {children}
     </Helmet>
