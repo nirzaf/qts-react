@@ -5,85 +5,103 @@ interface HexCell {
   id: number;
   x: number;
   y: number;
+  z: number; // Added z-coordinate for 3D effect
   size: number;
   color: string;
   delay: number;
   pulseSpeed: number;
   rotateSpeed: number;
   opacity: number;
+  elevation: number; // Added elevation for 3D effect
 }
 
 const QuadrateHoneycombAnimation: React.FC = () => {
   const [cells, setCells] = useState<HexCell[]>([]);
   const [isMounted, setIsMounted] = useState(false);
 
-  // Colors in the blue/indigo palette with high opacity for better visibility
+  // Colors from the palette - using Chrysler Blue (#0607E1) as the main color
   const colors = [
-    'rgba(6, 7, 225, 0.95)',    // Primary blue
-    'rgba(77, 10, 255, 0.9)',   // Indigo
-    'rgba(99, 102, 241, 0.85)', // Lighter blue
-    'rgba(129, 140, 248, 0.8)', // Even lighter blue
-    'rgba(165, 180, 252, 0.75)', // Very light blue
+    'rgba(6, 7, 225, 0.95)',    // Chrysler Blue (main brand color)
+    'rgba(6, 7, 225, 0.85)',    // Chrysler Blue with less opacity
+    'rgba(6, 7, 225, 0.75)',    // Chrysler Blue with even less opacity
+    'rgba(6, 7, 225, 0.65)',    // Chrysler Blue with more transparency
+    'rgba(6, 7, 225, 0.55)',    // Chrysler Blue with most transparency
   ];
 
-  // Calculate honeycomb grid positions
+  // Calculate honeycomb grid positions in 3D space
   const generateHoneycombGrid = useMemo(() => {
     return (cellSize: number, rows: number, cols: number) => {
-      const grid: { x: number; y: number }[] = [];
+      const grid: { x: number; y: number; z: number }[] = [];
       const hexHeight = cellSize * 2;
       const hexWidth = Math.sqrt(3) * cellSize;
       const horizontalDistance = hexWidth;
       const verticalDistance = hexHeight * 0.75;
-      
+
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
           const x = col * horizontalDistance + (row % 2 === 1 ? horizontalDistance / 2 : 0);
           const y = row * verticalDistance;
-          grid.push({ x, y });
+
+          // Calculate z position for 3D effect - cells further from center are higher/lower
+          const centerCol = cols / 2;
+          const centerRow = rows / 2;
+          const distFromCenter = Math.sqrt(
+            Math.pow(col - centerCol, 2) + Math.pow(row - centerRow, 2)
+          );
+
+          // Random z value with some cells popping out more than others
+          const z = Math.sin(distFromCenter) * 20 - 10 + (Math.random() * 30 - 15);
+
+          grid.push({ x, y, z });
         }
       }
-      
+
       return grid;
     };
   }, []);
 
   useEffect(() => {
     setIsMounted(true);
-    
+
     // Create honeycomb cells
     const cellSize = 40; // Base size of each hexagon
     const rows = 5;      // Number of rows in the honeycomb
     const cols = 5;      // Number of columns in the honeycomb
-    
+
     const grid = generateHoneycombGrid(cellSize, rows, cols);
     const centerX = (cols - 1) * Math.sqrt(3) * cellSize / 2;
     const centerY = (rows - 1) * cellSize * 0.75;
-    
+
     const newCells: HexCell[] = grid.map((pos, index) => {
       // Adjust positions to center the grid
       const adjustedX = pos.x - centerX;
       const adjustedY = pos.y - centerY;
-      
+
       // Calculate distance from center for staggered animation
       const distanceFromCenter = Math.sqrt(
         Math.pow(adjustedX, 2) + Math.pow(adjustedY, 2)
       );
-      
+
+      // Random elevation for 3D effect
+      const elevation = Math.random() * 20 + 5;
+
       return {
         id: index,
         x: adjustedX,
         y: adjustedY,
+        z: pos.z,
         size: cellSize * (0.8 + Math.random() * 0.4), // Slight size variation
         color: colors[Math.floor(Math.random() * colors.length)],
         delay: distanceFromCenter * 0.01, // Delay based on distance from center
         pulseSpeed: 2 + Math.random() * 3, // Random pulse speed
         rotateSpeed: 10 + Math.random() * 20, // Random rotation speed
         opacity: 0.7 + Math.random() * 0.3, // High opacity for visibility
+        elevation: elevation, // Random elevation for 3D effect
       };
     });
-    
+
     setCells(newCells);
-    
+
     return () => {
       setIsMounted(false);
     };
@@ -92,52 +110,44 @@ const QuadrateHoneycombAnimation: React.FC = () => {
   if (!isMounted) return null;
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Central glow */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-[#0607E1] to-[#4D0AFF]"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ 
-          opacity: 0.9, 
-          scale: 1,
-          boxShadow: [
-            '0 0 30px 10px rgba(6, 7, 225, 0.5)',
-            '0 0 50px 20px rgba(6, 7, 225, 0.7)',
-            '0 0 30px 10px rgba(6, 7, 225, 0.5)',
-          ]
-        }}
-        transition={{
-          opacity: { duration: 1.5 },
-          scale: { duration: 1.5, type: "spring", stiffness: 100, damping: 15 },
-          boxShadow: { duration: 4, repeat: Infinity, repeatType: "reverse" }
-        }}
-        style={{ width: '60px', height: '60px', zIndex: 10 }}
-      />
-
-      {/* Honeycomb cells */}
+    <div className="absolute inset-0 overflow-hidden pointer-events-none perspective-[1000px]">
+      {/* Honeycomb cells with 3D effect */}
       {cells.map((cell) => (
         <motion.div
           key={cell.id}
           className="absolute top-1/2 left-1/2"
-          initial={{ opacity: 0, scale: 0, rotate: 0 }}
+          initial={{ opacity: 0, scale: 0, rotateX: 0, rotateY: 0, z: -50 }}
           animate={{
             opacity: cell.opacity,
             scale: [0.9, 1, 0.9],
-            rotate: [0, 360],
+            rotateX: [0, 15, 0, -15, 0],
+            rotateY: [0, 15, 0, -15, 0],
+            z: [cell.z - 20, cell.z, cell.z - 10],
             x: cell.x,
             y: cell.y,
           }}
           transition={{
             opacity: { duration: 1, delay: cell.delay },
-            scale: { 
-              duration: cell.pulseSpeed, 
-              repeat: Infinity, 
-              repeatType: "reverse" 
+            scale: {
+              duration: cell.pulseSpeed,
+              repeat: Infinity,
+              repeatType: "reverse"
             },
-            rotate: { 
-              duration: cell.rotateSpeed, 
-              repeat: Infinity, 
-              ease: "linear" 
+            rotateX: {
+              duration: cell.rotateSpeed * 1.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            },
+            rotateY: {
+              duration: cell.rotateSpeed,
+              repeat: Infinity,
+              ease: "easeInOut"
+            },
+            z: {
+              duration: cell.pulseSpeed * 1.2,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut"
             },
             x: { duration: 0.8, delay: cell.delay },
             y: { duration: 0.8, delay: cell.delay },
@@ -147,48 +157,99 @@ const QuadrateHoneycombAnimation: React.FC = () => {
             height: `${cell.size}px`,
             marginLeft: `-${cell.size / 2}px`,
             marginTop: `-${cell.size / 2}px`,
-            zIndex: 5,
+            zIndex: Math.round(cell.z + 100), // Dynamic z-index based on z position
+            transformStyle: 'preserve-3d',
           }}
         >
-          {/* Hexagon shape using CSS */}
-          <div 
-            className="w-full h-full relative"
+          {/* 3D Hexagon with faces */}
+          <div
+            className="w-full h-full relative transform-gpu"
             style={{
-              clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
-              background: `linear-gradient(135deg, ${cell.color}, rgba(77, 10, 255, 0.8))`,
-              boxShadow: `0 0 15px 5px ${cell.color}`,
+              transformStyle: 'preserve-3d',
             }}
           >
-            {/* Inner hexagon for depth effect */}
-            <motion.div 
-              className="absolute inset-2 opacity-70"
+            {/* Top face */}
+            <div
+              className="absolute inset-0"
+              style={{
+                clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+                background: `linear-gradient(135deg, ${cell.color}, rgba(6, 7, 225, 0.6))`,
+                boxShadow: `0 0 15px 5px ${cell.color}`,
+                transform: `translateZ(${cell.elevation}px)`,
+                backfaceVisibility: 'hidden',
+              }}
+            />
+
+            {/* Side faces - 6 sides of the hexagon */}
+            {[...Array(6)].map((_, i) => {
+              const angle = (i * 60) * (Math.PI / 180);
+              const nextAngle = ((i + 1) * 60) * (Math.PI / 180);
+
+              // Calculate points for this side face
+              const x1 = 50 + 50 * Math.cos(angle);
+              const y1 = 50 + 50 * Math.sin(angle);
+              const x2 = 50 + 50 * Math.cos(nextAngle);
+              const y2 = 50 + 50 * Math.sin(nextAngle);
+
+              return (
+                <div
+                  key={i}
+                  className="absolute"
+                  style={{
+                    width: '100%',
+                    height: `${cell.elevation}px`,
+                    transformOrigin: `${x1}% ${y1}%`,
+                    transform: `rotateX(-90deg) translateY(${cell.elevation / 2}px)`,
+                    background: `linear-gradient(to bottom, ${cell.color}, rgba(6, 7, 225, 0.3))`,
+                    opacity: 0.7,
+                    clipPath: `polygon(${x1}% ${y1}%, ${x2}% ${y2}%, ${x2}% 100%, ${x1}% 100%)`,
+                  }}
+                />
+              );
+            })}
+
+            {/* Bottom face */}
+            <div
+              className="absolute inset-0"
+              style={{
+                clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+                background: `rgba(6, 7, 225, 0.3)`,
+                transform: `translateZ(0px)`,
+                backfaceVisibility: 'hidden',
+              }}
+            />
+
+            {/* Inner highlight for top face */}
+            <motion.div
+              className="absolute inset-2"
               animate={{
                 opacity: [0.5, 0.8, 0.5]
               }}
               transition={{
-                opacity: { 
-                  duration: cell.pulseSpeed * 0.7, 
-                  repeat: Infinity, 
-                  repeatType: "reverse" 
+                opacity: {
+                  duration: cell.pulseSpeed * 0.7,
+                  repeat: Infinity,
+                  repeatType: "reverse"
                 }
               }}
               style={{
                 clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
-                background: `linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent)`,
+                background: `linear-gradient(135deg, rgba(255, 255, 255, 0.4), transparent)`,
+                transform: `translateZ(${cell.elevation + 0.5}px)`,
               }}
             />
           </div>
         </motion.div>
       ))}
 
-      {/* Connecting lines effect */}
+      {/* Connecting lines effect with 3D perspective */}
       <svg className="absolute inset-0 w-full h-full opacity-30">
         <defs>
           <pattern id="hexGrid" width="60" height="60" patternUnits="userSpaceOnUse" patternTransform="scale(2)">
-            <path 
-              d="M15,0 L30,10 L30,30 L15,40 L0,30 L0,10 Z" 
-              fill="none" 
-              stroke="rgba(6, 7, 225, 0.4)" 
+            <path
+              d="M15,0 L30,10 L30,30 L15,40 L0,30 L0,10 Z"
+              fill="none"
+              stroke="rgba(6, 7, 225, 0.4)"
               strokeWidth="0.5"
             />
           </pattern>
@@ -203,67 +264,24 @@ const QuadrateHoneycombAnimation: React.FC = () => {
         <rect x="0" y="0" width="100%" height="100%" fill="url(#hexGrid)" mask="url(#hexMask)" />
       </svg>
 
-      {/* "Q" letter in the center */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-4xl font-bold text-white z-20"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ 
-          opacity: 1, 
-          scale: 1,
-          textShadow: [
-            '0 0 5px rgba(255, 255, 255, 0.5)',
-            '0 0 10px rgba(255, 255, 255, 0.8)',
-            '0 0 5px rgba(255, 255, 255, 0.5)',
-          ]
-        }}
-        transition={{
-          opacity: { duration: 2, delay: 0.5 },
-          scale: { duration: 1.5, type: "spring", stiffness: 100, damping: 15 },
-          textShadow: { duration: 3, repeat: Infinity, repeatType: "reverse" }
-        }}
-      >
-        Q
-      </motion.div>
-
-      {/* Enhanced pulsing glow in the background */}
+      {/* Enhanced background glow */}
       <motion.div
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full"
         initial={{ opacity: 0 }}
-        animate={{ 
-          opacity: 0.5,
+        animate={{
+          opacity: 0.4,
           scale: [1, 1.8, 1]
         }}
         transition={{
           opacity: { duration: 1 },
           scale: { duration: 8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }
         }}
-        style={{ 
-          width: '400px', 
+        style={{
+          width: '400px',
           height: '400px',
-          background: 'radial-gradient(circle, rgba(6, 7, 225, 0.4) 0%, rgba(6, 7, 225, 0) 70%)',
+          background: 'radial-gradient(circle, rgba(6, 7, 225, 0.3) 0%, rgba(6, 7, 225, 0) 70%)',
           filter: 'blur(25px)',
           zIndex: 1
-        }}
-      />
-      
-      {/* Additional outer glow */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full"
-        initial={{ opacity: 0 }}
-        animate={{ 
-          opacity: 0.3,
-          scale: [1.5, 2.2, 1.5]
-        }}
-        transition={{
-          opacity: { duration: 1.5 },
-          scale: { duration: 12, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }
-        }}
-        style={{ 
-          width: '500px', 
-          height: '500px',
-          background: 'radial-gradient(circle, rgba(77, 10, 255, 0.3) 0%, rgba(77, 10, 255, 0) 70%)',
-          filter: 'blur(30px)',
-          zIndex: 0
         }}
       />
     </div>
