@@ -1,0 +1,64 @@
+flowchart LR
+ subgraph s1["⚙️ Development & Build"]
+        B("Vite Build Process")
+        A["React + TS Code"]
+        TC("Vite/TS/Tailwind Configs")
+        C["Client Build Output (JS/CSS)"]
+        D["SSR Build Output (entry-server.js)"]
+        S["SEO Scripts"]
+  end
+ subgraph s2["⚛️ Frontend Application"]
+        P["Pages"]
+        R["React Router"]
+        P_Main["Main Pages (Home, About, etc)"]
+        P_Blog["Blog"]
+        P_Interview["Interview Assessment"]
+        Comp["Components"]
+        UILibs["UI Libs (Radix, Motion, etc)"]
+        TailwindCSS["Tailwind CSS"]
+        Data["Static Data / MD Content"]
+        Hooks["Custom Hooks"]
+        Utils["Utilities"]
+        IndexHTML["index.html"]
+  end
+ subgraph s3["☁️ Backend & External Services"]
+        SSR["Express Server (SSR)"]
+        SupaServ["Supabase Service"]
+        SupaDB[("Supabase DB")]
+        ExtInt["External Integrations (Analytics, Chat)"]
+  end
+ subgraph s4["🚀 Deployment CI/CD"]
+        GHA["GitHub Actions"]
+        Build["Run Build (pnpm build)"]
+        DeployStatic["Deploy Static Files (dist)"]
+        DeployServer["Deploy Server (SSR)"]
+        Hosting["Static Hosting (GH Pages, Vercel, Render)"]
+        ServerHosting["Node Server Hosting"]
+  end
+    A --> B & P
+    B -- uses --> TC
+    B --> C & D
+    S --> C
+    R --> P
+    P --> P_Main & P_Blog & P_Interview
+    Comp --> P
+    Comp -- uses --> UILibs
+    Comp -- styled with --> TailwindCSS
+    Data --> P
+    Hooks --> P
+    Utils --> P & IndexHTML
+    SSR -- serves --> IndexHTML
+    SSR -- renders --> D
+    P_Interview -- uses --> SupaServ
+    SupaServ --> SupaDB
+    IndexHTML -- integrates --> ExtInt
+    GHA -- triggers --> Build
+    Build --> DeployStatic & DeployServer
+    DeployStatic --> Hosting
+    DeployServer --> ServerHosting
+    C --> IndexHTML
+    D --> SSR
+    style s1 fill:#fdf,stroke:#333,stroke-width:2px
+    style s2 fill:#eef,stroke:#333,stroke-width:2px
+    style s3 fill:#efe,stroke:#333,stroke-width:2px
+    style s4 fill:#ffe,stroke:#333,stroke-width:2px
