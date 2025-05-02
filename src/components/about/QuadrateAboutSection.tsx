@@ -63,7 +63,7 @@ export const QuadrateAboutSection: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
           >
             {features.map((feature, index) => {
               const Icon = feature.icon;
