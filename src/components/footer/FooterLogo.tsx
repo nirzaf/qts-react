@@ -15,7 +15,7 @@ export const FooterLogo: React.FC = () => {
           alt="QTS Logo"
           className="h-10 w-auto brightness-[0.7] contrast-[1.4] [filter:saturate(1.2)_hue-rotate(-10deg)]"
         />
-        <span className="ml-2 text-xl font-bold text-[#000000]">QTS</span>
+        <span className="ml-2 text-xl font-bold text-[#FFFFFF]">QTS</span>
       </Link>
     </motion.div>
   );
