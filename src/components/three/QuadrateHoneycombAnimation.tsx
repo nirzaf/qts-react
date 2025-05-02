@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
 
 interface HexCell {
   id: number;
@@ -18,10 +19,20 @@ interface HexCell {
 const QuadrateHoneycombAnimation: React.FC = () => {
   const [cells, setCells] = useState<HexCell[]>([]);
   const [isMounted, setIsMounted] = useState(false);
+  
+  // Detect if device is mobile
+  const isMobile = useMediaQuery({ maxWidth: 767 });
 
   // Colors from the palette - using Chrysler Blue (#0607E1) as the main color
-  const colors = [
-    'rgba(6, 7, 225, 0.95)',    // Chrysler Blue (main brand color)
+  // Apply additional transparency on mobile for better text visibility
+  const colors = isMobile ? [
+    'rgba(6, 7, 225, 0.65)',    // Chrysler Blue with more transparency for mobile
+    'rgba(6, 7, 225, 0.55)',    // Chrysler Blue with increased transparency
+    'rgba(6, 7, 225, 0.45)',    // Chrysler Blue with even more transparency
+    'rgba(6, 7, 225, 0.35)',    // Chrysler Blue with high transparency
+    'rgba(6, 7, 225, 0.25)',    // Chrysler Blue with very high transparency
+  ] : [
+    'rgba(6, 7, 225, 0.95)',    // Chrysler Blue (main brand color) for desktop
     'rgba(6, 7, 225, 0.85)',    // Chrysler Blue with less opacity
     'rgba(6, 7, 225, 0.75)',    // Chrysler Blue with even less opacity
     'rgba(6, 7, 225, 0.65)',    // Chrysler Blue with more transparency
@@ -64,9 +75,9 @@ const QuadrateHoneycombAnimation: React.FC = () => {
     setIsMounted(true);
 
     // Create honeycomb cells
-    const cellSize = 40; // Base size of each hexagon
-    const rows = 5;      // Number of rows in the honeycomb
-    const cols = 5;      // Number of columns in the honeycomb
+    const cellSize = isMobile ? 30 : 40; // Smaller hexagons on mobile
+    const rows = isMobile ? 4 : 5;      // Fewer rows on mobile
+    const cols = isMobile ? 4 : 5;      // Fewer columns on mobile
 
     const grid = generateHoneycombGrid(cellSize, rows, cols);
     const centerX = (cols - 1) * Math.sqrt(3) * cellSize / 2;
@@ -95,8 +106,8 @@ const QuadrateHoneycombAnimation: React.FC = () => {
         delay: distanceFromCenter * 0.01, // Delay based on distance from center
         pulseSpeed: 2 + Math.random() * 3, // Random pulse speed
         rotateSpeed: 10 + Math.random() * 20, // Random rotation speed
-        opacity: 0.7 + Math.random() * 0.3, // High opacity for visibility
-        elevation: elevation, // Random elevation for 3D effect
+        opacity: isMobile ? (0.5 + Math.random() * 0.2) : (0.7 + Math.random() * 0.3), // Lower opacity on mobile
+        elevation: isMobile ? elevation * 0.7 : elevation, // Reduced elevation on mobile
       };
     });
 
@@ -110,7 +121,9 @@ const QuadrateHoneycombAnimation: React.FC = () => {
   if (!isMounted) return null;
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none perspective-[1000px]">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none perspective-[1000px]" style={{ 
+      opacity: isMobile ? 0.8 : 1, // Slightly reduce overall opacity on mobile
+    }}>
       {/* Honeycomb cells with 3D effect */}
       {cells.map((cell) => (
         <motion.div
@@ -243,7 +256,7 @@ const QuadrateHoneycombAnimation: React.FC = () => {
       ))}
 
       {/* Connecting lines effect with 3D perspective */}
-      <svg className="absolute inset-0 w-full h-full opacity-30">
+      <svg className="absolute inset-0 w-full h-full" style={{ opacity: isMobile ? 0.15 : 0.3 }}>
         <defs>
           <pattern id="hexGrid" width="60" height="60" patternUnits="userSpaceOnUse" patternTransform="scale(2)">
             <path
@@ -269,7 +282,7 @@ const QuadrateHoneycombAnimation: React.FC = () => {
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full"
         initial={{ opacity: 0 }}
         animate={{
-          opacity: 0.4,
+          opacity: isMobile ? 0.2 : 0.4, // Reduced opacity on mobile
           scale: [1, 1.8, 1]
         }}
         transition={{
@@ -277,10 +290,10 @@ const QuadrateHoneycombAnimation: React.FC = () => {
           scale: { duration: 8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }
         }}
         style={{
-          width: '400px',
-          height: '400px',
-          background: 'radial-gradient(circle, rgba(6, 7, 225, 0.3) 0%, rgba(6, 7, 225, 0) 70%)',
-          filter: 'blur(25px)',
+          width: isMobile ? '300px' : '400px', // Smaller glow on mobile
+          height: isMobile ? '300px' : '400px',
+          background: `radial-gradient(circle, rgba(6, 7, 225, ${isMobile ? '0.15' : '0.3'}) 0%, rgba(6, 7, 225, 0) 70%)`,
+          filter: isMobile ? 'blur(15px)' : 'blur(25px)', // Less blur on mobile
           zIndex: 1
         }}
       />
