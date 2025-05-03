@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageLayout from '@/layouts/PageLayout';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import { services } from './Services/data/services';
 import { containerVariants, itemVariants } from './Services/animations/variants';
@@ -9,66 +10,114 @@ import HeroSection from './Services/components/HeroSection';
 import ServiceCard from './Services/components/ServiceCard';
 import CTASection from './Services/components/CTASection';
 import SEO from '@/components/seo/SEO';
-import { generateOrganizationSchema, generateWebPageSchema, generateServiceSchema, defaultOrganization } from '@/utils/structuredData';
+import { 
+  generateOrganizationSchema, 
+  generateWebPageSchema, 
+  generateServiceSchema, 
+  generateBreadcrumbSchema,
+  defaultOrganization 
+} from '@/utils/structuredData';
 
 const ServicesPage: React.FC = () => {
+  const pageTitle = "Our Services | Quadrate Tech Solutions";
+  const pageDescription = "Explore services from Quadrate Tech Solutions: Custom Software, Web Dev, Digital Marketing, IT Outsourcing, Business Email, and Automation.";
+  const pageUrl = "https://quadrate.lk/#/services";
+  const pageImage = "https://ik.imagekit.io/quadrate/assets/img/services.jpg?updatedAt=1718024112686";
+
+  // Generate breadcrumb schema
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://quadrate.lk/#/' },
+    { name: 'Services', url: pageUrl }
+  ]);
+  
   // Generate structured data for the services page
   const organizationSchema = generateOrganizationSchema(defaultOrganization);
   const webPageSchema = generateWebPageSchema({
-    title: 'Our Services | Quadrate Tech Solutions',
-    description: 'Explore our comprehensive range of IT services including custom software development, web development, digital marketing, IT outsourcing, business email, and automation.',
-    url: 'https://quadratetechsolutions.com/services',
+    title: pageTitle,
+    description: pageDescription,
+    url: pageUrl,
+    image: pageImage,
+    dateModified: new Date().toISOString().split('T')[0],
+    breadcrumb: [
+      { name: 'Home', url: 'https://quadrate.lk/#/' },
+      { name: 'Services', url: pageUrl }
+    ],
+    speakable: true
   });
 
-  // Generate service schemas
+  // Generate service schemas with more detailed information
   const serviceSchemas = services.map(service => generateServiceSchema({
     name: service.title,
     description: service.description,
-    url: `https://quadratetechsolutions.com/services#${service.title.toLowerCase().replace(/\s+/g, '-')}`,
-    provider: defaultOrganization
+    url: `${pageUrl}#${service.title.toLowerCase().replace(/\s+/g, '-')}`,
+    provider: defaultOrganization,
+    category: 'Technology Service',
+    areaServed: 'Worldwide'
+    // Note: If pricing information becomes available in the ServiceItem type,
+    // we can add offers here
   }));
 
-  // Combine structured data
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@graph': [organizationSchema, webPageSchema, ...serviceSchemas]
-  };
+  // Combine all structured data
+  const structuredData = [
+    organizationSchema,
+    webPageSchema,
+    breadcrumbSchema,
+    ...serviceSchemas
+  ];
 
   return (
-    <PageLayout>
-      <SEO
-        title="Our Services | Quadrate Tech Solutions"
-        description="Explore our comprehensive range of IT services including custom software development, web development, digital marketing, IT outsourcing, business email, and automation."
-        keywords="custom software development, web development, digital marketing, IT outsourcing, business email, business process automation, IT services Sri Lanka"
-        structuredData={structuredData}
-      />
-      <div className="relative overflow-hidden min-h-screen">
-        <BackgroundEffects />
+    <HelmetProvider>
+      <PageLayout>
+        {/* Primary SEO component */}
+        <SEO
+          title={pageTitle}
+          description={pageDescription}
+          keywords="custom software development, web development, digital marketing, IT outsourcing, business email, business process automation, IT services Sri Lanka, Zoho partner, Microsoft 365 solutions"
+          image={pageImage}
+          canonicalUrl={pageUrl}
+          structuredData={structuredData}
+        />
+        
+        {/* Additional page-specific meta tags */}
+        <Helmet>
+          <meta property="og:title" content={pageTitle} />
+          <meta property="og:description" content={pageDescription} />
+          <meta property="og:url" content={pageUrl} />
+          <meta property="og:image" content={pageImage} />
+          <meta name="twitter:title" content={pageTitle} />
+          <meta name="twitter:description" content={pageDescription} />
+          <meta name="twitter:image" content={pageImage} />
+          <link rel="canonical" href={pageUrl} />
+        </Helmet>
+        
+        <div className="relative overflow-hidden min-h-screen">
+          <BackgroundEffects />
 
-        {/* Content */}
-        <div className="relative z-20 container mx-auto px-4">
-          <HeroSection />
+          {/* Content */}
+          <div className="relative z-20 container mx-auto px-4">
+            <HeroSection />
 
-          {/* Services Grid */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-          >
-            {services.map((service) => (
-              <ServiceCard
-                key={service.title}
-                service={service}
-                itemVariants={itemVariants}
-              />
-            ))}
-          </motion.div>
+            {/* Services Grid */}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+            >
+              {services.map((service) => (
+                <ServiceCard
+                  key={service.title}
+                  service={service}
+                  itemVariants={itemVariants}
+                />
+              ))}
+            </motion.div>
 
-          <CTASection />
+            <CTASection />
+          </div>
         </div>
-      </div>
-    </PageLayout>
+      </PageLayout>
+    </HelmetProvider>
   );
 };
 

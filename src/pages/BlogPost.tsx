@@ -89,9 +89,9 @@ const BlogPostPage: React.FC = () => {
 
   // Generate breadcrumb items
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://quadratetechsolutions.com/' },
-    { name: 'Blog', url: 'https://quadratetechsolutions.com/blog' },
-    { name: post.title, url: `https://quadratetechsolutions.com${location.pathname}` }
+    { name: 'Home', url: 'https://quadrate.lk/#/' },
+    { name: 'Blog', url: 'https://quadrate.lk/#/blog' },
+    { name: post.title, url: `https://quadrate.lk/#${location.pathname}` }
   ];
 
   // Generate structured data for the blog post
@@ -100,13 +100,13 @@ const BlogPostPage: React.FC = () => {
   const blogPostSchema = generateBlogPostSchema({
     title: post.title,
     description: post.description,
-    url: `https://quadratetechsolutions.com/blog/${slug}`,
+    url: `https://quadrate.lk/#/blog/${slug}`,
     image: post.heroImage,
     datePublished: post.pubDate,
     dateModified: post.modifiedDate || post.pubDate,
     author: {
       name: post.author || 'Quadrate Tech Solutions',
-      url: 'https://quadratetechsolutions.com/about',
+      url: 'https://quadrate.lk/#/about',
       image: post.authorImage || 'https://ik.imagekit.io/quadrate/blogs/avatar.png',
       jobTitle: 'Content Writer'
     },
@@ -142,7 +142,7 @@ const BlogPostPage: React.FC = () => {
         category={post.category}
         tags={post.tags}
         language="en"
-        canonicalUrl={`https://quadratetechsolutions.com${location.pathname}`}
+        canonicalUrl={`https://quadrate.lk/#${location.pathname}`}
       />
       <SchemaMarkup schema={structuredData} />
 
@@ -181,7 +181,7 @@ const BlogPostPage: React.FC = () => {
         <h3 className="text-xl font-bold mb-4">Share this article</h3>
         <div className="flex space-x-4">
           <a
-            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://quadratetechsolutions.com${location.pathname}`)}`}
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://quadrate.lk/#${location.pathname}`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:text-blue-700"
@@ -190,7 +190,7 @@ const BlogPostPage: React.FC = () => {
             Twitter
           </a>
           <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://quadratetechsolutions.com${location.pathname}`)}`}
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://quadrate.lk/#${location.pathname}`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-700 hover:text-blue-900"
@@ -199,7 +199,7 @@ const BlogPostPage: React.FC = () => {
             LinkedIn
           </a>
           <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://quadratetechsolutions.com${location.pathname}`)}`}
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://quadrate.lk/#${location.pathname}`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-900 hover:text-blue-700"

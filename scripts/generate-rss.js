@@ -6,7 +6,7 @@ import { initialBlogPosts } from './blogData.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Define your site URL
-const siteUrl = 'https://quadratetechsolutions.com';
+const siteUrl = 'https://quadrate.lk';
 
 // Create RSS feed content
 const generateRssFeed = () => {
@@ -20,7 +20,7 @@ const generateRssFeed = () => {
       <description><![CDATA[${post.description}]]></description>
       <content:encoded><![CDATA[<img src="${post.heroImage}" alt="${post.title}" />
 ${post.description}]]></content:encoded>
-      <author>${post.author || 'info@quadratetechsolutions.com'}</author>
+      <author>${post.author || 'info@quadrate.lk'}</author>
       <category><![CDATA[${post.category}]]></category>
       ${post.tags.map(tag => `<category><![CDATA[${tag}]]></category>`).join('\n      ')}
     </item>`;

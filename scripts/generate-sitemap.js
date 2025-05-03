@@ -6,7 +6,7 @@ import { dirname, resolve } from 'path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Define your site URL
-const siteUrl = 'https://quadratetechsolutions.com';
+const siteUrl = 'https://quadrate.lk';
 
 // Create a sitemap stream
 const sitemap = new SitemapStream({ hostname: siteUrl });

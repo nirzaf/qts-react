@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
   <url>
-    <loc>https://quadratetechsolutions.com/blog/csharp-13-future</loc>
+    <loc>https://quadrate.lk/blog/csharp-13-future</loc>
     <news:news>
       <news:publication>
         <news:name>Quadrate Tech Solutions</news:name>
@@ -14,7 +14,7 @@
     </news:news>
   </url>
   <url>
-    <loc>https://quadratetechsolutions.com/blog/elasticsearch-dotnet-guide</loc>
+    <loc>https://quadrate.lk/blog/elasticsearch-dotnet-guide</loc>
     <news:news>
       <news:publication>
         <news:name>Quadrate Tech Solutions</news:name>
@@ -26,7 +26,7 @@
     </news:news>
   </url>
   <url>
-    <loc>https://quadratetechsolutions.com/blog/azure-functions-v4-guide</loc>
+    <loc>https://quadrate.lk/blog/azure-functions-v4-guide</loc>
     <news:news>
       <news:publication>
         <news:name>Quadrate Tech Solutions</news:name>

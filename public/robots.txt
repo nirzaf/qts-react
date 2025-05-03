@@ -1,4 +1,4 @@
-# robots.txt for https://quadratetechsolutions.com
+# robots.txt for https://quadrate.lk
 User-agent: *
 Allow: /
 
@@ -16,7 +16,7 @@ User-agent: SemrushBot
 Crawl-delay: 10
 
 # Sitemap locations
-Sitemap: https://quadratetechsolutions.com/sitemap.xml
-Sitemap: https://quadratetechsolutions.com/image-sitemap.xml
-Sitemap: https://quadratetechsolutions.com/video-sitemap.xml
-Sitemap: https://quadratetechsolutions.com/news-sitemap.xml
+Sitemap: https://quadrate.lk/sitemap.xml
+Sitemap: https://quadrate.lk/image-sitemap.xml
+Sitemap: https://quadrate.lk/video-sitemap.xml
+Sitemap: https://quadrate.lk/news-sitemap.xml

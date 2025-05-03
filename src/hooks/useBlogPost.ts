@@ -54,7 +54,7 @@ export const useBlogPost = (slug: string | undefined) => {
         const modifiedDate = metadata.modifiedDate || metadata.pubDate;
 
         // Create URL
-        const url = `https://quadratetechsolutions.com/blog/${slug}`;
+        const url = `https://quadrate.lk/#/blog/${slug}`;
 
         setPost({
           ...metadata,

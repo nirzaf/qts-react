@@ -45,7 +45,7 @@ const Pricing: React.FC = () => {
   const webPageSchema = generateWebPageSchema({
     title: 'Pricing | Quadrate Tech Solutions',
     description: 'Explore our transparent pricing plans for software development, web development, digital marketing, and IT services. Find the perfect plan for your business needs.',
-    url: 'https://quadratetechsolutions.com/pricing',
+    url: 'https://quadrate.lk/#/pricing',
   });
 
   // Generate pricing data for structured data

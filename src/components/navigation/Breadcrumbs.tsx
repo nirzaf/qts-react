@@ -32,7 +32,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customPaths, className = '' }
   const breadcrumbStructuredData = generateBreadcrumbSchema(
     breadcrumbItems.map(item => ({
       name: item.label,
-      url: `https://quadratetechsolutions.com${item.path}`,
+      url: `https://quadrate.lk/#${item.path}`,
     }))
   );
 

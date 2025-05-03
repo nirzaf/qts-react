@@ -5,7 +5,7 @@ import { dirname, resolve } from 'path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Define your site URL
-const siteUrl = 'https://quadratetechsolutions.com';
+const siteUrl = 'https://quadrate.lk';
 
 // Create robots.txt content
 const robotsTxt = `# robots.txt for ${siteUrl}

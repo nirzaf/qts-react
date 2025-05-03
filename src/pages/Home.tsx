@@ -47,7 +47,7 @@ const Home: React.FC = () => {
   const webPageSchema = generateWebPageSchema({
     title: 'Quadrate Tech Solutions | Software Development',
     description: 'Custom software development, web development, digital marketing, and IT services to help your business grow.',
-    url: 'https://quadratetechsolutions.com',
+    url: 'https://quadrate.lk/#/',
     image: 'https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458',
     datePublished: '2023-01-01',
     dateModified: new Date().toISOString().split('T')[0],
@@ -71,7 +71,7 @@ const Home: React.FC = () => {
   const webDevServiceSchema = generateServiceSchema({
     name: 'Web Development Services',
     description: 'Custom web application development using modern technologies like React, Angular, and Node.js.',
-    url: 'https://quadratetechsolutions.com/services#web-development',
+    url: 'https://quadrate.lk/#/services#web-development',
     provider: defaultOrganization,
     category: 'Web Development',
     areaServed: 'Worldwide',
@@ -88,7 +88,7 @@ const Home: React.FC = () => {
   const mobileDevServiceSchema = generateServiceSchema({
     name: 'Mobile App Development',
     description: 'Native and cross-platform mobile application development for iOS and Android.',
-    url: 'https://quadratetechsolutions.com/services#mobile-development',
+    url: 'https://quadrate.lk/#/services#mobile-development',
     provider: defaultOrganization,
     category: 'Mobile Development',
     areaServed: 'Worldwide'

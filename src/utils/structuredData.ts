@@ -389,7 +389,7 @@ export const generateBreadcrumbSchema = (items: BreadcrumbItem[]) => {
 // Default organization data for Quadrate Tech Solutions
 export const defaultOrganization = {
   name: 'Quadrate Tech Solutions',
-  url: 'https://quadratetechsolutions.com',
+  url: 'https://quadrate.lk/#/',
   logo: 'https://ik.imagekit.io/quadrate/QTS%20Logo%20Primary.png?updatedAt=1733854434969',
   description: 'Quadrate Tech Solutions offers custom software development, web development, digital marketing, IT outsourcing, and business automation services to help businesses grow.',
   sameAs: [
@@ -401,13 +401,13 @@ export const defaultOrganization = {
   ],
   address: 'Sri Lanka',
   telephone: '+94 77 123 4567',
-  email: 'info@quadratetechsolutions.com',
+  email: 'info@quadrate.lk',
   foundingDate: '2020-01-01',
   founders: [
     {
       name: 'Fazrin',
       jobTitle: 'CEO & Founder',
-      url: 'https://quadratetechsolutions.com/about'
+      url: 'https://quadrate.lk/#/about'
     }
   ],
   numberOfEmployees: 20,

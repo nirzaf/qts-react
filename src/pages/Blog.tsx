@@ -32,7 +32,7 @@ const BlogPage: React.FC = () => {
   const webPageSchema = generateWebPageSchema({
     title: 'Blog | Quadrate Tech Solutions',
     description: 'Explore our blog for insights on software development, web development, digital marketing, IT trends, and technology innovations.',
-    url: 'https://quadratetechsolutions.com/blog',
+    url: 'https://quadrate.lk/#/blog',
   });
 
   // Combine structured data

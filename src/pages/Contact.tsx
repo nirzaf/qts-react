@@ -68,7 +68,7 @@ const Contact: FC = () => {
   const webPageSchema = generateWebPageSchema({
     title: 'Contact Us | Quadrate Tech Solutions',
     description: 'Get in touch with Quadrate Tech Solutions. Contact us for software development, web development, digital marketing, and IT services.',
-    url: 'https://quadratetechsolutions.com/contact',
+    url: 'https://quadrate.lk/#/contact',
   });
   const localBusinessSchema = generateLocalBusinessSchema({
     ...defaultOrganization,

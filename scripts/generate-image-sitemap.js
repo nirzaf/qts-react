@@ -6,7 +6,7 @@ import { initialBlogPosts } from './blogData.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Define your site URL
-const siteUrl = 'https://quadratetechsolutions.com';
+const siteUrl = 'https://quadrate.lk';
 
 // Create image sitemap content
 const generateImageSitemap = () => {
