@@ -7,14 +7,13 @@ import BlogPostHeader from '@/components/blog/BlogPostHeader';
 import BlogPostNotFound from '@/components/blog/BlogPostNotFound';
 import useBlogPost from '@/hooks/useBlogPost';
 import SEO from '@/components/seo/SEO';
-import SchemaMarkup from '@/components/seo/SchemaMarkup';
+
 import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import OptimizedImage from '@/components/ui/OptimizedImage';
 import LazyLoad from '@/components/ui/LazyLoad';
 import {
   generateBlogPostSchema,
   generateOrganizationSchema,
-  generateBreadcrumbSchema,
   defaultOrganization
 } from '@/utils/structuredData';
 
@@ -87,12 +86,7 @@ const BlogPostPage: React.FC = () => {
   const wordCount = post.content.split(/\s+/).length;
   const readingTime = Math.ceil(wordCount / 200); // Assuming 200 words per minute reading speed
 
-  // Generate breadcrumb items
-  const breadcrumbItems = [
-    { name: 'Home', url: 'https://quadrate.lk/#/' },
-    { name: 'Blog', url: 'https://quadrate.lk/#/blog' },
-    { name: post.title, url: `https://quadrate.lk/#${location.pathname}` }
-  ];
+  // Breadcrumb items are handled by the Breadcrumbs component
 
   // Generate structured data for the blog post
   const organizationSchema = generateOrganizationSchema(defaultOrganization);

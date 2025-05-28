@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
-    <loc>https://quadratetechsolutions.com/about</loc>
+    <loc>https://quadrate.lk/about</loc>
     <video:video>
       <video:thumbnail_loc>https://ik.imagekit.io/quadrate/videos/intro-thumbnail.jpg</video:thumbnail_loc>
       <video:title>Quadrate Tech Solutions Introduction</video:title>
@@ -16,7 +16,7 @@
     </video:video>
   </url>
   <url>
-    <loc>https://quadratetechsolutions.com/services</loc>
+    <loc>https://quadrate.lk/services</loc>
     <video:video>
       <video:thumbnail_loc>https://ik.imagekit.io/quadrate/videos/webdev-thumbnail.jpg</video:thumbnail_loc>
       <video:title>Web Development Process</video:title>

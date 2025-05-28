@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageLayout from '@/layouts/PageLayout';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async';
+
 
 import { services } from './Services/data/services';
 import { containerVariants, itemVariants } from './Services/animations/variants';

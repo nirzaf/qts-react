@@ -145,6 +145,15 @@
   //]]></script>
   <script language="JavaScript" type="text/javascript">
     TrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_md_167x42.png", "POSDV", "none");
+    // Add alt attribute to the TrustLogo image for accessibility
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        const trustLogoImg = document.querySelector('img[src*="positivessl_trust_seal"]');
+        if (trustLogoImg && !trustLogoImg.hasAttribute('alt')) {
+          trustLogoImg.setAttribute('alt', 'PositiveSSL Trust Seal');
+        }
+      }, 500); // Small delay to ensure the image is loaded
+    });
   </script>
 </body>
 

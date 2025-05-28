@@ -3,14 +3,14 @@ import PageLayout from '@/layouts/PageLayout';
 import { QuadrateAboutSection } from '@/components/about/QuadrateAboutSection';
 import { VisionMission } from '@/components/about/VisionMission';
 import { ExperienceSection } from '@/components/about/ExperienceSection';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/seo/SEO';
 import { 
   generateOrganizationSchema, 
-  generateWebPageSchema, 
-  generateBreadcrumbSchema,
+  generateWebPageSchema,
   defaultOrganization 
 } from '@/utils/structuredData';
+
 
 const AboutPage: React.FC = () => {
   const pageTitle = "About Quadrate Tech Solutions | Our Story & Values";

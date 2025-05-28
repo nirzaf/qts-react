@@ -5,7 +5,7 @@ import PricingGrid from '@/components/pricing/PricingGrid';
 import CustomSolutionCard from '@/components/pricing/CustomSolutionCard';
 import SEO from '@/components/seo/SEO';
 import { generateOrganizationSchema, generateWebPageSchema, defaultOrganization } from '@/utils/structuredData';
-import { pricingPlans } from '@/data/home-page/pricing';
+
 
 /**
  * Pricing page component that displays pricing plans and custom solutions

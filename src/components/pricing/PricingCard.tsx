@@ -110,7 +110,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, isPopular }) => 
     description: plan.description,
     url: planUrl,
     provider: defaultOrganization,
-    serviceType: 'Service Plan', // Using serviceType as updated in generateServiceSchema
+
     offers: [offerDetails]
   });
 
