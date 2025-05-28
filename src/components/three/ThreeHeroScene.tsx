@@ -40,7 +40,7 @@ const ThreeHeroScene: React.FC = () => {
         }}
       >
         <img
-          src="https://ik.imagekit.io/mhvgbp9xk/QTS%20Logo%20primary.png?updatedAt=1734248002023"
+          src="https://ik.imagekit.io/quadrate/assets/img/QTS%20Primary%20Logo.png?updatedAt=1748456663889"
           alt="Quadrate Tech Solutions Logo"
           className="w-full h-full object-contain"
         />

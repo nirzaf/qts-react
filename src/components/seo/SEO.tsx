@@ -25,7 +25,7 @@ const SEO: React.FC<SEOProps> = ({
   title = 'Quadrate Tech Solutions | Software Development',
   description = 'Custom software development, web development, digital marketing, and IT services to help your business grow.',
   keywords = 'software development, web development, digital marketing, IT outsourcing, business automation, Sri Lanka, custom software, web design',
-  image = 'https://ik.imagekit.io/quadrate/QTS%20Logo%20Primary.png?updatedAt=1733854434969',
+  image = 'https://ik.imagekit.io/quadrate/assets/img/QTS%20Primary%20Logo.png?updatedAt=1748456663889',
   article = false,
   canonicalUrl,
   structuredData,
