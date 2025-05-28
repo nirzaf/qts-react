@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  <url>
+    <loc>https://quadrate.lk/blog/csharp-13-future</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Quadrate Tech Solutions</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2024-06-22T00:00:00.000Z</news:publication_date>
+      <news:title>The Future is Delightful: A Peek into What's Next for C# 13</news:title>
+      <news:keywords>C#, programming, language-design, future-features</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://quadrate.lk/blog/elasticsearch-dotnet-guide</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Quadrate Tech Solutions</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2024-02-10T00:00:00.000Z</news:publication_date>
+      <news:title>Integrating ElasticSearch with .NET Web API: A Comprehensive Guide</news:title>
+      <news:keywords>elasticsearch, dotnet, webapi, docker</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://quadrate.lk/blog/azure-functions-v4-guide</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Quadrate Tech Solutions</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2024-06-03T00:00:00.000Z</news:publication_date>
+      <news:title>Supercharge Your Applications with Azure Functions v4, C# and .NET 8: A Deep Dive</news:title>
+      <news:keywords>Azure Functions, C#, .NET 8, serverless</news:keywords>
+    </news:news>
+  </url>
+</urlset>

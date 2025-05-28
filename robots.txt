@@ -1,0 +1,22 @@
+# robots.txt for https://quadrate.lk
+User-agent: *
+Allow: /
+
+# Disallow admin or private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /internal/
+
+# Crawl delay for specific bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Sitemap locations
+Sitemap: https://quadrate.lk/sitemap.xml
+Sitemap: https://quadrate.lk/image-sitemap.xml
+Sitemap: https://quadrate.lk/video-sitemap.xml
+Sitemap: https://quadrate.lk/news-sitemap.xml

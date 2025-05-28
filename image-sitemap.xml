@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://quadrate.lk/</loc>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/quadrate/QTS%20Logo%20Primary.png?updatedAt=1733854434969</image:loc>
+      <image:title>Quadrate Tech Solutions Logo</image:title>
+      <image:caption>Quadrate Tech Solutions Logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadrate.lk/</loc>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458</image:loc>
+      <image:title>Quadrate Tech Solutions Hero Image</image:title>
+      <image:caption>Quadrate Tech Solutions Hero Image</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadrate.lk/about</loc>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/quadrate/assets/img/about.jpg?updatedAt=1718024112686</image:loc>
+      <image:title>About Quadrate Tech Solutions</image:title>
+      <image:caption>About Quadrate Tech Solutions</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadrate.lk/blog/csharp-13-future</loc>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/quadrate/blogs/csharp-13.webp?updatedAt=1732702078737</image:loc>
+      <image:title>The Future is Delightful: A Peek into What's Next for C# 13</image:title>
+      <image:caption>The Future is Delightful: A Peek into What's Next for C# 13</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadrate.lk/blog/elasticsearch-dotnet-guide</loc>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/quadrate/blogs/elastic-search.webp?updatedAt=1732702078768</image:loc>
+      <image:title>Integrating ElasticSearch with .NET Web API: A Comprehensive Guide</image:title>
+      <image:caption>Integrating ElasticSearch with .NET Web API: A Comprehensive Guide</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadrate.lk/blog/azure-functions-v4-guide</loc>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/quadrate/blogs/azure-functions.webp?updatedAt=1732702078841</image:loc>
+      <image:title>Supercharge Your Applications with Azure Functions v4, C# and .NET 8: A Deep Dive</image:title>
+      <image:caption>Supercharge Your Applications with Azure Functions v4, C# and .NET 8: A Deep Dive</image:caption>
+    </image:image>
+  </url>
+</urlset>
