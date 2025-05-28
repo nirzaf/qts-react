@@ -78,18 +78,6 @@ const ServicesPage: React.FC = () => {
           structuredData={structuredData}
         />
         
-        {/* Additional page-specific meta tags */}
-        <Helmet>
-          <meta property="og:title" content={pageTitle} />
-          <meta property="og:description" content={pageDescription} />
-          <meta property="og:url" content={pageUrl} />
-          <meta property="og:image" content={pageImage} />
-          <meta name="twitter:title" content={pageTitle} />
-          <meta name="twitter:description" content={pageDescription} />
-          <meta name="twitter:image" content={pageImage} />
-          <link rel="canonical" href={pageUrl} />
-        </Helmet>
-        
         <div className="relative overflow-hidden min-h-screen">
           <BackgroundEffects />
 

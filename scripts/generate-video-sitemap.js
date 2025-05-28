@@ -5,11 +5,13 @@ import { dirname, resolve } from 'path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Define your site URL
-const siteUrl = 'https://quadratetechsolutions.com';
+const siteUrl = 'https://quadrate.lk'; // Corrected site URL
 
 // Create video sitemap content
 const generateVideoSitemap = () => {
-  // Sample videos - replace with your actual videos
+  // Sample videos - IMPORTANT: Replace with your actual video data or ensure this script
+  // only runs if actual video data is populated. Currently, this generates a sitemap with sample data.
+  // If no videos are on the site, an empty sitemap or no sitemap is preferable.
   const videos = [
     {
       title: 'Quadrate Tech Solutions Introduction',

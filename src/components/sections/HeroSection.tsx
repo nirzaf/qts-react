@@ -197,7 +197,7 @@ export const HeroSection = ({
                     </motion.div>
 
                     {/* Helps Text */}
-                    <motion.h3
+                    <motion.p
                       className="text-xl md:text-2xl lg:text-3xl font-semibold relative z-10 cursor-pointer
                         bg-gradient-to-r from-[#0607E1] via-[#0A25C9] to-[#0607E1] bg-clip-text text-transparent
                         transition-all duration-500 ease-in-out transform-gpu
@@ -215,7 +215,7 @@ export const HeroSection = ({
                       }}
                     >
                       Helps
-                    </motion.h3>
+                    </motion.p>
 
                     {/* Decorative underline */}
                     <motion.div

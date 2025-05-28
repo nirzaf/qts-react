@@ -1,5 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Navigation } from '../components/Navigation';
+import { Footer } from '../components/Footer';
 
 interface Props {
   children: React.ReactNode;
@@ -21,13 +23,15 @@ export const MainLayout = ({
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        {/* Navigation will go here */}
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" role="banner">
+        <Navigation />
       </header>
 
       <main className="flex-1">
         {children}
       </main>
+
+      <Footer />
     </div>
   );
 };

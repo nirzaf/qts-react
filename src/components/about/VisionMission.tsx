@@ -15,7 +15,7 @@ export const VisionMission: React.FC = () => {
           }}
           className="p-6 border rounded-lg hover:shadow-lg hover:border-[#0607E1]/20 transition-all duration-300"
         >
-          <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
+          <h2 className="text-xl font-bold mb-4 flex items-center gap-3">
             <motion.span 
               className="p-2 bg-gray-100 rounded-full"
               whileHover={{ 
@@ -27,7 +27,7 @@ export const VisionMission: React.FC = () => {
               <Eye className="w-6 h-6 text-[#0607E1]" />
             </motion.span>
             Our Vision
-          </h3>
+          </h2>
           <p className="text-gray-600">
             To accelerate the technology context and swap to the mobile and reliable approach.
           </p>
@@ -42,7 +42,7 @@ export const VisionMission: React.FC = () => {
           }}
           className="p-6 border rounded-lg hover:shadow-lg hover:border-[#0607E1]/20 transition-all duration-300"
         >
-          <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
+          <h2 className="text-xl font-bold mb-4 flex items-center gap-3">
             <motion.span 
               className="p-2 bg-gray-100 rounded-full"
               whileHover={{ 
@@ -54,7 +54,7 @@ export const VisionMission: React.FC = () => {
               <Target className="w-6 h-6 text-[#0607E1]" />
             </motion.span>
             Our Mission
-          </h3>
+          </h2>
           <p className="text-gray-600">
             To deliver technology services - both in the Software & Hardware wherever we will be.
           </p>

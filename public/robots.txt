@@ -7,6 +7,7 @@ Disallow: /admin/
 Disallow: /private/
 Disallow: /api/
 Disallow: /internal/
+Disallow: /cdn-cgi/ # Cloudflare specific paths
 
 # Crawl delay for specific bots
 User-agent: AhrefsBot

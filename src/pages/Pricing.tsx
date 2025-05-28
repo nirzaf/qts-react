@@ -48,22 +48,22 @@ const Pricing: React.FC = () => {
     url: 'https://quadrate.lk/#/pricing',
   });
 
-  // Generate pricing data for structured data
-  const pricingData = {
-    '@context': 'https://schema.org',
-    '@type': 'PriceSpecification',
-    priceCurrency: 'USD',
-    price: pricingPlans[0].price,
-    minPrice: pricingPlans[0].price,
-    maxPrice: pricingPlans[pricingPlans.length - 1].price,
-    validFrom: '2025-01-01',
-    validThrough: '2025-12-31'
-  };
+  // Generate pricing data for structured data - REMOVED generic PriceSpecification
+  // const pricingData = {
+  //   '@context': 'https://schema.org',
+  //   '@type': 'PriceSpecification',
+  //   priceCurrency: 'USD',
+  //   price: pricingPlans[0].price,
+  //   minPrice: pricingPlans[0].price,
+  //   maxPrice: pricingPlans[pricingPlans.length - 1].price,
+  //   validFrom: '2025-01-01',
+  //   validThrough: '2025-12-31'
+  // };
 
   // Combine structured data
   const structuredData = {
     '@context': 'https://schema.org',
-    '@graph': [organizationSchema, webPageSchema, pricingData]
+    '@graph': [organizationSchema, webPageSchema] // Removed pricingData from here
   };
 
   return (

@@ -19,10 +19,10 @@ const AboutPage: React.FC = () => {
   const pageImage = "https://ik.imagekit.io/quadrate/assets/img/about.jpg?updatedAt=1718024112686";
   
   // Generate breadcrumb schema
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://quadrate.lk/#/' },
-    { name: 'About Us', url: pageUrl }
-  ]);
+  // const breadcrumbSchema = generateBreadcrumbSchema([ // Removed: Handled by Breadcrumbs component
+  //   { name: 'Home', url: 'https://quadrate.lk/#/' },
+  //   { name: 'About Us', url: pageUrl }
+  // ]);
 
   // Generate structured data for the about page
   const organizationSchema = generateOrganizationSchema(defaultOrganization);
@@ -42,13 +42,13 @@ const AboutPage: React.FC = () => {
   // Combine structured data
   const structuredData = [
     organizationSchema,
-    webPageSchema,
-    breadcrumbSchema
+    webPageSchema
+    // breadcrumbSchema // Removed: Handled by Breadcrumbs component
   ];
 
   return (
     <HelmetProvider>
-      <PageLayout>
+      <PageLayout title="About Us" subtitle="Learn more about Quadrate Tech Solutions, our mission, values, and the dedicated team behind our innovative solutions.">
         {/* Primary SEO component */}
         <SEO
           title={pageTitle}
@@ -58,18 +58,6 @@ const AboutPage: React.FC = () => {
           canonicalUrl={pageUrl}
           structuredData={structuredData}
         />
-        
-        {/* Additional page-specific meta tags */}
-        <Helmet>
-          <meta property="og:title" content={pageTitle} />
-          <meta property="og:description" content={pageDescription} />
-          <meta property="og:url" content={pageUrl} />
-          <meta property="og:image" content={pageImage} />
-          <meta name="twitter:title" content={pageTitle} />
-          <meta name="twitter:description" content={pageDescription} />
-          <meta name="twitter:image" content={pageImage} />
-          <link rel="canonical" href={pageUrl} />
-        </Helmet>
         
         <QuadrateAboutSection />
         <VisionMission />

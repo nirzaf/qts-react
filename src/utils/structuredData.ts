@@ -247,7 +247,7 @@ export const generateServiceSchema = (service: Service) => {
         url: service.provider.logo,
       },
     },
-    ...(service.category && { category: service.category }),
+    ...(service.category && { serviceType: service.category }), // Changed category to serviceType
     ...(service.areaServed && { areaServed: service.areaServed }),
     ...(service.offers && {
       offers: service.offers.map(offer => ({

@@ -21,7 +21,10 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { PricingPlan } from '@/data/pricingData';
+import { PricingPlan } from '@/data/pricingData'; // Assuming this path is correct, or it might be @/data/home-page/pricing
+import { Helmet } from 'react-helmet-async';
+import { generateServiceSchema, defaultOrganization } from '@/utils/structuredData';
+import { useLocation } from 'react-router-dom';
 
 interface PricingCardProps {
   plan: PricingPlan;
@@ -81,8 +84,43 @@ const featureIcons = {
 };
 
 export const PricingCard: React.FC<PricingCardProps> = ({ plan, isPopular }) => {
+  const location = useLocation();
+  const siteUrl = 'https://quadrate.lk/#'; // Base site URL with hash
+
+  // Generate Service schema for the pricing plan
+  const planUrl = `${siteUrl}${location.pathname}#${plan.name.toLowerCase().replace(/\s+/g, '-')}`;
+  
+  const offerDetails: any = {
+    '@type': 'Offer',
+    name: plan.name,
+    priceCurrency: 'USD',
+    availability: 'InStock', // Assuming plans are generally available, maps to https://schema.org/InStock
+    url: planUrl
+  };
+
+  if (plan.price && plan.price.toLowerCase() !== 'custom') {
+    offerDetails.price = plan.price;
+  } else {
+    // For "Custom" price, we omit the 'price' property.
+    // The description of the service or offer can state "Contact for price".
+  }
+
+  const serviceSchema = generateServiceSchema({
+    name: plan.name,
+    description: plan.description,
+    url: planUrl,
+    provider: defaultOrganization,
+    serviceType: 'Service Plan', // Using serviceType as updated in generateServiceSchema
+    offers: [offerDetails]
+  });
+
   return (
     <TooltipProvider>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(serviceSchema)}
+        </script>
+      </Helmet>
       <motion.div
         className={`h-full p-8 rounded-2xl border-2 ${
           isPopular 

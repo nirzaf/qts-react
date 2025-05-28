@@ -1,0 +1,23 @@
+/* TEAM */
+Company: Quadrate Tech Solutions
+Team: Development Team
+Contact: info@quadrate.lk
+Location: Sri Lanka
+From: https://quadrate.lk/#/about
+
+/* SITE */
+Last update: 2024-07-30
+Standards: HTML5, CSS3, JavaScript (ES2022), WCAG 2.1 AA
+Software: React, Vite, Node.js, TypeScript, ImageKit, Tailwind CSS, Framer Motion, Express.js
+Language: English (en)
+Doctype: HTML5
+Site: https://quadrate.lk/
+
+/* THANKS */
+We extend our gratitude to the developers and communities behind the open-source software that made this site possible, including:
+- React
+- Vite
+- Node.js
+- TypeScript
+- And many other fantastic libraries and tools.
+Thank you to the open-source community for your dedication and contributions.

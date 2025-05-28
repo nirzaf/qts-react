@@ -13,9 +13,12 @@ const generateNewsSitemap = () => {
   // Filter blog posts from the last 2 days (Google News requirement)
   const twoDaysAgo = new Date();
   twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+  twoDaysAgo.setHours(0, 0, 0, 0); // Set to the beginning of the day for fair comparison
 
-  // For demo purposes, we'll include all posts but in a real scenario, filter by date
-  const recentPosts = initialBlogPosts;
+  const recentPosts = initialBlogPosts.filter(post => {
+    const postDate = new Date(post.pubDate); // Assuming pubDate is a parseable date string
+    return postDate >= twoDaysAgo;
+  });
 
   // Generate XML
   const newsEntries = recentPosts.map(post => {

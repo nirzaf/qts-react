@@ -23,20 +23,15 @@ sitemap.write({ url: '/contact', changefreq: 'monthly', priority: 0.8, lastmod: 
 sitemap.write({ url: '/pricing', changefreq: 'monthly', priority: 0.7, lastmod: new Date().toISOString() });
 sitemap.write({ url: '/microsoft-365-premium-package-details', changefreq: 'monthly', priority: 0.7, lastmod: new Date().toISOString() });
 
-// Add blog posts
-// In a real application, you would fetch these from your database or CMS
-const blogPosts = [
-  { slug: 'csharp-13-future', lastmod: '2024-06-22' },
-  { slug: 'elasticsearch-dotnet-guide', lastmod: '2024-02-10' },
-  { slug: 'azure-functions-v4-guide', lastmod: '2024-06-03' }
-];
+import { initialBlogPosts } from './blogData.js'; // Import blog data
 
-blogPosts.forEach(post => {
+// Add blog posts
+initialBlogPosts.forEach(post => {
   sitemap.write({
-    url: `/blog/${post.slug}`,
-    changefreq: 'yearly',
-    priority: 0.6,
-    lastmod: post.lastmod
+    url: `/blog/${post.slug}`, // Ensure this matches your actual URL structure
+    changefreq: 'monthly',     // Changed from yearly to monthly
+    priority: 0.7,           // Adjusted priority
+    lastmod: new Date(post.pubDate).toISOString() // Use pubDate and format as ISO string
   });
 });
 

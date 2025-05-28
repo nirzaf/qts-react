@@ -116,13 +116,13 @@ const BlogPostPage: React.FC = () => {
     articleSection: post.category
   });
 
-  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems);
+  // const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems); // Removed: Handled by Breadcrumbs component
 
   // Combine structured data
   const structuredData = [
     organizationSchema,
-    blogPostSchema,
-    breadcrumbSchema
+    blogPostSchema
+    // breadcrumbSchema // Removed: Handled by Breadcrumbs component
   ];
 
   // Generate keywords from tags
@@ -143,8 +143,9 @@ const BlogPostPage: React.FC = () => {
         tags={post.tags}
         language="en"
         canonicalUrl={`https://quadrate.lk/#${location.pathname}`}
+        structuredData={structuredData} // Pass structuredData (now without breadcrumbSchema)
       />
-      <SchemaMarkup schema={structuredData} />
+      {/* <SchemaMarkup schema={structuredData} /> // This should remain commented out or removed */}
 
       <Breadcrumbs
         customPaths={[

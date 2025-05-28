@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import FAQStructuredData from '@/components/seo/FAQStructuredData'; // Import the component
 
 interface FAQ {
   question: string;
@@ -20,6 +21,7 @@ interface FaqSectionProps {
 export const FaqSection: React.FC<FaqSectionProps> = ({ title, faqs }) => {
   return (
     <section className="bg-background py-16 sm:py-24">
+      {faqs && faqs.length > 0 && <FAQStructuredData faqs={faqs} />} {/* Add structured data */}
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
