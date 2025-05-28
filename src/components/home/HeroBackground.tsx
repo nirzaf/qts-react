@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import ServiceTextStorm from './ServiceTextStorm';
 import QuadrateHoneycombAnimation from '../three/QuadrateHoneycombAnimation';
+// Import the video file
+import heroBackgroundVideo from '../../assets/hero-bg.mp4';
 
 // Animated particles for background
 const BackgroundParticles = () => {
@@ -136,7 +138,27 @@ export const HeroBackground: React.FC = () => {
 
   return (
     <div className="absolute inset-0 overflow-hidden z-0">
-      {/* Background Particles */}
+      {/* Video Background */}
+      {isMounted && (
+        <div className="absolute inset-0 w-full h-full z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ filter: 'brightness(0.8) contrast(1.1)' }}
+          >
+            <source src={heroBackgroundVideo} type="video/mp4" />
+            {/* Fallback text for screen readers */}
+            Your browser does not support the video tag.
+          </video>
+          {/* White transparent overlay to ensure text readability */}
+          <div className="absolute inset-0 bg-white/50 backdrop-blur-sm z-10" />
+        </div>
+      )}
+
+      {/* Background Particles - reduced opacity */}
       {isMounted && <BackgroundParticles />}
 
       {/* Service Text Animation */}

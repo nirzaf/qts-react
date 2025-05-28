@@ -35,7 +35,7 @@ export const Navigation: React.FC = () => {
               <img
                 src="https://ik.imagekit.io/quadrate/assets/img/QTS%20Primary%20Logo.png?updatedAt=1748456663889"
                 alt="QTS Logo"
-                className="h-8 w-auto brightness-[0.7] contrast-[1.4] [filter:saturate(1.2)_hue-rotate(-10deg)]"
+                className="h-10 w-auto brightness-[0.7] contrast-[1.4] [filter:saturate(1.2)_hue-rotate(-10deg)]"
               />
               <span className="font-bold text-lg">QTS</span>
             </SEOLink>
