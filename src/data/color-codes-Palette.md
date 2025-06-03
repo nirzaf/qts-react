@@ -17,7 +17,8 @@ This palette is designed to create a **professional and trustworthy** yet **inno
     *   **Sky Dancer (#4e95f2 | HSL: 213, 88%, 63%)**: Secondary highlight color, hover states for primary CTAs, or for highlighting important information snippets. Adds a touch of innovation.
 
 **4. Airy/Light Accents:**
-    *   **Clear Sky (#8bc7fe | HSL: 208, 98%, 77%)**: Accent color for backgrounds of notification bars, subtle highlights on light backgrounds, or decorative elements. Provides a futuristic and light feel.
+    *   **Clear Sky (#8bc7fe | HSL: 208, 98%, 77%)**: Used for backgrounds of cards and popovers in the light theme to distinguish them from the white main background. Can also be used for accent panels, notification bars, or decorative elements to provide a futuristic and light feel.
+    *   **White (#ffffff | HSL: 0, 0%, 100%)**: Serves as the primary background color for the light theme, ensuring a clean, bright, and spacious user interface.
 
 ## Visual Hierarchy and User Guidance:
 
