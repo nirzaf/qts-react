@@ -13,47 +13,47 @@
 @layer base {
   :root {
     --background: 0 0% 100%; /* White */
-    --foreground: 0 0% 0%; /* Black */
-    --card: 208 98% 95%; /* Light tint of Clear Sky */
-    --card-foreground: 0 0% 0%; /* Black - ensure this is still appropriate */
-    --popover: 208 98% 95%; /* Light tint of Clear Sky */
-    --popover-foreground: 0 0% 0%; /* Black - ensure this is still appropriate */
-    --primary: 230 65% 32%; /* Intergalactic Highway */
+    --foreground: 0 0% 0%;   /* Black */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 231 62% 32%; /* Intergalactic Highway: #1d2f84 */
     --primary-foreground: 0 0% 100%; /* White */
-    --secondary: 224 67% 44%; /* Denim */
+    --secondary: 223 63% 44%; /* Denim: #254cba */
     --secondary-foreground: 0 0% 100%; /* White */
-    --muted: 220 70% 51%; /* God of Rain */
-    --muted-foreground: 230 65% 32%; /* Intergalactic Highway */
-    --accent: 216 80% 57%; /* Soothing Sapphire */
+    --muted: 206 98% 77%; /* Clear Sky: #8bc7fe */
+    --muted-foreground: 223 63% 44%; /* Denim for readability on light muted */
+    --accent: 217 81% 56%; /* Soothing Sapphire: #397ce8 */
     --accent-foreground: 0 0% 100%; /* White */
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84.2% 60.2%; /* Keep existing or update if needed */
     --destructive-foreground: 0 0% 98%;
-    --border: 224 67% 44%; /* Denim */
-    --input: 0 0% 100%; /* White (background of input) */
-    --ring: 213 88% 63%; /* Sky Dancer */
+    --border: 223 63% 44%; /* Denim */
+    --input: 206 98% 77%; /* Clear Sky as a light input background */
+    --ring: 217 81% 56%; /* Soothing Sapphire for focus */
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 230 65% 32%; /* Intergalactic Highway */
-    --foreground: 208 98% 77%; /* Clear Sky */
-    --card: 0 0% 0%; /* Black */
-    --card-foreground: 208 98% 77%; /* Clear Sky */
-    --popover: 0 0% 0%; /* Black */
-    --popover-foreground: 208 98% 77%; /* Clear Sky */
-    --primary: 216 80% 57%; /* Soothing Sapphire */
-    --primary-foreground: 230 65% 32%; /* Intergalactic Highway */
-    --secondary: 213 88% 63%; /* Sky Dancer */
-    --secondary-foreground: 230 65% 32%; /* Intergalactic Highway */
-    --muted: 224 67% 44%; /* Denim */
-    --muted-foreground: 208 98% 77%; /* Clear Sky */
-    --accent: 220 70% 51%; /* God of Rain */
+    --background: 231 62% 32%; /* Intergalactic Highway */
+    --foreground: 0 0% 100%;    /* White */
+    --card: 223 63% 44%;       /* Denim */
+    --card-foreground: 0 0% 100%; /* White */
+    --popover: 223 63% 44%;   /* Denim */
+    --popover-foreground: 0 0% 100%; /* White */
+    --primary: 206 98% 77%; /* Clear Sky */
+    --primary-foreground: 0 0% 0%; /* Black for better contrast on Clear Sky */
+    --secondary: 212 88% 63%; /* Sky Dancer */
+    --secondary-foreground: 0 0% 0%; /* Black for better contrast on Sky Dancer */
+    --muted: 223 63% 44%; /* Denim */
+    --muted-foreground: 206 98% 77%; /* Clear Sky for readability on dark muted */
+    --accent: 212 88% 63%; /* Sky Dancer */
     --accent-foreground: 0 0% 100%; /* White */
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 224 67% 44%; /* Denim */
-    --input: 230 65% 32%; /* Intergalactic Highway (background of input, with a lighter border) */
-    --ring: 213 88% 63%; /* Sky Dancer */
+    --destructive: 0 84.2% 60.2%; /* Keep existing or update if needed */
+    --destructive-foreground: 0 0% 98%; /* White */
+    --border: 217 81% 56%; /* Soothing Sapphire */
+    --input: 223 63% 44%; /* Denim */
+    --ring: 206 98% 77%; /* Clear Sky for focus */
   }
 }
 

@@ -84,25 +84,25 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, isPopular }) => 
   return (
     <TooltipProvider>
       <motion.div
-        className={`h-full p-8 rounded-2xl border-2 ${
+        className={`h-full p-8 rounded-2xl border-2 flex flex-col justify-between relative ${
           isPopular 
-            ? 'border-[#0607E1] shadow-lg' 
-            : 'border-[#000000]/10'
-        } bg-[#FFFFFF] flex flex-col justify-between relative`}
+            ? 'bg-intergalactic-highway text-white border-sky-dancer shadow-lg'
+            : 'bg-background border-clear-sky'
+        }`} // Updated card styles
         whileHover={{ y: -5 }}
       >
         {/* Plan Header */}
         <div>
           {isPopular && (
-            <span className="inline-block px-4 py-1 mb-4 text-sm font-medium text-[#FFFFFF] bg-[#0607E1] rounded-full">
+            <span className="inline-block px-4 py-1 mb-4 text-sm font-medium bg-white text-intergalactic-highway rounded-full"> {/* Updated popular badge */}
               Most Popular
             </span>
           )}
-          <h3 className="text-2xl font-bold text-[#000000]">{plan.name}</h3>
-          <p className="mt-2 text-[#000000]/70 text-base">{plan.description}</p>
+          <h3 className={`text-2xl font-bold ${isPopular ? 'text-white' : 'text-intergalactic-highway'}`}>{plan.name}</h3>
+          <p className={`mt-2 text-base ${isPopular ? 'text-clear-sky' : 'text-denim'}`}>{plan.description}</p>
           <div className="mt-4 mb-6">
-            <span className="text-4xl font-bold text-[#000000]">{plan.price}</span>
-            <span className="text-[#000000]/70">/year</span>
+            <span className={`text-4xl font-bold ${isPopular ? 'text-white' : 'text-intergalactic-highway'}`}>{plan.price}</span>
+            <span className={`${isPopular ? 'text-clear-sky' : 'text-denim'}`}>/year</span>
           </div>
         </div>
 
@@ -124,18 +124,18 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, isPopular }) => 
                   <span className="flex-shrink-0">
                     <Icon 
                       size={18} 
-                      className={`${isPopular ? 'text-[#0607E1]' : 'text-[#000000]'}`}
+                      className={`${isPopular ? 'text-sky-dancer' : 'text-denim'}`} // Updated icon colors
                     />
                   </span>
-                  <span className="text-[#000000] font-medium text-sm flex-grow">
+                  <span className={`font-medium text-sm flex-grow ${isPopular ? 'text-white' : 'text-foreground'}`}> {/* Updated feature text color */}
                     {feature}
                   </span>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <button className="p-1 rounded-full hover:bg-[#0607E1]/5 transition-colors">
+                      <button className={`p-1 rounded-full transition-colors ${isPopular ? 'hover:bg-sky-dancer/20' : 'hover:bg-god-of-rain/10'}`}>
                         <FiInfo 
                           size={16} 
-                          className="text-[#000000]/40 hover:text-[#0607E1] transition-colors"
+                          className={`transition-colors ${isPopular ? 'text-clear-sky/60 hover:text-sky-dancer' : 'text-denim/60 hover:text-sky-dancer'}`} // Updated info icon colors
                         />
                       </button>
                     </TooltipTrigger>
@@ -156,8 +156,8 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, isPopular }) => 
           rel="noopener noreferrer"
           className={`w-full py-3 px-6 rounded-xl text-base font-medium transition-colors text-center ${
             isPopular
-              ? 'bg-[#0607E1] text-[#FFFFFF] hover:bg-[#0607E1]/90'
-              : 'bg-[#000000]/5 text-[#000000] hover:bg-[#000000]/10'
+              ? 'bg-soothing-sapphire text-white hover:bg-sky-dancer' // Primary CTA style
+              : 'bg-clear-sky/50 text-denim hover:bg-clear-sky' // Subtle solid button
           }`}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}

@@ -52,10 +52,11 @@ const item = {
 
 export const FeaturesGrid: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#ECF1F5] via-[#98CCF8]/5 to-[#C0F0F9]/10 py-24">
+    <section className="relative overflow-hidden bg-background py-24"> {/* Updated background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-bl from-[#98CCF8]/10 via-[#A6ECFA]/5 to-transparent rounded-full transform rotate-12 animate-pulse" />
-        <div className="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-tr from-[#C0F0F9]/10 via-[#98CCF8]/5 to-transparent rounded-full transform -rotate-12 animate-pulse" />
+        {/* Decorative blobs - kept existing light blue, could be fine-tuned to clear-sky if needed */}
+        <div className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-bl from-clear-sky/10 via-clear-sky/5 to-transparent rounded-full transform rotate-12 animate-pulse" />
+        <div className="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-tr from-clear-sky/10 via-clear-sky/5 to-transparent rounded-full transform -rotate-12 animate-pulse" />
       </div>
 
       <div className="container relative z-10">
@@ -65,10 +66,10 @@ export const FeaturesGrid: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl font-bold sm:text-4xl mb-4 text-[#040BAB]">
+          <h2 className="text-3xl font-bold sm:text-4xl mb-4 text-intergalactic-highway"> {/* Updated section title color */}
             Cutting-Edge Features
           </h2>
-          <p className="text-[#768EB4] text-lg max-w-2xl mx-auto">
+          <p className="text-denim text-lg max-w-2xl mx-auto"> {/* Updated section subtitle color */}
             Discover why leading businesses choose our innovative solutions
           </p>
         </motion.div>
@@ -86,13 +87,14 @@ export const FeaturesGrid: React.FC = () => {
               variants={item}
               className="relative group"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#98CCF8]/10 to-[#C0F0F9]/5 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-0 group-hover:opacity-100" />
-              <div className="relative p-8 rounded-3xl border border-[#768EB4]/10 bg-white/50 backdrop-blur-sm hover:border-[#5B7CCA]/30 transition-colors duration-300">
-                <div className="inline-block p-3 rounded-2xl bg-gradient-to-br from-[#5B7CCA] to-[#373FEC] text-white mb-4">
+              {/* Decorative blur - kept existing light blue, could be fine-tuned to clear-sky if needed */}
+              <div className="absolute inset-0 bg-gradient-to-r from-clear-sky/10 to-clear-sky/5 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-0 group-hover:opacity-100" />
+              <div className="relative p-8 rounded-3xl border border-clear-sky/50 bg-white/50 backdrop-blur-sm hover:border-denim/50 transition-colors duration-300"> {/* Updated card border */}
+                <div className="inline-block p-3 rounded-2xl bg-gradient-to-br from-soothing-sapphire to-sky-dancer text-white mb-4"> {/* Updated icon background and text */}
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-[#040BAB]">{feature.title}</h3>
-                <p className="text-[#768EB4]">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-2 text-intergalactic-highway">{feature.title}</h3> {/* Updated feature title color */}
+                <p className="text-denim">{feature.description}</p> {/* Updated feature description color */}
               </div>
             </motion.div>
           ))}

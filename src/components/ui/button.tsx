@@ -8,18 +8,18 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          "bg-black text-white shadow hover:bg-black/90",
-        destructive:
+        default: // Primary
+          "bg-soothing-sapphire text-white shadow hover:bg-sky-dancer",
+        destructive: // Kept as is for now
           "bg-black text-white shadow-sm hover:bg-black/90",
-        outline:
-          "border-2 border-black text-black bg-white shadow-sm hover:bg-black hover:text-white",
-        secondary:
-          "bg-white text-black border-2 border-black shadow-sm hover:bg-black hover:text-white",
-        ghost: 
-          "text-black hover:bg-black/10",
-        link: 
-          "text-black underline-offset-4 hover:underline",
+        outline: // Secondary Outline
+          "border-2 border-denim text-denim bg-transparent shadow-sm hover:bg-denim hover:text-white",
+        secondary: // Secondary Solid
+          "bg-sky-dancer text-white shadow-sm hover:bg-soothing-sapphire",
+        ghost: // Ghost
+          "text-god-of-rain hover:bg-god-of-rain/10",
+        link: // Link
+          "text-god-of-rain underline-offset-4 hover:text-sky-dancer hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2",

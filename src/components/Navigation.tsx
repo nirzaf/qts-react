@@ -22,7 +22,7 @@ export const Navigation: React.FC = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" role="banner">
+    <header className="sticky top-0 z-50 w-full border-b border-denim bg-intergalactic-highway text-white" role="banner"> {/* Changed text-clear-sky to text-white for better contrast */}
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -35,9 +35,9 @@ export const Navigation: React.FC = () => {
               <img
                 src="https://ik.imagekit.io/quadrate/assets/img/QTS%20Primary%20Logo.png?updatedAt=1748456663889"
                 alt="QTS Logo"
-                className="h-10 w-auto brightness-[0.7] contrast-[1.4] [filter:saturate(1.2)_hue-rotate(-10deg)]"
+                className="h-10 w-auto" // Removed brightness/contrast filters, assuming logo looks good on dark bg
               />
-              <span className="font-bold text-lg">QTS</span>
+              <span className="font-bold text-lg text-white">QTS</span> {/* Ensured logo text is white */}
             </SEOLink>
           </motion.div>
 
@@ -51,14 +51,14 @@ export const Navigation: React.FC = () => {
               >
                 <SEOLink
                   to={link.to}
-                  className={`text-sm font-medium transition-colors hover:text-[#0607E1] relative
-                    ${currentPath === link.to ? 'text-[#0607E1]' : 'text-gray-700'}`}
+                  className={`text-sm font-medium transition-colors hover:text-sky-dancer relative
+                    ${currentPath === link.to ? 'text-sky-dancer' : 'text-white'}`} // Changed text-clear-sky to text-white
                   ariaLabel={`Navigate to ${link.label}`}
                 >
                   {link.label}
                   {currentPath === link.to && (
                     <motion.div
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#0607E1]"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-sky-dancer" // Updated underline color
                       layoutId="underline"
                     />
                   )}
@@ -74,7 +74,7 @@ export const Navigation: React.FC = () => {
               <SEOLink
                 to="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions"
                 external={true}
-                className="relative inline-flex items-center justify-center rounded-md bg-[#000000] px-4 py-2 text-sm font-medium text-[#FFFFFF] hover:bg-[#000000]/90 transition-colors duration-200 overflow-hidden group"
+                className="relative inline-flex items-center justify-center rounded-md bg-sky-dancer px-4 py-2 text-sm font-medium text-white hover:bg-soothing-sapphire transition-colors duration-200 overflow-hidden group" // Updated CTA style
                 ariaLabel="Book a meeting with Quadrate Tech Solutions"
               >
                 <span className="relative z-10">Book a Meeting</span>
@@ -95,7 +95,7 @@ export const Navigation: React.FC = () => {
               <SEOLink
                 to="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions"
                 external={true}
-                className="relative inline-flex items-center justify-center rounded-md bg-[#000000] px-3 py-1.5 text-sm font-medium text-[#FFFFFF] hover:bg-[#000000]/90 transition-colors duration-200"
+                className="relative inline-flex items-center justify-center rounded-md bg-sky-dancer px-3 py-1.5 text-sm font-medium text-white hover:bg-soothing-sapphire transition-colors duration-200" // Updated CTA style
                 ariaLabel="Book a meeting with Quadrate Tech Solutions"
               >
                 <span className="relative z-10">Book a Meeting</span>
@@ -103,7 +103,7 @@ export const Navigation: React.FC = () => {
             </motion.div>
             <button
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#0607E1] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#0607E1]"
+              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-sky-dancer hover:bg-denim focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sky-dancer" // Changed text-clear-sky to text-white
             >
               <span className="sr-only">Open main menu</span>
               {isOpen ? (
@@ -123,7 +123,7 @@ export const Navigation: React.FC = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden overflow-hidden"
+              className="md:hidden overflow-hidden bg-intergalactic-highway" // Ensure mobile menu bg matches header
             >
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {navLinks.map((link) => (
@@ -135,8 +135,8 @@ export const Navigation: React.FC = () => {
                     <SEOLink
                       to={link.to}
                       onClick={() => setIsOpen(false)}
-                      className={`block px-3 py-2 rounded-md text-base font-medium transition-colors hover:text-[#0607E1] hover:bg-gray-50
-                        ${currentPath === link.to ? 'text-[#0607E1] bg-gray-50' : 'text-gray-700'}`}
+                      className={`block px-3 py-2 rounded-md text-base font-medium transition-colors hover:text-sky-dancer hover:bg-denim
+                        ${currentPath === link.to ? 'text-sky-dancer bg-denim' : 'text-white'}`} // Changed text-clear-sky to text-white
                       ariaLabel={`Navigate to ${link.label}`}
                     >
                       {link.label}

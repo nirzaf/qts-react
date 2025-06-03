@@ -51,6 +51,15 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Intergalactic Highway Palette
+        'intergalactic-highway': '#1d2f84',
+        'black': '#000000',
+        'denim': '#254cba',
+        'god-of-rain': '#2d64d8',
+        'soothing-sapphire': '#397ce8',
+        'sky-dancer': '#4e95f2',
+        'clear-sky': '#8bc7fe',
+        'white': '#FFFFFF',
       },
       borderRadius: {
         lg: "var(--radius)",

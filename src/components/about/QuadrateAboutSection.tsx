@@ -36,13 +36,13 @@ export const QuadrateAboutSection: React.FC = () => {
             className="space-y-6"
           >
             <h2 className="text-2xl md:text-3xl font-montserrat font-bold">
-              <span className="text-black">INNOVATIVE</span>{' '}
-              <span className="text-black">
+              <span className="text-soothing-sapphire">INNOVATIVE</span>{' '}
+              <span className="text-soothing-sapphire">
                 TECH SOLUTIONS
               </span>
             </h2>
-            <p className="text-gray-600 leading-relaxed text-lg">
-              At <span className="font-semibold text-[#0607E1]">Quadrate Tech Solutions</span>, 
+            <p className="text-muted-foreground leading-relaxed text-lg">
+              At <span className="font-semibold text-soothing-sapphire">Quadrate Tech Solutions</span>,
               we are passionate about transforming businesses through cutting-edge technology.
             </p>
           </motion.div>
@@ -51,7 +51,7 @@ export const QuadrateAboutSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="prose prose-lg text-gray-600"
+            className="prose prose-lg text-muted-foreground"
           >
             <p>
               As a leading software development company, we specialize in creating 
@@ -73,11 +73,11 @@ export const QuadrateAboutSection: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 + index * 0.1 }}
-                  className="p-4 rounded-lg bg-white shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                  className="p-4 rounded-lg bg-background shadow-sm border border-clear-sky/50 hover:shadow-md transition-shadow"
                 >
-                  <Icon className="h-6 w-6 text-[#0607E1] mb-2" />
-                  <h3 className="font-semibold text-gray-900 mb-1">{feature.title}</h3>
-                  <p className="text-sm text-gray-600">{feature.description}</p>
+                  <Icon className="h-6 w-6 text-soothing-sapphire mb-2" />
+                  <h3 className="font-semibold text-intergalactic-highway mb-1">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground">{feature.description}</p>
                 </motion.div>
               );
             })}
@@ -90,7 +90,7 @@ export const QuadrateAboutSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="relative"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0607E1]/10 to-transparent rounded-lg" />
+          <div className="absolute inset-0 bg-gradient-to-br from-soothing-sapphire/10 to-transparent rounded-lg" />
           <img 
             src="https://ik.imagekit.io/quadrate/assets/img/about-qts.jpeg?updatedAt=1745178529582" 
             alt="Quadrate Tech Solutions Team"

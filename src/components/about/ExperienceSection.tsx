@@ -37,7 +37,7 @@ const stats = [
 
 export const ExperienceSection: React.FC = () => {
   return (
-    <section className="py-16 bg-gradient-to-br from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
+    <section className="py-16 bg-gradient-to-br from-background via-soothing-sapphire/5 to-background"> {/* Updated gradient */}
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -46,10 +46,10 @@ export const ExperienceSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold text-[#000000] mb-4">
+          <h2 className="text-3xl font-bold text-intergalactic-highway mb-4"> {/* text-black to text-intergalactic-highway */}
             Our Experience
           </h2>
-          <p className="text-lg text-[#000000]/70 max-w-2xl mx-auto">
+          <p className="text-lg text-denim max-w-2xl mx-auto"> {/* text-black/70 to text-denim */}
             Years of dedication and commitment to delivering exceptional software solutions
           </p>
         </motion.div>
@@ -65,18 +65,18 @@ export const ExperienceSection: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="h-full p-6 text-center hover:shadow-lg transition-shadow duration-300 bg-white/80 backdrop-blur-sm border-black/5">
+                <Card className="h-full p-6 text-center hover:shadow-lg transition-shadow duration-300 bg-background/80 backdrop-blur-sm border-clear-sky/20"> {/* bg-white to bg-background, border updated */}
                   <div className="flex flex-col h-full">
                     <div className="flex justify-center mb-4">
-                      <Icon className="w-8 h-8 text-[#0607E1]" />
+                      <Icon className="w-8 h-8 text-soothing-sapphire" /> {/* text color updated */}
                     </div>
-                    <div className="text-3xl font-bold text-[#000000] mb-2">
+                    <div className="text-3xl font-bold text-intergalactic-highway mb-2"> {/* text color updated */}
                       {stat.number}
                     </div>
-                    <div className="text-lg font-semibold text-[#000000] mb-2">
+                    <div className="text-lg font-semibold text-denim mb-2"> {/* text color updated */}
                       {stat.label}
                     </div>
-                    <p className="text-sm text-[#000000]/70 mt-auto">
+                    <p className="text-sm text-muted-foreground mt-auto"> {/* text color updated */}
                       {stat.description}
                     </p>
                   </div>

@@ -36,7 +36,7 @@ const AnimatedLetter: React.FC<{ letter: string; index: number }> = ({ letter, i
     }}
     className={`inline-block transform cursor-default font-inter
       ${letter === ' ' ? 'mx-[3px]' : 'mx-[0.5px]'}
-      hover:text-[#0607E1] hover:scale-110 transition-colors duration-300
+      hover:text-sky-dancer hover:scale-110 transition-colors duration-300
       font-semibold tracking-tight`}
     style={{
       transformOrigin: "center center"
@@ -64,7 +64,8 @@ const AnimatedWord: React.FC<{ word: string; isLastWord: boolean }> = ({ word, i
             opacity: 1,
             y: 0,
             rotateX: 0,
-            color: isHovered ? '#0607E1' : isLastWord ? '#0607E1' : '#000000',
+            // Updated colors for AnimatedWord: sky-dancer for hover/last, intergalactic-highway for default
+            color: isHovered ? '#4e95f2' : isLastWord ? '#4e95f2' : '#1d2f84',
             textShadow: '0 0 1px rgba(255,255,255,0.5)' // Subtle text shadow for better visibility
           }}
           transition={{
@@ -130,7 +131,7 @@ export const HeroSection = ({
                 {/* Company Name - Updated Font */}
                 <motion.h2
                   className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight min-h-[40px] md:min-h-[60px] flex items-center justify-center lg:justify-start overflow-visible
-                    font-montserrat relative z-20 text-black dark:text-white"
+                    font-montserrat relative z-20 text-intergalactic-highway dark:text-white" // Updated H2 color
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{
@@ -184,7 +185,7 @@ export const HeroSection = ({
                   <motion.div className="relative">
                     {/* Pointer Arrow */}
                     <motion.div
-                      className="absolute -top-3 left-1/2 lg:left-12 transform -translate-x-1/2 text-[#0607E1]"
+                      className="absolute -top-3 left-1/2 lg:left-12 transform -translate-x-1/2 text-denim" // Updated pointer color
                       initial={{ y: 0 }}
                       animate={{ y: [0, -8, 0] }}
                       transition={{
@@ -199,7 +200,7 @@ export const HeroSection = ({
                     {/* Helps Text */}
                     <motion.h3
                       className="text-xl md:text-2xl lg:text-3xl font-semibold relative z-10 cursor-pointer
-                        bg-gradient-to-r from-[#0607E1] via-[#0A25C9] to-[#0607E1] bg-clip-text text-transparent
+                        bg-gradient-to-r from-denim via-god-of-rain to-denim bg-clip-text text-transparent  // Updated H3 gradient
                         transition-all duration-500 ease-in-out transform-gpu
                         font-outfit px-4 md:px-6 shadow-sm"
                       initial={{ rotateX: -30, y: 20, opacity: 0 }}
@@ -219,7 +220,7 @@ export const HeroSection = ({
 
                     {/* Decorative underline */}
                     <motion.div
-                      className="h-[2px] bg-gradient-to-r from-transparent via-[#0607E1] to-transparent mt-1"
+                      className="h-[2px] bg-gradient-to-r from-transparent via-denim to-transparent mt-1" // Updated underline color
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ delay: 0.6, duration: 0.8 }}
@@ -230,7 +231,7 @@ export const HeroSection = ({
                 {/* Main Heading - Enhanced Animation */}
                 <motion.h1
                   className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight h-[80px] md:h-[100px] flex items-center justify-center lg:justify-start -mt-2
-                    font-plusJakartaSans antialiased perspective-1000 text-black dark:text-white"
+                    font-plusJakartaSans antialiased perspective-1000 text-intergalactic-highway dark:text-white" // Updated H1 color
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
@@ -292,7 +293,7 @@ export const HeroSection = ({
                 >
                   <button
                     onClick={primaryButton.onClick}
-                    className="relative px-4 md:px-8 py-2 md:py-3 bg-black text-white text-sm md:text-base rounded-lg hover:bg-gray-800 transition-colors duration-300 overflow-hidden group shadow-md"
+                    className="relative px-4 md:px-8 py-2 md:py-3 bg-sky-dancer text-white text-sm md:text-base rounded-lg hover:bg-soothing-sapphire transition-colors duration-300 overflow-hidden group shadow-md" // Updated primary button style
                     aria-label={primaryButton.text}
                   >
                     <span className="relative z-10">{primaryButton.text}</span>
@@ -302,7 +303,7 @@ export const HeroSection = ({
                   </button>
                   <button
                     onClick={secondaryButton.onClick}
-                    className="relative px-4 md:px-8 py-2 md:py-3 border-2 border-black text-black text-sm md:text-base rounded-lg hover:bg-black hover:text-white transition-colors duration-300 overflow-hidden group shadow-md"
+                    className="relative px-4 md:px-8 py-2 md:py-3 border-2 border-denim text-denim text-sm md:text-base rounded-lg hover:bg-denim hover:text-white transition-colors duration-300 overflow-hidden group shadow-md" // Updated secondary button style
                     aria-label={secondaryButton.text}
                   >
                     <span className="relative z-10">{secondaryButton.text}</span>

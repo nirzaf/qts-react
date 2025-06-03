@@ -40,7 +40,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
   return (
     <div className="min-h-screen flex flex-col">
       <motion.div 
-        className={`flex-grow bg-gradient-to-br from-white via-white to-black/5 ${className}`}
+        className={`flex-grow bg-background ${className}`} // Use bg-background for a pure white canvas
         initial="hidden"
         animate="visible"
         variants={containerVariants}
@@ -55,12 +55,12 @@ const PageLayout: React.FC<PageLayoutProps> = ({
               variants={elementVariants}
             >
               {title && (
-                <h1 className="text-4xl md:text-5xl font-bold mb-4 text-black">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 text-intergalactic-highway"> {/* Updated title color */}
                   {title}
                 </h1>
               )}
               {subtitle && (
-                <p className="text-black/70 text-lg max-w-2xl mx-auto">
+                <p className="text-denim text-lg max-w-2xl mx-auto"> {/* Updated subtitle color */}
                   {subtitle}
                 </p>
               )}
