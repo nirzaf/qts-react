@@ -14,7 +14,7 @@ const ContactPageLayout: FC<ContactPageLayoutProps> = ({ children }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="absolute inset-0 bg-gradient-to-br from-[#FFFFFF] to-[#0607E1]/5"
+        className="absolute inset-0 bg-gradient-to-br from-[#ffffff] to-[#1d2f84]/5"
       >
         <ContactBackground />
       </motion.div>

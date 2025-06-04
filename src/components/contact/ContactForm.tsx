@@ -49,7 +49,7 @@ const ContactForm: FC<ContactFormProps> = ({ onBack }) => {
         <Button
           variant="ghost"
           onClick={onBack}
-          className="text-sm hover:bg-[#0607E1]/10"
+          className="text-sm hover:bg-[#1d2f84]/10"
         >
           ← Back to contact methods
         </Button>

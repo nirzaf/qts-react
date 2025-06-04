@@ -30,7 +30,7 @@ const ProjectInfoStep: FC<FormStepProps> = ({ formData, onFormDataChange, onNext
           onChange={(e) => onFormDataChange({ timeline: e.target.value })}
         />
       </div>
-      <Button className="w-full bg-[#0607E1] hover:bg-[#0607E1]/90" onClick={onNext}>
+      <Button className="w-full bg-[#1d2f84] hover:bg-[#1d2f84]/90" onClick={onNext}>
         Next Step
         <ArrowRight className="ml-2 h-4 w-4" />
       </Button>

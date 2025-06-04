@@ -15,7 +15,7 @@ export const contactMethods: ContactMethod[] = [
     title: 'Quick Chat',
     description: 'Start a conversation right now',
     icon: MessageSquare,
-    color: 'bg-[#0607E1]',
+    color: 'bg-[#1d2f84]',
     link: 'https://quadratetechsolutions.zohobookings.com/'
   },
   {
@@ -23,7 +23,7 @@ export const contactMethods: ContactMethod[] = [
     title: 'Schedule Meeting',
     description: 'Book a time that works for you',
     icon: Calendar,
-    color: 'bg-[#0607E1]',
+    color: 'bg-[#1d2f84]',
     link: 'https://quadratetechsolutions.zohobookings.com/'
   },
   {
@@ -31,7 +31,7 @@ export const contactMethods: ContactMethod[] = [
     title: 'Email Us',
     description: 'Get in touch via email',
     icon: Mail,
-    color: 'bg-[#0607E1]',
+    color: 'bg-[#1d2f84]',
     link: 'mailto:info@quadrate.lk'
   }
 ];

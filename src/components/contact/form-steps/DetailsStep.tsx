@@ -23,8 +23,8 @@ const DetailsStep: FC<DetailsStepProps> = ({ formData, onFormDataChange, onSubmi
         value={formData.message}
         onChange={(e) => onFormDataChange({ message: e.target.value })}
       />
-      <Button 
-        className="w-full bg-[#0607E1] hover:bg-[#0607E1]/90" 
+      <Button
+        className="w-full bg-[#1d2f84] hover:bg-[#1d2f84]/90"
         onClick={onSubmit}
       >
         Send Message

@@ -12,7 +12,7 @@ const ThreeHeroScene: React.FC = () => {
     <div className="relative w-full h-0 md:h-[350px] lg:h-[400px] overflow-hidden hidden md:block">
       {/* Background gradient */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-[#0607E1]/5 via-[#4D0AFF]/3 to-transparent"
+        className="absolute inset-0 bg-gradient-to-r from-[#1d2f84]/5 via-[#397ce8]/3 to-transparent"
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.7 }}
         transition={{ duration: 1.2 }}
@@ -59,7 +59,7 @@ const ThreeHeroScene: React.FC = () => {
           y: { duration: 8, repeat: Infinity, repeatType: "reverse" },
           scale: { duration: 8, repeat: Infinity, repeatType: "reverse" }
         }}
-        className="absolute top-1/4 left-10 w-1/4 h-1/4 bg-[#0607E1]/10 blur-3xl rounded-full"
+        className="absolute top-1/4 left-10 w-1/4 h-1/4 bg-[#1d2f84]/10 blur-3xl rounded-full"
       />
 
       <motion.div
@@ -74,7 +74,7 @@ const ThreeHeroScene: React.FC = () => {
           y: { duration: 10, repeat: Infinity, repeatType: "reverse" },
           scale: { duration: 10, repeat: Infinity, repeatType: "reverse" }
         }}
-        className="absolute bottom-1/4 left-10 w-1/5 h-1/5 bg-[#4D0AFF]/8 blur-3xl rounded-full"
+        className="absolute bottom-1/4 left-10 w-1/5 h-1/5 bg-[#397ce8]/8 blur-3xl rounded-full"
       />
     </div>
   );

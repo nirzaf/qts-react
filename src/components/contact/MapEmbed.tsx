@@ -34,7 +34,7 @@ const MapEmbed = memo(({ src, title, className = '' }: MapEmbedProps) => {
       {/* Static Map Placeholder */}
       <div
         id={`map-placeholder-${title}`}
-        className={`absolute inset-0 bg-[#0607E1]/5 ${
+        className={`absolute inset-0 bg-[#1d2f84]/5 ${
           !isMapLoaded ? 'visible' : 'invisible'
         } ${className}`}
       >

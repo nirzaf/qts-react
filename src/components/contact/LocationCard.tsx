@@ -29,19 +29,19 @@ const LocationCard: FC<LocationCardProps> = ({ title, address, mapUrl, index }) 
         transition: { duration: 0.2 }
       }}
     >
-      <Card className="overflow-hidden h-full border border-[#0607E1]/10 hover:border-[#0607E1]/20 transition-colors duration-300">
+      <Card className="overflow-hidden h-full border border-[#1d2f84]/10 hover:border-[#1d2f84]/20 transition-colors duration-300">
         <div className="p-4">
           <h3 className="text-xl font-semibold mb-2">{title}</h3>
           <p className="text-[#000000]/70 mb-4">{address}</p>
         </div>
         <div className="h-[300px] relative">
           <Suspense fallback={
-            <div className="w-full h-full bg-[#0607E1]/5 animate-pulse" />
+            <div className="w-full h-full bg-[#1d2f84]/5 animate-pulse" />
           }>
             <MapEmbed
               src={mapUrl}
               title={title}
-              className="border-t border-[#0607E1]/10"
+              className="border-t border-[#1d2f84]/10"
             />
           </Suspense>
         </div>

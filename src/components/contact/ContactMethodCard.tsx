@@ -40,15 +40,15 @@ const ContactMethodCard = ({ method, isActive, onClick, index }: ContactMethodCa
     >
       <Card
         className={`relative h-[280px] w-full p-8 cursor-pointer transition-all duration-300 flex flex-col ${
-          isActive 
-            ? 'border-[#0607E1] shadow-xl bg-[#0607E1]/5' 
-            : 'hover:shadow-lg hover:border-[#0607E1]/50'
+          isActive
+            ? 'border-[#1d2f84] shadow-xl bg-[#1d2f84]/5'
+            : 'hover:shadow-lg hover:border-[#1d2f84]/50'
         }`}
         onClick={onClick}
       >
         <motion.div 
           className={`inline-flex p-4 rounded-xl ${
-            isActive ? 'bg-[#0607E1]/10' : method.color + ' bg-opacity-10'
+            isActive ? 'bg-[#1d2f84]/10' : method.color + ' bg-opacity-10'
           }`}
           whileHover={{ 
             scale: 1.1,
@@ -57,7 +57,7 @@ const ContactMethodCard = ({ method, isActive, onClick, index }: ContactMethodCa
           }}
         >
           <Icon className={`h-8 w-8 ${
-            isActive ? 'text-[#0607E1]' : method.color.replace('bg-', 'text-')
+            isActive ? 'text-[#1d2f84]' : method.color.replace('bg-', 'text-')
           }`} />
         </motion.div>
         
@@ -89,7 +89,7 @@ const ContactMethodCard = ({ method, isActive, onClick, index }: ContactMethodCa
             }}
           >
             <ArrowRight className={`h-6 w-6 ${
-              isActive ? 'text-[#0607E1]' : 'text-[#0607E1]/60'
+              isActive ? 'text-[#1d2f84]' : 'text-[#1d2f84]/60'
             } transition-colors`} />
           </motion.div>
         </motion.div>
