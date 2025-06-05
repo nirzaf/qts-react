@@ -42,7 +42,7 @@ export const QuadrateAboutSection: React.FC = () => {
               </span>
             </h2>
             <p className="text-gray-600 leading-relaxed text-lg">
-              At <span className="font-semibold text-[#0607E1]">Quadrate Tech Solutions</span>, 
+              At <span className="font-semibold text-[#1d2f84]">Quadrate Tech Solutions</span>,
               we are passionate about transforming businesses through cutting-edge technology.
             </p>
           </motion.div>
@@ -75,7 +75,7 @@ export const QuadrateAboutSection: React.FC = () => {
                   transition={{ delay: 0.2 + index * 0.1 }}
                   className="p-4 rounded-lg bg-white shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
                 >
-                  <Icon className="h-6 w-6 text-[#0607E1] mb-2" />
+                  <Icon className="h-6 w-6 text-[#1d2f84] mb-2" />
                   <h3 className="font-semibold text-gray-900 mb-1">{feature.title}</h3>
                   <p className="text-sm text-gray-600">{feature.description}</p>
                 </motion.div>
@@ -90,7 +90,7 @@ export const QuadrateAboutSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="relative"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0607E1]/10 to-transparent rounded-lg" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1d2f84]/10 to-transparent rounded-lg" />
           <img 
             src="https://ik.imagekit.io/quadrate/assets/img/about-qts.jpeg?updatedAt=1745178529582" 
             alt="Quadrate Tech Solutions Team"

@@ -13,7 +13,7 @@ export const VisionMission: React.FC = () => {
             y: -5,
             transition: { duration: 0.2 }
           }}
-          className="p-6 border rounded-lg hover:shadow-lg hover:border-[#0607E1]/20 transition-all duration-300"
+          className="p-6 border rounded-lg hover:shadow-lg hover:border-[#1d2f84]/20 transition-all duration-300"
         >
           <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
             <motion.span 
@@ -24,7 +24,7 @@ export const VisionMission: React.FC = () => {
               }}
               transition={{ duration: 0.2 }}
             >
-              <Eye className="w-6 h-6 text-[#0607E1]" />
+              <Eye className="w-6 h-6 text-[#1d2f84]" />
             </motion.span>
             Our Vision
           </h3>
@@ -40,7 +40,7 @@ export const VisionMission: React.FC = () => {
             y: -5,
             transition: { duration: 0.2 }
           }}
-          className="p-6 border rounded-lg hover:shadow-lg hover:border-[#0607E1]/20 transition-all duration-300"
+          className="p-6 border rounded-lg hover:shadow-lg hover:border-[#1d2f84]/20 transition-all duration-300"
         >
           <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
             <motion.span 
@@ -51,7 +51,7 @@ export const VisionMission: React.FC = () => {
               }}
               transition={{ duration: 0.2 }}
             >
-              <Target className="w-6 h-6 text-[#0607E1]" />
+              <Target className="w-6 h-6 text-[#1d2f84]" />
             </motion.span>
             Our Mission
           </h3>
