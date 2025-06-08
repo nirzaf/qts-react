@@ -51,14 +51,14 @@ export const Navigation: React.FC = () => {
               >
                 <SEOLink
                   to={link.to}
-                  className={`text-sm font-medium transition-colors hover:text-[#0607E1] relative
-                    ${currentPath === link.to ? 'text-[#0607E1]' : 'text-gray-700'}`}
+                  className={`text-sm font-medium transition-colors hover:text-[#1d2f84] relative
+                    ${currentPath === link.to ? 'text-[#1d2f84]' : 'text-gray-700'}`}
                   ariaLabel={`Navigate to ${link.label}`}
                 >
                   {link.label}
                   {currentPath === link.to && (
                     <motion.div
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#0607E1]"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#1d2f84]"
                       layoutId="underline"
                     />
                   )}
@@ -74,7 +74,7 @@ export const Navigation: React.FC = () => {
               <SEOLink
                 to="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions"
                 external={true}
-                className="relative inline-flex items-center justify-center rounded-md bg-[#000000] px-4 py-2 text-sm font-medium text-[#FFFFFF] hover:bg-[#000000]/90 transition-colors duration-200 overflow-hidden group"
+                className="relative inline-flex items-center justify-center rounded-md bg-[#000001] px-4 py-2 text-sm font-medium text-[#FFFFFF] hover:bg-[#000001]/90 transition-colors duration-200 overflow-hidden group"
                 ariaLabel="Book a meeting with Quadrate Tech Solutions"
               >
                 <span className="relative z-10">Book a Meeting</span>
@@ -95,7 +95,7 @@ export const Navigation: React.FC = () => {
               <SEOLink
                 to="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions"
                 external={true}
-                className="relative inline-flex items-center justify-center rounded-md bg-[#000000] px-3 py-1.5 text-sm font-medium text-[#FFFFFF] hover:bg-[#000000]/90 transition-colors duration-200"
+                className="relative inline-flex items-center justify-center rounded-md bg-[#000001] px-3 py-1.5 text-sm font-medium text-[#FFFFFF] hover:bg-[#000001]/90 transition-colors duration-200"
                 ariaLabel="Book a meeting with Quadrate Tech Solutions"
               >
                 <span className="relative z-10">Book a Meeting</span>
@@ -103,7 +103,7 @@ export const Navigation: React.FC = () => {
             </motion.div>
             <button
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#0607E1] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#0607E1]"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#1d2f84] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#1d2f84]"
             >
               <span className="sr-only">Open main menu</span>
               {isOpen ? (
@@ -135,8 +135,8 @@ export const Navigation: React.FC = () => {
                     <SEOLink
                       to={link.to}
                       onClick={() => setIsOpen(false)}
-                      className={`block px-3 py-2 rounded-md text-base font-medium transition-colors hover:text-[#0607E1] hover:bg-gray-50
-                        ${currentPath === link.to ? 'text-[#0607E1] bg-gray-50' : 'text-gray-700'}`}
+                      className={`block px-3 py-2 rounded-md text-base font-medium transition-colors hover:text-[#1d2f84] hover:bg-gray-50
+                        ${currentPath === link.to ? 'text-[#1d2f84] bg-gray-50' : 'text-gray-700'}`}
                       ariaLabel={`Navigate to ${link.label}`}
                     >
                       {link.label}

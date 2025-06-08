@@ -58,7 +58,7 @@ const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({
               damping: 15
             }}
             whileHover={{
-              color: '#0607E1',
+              color: '#1d2f84',
               scale: 1.1,
               transition: { duration: 0.2 }
             }}

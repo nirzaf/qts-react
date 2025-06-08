@@ -9,7 +9,7 @@ interface LoadingSpinnerProps {
 
 const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   size = 'medium',
-  color = '#0607E1',
+  color = '#1d2f84',
   text = 'Loading...'
 }) => {
   // Size mapping

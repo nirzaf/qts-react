@@ -41,13 +41,13 @@ export const HeroSection: React.FC<HeroProps> = ({
   const { t } = useTranslation();
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#FFFFFF]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#ffffff]">
       {/* Enhanced Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 right-1/4 w-1/3 h-1/3 bg-gradient-to-bl from-[#0607E1]/20 via-[#0607E1]/10 to-transparent rounded-full transform rotate-45 animate-pulse" />
-        <div className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-gradient-to-tr from-[#0607E1]/20 via-[#0607E1]/10 to-transparent rounded-full transform -rotate-45 animate-pulse" />
+        <div className="absolute top-1/4 right-1/4 w-1/3 h-1/3 bg-gradient-to-bl from-[#1d2f84]/20 via-[#1d2f84]/10 to-transparent rounded-full transform rotate-45 animate-pulse" />
+        <div className="absolute bottom-1/4 left-1/3 w-1/3 h-1/3 bg-gradient-to-tr from-[#1d2f84]/20 via-[#1d2f84]/10 to-transparent rounded-full transform -rotate-45 animate-pulse" />
         {/* Additional decorative element */}
-        <div className="absolute top-1/2 left-1/2 w-1/4 h-1/4 bg-gradient-to-r from-[#0607E1]/10 to-transparent rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute top-1/2 left-1/2 w-1/4 h-1/4 bg-gradient-to-r from-[#1d2f84]/10 to-transparent rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
       </div>
 
       <div className="container relative z-10">
@@ -59,7 +59,7 @@ export const HeroSection: React.FC<HeroProps> = ({
         >
           <motion.div variants={item} className="text-center lg:text-left">
             <h1 className="text-5xl lg:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-[#0607E1] via-[#0607E1]/80 to-[#0607E1] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#1d2f84] via-[#254cba] to-[#2d64d8] bg-clip-text text-transparent">
                 {t(title)}
               </span>
             </h1>
@@ -70,7 +70,7 @@ export const HeroSection: React.FC<HeroProps> = ({
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-full bg-gradient-to-r from-[#0607E1] to-[#0607E1]/90 text-[#FFFFFF] font-semibold hover:shadow-lg hover:shadow-[#0607E1]/25 transition-all duration-300"
+                className="px-8 py-4 rounded-full bg-gradient-to-r from-[#1d2f84] to-[#254cba] text-[#FFFFFF] font-semibold hover:shadow-lg hover:shadow-[#1d2f84]/25 transition-all duration-300"
                 onClick={primaryButton.onClick}
               >
                 {t(primaryButton.text)}
@@ -78,7 +78,7 @@ export const HeroSection: React.FC<HeroProps> = ({
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-full border-2 border-[#0607E1] text-[#0607E1] font-semibold hover:bg-[#0607E1]/5 transition-colors duration-300"
+                className="px-8 py-4 rounded-full border-2 border-[#1d2f84] text-[#1d2f84] font-semibold hover:bg-[#1d2f84]/5 transition-colors duration-300"
                 onClick={secondaryButton.onClick}
               >
                 {t(secondaryButton.text)}
@@ -91,11 +91,11 @@ export const HeroSection: React.FC<HeroProps> = ({
             className="relative aspect-square max-w-xl mx-auto hidden lg:block"
           >
             {/* Enhanced card design */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0607E1]/10 to-[#0607E1]/10 rounded-3xl opacity-80" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1d2f84]/10 to-[#1d2f84]/10 rounded-3xl opacity-80" />
             <div className="absolute inset-0 backdrop-blur-xl rounded-3xl" />
             <div className="absolute inset-0 bg-[#FFFFFF]/50 rounded-3xl shadow-2xl border border-[#000000]/10" />
             {/* Additional inner glow */}
-            <div className="absolute inset-8 bg-gradient-to-br from-[#0607E1]/20 via-transparent to-[#0607E1]/20 rounded-2xl filter blur-md" />
+            <div className="absolute inset-8 bg-gradient-to-br from-[#1d2f84]/20 via-transparent to-[#1d2f84]/20 rounded-2xl filter blur-md" />
           </motion.div>
         </motion.div>
       </div>

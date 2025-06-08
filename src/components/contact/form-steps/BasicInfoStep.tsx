@@ -24,7 +24,7 @@ const BasicInfoStep: FC<FormStepProps> = ({ formData, onFormDataChange, onNext }
         value={formData.email}
         onChange={(e) => onFormDataChange({ email: e.target.value })}
       />
-      <Button className="w-full bg-[#0607E1] hover:bg-[#0607E1]/90" onClick={onNext}>
+      <Button className="w-full bg-[#1d2f84] hover:bg-[#1d2f84]/90" onClick={onNext}>
         Continue
         <ArrowRight className="ml-2 h-4 w-4" />
       </Button>
