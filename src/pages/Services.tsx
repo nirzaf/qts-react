@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
 import PageLayout from '@/layouts/PageLayout';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
@@ -10,6 +10,10 @@ import HeroSection from './Services/components/HeroSection';
 import ServiceCard from './Services/components/ServiceCard';
 import CTASection from './Services/components/CTASection';
 import SEO from '@/components/seo/SEO';
+import Loading from '@/components/ui/loading';
+
+// Lazy load AI Services section
+const AIServicesSection = lazy(() => import('@/components/sections/AIServicesSection'));
 import { 
   generateOrganizationSchema, 
   generateWebPageSchema, 
@@ -72,7 +76,7 @@ const ServicesPage: React.FC = () => {
         <SEO
           title={pageTitle}
           description={pageDescription}
-          keywords="custom software development, web development, digital marketing, IT outsourcing, business email, business process automation, IT services Sri Lanka, Zoho partner, Microsoft 365 solutions"
+          keywords="artificial intelligence services, AI consulting, machine learning solutions, computer vision, natural language processing, generative AI, AI integration, MLOps, data engineering, custom software development, web development, digital marketing, IT outsourcing, business email, business process automation, IT services Sri Lanka, Zoho partner, Microsoft 365 solutions, AI strategy, AI readiness assessment, cloud AI implementation"
           image={pageImage}
           canonicalUrl={pageUrl}
           structuredData={structuredData}
@@ -102,7 +106,7 @@ const ServicesPage: React.FC = () => {
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-20"
             >
               {services.map((service) => (
                 <ServiceCard
@@ -112,6 +116,13 @@ const ServicesPage: React.FC = () => {
                 />
               ))}
             </motion.div>
+
+            {/* AI Services Section */}
+            <div className="relative z-30 -mt-10">
+              <Suspense fallback={<Loading />}>
+                <AIServicesSection />
+              </Suspense>
+            </div>
 
             <CTASection />
           </div>

@@ -1,6 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Globe, LineChart, Network, Mail, Workflow, ArrowRight } from 'lucide-react';
+import {
+  Code2,
+  Globe,
+  LineChart,
+  Network,
+  Mail,
+  Workflow,
+  ArrowRight,
+  Brain,
+  Bot,
+  Cpu,
+  Eye,
+  MessageSquare,
+  Zap
+} from 'lucide-react';
 
 // Placeholder for AnimatedHeading - Replace with your actual component import
 const AnimatedHeading = ({ text, className, id }: { text: string; className?: string; id?: string }) => (
@@ -18,6 +32,39 @@ interface Service {
 
 // Array of service objects
 const services: Service[] = [
+  // AI Services - Featured prominently
+  {
+    title: 'AI Strategy & Consulting',
+    description: 'Strategic guidance for AI adoption, readiness assessment, and technology roadmap development.',
+    icon: Brain,
+  },
+  {
+    title: 'Machine Learning Solutions',
+    description: 'Custom ML models for predictive analytics, recommendation engines, and fraud detection.',
+    icon: Cpu,
+  },
+  {
+    title: 'Computer Vision',
+    description: 'Image recognition, object detection, facial recognition, and video analysis solutions.',
+    icon: Eye,
+  },
+  {
+    title: 'Natural Language Processing',
+    description: 'Build chatbots, virtual assistants, text analysis, and language translation services.',
+    icon: MessageSquare,
+  },
+  {
+    title: 'Generative AI Solutions',
+    description: 'Content generation, code generation, and sophisticated conversational AI agents.',
+    icon: Bot,
+  },
+  {
+    title: 'AI Integration Services',
+    description: 'Seamlessly integrate AI capabilities into your existing software and workflows.',
+    icon: Zap,
+  },
+
+  // Traditional Services
   {
     title: 'Custom Software Development',
     description: 'Tailored software solutions designed to meet your unique business requirements.',

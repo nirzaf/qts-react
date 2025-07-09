@@ -20,8 +20,15 @@ const FloatingServiceTexts: React.FC = () => {
     // Extract service titles and add some additional keywords
     const serviceTexts = services.map(service => service.title);
     const additionalKeywords = [
-      'React', 'TypeScript', 'Node.js', 'SEO', 
-      'UI/UX', 'Cloud', 'DevOps', 'API', 
+      // AI & ML Keywords
+      'Artificial Intelligence', 'Machine Learning', 'Deep Learning', 'Neural Networks',
+      'Computer Vision', 'NLP', 'Chatbots', 'Predictive Analytics',
+      'Data Science', 'MLOps', 'TensorFlow', 'PyTorch',
+      'OpenAI', 'GPT', 'LLM', 'Generative AI',
+
+      // Traditional Tech Keywords
+      'React', 'TypeScript', 'Node.js', 'SEO',
+      'UI/UX', 'Cloud', 'DevOps', 'API',
       'Mobile Apps', 'E-commerce', 'Analytics',
       'Security', 'Consulting', 'Support',
       'Responsive', 'Performance', 'Scalable'

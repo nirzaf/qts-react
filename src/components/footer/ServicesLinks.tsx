@@ -2,6 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const services = [
+  'AI Strategy & Consulting',
+  'Machine Learning Solutions',
+  'Computer Vision',
+  'Natural Language Processing',
   'Custom Software Development',
   'Web Development',
   'Digital Marketing',

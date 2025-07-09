@@ -21,6 +21,8 @@ import {
 const Features = lazy(() => import('@/components/sections/features/Features'));
 const TechStack = lazy(() => import('@/components/sections/TechStack'));
 const ServicesSection = lazy(() => import('@/components/sections/ServicesSection'));
+const AIHighlightBanner = lazy(() => import('@/components/sections/AIHighlightBanner'));
+const AIServicesSection = lazy(() => import('@/components/sections/AIServicesSection'));
 const PricingSection = lazy(() => import('@/components/sections/PricingSection'));
 const StatsSection = lazy(() => import('@/components/sections/StatsSection'));
 const PartnersSection = lazy(() => import('@/components/sections/PartnersSection'));
@@ -107,9 +109,9 @@ const Home: React.FC = () => {
     return (
       <div className="relative bg-transparent">
         <SEO
-          title="Quadrate Tech Solutions | Software Development"
-          description="Custom software development, web development, digital marketing, and IT services to help your business grow."
-          keywords="software development, web development, digital marketing, IT outsourcing, business automation, Sri Lanka, custom software, web design, mobile app development, cloud solutions"
+          title="Quadrate Tech Solutions | AI & Software Development"
+          description="AI-powered software solutions, machine learning, computer vision, NLP, custom software development, web development, and digital marketing services."
+          keywords="artificial intelligence, AI services, machine learning, computer vision, natural language processing, generative AI, AI consulting, software development, web development, digital marketing, IT outsourcing, business automation, Sri Lanka, custom software, web design, mobile app development, cloud solutions, AI integration, MLOps, data engineering"
           image="https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458"
           author="Quadrate Tech Solutions"
           language="en"
@@ -171,6 +173,22 @@ const Home: React.FC = () => {
             <div className="font-plusJakartaSans text-[#0607E1]">
               <Suspense fallback={<Loading />}>
                 <ServicesSection />
+              </Suspense>
+            </div>
+          </AnimatedSection>
+
+          {/* AI Highlight Banner */}
+          <div className="font-plusJakartaSans">
+            <Suspense fallback={<Loading />}>
+              <AIHighlightBanner />
+            </Suspense>
+          </div>
+
+          {/* AI Services Section */}
+          <AnimatedSection className="bg-gradient-to-b from-[#F8FAFF] to-[#FFFFFF]">
+            <div className="font-plusJakartaSans">
+              <Suspense fallback={<Loading />}>
+                <AIServicesSection />
               </Suspense>
             </div>
           </AnimatedSection>
