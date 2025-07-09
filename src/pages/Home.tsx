@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ModernHeroSection } from '@/components/sections/ModernHeroSection';
 import { AnimatedSection } from '@/components/sections/home/AnimatedSection';
 import BackgroundElements from '@/components/home/BackgroundElements';
-import OptimizedHeroBackground from '@/components/home/OptimizedHeroBackground';
+
 import ErrorFallback from '@/components/home/ErrorFallback';
 import Loading from '@/components/ui/loading';
 import SEO from '@/components/seo/SEO';

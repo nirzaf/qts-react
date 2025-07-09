@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Play, Sparkles, Zap, Brain, Globe, Star, Users, Award, ChevronDown } from 'lucide-react';
+import { ArrowRight, Play, Sparkles, Zap, Brain, Globe, ChevronDown } from 'lucide-react';
+import HeroAnimation from '@/components/animations/HeroAnimation';
 
 interface HeroSectionProps {
   primaryButton: {
@@ -283,71 +284,25 @@ export const ModernHeroSection = ({
             </motion.div>
           </motion.div>
 
-          {/* Visual Content */}
+          {/* Visual Content - Cool Animation */}
           <motion.div
             className="relative flex items-center justify-center"
             variants={itemVariants}
           >
-            {/* Main Visual Container */}
-            <div className="relative w-full max-w-lg mx-auto">
-              {/* Hero Image */}
+            {/* Main Animation Container */}
+            <div className="relative w-full max-w-2xl mx-auto h-[500px] lg:h-[600px]">
+              {/* Hero Animation */}
               <motion.div
-                className="relative z-10"
+                className="relative z-10 w-full h-full"
                 variants={floatingVariants}
                 animate="animate"
               >
-                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0607E1]/10 to-[#4D0AFF]/5 p-8 backdrop-blur-sm border border-white/20 shadow-2xl">
-                  <img
-                    src="https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458"
-                    alt="Quadrate Tech Solutions - AI and Software Development"
-                    className="w-full h-auto rounded-2xl shadow-lg"
-                    loading="eager"
-                  />
+                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0607E1]/5 to-[#4D0AFF]/5 backdrop-blur-sm border border-white/20 shadow-2xl h-full">
+                  {/* Cool Animation Component */}
+                  <HeroAnimation />
 
-                  {/* Overlay Elements */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0607E1]/20 via-transparent to-transparent rounded-3xl" />
-
-                  {/* Floating Cards */}
-                  <motion.div
-                    className="absolute -top-4 -right-4 bg-white rounded-xl p-3 shadow-lg border border-[#0607E1]/10"
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.5, duration: 0.5 }}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                  >
-                    <Brain className="w-6 h-6 text-[#0607E1]" />
-                  </motion.div>
-
-                  <motion.div
-                    className="absolute -bottom-4 -left-4 bg-white rounded-xl p-3 shadow-lg border border-[#0607E1]/10"
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.7, duration: 0.5 }}
-                    whileHover={{ scale: 1.1, rotate: -5 }}
-                  >
-                    <Zap className="w-6 h-6 text-[#4D0AFF]" />
-                  </motion.div>
-
-                  {/* Additional floating elements */}
-                  <motion.div
-                    className="absolute top-1/2 -left-6 bg-white rounded-full p-2 shadow-md border border-[#0607E1]/10"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 2, duration: 0.5 }}
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <Star className="w-4 h-4 text-yellow-500" />
-                  </motion.div>
-
-                  <motion.div
-                    className="absolute top-1/4 -right-6 bg-white rounded-full p-2 shadow-md border border-[#0607E1]/10"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 2.2, duration: 0.5 }}
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <Users className="w-4 h-4 text-green-500" />
-                  </motion.div>
+                  {/* Overlay for better contrast */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0607E1]/5 via-transparent to-transparent rounded-3xl pointer-events-none" />
                 </div>
               </motion.div>
 
@@ -363,6 +318,34 @@ export const ModernHeroSection = ({
                 variants={floatingVariants}
                 animate="animate"
                 transition={{ delay: 1 }}
+              />
+
+              {/* Additional ambient effects */}
+              <motion.div
+                className="absolute top-1/4 -right-12 w-16 h-16 bg-gradient-to-br from-[#06B6D4]/20 to-transparent rounded-full blur-2xl"
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.3, 0.7, 0.3]
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 2
+                }}
+              />
+              <motion.div
+                className="absolute bottom-1/3 -left-12 w-20 h-20 bg-gradient-to-br from-[#10B981]/20 to-transparent rounded-full blur-2xl"
+                animate={{
+                  scale: [1.2, 0.8, 1.2],
+                  opacity: [0.2, 0.6, 0.2]
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 3
+                }}
               />
             </div>
           </motion.div>
