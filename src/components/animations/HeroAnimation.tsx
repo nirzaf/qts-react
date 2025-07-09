@@ -15,7 +15,6 @@ import {
   Settings,
   Layers
 } from 'lucide-react';
-import CodeMatrixEffect from './CodeMatrixEffect';
 import NeuralNetworkViz from './NeuralNetworkViz';
 
 const HeroAnimation: React.FC = () => {
@@ -109,9 +108,6 @@ const HeroAnimation: React.FC = () => {
 
   return (
     <div className="relative w-full h-full min-h-[500px] overflow-hidden">
-      {/* Background Code Matrix Effect */}
-      <CodeMatrixEffect />
-
       {/* Neural Network Visualization */}
       <div className="absolute inset-0">
         <NeuralNetworkViz />
