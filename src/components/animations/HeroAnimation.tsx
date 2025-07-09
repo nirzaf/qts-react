@@ -325,7 +325,6 @@ const HeroAnimation: React.FC = () => {
             animate={{ scale: [1, 1.5, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
-          <span>Digital Transformation</span>
         </div>
       </motion.div>
 
@@ -340,10 +339,7 @@ const HeroAnimation: React.FC = () => {
           <motion.div
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 3, repeat: Infinity }}
-          >
-            <div>AI Solutions: {techNodes.length}</div>
-            <div>Active Connections: {Math.floor(techNodes.length * 1.5)}</div>
-          </motion.div>
+          />
         </div>
       </motion.div>
 
