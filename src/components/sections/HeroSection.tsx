@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ThreeHeroScene from '../three/ThreeHeroScene';
+import { ArrowRight, Play, Sparkles, Zap, Brain, Globe, Star, Users, Award } from 'lucide-react';
 
 interface HeroSectionProps {
   primaryButton: {
@@ -95,36 +95,157 @@ export const HeroSection = ({
   const [textIndex, setTextIndex] = useState(0);
   const phrases = [
     "Transform Your Digital Presence",
-    "Startups Scale Their Operations",
-    "Businesses Reach New Heights",
-    "Teams Collaborate Effectively",
-    "Ideas Transform Into Reality"
-  ].map(phrase => phrase);
+    "Accelerate Business Growth",
+    "Innovate with AI Solutions",
+    "Scale Your Operations",
+    "Build the Future"
+  ];
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTextIndex((prevIndex) => (prevIndex + 1) % phrases.length);
-    }, 4000);
+    }, 3000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [phrases.length]);
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const floatingVariants = {
+    animate: {
+      y: [0, -10, 0],
+      transition: {
+        duration: 6,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  };
 
   return (
     <motion.section
-      className="relative overflow-hidden bg-transparent pt-6 md:pt-8 pb-8 md:pb-12"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#F8FAFF] via-[#FFFFFF] to-[#F0F4FF]"
       aria-label="Hero section"
       role="region"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
     >
-      <div className="container relative z-20"> {/* Increased z-index for better visibility */}
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative flex flex-col-reverse lg:flex-row items-center md:items-start justify-center md:justify-between gap-4 md:gap-6 lg:gap-12">
-            {/* Text Content */}
-            <header className="flex-1 space-y-6 md:space-y-8 pt-4 md:pt-6 lg:max-w-[60%] relative w-full md:w-auto">
-              {/* No need for semi-transparent background on mobile since we removed the animation */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Gradient Orbs */}
+        <motion.div
+          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-[#0607E1]/20 to-[#4D0AFF]/10 rounded-full blur-3xl"
+          variants={floatingVariants}
+          animate="animate"
+        />
+        <motion.div
+          className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-[#0607E1]/15 to-[#00D4FF]/10 rounded-full blur-3xl"
+          variants={floatingVariants}
+          animate="animate"
+          transition={{ delay: 1 }}
+        />
+
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(6, 7, 225, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(6, 7, 225, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }} />
+        </div>
+
+        {/* Floating Icons */}
+        <motion.div
+          className="absolute top-20 left-20 text-[#0607E1]/20"
+          variants={floatingVariants}
+          animate="animate"
+          transition={{ delay: 0.5 }}
+        >
+          <Brain className="w-8 h-8" />
+        </motion.div>
+        <motion.div
+          className="absolute top-40 right-32 text-[#0607E1]/20"
+          variants={floatingVariants}
+          animate="animate"
+          transition={{ delay: 1.5 }}
+        >
+          <Zap className="w-6 h-6" />
+        </motion.div>
+        <motion.div
+          className="absolute bottom-32 left-32 text-[#0607E1]/20"
+          variants={floatingVariants}
+          animate="animate"
+          transition={{ delay: 2 }}
+        >
+          <Globe className="w-7 h-7" />
+        </motion.div>
+      </div>
+
+      <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+          {/* Text Content */}
+          <motion.div
+            className="text-center lg:text-left space-y-8"
+            variants={itemVariants}
+          >
+            {/* Badge */}
+            <motion.div
+              className="inline-flex items-center px-4 py-2 bg-[#0607E1]/10 rounded-full text-[#0607E1] font-medium text-sm"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+            >
+              <Sparkles className="w-4 h-4 mr-2" />
+              AI-Powered Solutions
+            </motion.div>
+
+            {/* Main Heading */}
+            <div className="space-y-4">
+              <motion.h1
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight"
+                variants={itemVariants}
+              >
+                <span className="text-[#000000]">We Help </span>
+                <div className="relative inline-block">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={textIndex}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.5 }}
+                      className="bg-gradient-to-r from-[#0607E1] via-[#4D0AFF] to-[#0607E1] bg-clip-text text-transparent"
+                    >
+                      {phrases[textIndex]}
+                    </motion.span>
+                  </AnimatePresence>
+                </div>
+              </motion.h1>
+            </div>
                 className="space-y-4 md:space-y-6 relative z-10"
               >
                 {/* Company Name - Updated Font */}

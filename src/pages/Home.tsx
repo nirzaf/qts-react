@@ -1,9 +1,9 @@
 import React, { Suspense, lazy } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HeroSection } from '@/components/sections/HeroSection';
+import { ModernHeroSection } from '@/components/sections/ModernHeroSection';
 import { AnimatedSection } from '@/components/sections/home/AnimatedSection';
 import BackgroundElements from '@/components/home/BackgroundElements';
-import HeroBackground from '@/components/home/HeroBackground';
+import OptimizedHeroBackground from '@/components/home/OptimizedHeroBackground';
 import ErrorFallback from '@/components/home/ErrorFallback';
 import Loading from '@/components/ui/loading';
 import SEO from '@/components/seo/SEO';
@@ -132,22 +132,17 @@ const Home: React.FC = () => {
 
         {/* Content Container */}
         <div className="relative">
-          {/* Hero Section */}
-          <section className="relative overflow-hidden">
-            <HeroBackground />
-            <div className="relative z-10">
-              <HeroSection
-                primaryButton={{
-                  text: "Get Started",
-                  onClick: handleGetStarted
-                }}
-                secondaryButton={{
-                  text: "Learn More",
-                  onClick: handleLearnMore
-                }}
-              />
-            </div>
-          </section>
+          {/* Modern Hero Section */}
+          <ModernHeroSection
+            primaryButton={{
+              text: "Get Started",
+              onClick: handleGetStarted
+            }}
+            secondaryButton={{
+              text: "Learn More",
+              onClick: handleLearnMore
+            }}
+          />
 
           {/* Features Section */}
           <AnimatedSection className="bg-gradient-to-b from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
