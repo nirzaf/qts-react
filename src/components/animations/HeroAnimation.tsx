@@ -744,46 +744,7 @@ const HeroAnimation: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Enhanced Innovation Metrics */}
-      <motion.div
-        className="absolute top-6 right-6"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1.5, duration: 1 }}
-      >
-        <div className="px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-[#10B981]/20">
-          <div className="flex items-center space-x-2">
-            <span className="text-sm font-medium text-[#10B981]">Performance</span>
-            <motion.div
-              className="flex space-x-1"
-              animate={{ opacity: [0.6, 1, 0.6] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              {[...Array(4)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="w-1 h-3 bg-gradient-to-t from-[#10B981] to-[#06B6D4] rounded-full"
-                  animate={{
-                    scaleY: [0.5, 1, 0.5]
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    delay: i * 0.2
-                  }}
-                />
-              ))}
-            </motion.div>
-            <motion.div
-              className="text-xs font-bold text-[#10B981]"
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              98%
-            </motion.div>
-          </div>
-        </div>
-      </motion.div>
+
 
       {/* Enhanced Quadrate Logo Integration */}
       <motion.div
@@ -836,49 +797,7 @@ const HeroAnimation: React.FC = () => {
         </motion.div>
       </motion.div>
 
-      {/* Enhanced Success Indicators */}
-      <motion.div
-        className="absolute bottom-6 left-6"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2.5, duration: 1 }}
-      >
-        <div className="px-4 py-3 bg-white/80 backdrop-blur-sm rounded-2xl border border-[#10B981]/20">
-          <div className="flex items-center space-x-3">
-            <span className="text-sm font-medium text-[#10B981]">Success Rate</span>
-            <div className="flex space-x-1">
-              {[...Array(6)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="w-1.5 h-8 bg-gradient-to-t from-[#10B981] to-[#06B6D4] rounded-full"
-                  initial={{ scaleY: 0 }}
-                  animate={{
-                    scaleY: [0.3, 0.8 + Math.random() * 0.4, 0.3],
-                    opacity: [0.6, 1, 0.6]
-                  }}
-                  transition={{
-                    delay: 3 + i * 0.15,
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    repeatDelay: 1
-                  }}
-                />
-              ))}
-            </div>
-            <motion.div
-              className="text-lg font-bold text-[#10B981]"
-              animate={{
-                scale: [1, 1.05, 1],
-                opacity: [0.8, 1, 0.8]
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              99.7%
-            </motion.div>
-          </div>
-        </div>
-      </motion.div>
+
 
       {/* Enhanced Ambient Glow Effects */}
       <motion.div
