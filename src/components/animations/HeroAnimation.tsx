@@ -107,7 +107,7 @@ const HeroAnimation: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-full min-h-[500px] overflow-hidden">
+    <div className="relative w-full h-full min-h-[500px] overflow-hidden hidden md:block">
       {/* Neural Network Visualization */}
       <div className="absolute inset-0">
         <NeuralNetworkViz />
