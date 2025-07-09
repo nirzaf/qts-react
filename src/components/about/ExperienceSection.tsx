@@ -37,7 +37,7 @@ const stats = [
 
 export const ExperienceSection: React.FC = () => {
   return (
-    <section className="py-16 bg-gradient-to-br from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
+    <section className="py-16 bg-gradient-to-br from-[#ffffff] via-[#1d2f84]/5 to-[#ffffff]">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -68,7 +68,7 @@ export const ExperienceSection: React.FC = () => {
                 <Card className="h-full p-6 text-center hover:shadow-lg transition-shadow duration-300 bg-white/80 backdrop-blur-sm border-black/5">
                   <div className="flex flex-col h-full">
                     <div className="flex justify-center mb-4">
-                      <Icon className="w-8 h-8 text-[#0607E1]" />
+                      <Icon className="w-8 h-8 text-[#1d2f84]" />
                     </div>
                     <div className="text-3xl font-bold text-[#000000] mb-2">
                       {stat.number}

@@ -27,7 +27,7 @@ const BackgroundParticles = () => {
       {particles.map(particle => (
         <motion.div
           key={particle.id}
-          className="absolute rounded-full bg-[#0607E1]/20"
+          className="absolute rounded-full bg-[#1d2f84]/20"
           style={{
             left: `${particle.x}%`,
             top: `${particle.y}%`,
@@ -85,7 +85,7 @@ const ForegroundElements = () => {
     <>
       {/* Animated gradient overlay */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-[#0607E1]/10 via-[#4D0AFF]/5 to-transparent"
+        className="absolute inset-0 bg-gradient-to-r from-[#1d2f84]/10 via-[#397ce8]/5 to-transparent"
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.7 }}
         transition={{ duration: 1.2 }}
@@ -94,13 +94,13 @@ const ForegroundElements = () => {
       {/* Animated glow elements */}
       <motion.div
         animate={controls}
-        className="absolute top-1/4 right-10 w-1/3 h-1/3 bg-[#0607E1]/15 blur-3xl rounded-full"
+        className="absolute top-1/4 right-10 w-1/3 h-1/3 bg-[#1d2f84]/15 blur-3xl rounded-full"
       />
 
       <motion.div
         animate={controls}
         transition={{ delay: 0.2 }}
-        className="absolute bottom-1/4 left-10 w-1/4 h-1/4 bg-[#4D0AFF]/10 blur-3xl rounded-full"
+        className="absolute bottom-1/4 left-10 w-1/4 h-1/4 bg-[#397ce8]/10 blur-3xl rounded-full"
       />
 
       {/* Animated grid lines */}
