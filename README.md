@@ -82,3 +82,34 @@ By aligning its offerings with industry trends and maintaining a strategic focus
 Quadrate Tech Solutions exemplifies a forward-thinking approach to technology, innovation, and business growth. With a clear focus on SAP and AI/ML technologies, the company is well-equipped to address the evolving needs of global markets.  
 
 By investing in talent development, fostering a culture of innovation, and strengthening its strategic partnerships, Quadrate Tech Solutions is positioned to achieve sustained success. Through continued alignment with industry trends and a commitment to delivering exceptional solutions, the company is poised to remain a significant player in the global software development industry.  
+
+## Development Setup
+
+Follow these steps to run the project locally:
+
+1. Install **Node.js 16** or newer.
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+   The application will be available at `http://localhost:3000`.
+
+4. Create a production build:
+
+   ```bash
+   npm run build
+   ```
+
+5. Serve the production build locally:
+
+   ```bash
+   npm start
+   ```
