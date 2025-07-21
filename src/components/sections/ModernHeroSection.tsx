@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Play, Sparkles, Zap, Brain, Globe, ChevronDown } from 'lucide-react';
+import { ArrowRight, Play, Sparkles, Zap, Brain, Globe } from 'lucide-react';
 import HeroAnimation from '@/components/animations/HeroAnimation';
 
 interface HeroSectionProps {
@@ -352,23 +352,7 @@ export const ModernHeroSection = ({
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2, duration: 0.5 }}
-      >
-        <motion.div
-          className="flex flex-col items-center text-[#0607E1]/60 cursor-pointer"
-          animate={{ y: [0, 5, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          whileHover={{ scale: 1.1 }}
-        >
-          <span className="text-sm mb-2">Scroll to explore</span>
-          <ChevronDown className="w-5 h-5" />
-        </motion.div>
-      </motion.div>
+
     </motion.section>
   );
 };
