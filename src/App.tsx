@@ -21,6 +21,9 @@ const Pricing = lazy(() => import('@/pages/Pricing'));
 const NotFound = lazy(() => import('@/pages/404'));
 const Microsoft365PremiumPackageDetails = lazy(() => import('@/pages/Microsoft365PremiumPackageDetails'));
 const InterviewAssessment = lazy(() => import('@/pages/InterviewAssessment'));
+const VerificationLandingPage = lazy(() => import('@/pages/VerificationLandingPage'));
+const VerificationPage = lazy(() => import('@/pages/VerificationPage'));
+const AdminVerificationPage = lazy(() => import('@/pages/AdminVerificationPage'));
 
 // Redirect component for handling undefined routes
 const RedirectToHome: React.FC = () => {
@@ -55,6 +58,10 @@ const App: React.FC = () => {
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/microsoft-365-premium-package-details" element={<Microsoft365PremiumPackageDetails />} />
                 <Route path="/interview-assessment" element={<InterviewAssessment />} />
+                <Route path="/verification" element={<VerificationLandingPage />} />
+            <Route path="/verify/:verificationCode" element={<VerificationPage />} />
+            <Route path="/verify" element={<VerificationPage />} />
+            <Route path="/admin/verification" element={<AdminVerificationPage />} />
                 <Route path="/404" element={<NotFound />} />
                 <Route path="*" element={<RedirectToHome />} />
               </Routes>
