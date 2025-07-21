@@ -184,11 +184,18 @@ router.get('/:token', rateLimit, extractClientInfo, async (req, res) => {
   }
 });
 
-// GET /api/verify/:token/qr - Generate QR code for verification URL (optional)
+// GET /api/verify/:token/qr - Generate QR code for verification URL
 router.get('/:token/qr', rateLimit, async (req, res) => {
   try {
     const { token } = req.params;
-    const { size = 200, format = 'png' } = req.query;
+    const {
+      size = 256,
+      format = 'png',
+      level = 'M',
+      margin = 'true',
+      color_dark = '#0607E1',
+      color_light = '#FFFFFF'
+    } = req.query;
 
     // Basic token validation
     if (!token || typeof token !== 'string' || token.length < 32) {
@@ -198,23 +205,82 @@ router.get('/:token/qr', rateLimit, async (req, res) => {
       });
     }
 
-    // For QR code generation, you would typically use a library like 'qrcode'
-    // This is a placeholder response that returns the URL that should be encoded
-    const verificationUrl = `https://quadrate.lk/verify/${token}`;
+    // Sanitize token
+    const sanitizedToken = token.replace(/[^A-Za-z0-9_-]/g, '');
+    if (sanitizedToken !== token) {
+      return res.status(400).json({
+        error: 'Invalid verification token format',
+        success: false
+      });
+    }
 
-    res.json({
-      data: {
-        verification_url: verificationUrl,
-        qr_code_url: `/api/verify/${token}/qr?size=${size}&format=${format}`,
-        message: 'QR code generation endpoint - implement with qrcode library'
+    // Import QR code service dynamically
+    const QRCode = await import('qrcode');
+    const verificationUrl = `https://quadrate.lk/verify/${sanitizedToken}`;
+
+    // Validate parameters
+    const qrSize = Math.min(Math.max(parseInt(size), 64), 1024);
+    const errorLevel = ['L', 'M', 'Q', 'H'].includes(level) ? level : 'M';
+    const includeMargin = margin === 'true';
+
+    const qrOptions = {
+      errorCorrectionLevel: errorLevel,
+      margin: includeMargin ? 2 : 1,
+      color: {
+        dark: color_dark,
+        light: color_light
       },
-      success: true
-    });
+      width: qrSize
+    };
+
+    if (format === 'svg') {
+      // Generate SVG
+      const svgString = await QRCode.toString(verificationUrl, {
+        ...qrOptions,
+        type: 'svg'
+      });
+
+      res.setHeader('Content-Type', 'image/svg+xml');
+      res.setHeader('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
+      res.send(svgString);
+    } else if (format === 'json') {
+      // Return data URL
+      const dataUrl = await QRCode.toDataURL(verificationUrl, {
+        ...qrOptions,
+        type: 'image/png'
+      });
+
+      res.json({
+        data: {
+          verification_url: verificationUrl,
+          qr_code_data_url: dataUrl,
+          token: sanitizedToken,
+          options: {
+            size: qrSize,
+            error_correction: errorLevel,
+            margin: includeMargin,
+            colors: { dark: color_dark, light: color_light }
+          }
+        },
+        success: true
+      });
+    } else {
+      // Generate PNG buffer (default)
+      const buffer = await QRCode.toBuffer(verificationUrl, {
+        ...qrOptions,
+        type: 'png'
+      });
+
+      res.setHeader('Content-Type', 'image/png');
+      res.setHeader('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
+      res.setHeader('Content-Length', buffer.length);
+      res.send(buffer);
+    }
 
   } catch (err) {
     console.error('Error in GET /verify/:token/qr:', err);
     res.status(500).json({
-      error: 'Internal server error',
+      error: 'Failed to generate QR code',
       success: false
     });
   }
