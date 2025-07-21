@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import express from 'express';
 import compression from 'compression';
 import { createServer as createViteServer } from 'vite';
+import apiRouter from './src/api/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProduction = process.env.NODE_ENV === 'production';
@@ -12,6 +13,12 @@ const PORT = process.env.PORT || 3000;
 async function createServer() {
   const app = express();
   app.use(compression());
+
+  // Trust proxy for accurate IP addresses (important for rate limiting)
+  app.set('trust proxy', true);
+
+  // Mount API routes before other middleware
+  app.use('/api', apiRouter);
 
   let vite;
   if (!isProduction) {
