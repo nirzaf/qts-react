@@ -286,7 +286,7 @@ export const ModernHeroSection = ({
 
           {/* Visual Content - Cool Animation */}
           <motion.div
-            className="relative flex items-center justify-center"
+            className="relative flex items-center justify-center hidden md:block"
             variants={itemVariants}
           >
             {/* Main Animation Container */}

@@ -43,7 +43,7 @@ export const HeroSection: React.FC<HeroProps> = ({
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#FFFFFF]">
       {/* Enhanced Decorative Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden hidden md:block">
         <div className="absolute top-1/4 right-1/4 w-1/3 h-1/3 bg-gradient-to-bl from-[#0607E1]/20 via-[#0607E1]/10 to-transparent rounded-full transform rotate-45 animate-pulse" />
         <div className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-gradient-to-tr from-[#0607E1]/20 via-[#0607E1]/10 to-transparent rounded-full transform -rotate-45 animate-pulse" />
         {/* Additional decorative element */}

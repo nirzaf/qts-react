@@ -81,7 +81,7 @@ export const HeroSection = ({
       variants={containerVariants}
     >
       {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden hidden md:block">
         {/* Gradient Orbs */}
         <motion.div
           className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-[#0607E1]/20 to-[#4D0AFF]/10 rounded-full blur-3xl"
