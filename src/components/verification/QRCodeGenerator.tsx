@@ -21,7 +21,6 @@ const QRCodeGenerator: React.FC<QRCodeGeneratorProps> = ({
   className = ''
 }) => {
   const [copied, setCopied] = useState(false);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   
   // Generate verification URL
   const baseUrl = window.location.origin;

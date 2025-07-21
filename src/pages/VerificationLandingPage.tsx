@@ -14,9 +14,7 @@ import {
   FileText,
   Users,
   CheckCircle,
-  ArrowRight,
-  Scan,
-  Key
+  ArrowRight
 } from 'lucide-react';
 import { verifyServiceLetter } from '@/services/verificationService';
 
@@ -49,7 +47,7 @@ const VerificationLandingPage: React.FC = () => {
       } else {
         setError(result.message);
       }
-    } catch (err) {
+    } catch {
       setError('Failed to verify. Please try again.');
     } finally {
       setLoading(false);

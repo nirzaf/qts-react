@@ -34,7 +34,7 @@ const ServiceLetterPreview: React.FC<ServiceLetterPreviewProps> = ({
   
   // Print functionality
   const handlePrint = useReactToPrint({
-    content: () => letterRef.current,
+    contentRef: letterRef,
     documentTitle: `Service-Letter-${serviceLetter.letterNumber}`,
     pageStyle: `
       @page {

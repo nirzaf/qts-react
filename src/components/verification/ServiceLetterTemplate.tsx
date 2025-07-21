@@ -4,7 +4,7 @@
  */
 
 import React, { forwardRef } from 'react';
-import { Calendar, User, Building, FileText, Shield } from 'lucide-react';
+import { User, FileText, Shield } from 'lucide-react';
 import type { Employee, ServiceLetter } from '@/types/verification';
 
 interface ServiceLetterTemplateProps {

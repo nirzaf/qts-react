@@ -10,8 +10,6 @@ import {
   CheckCircle, 
   XCircle, 
   User, 
-  Building, 
-  Calendar, 
   FileText, 
   Shield,
   Clock,
@@ -45,7 +43,7 @@ const VerificationPage: React.FC = () => {
           letterNumber: letterNumber || undefined
         });
         setVerificationResult(result);
-      } catch (err) {
+      } catch {
         setError('Failed to verify service letter. Please try again.');
       } finally {
         setLoading(false);

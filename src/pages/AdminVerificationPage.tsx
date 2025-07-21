@@ -15,14 +15,9 @@ import {
   Download,
   Eye,
   Edit,
-  Trash2,
   QrCode,
-  Calendar,
-  Building,
   Shield,
   CheckCircle,
-  XCircle,
-  Clock,
   TrendingUp
 } from 'lucide-react';
 import {
@@ -30,7 +25,6 @@ import {
   getAllServiceLetters,
   getAdminStats,
   createServiceLetter,
-  updateServiceLetter,
   getVerificationRecords
 } from '@/services/verificationService';
 import ServiceLetterPreview from '@/components/verification/ServiceLetterPreview';
