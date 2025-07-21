@@ -21,6 +21,7 @@ const Pricing = lazy(() => import('@/pages/Pricing'));
 const NotFound = lazy(() => import('@/pages/404'));
 const Microsoft365PremiumPackageDetails = lazy(() => import('@/pages/Microsoft365PremiumPackageDetails'));
 const InterviewAssessment = lazy(() => import('@/pages/InterviewAssessment'));
+const VerifyEmployee = lazy(() => import('@/pages/VerifyEmployee'));
 
 // Redirect component for handling undefined routes
 const RedirectToHome: React.FC = () => {
@@ -55,6 +56,7 @@ const App: React.FC = () => {
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/microsoft-365-premium-package-details" element={<Microsoft365PremiumPackageDetails />} />
                 <Route path="/interview-assessment" element={<InterviewAssessment />} />
+                <Route path="/verify/:token" element={<VerifyEmployee />} />
                 <Route path="/404" element={<NotFound />} />
                 <Route path="*" element={<RedirectToHome />} />
               </Routes>
