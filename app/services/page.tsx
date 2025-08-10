@@ -20,6 +20,7 @@ import {
   CheckCircle,
   Star
 } from 'lucide-react';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
 // Service categories data
 const serviceCategories = [

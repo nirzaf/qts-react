@@ -19,6 +19,15 @@ import * as FeatherIcons from 'react-feather';
  */
 export type IconLibraryName = 'lucide' | 'hero' | 'tabler' | 'feather';
 
+type SvgComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
+
+function getIconFromNamespace(ns: Record<string, unknown>, key: string): SvgComponent | null {
+  // function-level comment: Lookup icon component in a namespace and coerce to SVG component type
+  const modVal = ns[key];
+  if (!modVal) return null;
+  return modVal as unknown as SvgComponent;
+}
+
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   name: string; // Icon component name, e.g., "Camera", "ArrowRight"
   library?: IconLibraryName; // Default: lucide
@@ -26,26 +35,21 @@ export interface IconProps extends React.SVGProps<SVGSVGElement> {
 }
 
 export const Icon: React.FC<IconProps> = ({ name, library = 'lucide', size = 24, className = '', ...rest }) => {
-  let Component: any = null;
-
-  switch (library) {
-    case 'lucide':
-      Component = (lucideIcons as any)[name];
-      break;
-    case 'hero':
-      Component = (HeroIcons as any)[name];
-      break;
-    case 'tabler':
-      Component = (TablerIcons as any)[name];
-      break;
-    case 'feather':
-      Component = (FeatherIcons as any)[name];
-      break;
+  // Lookup from selected library
+  let Component: SvgComponent | null = null;
+  if (library === 'lucide') {
+    Component = (lucideIcons as unknown as Record<string, SvgComponent>)[name] ?? null;
+  } else if (library === 'hero') {
+    Component = getIconFromNamespace(HeroIcons as unknown as Record<string, unknown>, name);
+  } else if (library === 'tabler') {
+    Component = getIconFromNamespace(TablerIcons as unknown as Record<string, unknown>, name);
+  } else if (library === 'feather') {
+    Component = getIconFromNamespace(FeatherIcons as unknown as Record<string, unknown>, name);
   }
 
+  // Fallback to lucide if not found in the requested library
   if (!Component) {
-    // Fallback: try lucide if specified library not found
-    Component = (lucideIcons as any)[name] || null;
+    Component = (lucideIcons as unknown as Record<string, SvgComponent>)[name] ?? null;
   }
 
   if (!Component) {
