@@ -216,3 +216,98 @@ export default function PricingPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Pricing Plans */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {pricingPlans.map((plan, index) => (
+              <motion.div
+                key={plan.id}
+                className={`relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ${
+                  plan.popular ? 'ring-2 ring-[#0607E1] scale-105' : ''
+                }`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -10 }}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <div className="bg-gradient-to-r from-[#0607E1] to-[#4D0AFF] text-white px-6 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+                      <Star className="w-4 h-4" />
+                      Most Popular
+                    </div>
+                  </div>
+                )}
+
+                <div className="p-8 lg:p-10">
+                  {/* Plan Header */}
+                  <div className="text-center mb-8">
+                    <div className={`w-16 h-16 bg-gradient-to-br ${plan.bgColor} rounded-2xl flex items-center justify-center mx-auto mb-4`}>
+                      <plan.icon className={`w-8 h-8 bg-gradient-to-br ${plan.color} bg-clip-text text-transparent`} />
+                    </div>
+                    <h3 className="text-fluid-xl lg:text-fluid-2xl font-bold text-gray-900 mb-2">
+                      {plan.name}
+                    </h3>
+                    <p className="text-gray-600 mb-6">
+                      {plan.description}
+                    </p>
+                    <div className="mb-6">
+                      <span className="text-4xl lg:text-5xl font-bold text-gray-900">
+                        ${plan.price.toLocaleString()}
+                      </span>
+                      <span className="text-gray-600 ml-2">
+                        /{billingPeriod === 'project' ? 'project' : 'month'}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Features List */}
+                  <div className="space-y-4 mb-8">
+                    <h4 className="font-semibold text-gray-900 mb-4">What's included:</h4>
+                    {plan.features.map((feature, featureIndex) => (
+                      <div key={featureIndex} className="flex items-center gap-3">
+                        <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                          <Check className="w-3 h-3 text-green-600" />
+                        </div>
+                        <span className="text-gray-700">{feature}</span>
+                      </div>
+                    ))}
+
+                    {plan.notIncluded.length > 0 && (
+                      <>
+                        <h4 className="font-semibold text-gray-900 mb-4 mt-6">Not included:</h4>
+                        {plan.notIncluded.map((feature, featureIndex) => (
+                          <div key={featureIndex} className="flex items-center gap-3">
+                            <div className="w-5 h-5 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
+                              <X className="w-3 h-3 text-gray-400" />
+                            </div>
+                            <span className="text-gray-500">{feature}</span>
+                          </div>
+                        ))}
+                      </>
+                    )}
+                  </div>
+
+                  {/* CTA Button */}
+                  <motion.a
+                    href="/contact"
+                    className={`w-full inline-flex items-center justify-center px-6 py-4 rounded-full font-semibold transition-all duration-300 ${
+                      plan.popular
+                        ? 'bg-gradient-to-r from-[#0607E1] to-[#4D0AFF] text-white hover:shadow-lg'
+                        : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                    }`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <span>Get Started</span>
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </motion.a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
