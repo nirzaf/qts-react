@@ -36,7 +36,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <Link to={`/blog/${slug}`}>
+      <Link href={`/blog/${slug}`}>
         <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
           <CardHeader className="p-0">
             <img

@@ -396,6 +396,11 @@ const HeroAnimation: React.FC = () => {
                 transform: 'translate(-50%, -50%)'
               }}
               variants={nodeVariants}
+              transition={{
+                type: "spring",
+                stiffness: 120,
+                damping: 12
+              }}
               whileHover={{
                 scale: 1.3,
                 z: 10,
