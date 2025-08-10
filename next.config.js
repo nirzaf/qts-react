@@ -16,6 +16,8 @@ const nextConfig = {
   compress: true,
   // Enable static optimization
   trailingSlash: false,
+  // Use custom build output directory to align with Vercel project settings expecting `dist`
+  distDir: 'dist',
   // Configure redirects if needed
   async redirects() {
     return [
