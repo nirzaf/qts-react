@@ -311,3 +311,141 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
+
+      {/* Add-ons Section */}
+      <section className="py-16 lg:py-24 bg-gray-50/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-12 lg:mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-fluid-3xl lg:text-fluid-4xl font-bold text-gray-900 mb-4">
+              Additional Services
+            </h2>
+            <p className="text-fluid-lg text-gray-600 max-w-3xl mx-auto">
+              Enhance your project with these specialized services and advanced features
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {addOns.map((addon, index) => (
+              <motion.div
+                key={addon.name}
+                className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center group"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -10 }}
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-[#0607E1]/10 to-[#4D0AFF]/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-[#0607E1]/20 group-hover:to-[#4D0AFF]/20 transition-all duration-300">
+                  <addon.icon className="w-8 h-8 text-[#0607E1] group-hover:text-[#4D0AFF] transition-colors duration-300" />
+                </div>
+                <h3 className="text-fluid-lg font-bold text-gray-900 mb-3">
+                  {addon.name}
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  {addon.description}
+                </p>
+                <div className="text-2xl font-bold text-[#0607E1] mb-4">
+                  ${addon.price.toLocaleString()}
+                </div>
+                <motion.button
+                  className="w-full bg-gray-100 text-gray-900 font-semibold py-3 px-6 rounded-full hover:bg-gray-200 transition-colors duration-300"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Add to Project
+                </motion.button>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-12 lg:mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-fluid-3xl lg:text-fluid-4xl font-bold text-gray-900 mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-fluid-lg text-gray-600 max-w-3xl mx-auto">
+              Everything you need to know about our pricing and services
+            </p>
+          </motion.div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8">
+              {faqs.map((faq, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-gray-50/50 rounded-xl p-6 lg:p-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <h3 className="font-bold text-gray-900 mb-3 text-fluid-base lg:text-fluid-lg">
+                    {faq.question}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {faq.answer}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-[#0607E1] to-[#4D0AFF]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center text-white"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-fluid-3xl lg:text-fluid-4xl font-bold mb-6">
+              Ready to Start Your Project?
+            </h2>
+            <p className="text-fluid-lg mb-8 opacity-90 max-w-3xl mx-auto">
+              Get a custom quote tailored to your specific requirements. Our team will work with you
+              to create the perfect solution within your budget.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.a
+                href="/contact"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#0607E1] font-semibold rounded-full hover:bg-gray-100 transition-colors duration-300"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>Get Custom Quote</span>
+              </motion.a>
+              <motion.a
+                href="/services"
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-[#0607E1] transition-all duration-300"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>View Services</span>
+              </motion.a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </main>
+  );
+}
