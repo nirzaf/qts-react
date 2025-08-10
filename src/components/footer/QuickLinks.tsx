@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export const QuickLinks: React.FC = () => {
   return (
@@ -8,8 +8,8 @@ export const QuickLinks: React.FC = () => {
       <ul className="space-y-3">
         {['About Us', 'Services', 'Pricing'].map((link) => (
           <li key={link}>
-            <Link 
-              to={`/${link.toLowerCase().replace(' ', '')}`} 
+            <Link
+              href={`/${link.toLowerCase().replace(' ', '')}`}
               className="text-sm text-[#FFFFFF]/70 hover:text-[#FFFFFF] transition-colors duration-200"
             >
               {link}

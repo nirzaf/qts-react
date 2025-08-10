@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 const InterviewAssessmentCTA: React.FC = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleStartAssessment = () => {
-    navigate('/interview-assessment');
+    router.push('/interview-assessment');
   };
 
   return (

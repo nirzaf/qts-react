@@ -5,10 +5,7 @@ import { PricingCardContainer } from '@/components/pricing/sections/PricingCardC
 import CustomSolutionCard from '@/components/pricing/CustomSolutionCard';
 import AnimatedHeading from '@/components/ui/AnimatedHeading';
 
-interface PricingSectionProps {
-}
-
-const PricingSection: React.FC<PricingSectionProps> = () => {
+const PricingSection: React.FC = () => {
   return (
     <section className="py-16">
       <div className="container">

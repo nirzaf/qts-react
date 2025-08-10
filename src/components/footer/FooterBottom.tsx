@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export const FooterBottom: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ export const FooterBottom: React.FC = () => {
           {['Privacy', 'Terms', 'Cookies'].map((policy) => (
             <Link
               key={policy}
-              to={`/${policy.toLowerCase()}`}
+              href={`/${policy.toLowerCase()}`}
               className="text-sm text-[#FFFFFF]/70 hover:text-[#FFFFFF] transition-colors duration-200"
             >
               {`${policy} Policy`}

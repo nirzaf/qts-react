@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { ArrowRight } from 'lucide-react';

@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useEffect, useState, lazy, Suspense } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, usePathname } from 'next/navigation';
 import Loading from '@/components/ui/loading';
 import BlogPostContainer from '@/components/blog/BlogPostContainer';
 import BlogPostHeader from '@/components/blog/BlogPostHeader';
@@ -70,7 +72,9 @@ const MarkdownContent: React.FC<{ content: string }> = ({ content }) => {
 };
 
 const BlogPostPage: React.FC = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const params = useParams();
+  const pathname = usePathname();
+  const slug = params?.id as string;
   const { post, loading } = useBlogPost(slug);
 
   if (loading) {
@@ -81,17 +85,15 @@ const BlogPostPage: React.FC = () => {
     return <BlogPostNotFound />;
   }
 
-  const location = useLocation();
-
   // Calculate estimated reading time
   const wordCount = post.content.split(/\s+/).length;
   const readingTime = Math.ceil(wordCount / 200); // Assuming 200 words per minute reading speed
 
   // Generate breadcrumb items
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://quadrate.lk/#/' },
-    { name: 'Blog', url: 'https://quadrate.lk/#/blog' },
-    { name: post.title, url: `https://quadrate.lk/#${location.pathname}` }
+    { name: 'Home', url: 'https://quadratetechsolutions.com/' },
+    { name: 'Blog', url: 'https://quadratetechsolutions.com/blog' },
+    { name: post.title, url: `https://quadratetechsolutions.com${pathname}` }
   ];
 
   // Generate structured data for the blog post

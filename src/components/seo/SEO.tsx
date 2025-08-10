@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 
 interface SEOProps {
   title?: string;
@@ -39,8 +41,8 @@ const SEO: React.FC<SEOProps> = ({
   alternateUrls = [],
   preload = [],
 }) => {
-  const { pathname } = useLocation();
-  const siteUrl = 'https://quadrate.lk';
+  const pathname = usePathname();
+  const siteUrl = 'https://quadratetechsolutions.com';
   // For hash routing, we need to use the path without the hash for SEO purposes
   const cleanPathname = pathname === '/' ? '' : pathname;
   const url = `${siteUrl}${cleanPathname}`;

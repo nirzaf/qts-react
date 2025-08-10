@@ -47,7 +47,7 @@ export const useBlogPost = (slug: string | undefined) => {
 
         // Process tags
         const processedTags = metadata.tags
-          ? metadata.tags.replace(/[\[\]]/g, '').split(',').map((tag: string) => tag.trim())
+          ? metadata.tags.replace(/[[\]]/g, '').split(',').map((tag: string) => tag.trim())
           : [];
 
         // Set default modified date if not provided

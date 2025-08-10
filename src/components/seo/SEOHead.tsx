@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 
 interface SEOHeadProps {
   title: string;
@@ -37,9 +37,9 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   canonicalUrl,
   children,
 }) => {
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   const siteUrl = 'https://quadratetechsolutions.com';
-  // For hash routing, we need to use the path without the hash for SEO purposes
+  // For Next.js routing, use the pathname directly
   const cleanPathname = pathname === '/' ? '' : pathname;
   const url = canonicalUrl || `${siteUrl}${cleanPathname}`;
 

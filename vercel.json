@@ -1,13 +1,7 @@
 {
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ],
   "buildCommand": "npm run build",
-  "installCommand": "npm install --legacy-peer-deps",
-  "framework": "vite",
+  "installCommand": "npm install",
+  "framework": "nextjs",
   "github": {
     "silent": true
   }

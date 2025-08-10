@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ChevronRight, Home } from 'lucide-react';
 import { generateBreadcrumbSchema } from '@/utils/structuredData';
 import { Helmet } from 'react-helmet-async';
@@ -10,9 +13,9 @@ interface BreadcrumbsProps {
 }
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customPaths, className = '' }) => {
-  const location = useLocation();
-  // With hash routing, we need to use the pathname part of the location
-  const pathnames = location.pathname.split('/').filter(x => x);
+  const pathname = usePathname();
+  // Split pathname for Next.js routing
+  const pathnames = pathname.split('/').filter(x => x);
 
   // Generate breadcrumb items
   const breadcrumbItems = [

@@ -1,4 +1,6 @@
 
+'use client';
+
 import Microsoft365AppsTable from '../components/sections/microsoft365/Microsoft365AppsTable';
 import SEO from '@/components/seo/SEO';
 import PageLayout from '@/layouts/PageLayout';

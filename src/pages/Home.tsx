@@ -1,5 +1,7 @@
+'use client';
+
 import React, { Suspense, lazy } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { ModernHeroSection } from '@/components/sections/ModernHeroSection';
 import { AnimatedSection } from '@/components/sections/home/AnimatedSection';
 import BackgroundElements from '@/components/home/BackgroundElements';
@@ -38,10 +40,10 @@ const CompanyValues = lazy(() => import('@/components/sections/home/CompanyValue
  * - Lazy loading for optimal performance
  */
 const Home: React.FC = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
-  const handleGetStarted = () => navigate('/contact');
-  const handleLearnMore = () => navigate('/about');
+  const handleGetStarted = () => router.push('/contact');
+  const handleLearnMore = () => router.push('/about');
 
   // Generate structured data for the home page
   const organizationSchema = generateOrganizationSchema(defaultOrganization);

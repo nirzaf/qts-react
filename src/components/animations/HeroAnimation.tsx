@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import {
@@ -153,12 +155,7 @@ const HeroAnimation: React.FC = () => {
     visible: {
       scale: 1,
       opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 120,
-        damping: 12
-      }
+      y: 0
     }
   };
 
@@ -170,23 +167,13 @@ const HeroAnimation: React.FC = () => {
         '0 0 20px rgba(6, 7, 225, 0.3)',
         '0 0 40px rgba(6, 7, 225, 0.8)',
         '0 0 20px rgba(6, 7, 225, 0.3)'
-      ],
-      transition: {
-        duration: 2.5,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
+      ]
     }
   };
 
   const orbitalVariants = {
     animate: {
-      rotate: 360,
-      transition: {
-        duration: 30,
-        repeat: Infinity,
-        ease: "linear"
-      }
+      rotate: 360
     }
   };
 
@@ -258,7 +245,7 @@ const HeroAnimation: React.FC = () => {
               backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
             }}
             transition={{
-              duration: 5,
+              duration: 2.5,
               repeat: Infinity,
               ease: "easeInOut"
             }}
@@ -348,6 +335,11 @@ const HeroAnimation: React.FC = () => {
             className="absolute inset-0 w-60 h-60 -m-18"
             variants={orbitalVariants}
             animate="animate"
+            transition={{
+              duration: 30,
+              repeat: Infinity,
+              ease: "linear"
+            }}
           >
             {[...Array(8)].map((_, i) => (
               <motion.div

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import CandidateForm from '../components/interview/CandidateForm';
 import QuestionPage from '../components/interview/QuestionPage';

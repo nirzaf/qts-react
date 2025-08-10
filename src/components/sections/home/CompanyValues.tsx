@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Building2, Rocket, Target, Award } from 'lucide-react';

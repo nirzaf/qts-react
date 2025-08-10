@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export const FooterLogo: React.FC = () => {
@@ -9,7 +9,7 @@ export const FooterLogo: React.FC = () => {
       whileHover={{ scale: 1.05 }}
       transition={{ type: "spring", stiffness: 400, damping: 10 }}
     >
-      <Link to="/" className="flex items-center">
+      <Link href="/" className="flex items-center">
         <img
           src="https://ik.imagekit.io/quadrate/assets/img/QTS%20Primary%20Logo.png?updatedAt=1748456663889"
           alt="QTS Logo"
