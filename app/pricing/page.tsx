@@ -27,7 +27,7 @@ const pricingPlans = [
     id: 'starter',
     name: 'Starter',
     description: 'Perfect for small businesses and startups',
-    price: 2999,
+    price: 399,
     period: 'project',
     popular: false,
     features: [
@@ -38,7 +38,9 @@ const pricingPlans = [
       '3 Months Support',
       'Basic Analytics Setup',
       'Mobile Optimization',
-      'Social Media Integration'
+      'Social Media Integration',
+      'SSL Certificate Setup',
+      'Basic Performance Optimization'
     ],
     notIncluded: [
       'AI/ML Integration',
@@ -54,7 +56,7 @@ const pricingPlans = [
     id: 'professional',
     name: 'Professional',
     description: 'Ideal for growing businesses with advanced needs',
-    price: 7999,
+    price: 799,
     period: 'project',
     popular: true,
     features: [
@@ -67,7 +69,9 @@ const pricingPlans = [
       'Advanced SEO',
       'Performance Optimization',
       'Security Implementation',
-      'Third-party Integrations'
+      'Third-party Integrations',
+      'Payment Gateway Integration',
+      'Admin Dashboard'
     ],
     notIncluded: [
       'AI/ML Development',
@@ -81,7 +85,7 @@ const pricingPlans = [
     id: 'enterprise',
     name: 'Enterprise',
     description: 'Complete solution for large organizations',
-    price: 15999,
+    price: 4999,
     period: 'project',
     popular: false,
     features: [
@@ -96,7 +100,9 @@ const pricingPlans = [
       'Performance Monitoring',
       'Scalability Planning',
       'Team Training',
-      'Documentation'
+      'Documentation',
+      'API Gateway Setup',
+      'Microservices Architecture'
     ],
     notIncluded: [],
     icon: Brain,

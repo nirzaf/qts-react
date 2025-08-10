@@ -257,7 +257,7 @@ export default function ServicesPage() {
         </section>
       ))}
 
-      {/* Process Section */}
+      {/* Our Process Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -403,7 +403,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section at end of services list */}
       <section className="py-16 lg:py-24 bg-gradient-to-br from-[#0607E1] to-[#4D0AFF]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -441,6 +441,73 @@ export default function ServicesPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="max-w-3xl mx-auto text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-fluid-3xl lg:text-fluid-4xl font-bold text-gray-900 mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-fluid-lg text-gray-600">
+              Answers to common questions about our services, timelines, and engagement models.
+            </p>
+          </motion.div>
+
+          <div className="max-w-3xl mx-auto">
+            {/* Using our UI Accordion */}
+            {/* function-level comment: Services FAQ accordion using Radix primitives for accessibility */}
+            <FAQAccordion />
+          </div>
+        </div>
+      </section>
     </main>
+  );
+}
+
+function FAQAccordion() {
+  
+  const faqs = [
+    {
+      question: "What services do you provide?",
+      answer: "We offer end-to-end solutions including AI/ML, custom software development, cloud & DevOps, API development, and performance/security optimization."
+    },
+    {
+      question: "How do you price projects?",
+      answer: "We provide transparent, project-based pricing with packages starting at $399 (Starter), $799 (Professional), and $4,999 (Enterprise). We also support monthly retainers based on scope."
+    },
+    {
+      question: "What are typical timelines?",
+      answer: "Starter projects: 4–6 weeks, Professional: 8–12 weeks, Enterprise: 12–20 weeks. Exact timelines depend on complexity and integrations."
+    },
+    {
+      question: "Do you provide maintenance and support?",
+      answer: "Yes. We offer support periods with each package and optional maintenance retainers for ongoing updates, monitoring, and improvements."
+    },
+    {
+      question: "Can you integrate with our existing systems?",
+      answer: "Absolutely. We have extensive experience with third-party APIs, databases, and cloud services, and we follow best practices for secure integrations."
+    }
+  ];
+
+  return (
+    <Accordion type="single" collapsible className="w-full divide-y divide-gray-100 rounded-2xl border border-gray-100 bg-white/60 backdrop-blur">
+      {faqs.map((item, idx) => (
+        <AccordionItem key={idx} value={`item-${idx}`} className="px-4 sm:px-6">
+          <AccordionTrigger className="text-left text-gray-900">
+            <span className="text-base sm:text-lg font-semibold">{item.question}</span>
+          </AccordionTrigger>
+          <AccordionContent>
+            <p className="text-gray-600 leading-relaxed">{item.answer}</p>
+          </AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
   );
 }
