@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Users, Code2, Briefcase, Heart } from 'lucide-react';
 
 const stats = [
@@ -11,6 +11,8 @@ const stats = [
     description: 'Worldwide clients',
     icon: Users,
     label: 'Happy Clients',
+    color: 'from-blue-500 to-blue-600',
+    bgColor: 'from-blue-50 to-blue-100',
   },
   {
     name: 'Projects Completed',
@@ -18,6 +20,8 @@ const stats = [
     description: 'Successful deliveries',
     icon: Code2,
     label: 'Projects Completed',
+    color: 'from-green-500 to-green-600',
+    bgColor: 'from-green-50 to-green-100',
   },
   {
     name: 'Client Satisfaction',
@@ -25,6 +29,8 @@ const stats = [
     description: 'Happy customers',
     icon: Heart,
     label: 'Client Satisfaction Rate',
+    color: 'from-red-500 to-red-600',
+    bgColor: 'from-red-50 to-red-100',
   },
   {
     name: 'Years Experience',
@@ -32,6 +38,8 @@ const stats = [
     description: 'In digital solutions',
     icon: Briefcase,
     label: 'Years Experience',
+    color: 'from-purple-500 to-purple-600',
+    bgColor: 'from-purple-50 to-purple-100',
   },
 ];
 
@@ -82,8 +90,14 @@ const iconVariants = {
 };
 
 const StatsSection: React.FC = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section className="relative overflow-hidden bg-[#FFFFFF] py-24">
+    <section
+      ref={ref}
+      className="relative overflow-hidden bg-gradient-to-br from-white via-gray-50/30 to-blue-50/20 py-16 lg:py-24"
+    >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -102,55 +116,37 @@ const StatsSection: React.FC = () => {
 
       <div className="container relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 lg:mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-[#000000]">
+          <h2 className="text-fluid-3xl lg:text-fluid-4xl font-bold mb-4 lg:mb-6 text-gray-900">
             Our Impact in Numbers
           </h2>
-          <p className="text-xl text-[#000000]/70 max-w-2xl mx-auto">
-            Measurable results that speak for themselves
+          <p className="text-fluid-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Measurable results that speak for themselves and demonstrate our commitment to excellence
           </p>
         </motion.div>
 
         <motion.div
           variants={container}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
+          animate={isInView ? "show" : "hidden"}
+          className="grid gap-6 lg:gap-8 grid-cols-2 lg:grid-cols-4"
         >
           {stats.map((stat, index) => (
             <motion.div
               key={index}
               variants={item}
-              whileHover="hover"
-              className="relative group perspective-1000"
+              whileHover={{ y: -8, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="relative group"
             >
-              {/* Floating Background Effect */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 0.03, scale: 1 }}
-                whileHover={{ opacity: 0.05, scale: 1.1 }}
-                className="absolute inset-0 bg-[#0607E1] rounded-[2rem] blur-2xl transition-all duration-500"
-              />
-              
-              {/* Card Container */}
-              <motion.div
-                className="relative transform-gpu transition-all duration-500 group-hover:scale-[1.02]"
-                whileHover={{
-                  rotateX: 5,
-                  rotateY: -5,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <div className="relative p-8 rounded-[2rem] border border-[#000000]/10 bg-white backdrop-blur-xl shadow-xl hover:shadow-2xl hover:border-[#0607E1]/5 transition-all duration-500">
-                  {/* Animated Corner Accents */}
-                  <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-[#000000]/10 rounded-tl-[2rem] opacity-30 group-hover:opacity-100 group-hover:border-[#0607E1]/5 transition-all duration-500" />
-                  <div className="absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-[#000000]/10 rounded-br-[2rem] opacity-30 group-hover:opacity-100 group-hover:border-[#0607E1]/5 transition-all duration-500" />
+              {/* Enhanced Card Container */}
+              <div className="relative p-6 lg:p-8 rounded-2xl bg-white border border-gray-200/50 shadow-lg hover:shadow-xl hover:border-[#0607E1]/30 transition-all duration-300 text-center touch-target">
+                {/* Gradient Background Overlay */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl`} />
                   
                   {/* Icon Container */}
                   <motion.div
@@ -205,7 +201,6 @@ const StatsSection: React.FC = () => {
                     {stat.description}
                   </motion.p>
                 </div>
-              </motion.div>
             </motion.div>
           ))}
         </motion.div>

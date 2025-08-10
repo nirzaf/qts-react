@@ -4,13 +4,13 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import { Toaster } from '@/components/ui/toaster';
-// import HubSpotChat from '@/components/chat/HubSpotChat';
-// import { Navigation } from '@/components/Navigation';
-// import { Footer } from '@/components/Footer';
-// import WebVitalsReporter from '@/components/performance/WebVitalsReporter';
-// import A11yFeatures from '@/components/accessibility/A11yFeatures';
-// import SEOAudit from '@/components/seo/SEOAudit';
-// import ErrorBoundary from '@/components/ErrorBoundary';
+import HubSpotChat from '@/components/chat/HubSpotChat';
+import { Navigation } from '@/components/Navigation';
+import { Footer } from '@/components/Footer';
+import WebVitalsReporter from '@/components/performance/WebVitalsReporter';
+import A11yFeatures from '@/components/accessibility/A11yFeatures';
+import SEOAudit from '@/components/seo/SEOAudit';
+import ErrorBoundary from '@/components/ErrorBoundary';
 import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -73,36 +73,36 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} ${plusJakartaSans.variable}`}>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
+      <body className={`${inter.className} ${plusJakartaSans.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
-          {/* <ErrorBoundary> */}
-            <div className="app">
+          <ErrorBoundary>
+            <div className="app min-h-screen flex flex-col">
               {/* Web Vitals Monitoring */}
-              {/* <WebVitalsReporter /> */}
+              <WebVitalsReporter />
 
               {/* Accessibility Features */}
-              {/* <A11yFeatures mainContentId="main-content" /> */}
+              <A11yFeatures mainContentId="main-content" />
 
-              {/* <Navigation /> */}
-              <main id="main-content" tabIndex={-1}>
-                {/* <ErrorBoundary> */}
+              <Navigation />
+              <main id="main-content" tabIndex={-1} className="flex-1 pt-16 lg:pt-20">
+                <ErrorBoundary>
                   {children}
                   {/* <Toaster /> */}
-                  {/* <HubSpotChat /> */}
-                {/* </ErrorBoundary> */}
+                  <HubSpotChat />
+                </ErrorBoundary>
               </main>
-              {/* <Footer /> */}
+              <Footer />
 
               {/* SEO Audit Tool - only visible in development */}
-              {/* <SEOAudit showInProduction={false} /> */}
+              <SEOAudit showInProduction={false} />
             </div>
-          {/* </ErrorBoundary> */}
+          </ErrorBoundary>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

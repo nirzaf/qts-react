@@ -8,20 +8,22 @@ import CardsSection from '@/components/sections/cards/CardsSection';
 
 export default function HomePage() {
   return (
-    <main>
-        <HeroSection
-          primaryButton={{
-            text: "Get Started",
-            onClick: () => window.location.href = '/contact'
-          }}
-          secondaryButton={{
-            text: "Watch Demo",
-            onClick: () => window.location.href = '/services'
-          }}
-        />
+    <main className="overflow-x-hidden">
+      <HeroSection
+        primaryButton={{
+          text: "Get Started",
+          onClick: () => window.location.href = '/contact'
+        }}
+        secondaryButton={{
+          text: "Watch Demo",
+          onClick: () => window.location.href = '/services'
+        }}
+      />
+      <div className="space-y-16 lg:space-y-24">
         <ServicesSection />
         <StatsSection />
         <CardsSection />
-      </main>
+      </div>
+    </main>
   );
 }
