@@ -26,12 +26,7 @@ const AIServicesSection: React.FC = () => {
     hidden: { opacity: 0, scale: 0.9 },
     visible: { 
       opacity: 1, 
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15
-      }
+      scale: 1
     }
   };
 
@@ -118,6 +113,11 @@ const AIServicesSection: React.FC = () => {
             <motion.div
               key={service.id}
               variants={cardVariants}
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 15
+              }}
               whileHover={{ y: -10, scale: 1.02 }}
               className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-[#0607E1]/5"
             >

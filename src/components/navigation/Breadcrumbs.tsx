@@ -15,7 +15,7 @@ interface BreadcrumbsProps {
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customPaths, className = '' }) => {
   const pathname = usePathname();
   // Split pathname for Next.js routing
-  const pathnames = pathname.split('/').filter(x => x);
+  const pathnames = pathname ? pathname.split('/').filter(x => x) : [];
 
   // Generate breadcrumb items
   const breadcrumbItems = [
@@ -64,7 +64,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customPaths, className = '' }
                   </span>
                 ) : (
                   <Link
-                    to={item.path}
+                    href={item.path}
                     className="text-blue-600 hover:text-blue-800 hover:underline flex items-center"
                   >
                     {index === 0 ? (

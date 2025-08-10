@@ -1,15 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 
 export const FooterLogo: React.FC = () => {
   return (
-    <motion.div
-      className="flex-shrink-0"
-      whileHover={{ scale: 1.05 }}
-      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-    >
-      <Link href="/" className="flex items-center">
+    <div className="flex-shrink-0">
+      <Link href="/" className="flex items-center hover:scale-105 transition-transform">
         <img
           src="https://ik.imagekit.io/quadrate/assets/img/QTS%20Primary%20Logo.png?updatedAt=1748456663889"
           alt="QTS Logo"
@@ -17,6 +12,6 @@ export const FooterLogo: React.FC = () => {
         />
         <span className="ml-2 text-xl font-bold text-[#FFFFFF]">QTS</span>
       </Link>
-    </motion.div>
+    </div>
   );
-}; 
+};

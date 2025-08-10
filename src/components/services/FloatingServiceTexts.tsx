@@ -1,6 +1,8 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { services } from '../data/services';
+import { services } from '@/lib/services/data/services';
 
 interface FloatingText {
   id: number;

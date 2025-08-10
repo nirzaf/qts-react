@@ -5,24 +5,14 @@ const imageVariants = {
   initial: { opacity: 0, x: 20 },
   animate: { 
     opacity: 1, 
-    x: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-      delay: 0.2
-    }
+    x: 0
   }
 };
 
 const overlayVariants = {
   initial: { opacity: 0 },
   animate: { 
-    opacity: 1,
-    transition: {
-      duration: 0.4,
-      ease: "easeOut",
-      delay: 0.4
-    }
+    opacity: 1
   }
 };
 
@@ -32,6 +22,11 @@ export const ImageSection: React.FC = () => {
       variants={imageVariants}
       initial="initial"
       animate="animate"
+      transition={{
+        duration: 0.6,
+        ease: "easeOut",
+        delay: 0.2
+      }}
       className="relative"
     >
       <img
@@ -41,6 +36,13 @@ export const ImageSection: React.FC = () => {
       />
       <motion.div 
         variants={overlayVariants}
+        initial="initial"
+        animate="animate"
+        transition={{
+          duration: 0.4,
+          ease: "easeOut",
+          delay: 0.4
+        }}
         className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#0607E1]/10 to-transparent" 
       />
     </motion.div>

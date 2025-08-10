@@ -104,12 +104,12 @@ const iconVariants = {
   initial: {
     scale: 1,
     rotate: 0,
-    transition: { type: 'spring', stiffness: 300, damping: 20 }
+    transition: { type: 'spring' as const, stiffness: 300, damping: 20 }
   },
   hover: {
     scale: 1.15,  // Increased scale slightly for visibility
     rotate: -8,   // Simple rotation
-    transition: { type: 'spring', stiffness: 300, damping: 15 }
+    transition: { type: 'spring' as const, stiffness: 300, damping: 15 }
   }
 };
 
@@ -164,8 +164,7 @@ export const ServicesSection: React.FC = () => {
                       transition: {
                         duration: 3,
                         repeat: Infinity,
-                        repeatType: "reverse",
-                        ease: "easeInOut"
+                        repeatType: "reverse" as const
                       }
                     }}
                   >

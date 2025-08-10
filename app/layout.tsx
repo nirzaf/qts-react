@@ -4,13 +4,13 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import { Toaster } from '@/components/ui/toaster';
-import HubSpotChat from '@/components/chat/HubSpotChat';
-import { Navigation } from '@/components/Navigation';
-import { Footer } from '@/components/Footer';
-import WebVitalsReporter from '@/components/performance/WebVitalsReporter';
-import A11yFeatures from '@/components/accessibility/A11yFeatures';
-import SEOAudit from '@/components/seo/SEOAudit';
-import ErrorBoundary from '@/components/ErrorBoundary';
+// import HubSpotChat from '@/components/chat/HubSpotChat';
+// import { Navigation } from '@/components/Navigation';
+// import { Footer } from '@/components/Footer';
+// import WebVitalsReporter from '@/components/performance/WebVitalsReporter';
+// import A11yFeatures from '@/components/accessibility/A11yFeatures';
+// import SEOAudit from '@/components/seo/SEOAudit';
+// import ErrorBoundary from '@/components/ErrorBoundary';
 import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -81,28 +81,28 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ErrorBoundary>
+          {/* <ErrorBoundary> */}
             <div className="app">
               {/* Web Vitals Monitoring */}
-              <WebVitalsReporter />
+              {/* <WebVitalsReporter /> */}
 
               {/* Accessibility Features */}
-              <A11yFeatures mainContentId="main-content" />
+              {/* <A11yFeatures mainContentId="main-content" /> */}
 
-              <Navigation />
+              {/* <Navigation /> */}
               <main id="main-content" tabIndex={-1}>
-                <ErrorBoundary>
+                {/* <ErrorBoundary> */}
                   {children}
-                  <Toaster />
-                  <HubSpotChat />
-                </ErrorBoundary>
+                  {/* <Toaster /> */}
+                  {/* <HubSpotChat /> */}
+                {/* </ErrorBoundary> */}
               </main>
-              <Footer />
+              {/* <Footer /> */}
 
               {/* SEO Audit Tool - only visible in development */}
-              <SEOAudit showInProduction={false} />
+              {/* <SEOAudit showInProduction={false} /> */}
             </div>
-          </ErrorBoundary>
+          {/* </ErrorBoundary> */}
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

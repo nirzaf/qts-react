@@ -3,7 +3,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import { format } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
 import { motion } from 'framer-motion';
 
@@ -49,7 +48,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({
             <div className="flex items-center gap-2 mb-2">
               <Badge variant="secondary">{category}</Badge>
               <span className="text-sm text-muted-foreground">
-                {format(new Date(pubDate), 'MMM dd, yyyy')}
+                {pubDate}
               </span>
             </div>
             <h3 className="text-xl font-bold mb-2 line-clamp-2">{title}</h3>

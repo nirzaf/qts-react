@@ -2,7 +2,7 @@
 const nextConfig = {
   transpilePackages: ['framer-motion'],
   experimental: {
-    optimizePackageImports: ['framer-motion'],
+    optimizePackageImports: ['lucide-react'],
   },
   images: {
     domains: ['ik.imagekit.io'],

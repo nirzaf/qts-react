@@ -34,7 +34,8 @@ const PageLayout: React.FC<PageLayoutProps> = ({
       y: 0,
       transition: {
         duration: 0.5,
-        ease: 'easeOut'
+        type: "spring" as const,
+        stiffness: 100
       }
     }
   };

@@ -1,11 +1,27 @@
-import type { Metadata } from 'next';
-import Home from '@/pages/Home';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Home',
-  description: 'Welcome to Quadrate Tech Solutions - Your trusted partner for innovative software development, AI/ML solutions, and digital transformation services.',
-};
+import React from 'react';
+import { HeroSection } from '@/components/sections/HeroSection';
+import { ServicesSection } from '@/components/sections/ServicesSection';
+import StatsSection from '@/components/sections/StatsSection';
+import CardsSection from '@/components/sections/cards/CardsSection';
 
 export default function HomePage() {
-  return <Home />;
+  return (
+    <main>
+        <HeroSection
+          primaryButton={{
+            text: "Get Started",
+            onClick: () => window.location.href = '/contact'
+          }}
+          secondaryButton={{
+            text: "Watch Demo",
+            onClick: () => window.location.href = '/services'
+          }}
+        />
+        <ServicesSection />
+        <StatsSection />
+        <CardsSection />
+      </main>
+  );
 }

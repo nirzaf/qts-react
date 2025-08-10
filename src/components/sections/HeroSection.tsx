@@ -55,19 +55,18 @@ export const HeroSection = ({
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
+        type: "spring" as const,
+        stiffness: 100
       }
     }
   };
 
-  const floatingVariants = {
-    animate: {
-      y: [0, -10, 0],
-      transition: {
-        duration: 6,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
+  const floatingAnimation = {
+    y: [0, -10, 0],
+    transition: {
+      duration: 6,
+      repeat: Infinity,
+      repeatType: "loop" as const
     }
   };
 
@@ -85,14 +84,14 @@ export const HeroSection = ({
         {/* Gradient Orbs */}
         <motion.div
           className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-[#0607E1]/20 to-[#4D0AFF]/10 rounded-full blur-3xl"
-          variants={floatingVariants}
-          animate="animate"
+          animate={floatingAnimation}
         />
         <motion.div
           className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-[#0607E1]/15 to-[#00D4FF]/10 rounded-full blur-3xl"
-          variants={floatingVariants}
-          animate="animate"
-          transition={{ delay: 1 }}
+          animate={{
+            ...floatingAnimation,
+            transition: { ...floatingAnimation.transition, delay: 1 }
+          }}
         />
 
         {/* Grid Pattern */}
@@ -109,25 +108,28 @@ export const HeroSection = ({
         {/* Floating Icons */}
         <motion.div
           className="absolute top-20 left-20 text-[#0607E1]/20"
-          variants={floatingVariants}
-          animate="animate"
-          transition={{ delay: 0.5 }}
+          animate={{
+            ...floatingAnimation,
+            transition: { ...floatingAnimation.transition, delay: 0.5 }
+          }}
         >
           <Brain className="w-8 h-8" />
         </motion.div>
         <motion.div
           className="absolute top-40 right-32 text-[#0607E1]/20"
-          variants={floatingVariants}
-          animate="animate"
-          transition={{ delay: 1.5 }}
+          animate={{
+            ...floatingAnimation,
+            transition: { ...floatingAnimation.transition, delay: 1.5 }
+          }}
         >
           <Zap className="w-6 h-6" />
         </motion.div>
         <motion.div
           className="absolute bottom-32 left-32 text-[#0607E1]/20"
-          variants={floatingVariants}
-          animate="animate"
-          transition={{ delay: 2 }}
+          animate={{
+            ...floatingAnimation,
+            transition: { ...floatingAnimation.transition, delay: 2 }
+          }}
         >
           <Globe className="w-7 h-7" />
         </motion.div>
