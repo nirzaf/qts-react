@@ -21,6 +21,7 @@ export const HeroSection = ({
 }: HeroSectionProps): React.ReactElement => {
   const [displayText, setDisplayText] = useState('');
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+  const [isClient, setIsClient] = useState(false);
 
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -35,6 +36,11 @@ export const HeroSection = ({
     "Scale Your Operations",
     "Build the Future"
   ], []);
+
+  // Ensure client-side only rendering for particles
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Typewriter effect
   useEffect(() => {
@@ -119,14 +125,24 @@ export const HeroSection = ({
     }
   };
 
-  // Particle system
-  const particles = Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 4 + 2,
-    delay: Math.random() * 5
-  }));
+  // Deterministic particle system (client-side only)
+  const particles = useMemo(() => {
+    if (!isClient) return [];
+
+    // Use a seeded random function for deterministic results
+    const seededRandom = (seed: number) => {
+      const x = Math.sin(seed) * 10000;
+      return x - Math.floor(x);
+    };
+
+    return Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      x: seededRandom(i * 1.1) * 100,
+      y: seededRandom(i * 2.3) * 100,
+      size: seededRandom(i * 3.7) * 4 + 2,
+      delay: seededRandom(i * 4.9) * 5
+    }));
+  }, [isClient]);
 
   return (
     <motion.section
@@ -153,8 +169,8 @@ export const HeroSection = ({
           }}
         />
 
-        {/* Floating Particles */}
-        {particles.map((particle) => (
+        {/* Floating Particles - Client Side Only */}
+        {isClient && particles.map((particle) => (
           <motion.div
             key={particle.id}
             className="absolute rounded-full bg-gradient-to-r from-[#0607E1]/20 to-[#4D0AFF]/20"
