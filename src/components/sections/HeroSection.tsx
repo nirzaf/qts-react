@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Play, Sparkles, Zap, Brain, Globe, Star, Rocket } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, Brain, Globe, Star, LineChart, LayoutDashboard, Share2, Workflow, Shield, CheckCircle2, CalendarDays, BookOpen } from 'lucide-react';
 
 interface HeroSectionProps {
   primaryButton: {
@@ -30,11 +30,9 @@ export const HeroSection = ({
   const opacity = useTransform(scrollY, [0, 300], [1, 0.8]);
 
   const phrases = useMemo(() => [
-    "Transform Your Digital Presence",
-    "Accelerate Business Growth",
-    "Innovate with AI Solutions",
-    "Scale Your Operations",
-    "Build the Future"
+    "Accelerate Your Digital Transformation with AI-Powered Solutions",
+    "Transform Business Operations with Expert SAP & Microsoft 365 Integration",
+    "Scale Your Enterprise with Certified ZOHO & AI/ML Solutions"
   ], []);
 
   // Ensure client-side only rendering for particles
@@ -321,8 +319,9 @@ export const HeroSection = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-fluid-lg lg:text-fluid-xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+              id="hero-subtitle"
             >
-              Empowering businesses with cutting-edge AI solutions, custom software development, and digital transformation services. From startups to enterprises, we turn your vision into reality.
+              Sri Lanka's leading technology partner specializing in SAP data management, AI/ML automation, and Microsoft 365 solutions. Trusted by enterprises across Asia, Africa, and the Middle East.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -337,9 +336,11 @@ export const HeroSection = ({
                 className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#0607E1] to-[#4D0AFF] text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden touch-target"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
+                aria-label="Schedule a consultation with Quadrate Tech Solutions"
+                aria-describedby="hero-subtitle"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  <Rocket className="w-5 h-5" />
+                  <CalendarDays className="w-5 h-5" />
                   {primaryButton.text}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
@@ -354,8 +355,10 @@ export const HeroSection = ({
                 className="group inline-flex items-center justify-center px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-[#0607E1]/20 text-[#0607E1] font-semibold rounded-full hover:bg-[#0607E1] hover:text-white hover:border-[#0607E1] transition-all duration-300 shadow-md hover:shadow-lg touch-target"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
+                aria-label="View Quadrate's case studies"
+                aria-describedby="hero-subtitle"
               >
-                <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                <BookOpen className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
                 {secondaryButton.text}
               </motion.button>
             </motion.div>
@@ -366,11 +369,13 @@ export const HeroSection = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
               className="grid grid-cols-3 gap-4 lg:gap-8 pt-8 border-t border-gray-200"
+              role="list"
+              aria-label="Quadrate key statistics"
             >
               {[
-                { number: "50+", label: "Projects Delivered", icon: Rocket },
-                { number: "15+", label: "AI Services", icon: Brain },
-                { number: "24/7", label: "Support", icon: Globe }
+                { number: "100+", label: "SAP Implementations", icon: LayoutDashboard },
+                { number: "25+", label: "AI/ML Solutions", icon: Brain },
+                { number: "3", label: "Global Continents", icon: Globe }
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}
@@ -379,6 +384,7 @@ export const HeroSection = ({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 + index * 0.1 }}
                   whileHover={{ y: -5 }}
+                  role="listitem"
                 >
                   <div className="flex items-center justify-center lg:justify-start mb-2">
                     <stat.icon className="w-4 h-4 lg:w-5 lg:h-5 text-[#0607E1] mr-2 group-hover:scale-110 transition-transform duration-300" />
@@ -397,17 +403,19 @@ export const HeroSection = ({
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
               className="flex flex-wrap items-center gap-6 pt-6"
+              role="list"
+              aria-label="Certifications and partnerships"
             >
-              <div className="flex items-center text-sm text-[#000000]/60">
-                <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+              <div className="flex items-center text-sm text-[#000000]/60" role="listitem">
+                <Shield className="w-4 h-4 text-green-600 mr-2" aria-hidden="true" />
                 ISO Certified
               </div>
-              <div className="flex items-center text-sm text-[#000000]/60">
-                <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+              <div className="flex items-center text-sm text-[#000000]/60" role="listitem">
+                <CheckCircle2 className="w-4 h-4 text-blue-600 mr-2" aria-hidden="true" />
                 Microsoft Partner
               </div>
-              <div className="flex items-center text-sm text-[#000000]/60">
-                <div className="w-2 h-2 bg-purple-500 rounded-full mr-2"></div>
+              <div className="flex items-center text-sm text-[#000000]/60" role="listitem">
+                <Brain className="w-4 h-4 text-purple-600 mr-2" aria-hidden="true" />
                 AI Certified
               </div>
             </motion.div>
@@ -415,15 +423,43 @@ export const HeroSection = ({
           </motion.div>
 
           {/* Visual Content - Hidden on mobile, shown on desktop */}
-          <aside className="hidden lg:block w-full lg:w-auto pt-2 lg:pt-0 flex justify-center lg:justify-end" aria-label="3D visualization">
+          <aside className="hidden lg:block w-full lg:w-auto pt-2 lg:pt-0 flex justify-center lg:justify-end" aria-label="Quadrate solution highlights">
             <div className="relative w-full lg:w-auto flex justify-center lg:justify-end overflow-hidden">
-              <div className="w-96 h-96 bg-gradient-to-br from-[#0607E1]/10 to-[#4D0AFF]/5 rounded-3xl flex items-center justify-center">
-                <img
-                  src="https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458"
-                  alt="Quadrate Tech Solutions"
-                  className="w-full h-full object-cover rounded-3xl"
-                  loading="eager"
-                />
+              <div className="w-96 h-96 grid grid-cols-2 gap-4">
+                <div className="p-5 rounded-3xl bg-white/80 border border-gray-200 shadow-sm hover:shadow-md transition-all" aria-label="SAP dashboard interfaces">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-medium text-gray-500">SAP</span>
+                    <LayoutDashboard className="w-5 h-5 text-[#0607E1]" aria-hidden="true" />
+                  </div>
+                  <div className="mt-4 h-24 rounded-xl bg-gradient-to-br from-[#0607E1]/10 to-[#4D0AFF]/10" />
+                  <div className="mt-3 text-sm font-semibold text-gray-900">Dashboards</div>
+                </div>
+                <div className="p-5 rounded-3xl bg-white/80 border border-gray-200 shadow-sm hover:shadow-md transition-all" aria-label="AI/ML data visualization">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-medium text-gray-500">AI/ML</span>
+                    <Brain className="w-5 h-5 text-[#4D0AFF]" aria-hidden="true" />
+                  </div>
+                  <div className="mt-4 h-24 rounded-xl bg-gradient-to-br from-[#4D0AFF]/10 to-[#00D4FF]/10 flex items-center justify-center">
+                    <LineChart className="w-6 h-6 text-[#4D0AFF]" aria-hidden="true" />
+                  </div>
+                  <div className="mt-3 text-sm font-semibold text-gray-900">Analytics</div>
+                </div>
+                <div className="p-5 rounded-3xl bg-white/80 border border-gray-200 shadow-sm hover:shadow-md transition-all" aria-label="Microsoft 365 integration workflows">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-medium text-gray-500">M365</span>
+                    <Share2 className="w-5 h-5 text-[#0607E1]" aria-hidden="true" />
+                  </div>
+                  <div className="mt-4 h-24 rounded-xl bg-gradient-to-br from-[#00D4FF]/10 to-[#0607E1]/10" />
+                  <div className="mt-3 text-sm font-semibold text-gray-900">Integrations</div>
+                </div>
+                <div className="p-5 rounded-3xl bg-white/80 border border-gray-200 shadow-sm hover:shadow-md transition-all" aria-label="ZOHO automation examples">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-medium text-gray-500">ZOHO</span>
+                    <Workflow className="w-5 h-5 text-[#4D0AFF]" aria-hidden="true" />
+                  </div>
+                  <div className="mt-4 h-24 rounded-xl bg-gradient-to-br from-[#4D0AFF]/10 to-[#0607E1]/10" />
+                  <div className="mt-3 text-sm font-semibold text-gray-900">Automations</div>
+                </div>
               </div>
             </div>
           </aside>

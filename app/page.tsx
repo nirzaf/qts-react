@@ -12,12 +12,12 @@ export default function HomePage() {
     <main className="overflow-x-hidden">
       <HeroSection
         primaryButton={{
-          text: "Get Started",
-          onClick: () => window.location.href = '/contact'
+          text: "Schedule Consultation",
+          onClick: () => (window.location.href = '/contact'),
         }}
         secondaryButton={{
-          text: "Watch Demo",
-          onClick: () => window.location.href = '/services'
+          text: "View Case Studies",
+          onClick: () => (window.location.href = '/case-studies'),
         }}
       />
       <div className="space-y-16 lg:space-y-24">
