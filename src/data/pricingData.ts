@@ -11,7 +11,7 @@ export interface PricingPlan {
 export const pricingPlans: PricingPlan[] = [
   {
     name: 'Starter',
-    price: '$99',
+    price: '$399',
     description: 'Perfect for small businesses getting started',
     features: [
       'Server Resources',
@@ -27,7 +27,7 @@ export const pricingPlans: PricingPlan[] = [
   },
   {
     name: 'Professional',
-    price: '$199',
+    price: '$799',
     description: 'Ideal for growing businesses and teams',
     features: [
       'Server Resources',
@@ -45,7 +45,7 @@ export const pricingPlans: PricingPlan[] = [
   },
   {
     name: 'Enterprise',
-    price: '$399',
+    price: '$4999',
     description: 'Advanced features for larger organizations',
     features: [
       'Server Resources',

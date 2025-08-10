@@ -5,6 +5,7 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { ServicesSection } from '@/components/sections/ServicesSection';
 import StatsSection from '@/components/sections/StatsSection';
 import CardsSection from '@/components/sections/cards/CardsSection';
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 
 export default function HomePage() {
   return (
@@ -22,6 +23,7 @@ export default function HomePage() {
       <div className="space-y-16 lg:space-y-24">
         <ServicesSection />
         <StatsSection />
+        <TestimonialsSection />
         <CardsSection />
       </div>
     </main>

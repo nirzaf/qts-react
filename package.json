@@ -20,6 +20,7 @@
     "prebuild": "npm run generate-seo"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@next/eslint-plugin-next": "^15.4.6",
     "@radix-ui/react-accordion": "^1.2.8",
     "@radix-ui/react-avatar": "^1.1.7",
@@ -34,7 +35,9 @@
     "@react-three/drei": "^10.0.7",
     "@react-three/fiber": "^9.1.2",
     "@react-three/postprocessing": "^3.0.4",
+    "@sentry/nextjs": "^10.3.0",
     "@supabase/supabase-js": "^2.49.4",
+    "@tabler/icons-react": "^3.34.1",
     "@types/node": "^22.17.1",
     "@types/react-helmet": "^6.1.11",
     "@types/react-syntax-highlighter": "^15.5.13",
@@ -60,6 +63,7 @@
     "react": "^19.1.1",
     "react-countup": "^6.5.3",
     "react-dom": "^19.1.1",
+    "react-feather": "^2.0.10",
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^2.0.5",
     "react-i18next": "^15.5.1",
