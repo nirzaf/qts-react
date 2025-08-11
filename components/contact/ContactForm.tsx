@@ -210,7 +210,7 @@ const ContactForm: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800"
                 >
-                  Thank you! Your message has been sent successfully. We'll get back to you within 2 hours.
+                  Thank you! Your message has been sent successfully. We&apos;ll get back to you within 2 hours.
                 </motion.div>
               )}
 

@@ -67,7 +67,7 @@ const QuadrateAboutSection: React.FC = () => {
                 custom software development services.
               </p>
               <p>
-                Today, we're proud to be at the forefront of the AI revolution, helping businesses 
+                Today, we&apos;re proud to be at the forefront of the AI revolution, helping businesses 
                 harness the power of artificial intelligence, machine learning, and modern web 
                 technologies to achieve unprecedented growth and efficiency.
               </p>
