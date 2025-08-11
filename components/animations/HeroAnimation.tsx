@@ -203,27 +203,41 @@ const HeroAnimation: React.FC = () => {
 
       {/* Floating particles */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-gradient-to-r from-[#0607E1] to-[#4D0AFF] rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -20, 0],
-              opacity: [0.3, 1, 0.3],
-              scale: [1, 1.5, 1]
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: i * 0.2,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
+        {[...Array(20)].map((_, i) => {
+          // Use deterministic positions based on index to avoid hydration mismatch
+          const positions = [
+            { left: 73.96, top: 43.14 }, { left: 43.72, top: 20.89 }, { left: 3.81, top: 82.33 },
+            { left: 19.34, top: 86.98 }, { left: 76.79, top: 95.89 }, { left: 38.61, top: 38.60 },
+            { left: 9.86, top: 94.32 }, { left: 71.51, top: 67.16 }, { left: 35.71, top: 21.42 },
+            { left: 30.19, top: 37.16 }, { left: 5.34, top: 6.23 }, { left: 89.91, top: 0.35 },
+            { left: 0.29, top: 11.52 }, { left: 40.10, top: 22.15 }, { left: 76.33, top: 4.57 },
+            { left: 90.35, top: 46.66 }, { left: 39.17, top: 1.07 }, { left: 2.04, top: 53.08 },
+            { left: 63.30, top: 16.87 }, { left: 15.03, top: 88.86 }
+          ];
+          const position = positions[i] || { left: 50, top: 50 };
+          
+          return (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-gradient-to-r from-[#0607E1] to-[#4D0AFF] rounded-full"
+              style={{
+                left: `${position.left}%`,
+                top: `${position.top}%`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                opacity: [0.3, 1, 0.3],
+                scale: [1, 1.5, 1]
+              }}
+              transition={{
+                duration: 3 + (i % 3),
+                repeat: Infinity,
+                delay: i * 0.2,
+                ease: "easeInOut"
+              }}
+            />
+          );
+        })}
       </div>
 
       {/* Data streams */}
