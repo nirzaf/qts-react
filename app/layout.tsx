@@ -10,10 +10,10 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Quadrate Tech Solutions - Innovative Technology Solutions',
+    default: 'Quadrate Tech Solutions | AI & Software Development',
     template: '%s | Quadrate Tech Solutions',
   },
-  description: 'Leading provider of innovative technology solutions including AI, machine learning, web development, and digital transformation services.',
+  description: 'AI-powered software solutions, machine learning, computer vision, NLP, custom software development, web development, and digital marketing services.',
   keywords: [
     'technology solutions',
     'AI consulting',

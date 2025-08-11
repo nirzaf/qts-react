@@ -1,93 +1,164 @@
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Quadrate Tech Solutions | AI & Software Development',
-  description: 'AI-powered software solutions, machine learning, computer vision, NLP, custom software development, web development, and digital marketing services.',
-  keywords: [
-    'artificial intelligence',
-    'AI services', 
-    'machine learning',
-    'computer vision',
-    'software development',
-    'web development',
-    'Sri Lanka'
-  ],
-  openGraph: {
-    title: 'Quadrate Tech Solutions | AI & Software Development',
-    description: 'AI-powered software solutions, machine learning, computer vision, NLP, custom software development, web development, and digital marketing services.',
-    images: [
-      {
-        url: 'https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458',
-        width: 1200,
-        height: 630,
-        alt: 'Quadrate Tech Solutions - AI & Software Development',
-      },
-    ],
-  },
-};
+import { Suspense } from 'react';
+import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
+
+// Import components that don't need lazy loading
+import { ModernHeroSection } from '../components/sections/ModernHeroSection';
+import { AnimatedSection } from '../components/sections/home/AnimatedSection';
+import BackgroundElements from '../components/home/BackgroundElements';
+import Loading from '../components/ui/loading';
+
+// Lazy load heavy components with Next.js dynamic imports
+const Features = dynamic(() => import('../components/sections/features/Features'), {
+  loading: () => <Loading />,
+});
+
+const TechStack = dynamic(() => import('../components/sections/TechStack'), {
+  loading: () => <Loading />,
+});
+
+const ServicesSection = dynamic(() => import('../components/sections/ServicesSection'), {
+  loading: () => <Loading />,
+});
+
+const AIHighlightBanner = dynamic(() => import('../components/sections/AIHighlightBanner'), {
+  loading: () => <Loading />,
+});
+
+const AIServicesSection = dynamic(() => import('../components/sections/AIServicesSection'), {
+  loading: () => <Loading />,
+});
+
+const PricingSection = dynamic(() => import('../components/sections/PricingSection'), {
+  loading: () => <Loading />,
+});
+
+const StatsSection = dynamic(() => import('../components/sections/StatsSection'), {
+  loading: () => <Loading />,
+});
+
+const PartnersSection = dynamic(() => import('../components/sections/PartnersSection'), {
+  loading: () => <Loading />,
+});
+
+const CompanyValues = dynamic(() => import('../components/sections/home/CompanyValues'), {
+  loading: () => <Loading />,
+});
+
+
 
 export default function HomePage() {
+  const router = useRouter();
+
+  const handleGetStarted = () => {
+    router.push('/contact');
+  };
+
+  const handleLearnMore = () => {
+    router.push('/about');
+  };
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="text-center space-y-8">
-        <div className="space-y-4">
-          <h1 className="text-4xl md:text-6xl font-bold text-primary">
-            Welcome to Quadrate Tech Solutions
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Leading provider of AI-powered software solutions, machine learning, computer vision, 
-            and custom software development services.
-          </p>
+    <div className="relative bg-transparent">
+      <BackgroundElements />
+
+      {/* Content Container */}
+      <div className="relative">
+        {/* Modern Hero Section */}
+        <ModernHeroSection
+          primaryButton={{
+            text: "Get Started",
+            onClick: handleGetStarted
+          }}
+          secondaryButton={{
+            text: "Learn More",
+            onClick: handleLearnMore
+          }}
+        />
+
+        {/* Features Section */}
+        <AnimatedSection className="bg-gradient-to-b from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
+          <div className="font-plusJakartaSans text-[#0607E1]">
+            <Suspense fallback={<Loading />}>
+              <Features />
+            </Suspense>
+          </div>
+        </AnimatedSection>
+
+        {/* Tech Stack Section */}
+        <AnimatedSection className="relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0607E1]/5 via-[#0607E1]/3 to-[#0607E1]/5" />
+          <div className="font-plusJakartaSans relative z-10 text-[#0607E1]">
+            <Suspense fallback={<Loading />}>
+              <TechStack />
+            </Suspense>
+          </div>
+        </AnimatedSection>
+
+        {/* Services Section */}
+        <AnimatedSection className="bg-gradient-to-b from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
+          <div className="font-plusJakartaSans text-[#0607E1]">
+            <Suspense fallback={<Loading />}>
+              <ServicesSection />
+            </Suspense>
+          </div>
+        </AnimatedSection>
+
+        {/* AI Highlight Banner */}
+        <div className="font-plusJakartaSans">
+          <Suspense fallback={<Loading />}>
+            <AIHighlightBanner />
+          </Suspense>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          <div className="bg-card p-6 rounded-lg border">
-            <h3 className="text-xl font-semibold mb-3">AI & Machine Learning</h3>
-            <p className="text-muted-foreground">
-              Cutting-edge AI solutions including computer vision, natural language processing, 
-              and generative AI consulting.
-            </p>
+        {/* AI Services Section */}
+        <AnimatedSection className="bg-gradient-to-b from-[#F8FAFF] to-[#FFFFFF]">
+          <div className="font-plusJakartaSans">
+            <Suspense fallback={<Loading />}>
+              <AIServicesSection />
+            </Suspense>
           </div>
-          
-          <div className="bg-card p-6 rounded-lg border">
-            <h3 className="text-xl font-semibold mb-3">Software Development</h3>
-            <p className="text-muted-foreground">
-              Custom software development, web applications, and mobile app development 
-              using modern technologies.
-            </p>
+        </AnimatedSection>
+
+        {/* Company Values Section */}
+        <AnimatedSection className="bg-gradient-to-b from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
+          <div className="font-plusJakartaSans text-[#0607E1]">
+            <Suspense fallback={<Loading />}>
+              <CompanyValues />
+            </Suspense>
           </div>
-          
-          <div className="bg-card p-6 rounded-lg border">
-            <h3 className="text-xl font-semibold mb-3">Digital Solutions</h3>
-            <p className="text-muted-foreground">
-              Digital marketing, business automation, and cloud solutions to help 
-              your business grow and scale.
-            </p>
+        </AnimatedSection>
+
+        {/* Pricing Section */}
+        <div id="pricing" className="bg-[#FFFFFF]">
+          <div className="font-plusJakartaSans text-[#0607E1]">
+            <Suspense fallback={<Loading />}>
+              <PricingSection />
+            </Suspense>
           </div>
         </div>
 
-        <div className="bg-primary/5 p-8 rounded-lg mt-12">
-          <h2 className="text-2xl font-semibold mb-4">Next.js Migration in Progress</h2>
-          <p className="text-muted-foreground mb-6">
-            We are currently migrating our website to Next.js to provide you with better performance, 
-            SEO optimization, and an enhanced user experience. All existing functionality will be 
-            preserved and improved during this migration process.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="/contact" 
-              className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
-            >
-              Get Started
-            </a>
-            <a 
-              href="/about" 
-              className="inline-flex items-center justify-center rounded-md border border-input bg-background px-6 py-3 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
-            >
-              Learn More
-            </a>
-          </div>
+        {/* Stats Section */}
+        <div className="font-plusJakartaSans text-[#0607E1]">
+          <Suspense fallback={<Loading />}>
+            <StatsSection />
+          </Suspense>
         </div>
+
+        {/* Partners Section */}
+        <AnimatedSection className="relative bg-[#FFFFFF]">
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0607E1]/5 via-[#0607E1]/3 to-transparent" />
+          <div className="font-plusJakartaSans relative z-10 text-[#0607E1]">
+            <Suspense fallback={<Loading />}>
+              <PartnersSection
+                title="Trusted by Industry Leaders"
+                description="We collaborate with forward-thinking companies to deliver exceptional solutions."
+              />
+            </Suspense>
+          </div>
+        </AnimatedSection>
       </div>
 
       {/* Structured Data */}
