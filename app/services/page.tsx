@@ -1,94 +1,130 @@
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
+import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
+import Loading from '../../components/ui/loading';
+
+// Lazy load components
+const ServicesHero = dynamic(() => import('../../components/services/ServicesHero'), {
+  loading: () => <Loading />,
+});
+
+const ServicesGrid = dynamic(() => import('../../components/services/ServicesGrid'), {
+  loading: () => <Loading />,
+});
+
+const WhyChooseUs = dynamic(() => import('../../components/services/WhyChooseUs'), {
+  loading: () => <Loading />,
+});
 
 export const metadata: Metadata = {
-  title: 'Our Services',
-  description: 'Explore our comprehensive range of technology services including AI consulting, software development, web development, and digital marketing.',
+  title: 'Our Services | AI, Software Development & Digital Solutions',
+  description: 'Comprehensive technology services including AI solutions, custom software development, web applications, mobile apps, cloud computing, and digital transformation.',
+  keywords: [
+    'AI services',
+    'software development',
+    'web development',
+    'mobile app development',
+    'cloud computing',
+    'digital transformation',
+    'machine learning',
+    'custom software',
+    'technology consulting'
+  ],
+  openGraph: {
+    title: 'Our Services | AI, Software Development & Digital Solutions',
+    description: 'Comprehensive technology services including AI solutions, custom software development, web applications, mobile apps, cloud computing, and digital transformation.',
+    url: '/services',
+    images: [
+      {
+        url: 'https://ik.imagekit.io/quadrate/assets/img/services.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Quadrate Tech Solutions Services',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Our Services | AI, Software Development & Digital Solutions',
+    description: 'Comprehensive technology services including AI solutions, custom software development, web applications, mobile apps, cloud computing, and digital transformation.',
+    images: ['https://ik.imagekit.io/quadrate/assets/img/services.jpg'],
+  },
+  alternates: {
+    canonical: '/services',
+  },
 };
 
 export default function ServicesPage() {
-  const services = [
-    {
-      title: 'AI Strategy & Consulting',
-      description: 'Strategic AI implementation guidance and consulting services to help businesses leverage artificial intelligence effectively.',
-      features: ['AI Strategy Development', 'Technology Assessment', 'Implementation Planning', 'ROI Analysis']
-    },
-    {
-      title: 'Machine Learning Solutions',
-      description: 'Custom machine learning models and solutions tailored to your business needs and data requirements.',
-      features: ['Predictive Analytics', 'Data Mining', 'Model Development', 'MLOps Implementation']
-    },
-    {
-      title: 'Computer Vision',
-      description: 'Advanced computer vision solutions for image recognition, object detection, and visual analysis applications.',
-      features: ['Image Recognition', 'Object Detection', 'Video Analysis', 'Quality Control Systems']
-    },
-    {
-      title: 'Natural Language Processing',
-      description: 'NLP solutions for text analysis, chatbots, sentiment analysis, and language understanding applications.',
-      features: ['Text Analysis', 'Chatbot Development', 'Sentiment Analysis', 'Language Translation']
-    },
-    {
-      title: 'Custom Software Development',
-      description: 'Tailored software solutions designed to meet your specific business requirements and objectives.',
-      features: ['Web Applications', 'Desktop Software', 'API Development', 'System Integration']
-    },
-    {
-      title: 'Web Development',
-      description: 'Modern, responsive web applications built with the latest technologies and best practices.',
-      features: ['React/Next.js', 'Node.js Backend', 'Database Design', 'Cloud Deployment']
-    },
-    {
-      title: 'Mobile App Development',
-      description: 'Native and cross-platform mobile applications for iOS and Android platforms.',
-      features: ['iOS Development', 'Android Development', 'React Native', 'Flutter']
-    },
-    {
-      title: 'Digital Marketing',
-      description: 'Comprehensive digital marketing services to help grow your online presence and reach your target audience.',
-      features: ['SEO Optimization', 'Social Media Marketing', 'Content Strategy', 'Analytics & Reporting']
-    }
-  ];
-
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="text-center space-y-4 mb-12">
-        <h1 className="text-4xl font-bold text-primary">Our Services</h1>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          We offer a comprehensive range of technology services to help your business 
-          thrive in the digital age.
-        </p>
-      </div>
+    <div className="min-h-screen">
+      <Suspense fallback={<Loading />}>
+        <ServicesHero />
+      </Suspense>
+      
+      <Suspense fallback={<Loading />}>
+        <ServicesGrid />
+      </Suspense>
+      
+      <Suspense fallback={<Loading />}>
+        <WhyChooseUs />
+      </Suspense>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {services.map((service, index) => (
-          <div key={index} className="bg-card p-6 rounded-lg border hover:shadow-lg transition-shadow">
-            <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-            <p className="text-muted-foreground mb-4">{service.description}</p>
-            <ul className="space-y-2">
-              {service.features.map((feature, featureIndex) => (
-                <li key={featureIndex} className="flex items-center text-sm">
-                  <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <div className="bg-primary/5 p-8 rounded-lg mt-12 text-center">
-        <h2 className="text-2xl font-semibold mb-4">Ready to Get Started?</h2>
-        <p className="text-muted-foreground mb-6">
-          Contact us today to discuss your project requirements and learn how we can help 
-          transform your business with innovative technology solutions.
-        </p>
-        <a 
-          href="/contact" 
-          className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
-        >
-          Contact Us
-        </a>
-      </div>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Technology Services",
+            "provider": {
+              "@type": "Organization",
+              "name": "Quadrate Tech Solutions",
+              "url": "https://quadratetech.com"
+            },
+            "description": "Comprehensive technology services including AI solutions, custom software development, web applications, mobile apps, cloud computing, and digital transformation.",
+            "serviceType": [
+              "Artificial Intelligence",
+              "Software Development",
+              "Web Development",
+              "Mobile App Development",
+              "Cloud Computing",
+              "Digital Transformation"
+            ],
+            "areaServed": "Worldwide",
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Technology Services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "AI & Machine Learning Solutions",
+                    "description": "Custom AI solutions, ML models, and intelligent automation"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Custom Software Development",
+                    "description": "Tailored software solutions built with modern technologies"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Web Development",
+                    "description": "Responsive, fast, and SEO-optimized websites"
+                  }
+                }
+              ]
+            }
+          })
+        }}
+      />
     </div>
   );
 }
