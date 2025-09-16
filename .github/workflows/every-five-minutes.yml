@@ -1,0 +1,15 @@
+name: Every five minutes
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  call-api-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Supabase GET Function 'qtsquery'
+        run: |
+          curl -f -L -X GET 'https://ydlauaczfzrrdjdfzeta.supabase.co/functions/v1/qts-seo' \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
