@@ -87,17 +87,17 @@ By investing in talent development, fostering a culture of innovation, and stren
 
 Follow these steps to run the project locally:
 
-1. Install **Node.js 16** or newer.
+1. Install **Bun 1.0** or newer from [bun.sh](https://bun.sh).
 2. Install dependencies:
 
    ```bash
-   npm install
+   bun install
    ```
 
 3. Start the development server:
 
    ```bash
-   npm run dev
+   bun run dev
    ```
 
    The application will be available at `http://localhost:3000`.
@@ -105,11 +105,11 @@ Follow these steps to run the project locally:
 4. Create a production build:
 
    ```bash
-   npm run build
+   bun run build
    ```
 
 5. Serve the production build locally:
 
    ```bash
-   npm start
+   bun start
    ```

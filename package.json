@@ -5,21 +5,21 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:client",
+    "build": "bun run build:client",
     "build:client": "tsc -b && vite build --outDir dist",
     "build:server": "echo \"Skipping server build for now\"",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "NODE_ENV=production node server.js",
-    "deploy": "npm run build && cd dist && git init && git add . && git commit -m 'Deploy' && git push --force https://github.com/nirzaf/qts-react.git main:gh-pages",
-    "generate-sitemap": "node scripts/generate-sitemap.js",
-    "generate-image-sitemap": "node scripts/generate-image-sitemap.js",
-    "generate-video-sitemap": "node scripts/generate-video-sitemap.js",
-    "generate-news-sitemap": "node scripts/generate-news-sitemap.js",
-    "generate-robots": "node scripts/generate-robots.js",
-    "generate-rss": "node scripts/generate-rss.js",
-    "generate-seo": "npm run generate-sitemap && npm run generate-image-sitemap && npm run generate-video-sitemap && npm run generate-news-sitemap && npm run generate-robots && npm run generate-rss",
-    "prebuild": "npm run generate-seo"
+    "start": "NODE_ENV=production bun server.js",
+    "deploy": "bun run build && cd dist && git init && git add . && git commit -m 'Deploy' && git push --force https://github.com/nirzaf/qts-react.git main:gh-pages",
+    "generate-sitemap": "bun scripts/generate-sitemap.js",
+    "generate-image-sitemap": "bun scripts/generate-image-sitemap.js",
+    "generate-video-sitemap": "bun scripts/generate-video-sitemap.js",
+    "generate-news-sitemap": "bun scripts/generate-news-sitemap.js",
+    "generate-robots": "bun scripts/generate-robots.js",
+    "generate-rss": "bun scripts/generate-rss.js",
+    "generate-seo": "bun run generate-sitemap && bun run generate-image-sitemap && bun run generate-video-sitemap && bun run generate-news-sitemap && bun run generate-robots && bun run generate-rss",
+    "prebuild": "bun run generate-seo"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.8",
@@ -95,7 +95,6 @@
     "vite-plugin-compression": "^0.5.1"
   },
   "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.0.0"
+    "bun": ">=1.0.0"
   }
 }
