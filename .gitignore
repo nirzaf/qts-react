@@ -40,3 +40,4 @@ out/
 .next/dev/
 next-env.d.ts
 .vercel
+.env*.local
