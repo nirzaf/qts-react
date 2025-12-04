@@ -176,7 +176,7 @@ const HeroAnimation: React.FC = () => {
       transition: {
         duration: 2.5,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: [0.42, 0, 0.58, 1] as any
       }
     }
   };
