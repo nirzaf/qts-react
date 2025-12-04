@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 interface PageLayoutProps {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
   title,
   subtitle
 }) => {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -27,14 +27,14 @@ const PageLayout: React.FC<PageLayoutProps> = ({
     }
   };
 
-  const elementVariants = {
+  const elementVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.5,
-        ease: 'easeOut'
+        ease: [0.4, 0, 0.2, 1] as any
       }
     }
   };

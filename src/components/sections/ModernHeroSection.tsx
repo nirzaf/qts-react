@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { ArrowRight, Play, Sparkles, Zap, Brain, Globe } from 'lucide-react';
 import HeroAnimation from '@/components/animations/HeroAnimation';
 
@@ -38,7 +38,7 @@ export const ModernHeroSection = ({
   }, [phrases.length]);
 
   // Animation variants
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -49,25 +49,25 @@ export const ModernHeroSection = ({
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
+        ease: [0.4, 0, 0.2, 1] as const
       }
     }
   };
 
-  const floatingVariants = {
+  const floatingVariants: Variants = {
     animate: {
       y: [0, -10, 0],
       transition: {
         duration: 6,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: [0.42, 0, 0.58, 1] as const
       }
     }
   };

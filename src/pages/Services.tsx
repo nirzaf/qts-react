@@ -4,12 +4,12 @@ import React, { Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
 import PageLayout from '@/layouts/PageLayout';
 
-import { services } from './Services/data/services';
-import { containerVariants, itemVariants } from './Services/animations/variants';
-import BackgroundEffects from './Services/components/BackgroundEffects';
-import HeroSection from './Services/components/HeroSection';
-import ServiceCard from './Services/components/ServiceCard';
-import CTASection from './Services/components/CTASection';
+import { services } from '@/features/services/data/services';
+import { containerVariants, itemVariants } from '@/features/services/animations/variants';
+import BackgroundEffects from '@/features/services/components/BackgroundEffects';
+import HeroSection from '@/features/services/components/HeroSection';
+import ServiceCard from '@/features/services/components/ServiceCard';
+import CTASection from '@/features/services/components/CTASection';
 import SEO from '@/components/seo/SEO';
 import Loading from '@/components/ui/loading';
 

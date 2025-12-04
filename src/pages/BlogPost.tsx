@@ -58,7 +58,7 @@ const MarkdownContent: React.FC<{ content: string }> = ({ content }) => {
           },
           img: ({ src, alt }) => (
             <OptimizedImage
-              src={src || ''}
+              src={typeof src === 'string' ? src : ''}
               alt={alt || 'Blog image'}
               className="w-full h-auto my-4 rounded-lg"
             />

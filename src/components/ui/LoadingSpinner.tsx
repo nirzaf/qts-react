@@ -43,7 +43,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
           transition={{
             duration: 1.5,
             repeat: Infinity,
-            ease: 'linear'
+            ease: 'linear' as const
           }}
           role="status"
           aria-label="Loading"

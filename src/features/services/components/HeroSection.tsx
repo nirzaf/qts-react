@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from 'react'
+import { motion } from 'framer-motion'
 
 const HeroSection: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const HeroSection: React.FC = () => {
         Empowering your digital transformation with cutting-edge solutions and expert services
       </p>
     </motion.div>
-  );
-};
+  )
+}
 
-export default React.memo(HeroSection);
+export default React.memo(HeroSection)

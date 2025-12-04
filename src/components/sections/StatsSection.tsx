@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Users, Code2, Briefcase, Heart } from 'lucide-react';
 
 const stats = [
@@ -33,7 +33,7 @@ const stats = [
   },
 ];
 
-const container = {
+const container: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -44,38 +44,28 @@ const container = {
   },
 };
 
-const item = {
+const item: Variants = {
   hidden: { y: 20, opacity: 0 },
   show: {
     y: 0,
     opacity: 1,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 100,
       damping: 10,
     },
   },
 };
 
-const iconVariants = {
+const iconVariants: Variants = {
   initial: { scale: 0.8, rotate: -10 },
   animate: {
     scale: 1,
-    rotate: 0,
-    transition: {
-      type: "spring",
-      stiffness: 200,
-      damping: 10,
-    },
+    rotate: 0
   },
   hover: {
     scale: 1.1,
-    rotate: 5,
-    transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 10,
-    },
+    rotate: 5
   },
 };
 

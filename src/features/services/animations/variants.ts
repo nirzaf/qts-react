@@ -1,4 +1,4 @@
-import { AnimationVariants } from '../types';
+import { AnimationVariants } from '@/features/services/types'
 
 export const containerVariants: AnimationVariants = {
   hidden: { opacity: 0 },
@@ -6,10 +6,10 @@ export const containerVariants: AnimationVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.2,
-      delayChildren: 0.3,
-    },
-  },
-};
+      delayChildren: 0.3
+    }
+  }
+}
 
 export const itemVariants: AnimationVariants = {
   hidden: { y: 20, opacity: 0 },
@@ -17,17 +17,17 @@ export const itemVariants: AnimationVariants = {
     y: 0,
     opacity: 1,
     transition: {
-      type: "spring",
+      type: 'spring' as const,
       stiffness: 100,
-      damping: 10,
-    },
+      damping: 10
+    }
   },
   hover: {
     scale: 1.05,
     transition: {
-      type: "spring",
+      type: 'spring' as const,
       stiffness: 400,
-      damping: 10,
-    },
-  },
-};
+      damping: 10
+    }
+  }
+}

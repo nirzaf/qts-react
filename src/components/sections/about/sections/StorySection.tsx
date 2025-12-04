@@ -12,7 +12,7 @@ const storyVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: "easeOut",
+      ease: "easeOut" as const,
       when: "beforeChildren",
       staggerChildren: 0.1
     }
@@ -22,7 +22,7 @@ const storyVariants: Variants = {
     y: -20,
     transition: {
       duration: 0.3,
-      ease: "easeIn"
+      ease: "easeIn" as const
     }
   }
 };
@@ -38,14 +38,14 @@ const textVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.4,
-      ease: "easeOut"
+      ease: "easeOut" as const
     }
   },
   exit: {
     opacity: 0,
     transition: {
       duration: 0.2,
-      ease: "easeIn"
+      ease: "easeIn" as const
     }
   }
 };

@@ -35,7 +35,7 @@ const OptimizedHeroBackground: React.FC = () => {
         transition={{
           duration: 8,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut" as const
         }}
       />
       
@@ -49,7 +49,7 @@ const OptimizedHeroBackground: React.FC = () => {
         transition={{
           duration: 10,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: "easeInOut" as const,
           delay: 1
         }}
       />
@@ -64,7 +64,7 @@ const OptimizedHeroBackground: React.FC = () => {
         transition={{
           duration: 12,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: "easeInOut" as const,
           delay: 2
         }}
       />
@@ -102,7 +102,7 @@ const OptimizedHeroBackground: React.FC = () => {
               duration: 8 + Math.random() * 4,
               repeat: Infinity,
               delay: Math.random() * 5,
-              ease: "easeInOut"
+              ease: "easeInOut" as const
             }}
           />
         ))}
@@ -118,7 +118,7 @@ const OptimizedHeroBackground: React.FC = () => {
         transition={{
           duration: 6,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut" as const
         }}
       />
 
@@ -131,7 +131,7 @@ const OptimizedHeroBackground: React.FC = () => {
         transition={{
           duration: 4,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: "easeInOut" as const,
           delay: 1
         }}
       />
@@ -145,7 +145,7 @@ const OptimizedHeroBackground: React.FC = () => {
         transition={{
           duration: 8,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: "easeInOut" as const,
           delay: 2
         }}
       />

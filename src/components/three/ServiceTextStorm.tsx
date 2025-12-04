@@ -128,7 +128,7 @@ export default function ServiceTextStorm() {
             delay: particle.delay,
             repeat: Infinity,
             repeatType: "loop",
-            ease: "easeInOut"
+            ease: "easeInOut" as const
           }}
           style={{
             fontSize: `${particle.size}rem`,
