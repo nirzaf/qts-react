@@ -44,12 +44,41 @@ export const HeroSection: React.FC<HeroProps> = ({
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#FFFFFF]">
-      {/* Enhanced Decorative Elements */}
+      {/* Enhanced Decorative Elements - Desktop */}
       <div className="absolute inset-0 overflow-hidden hidden md:block">
         <div className="absolute top-1/4 right-1/4 w-1/3 h-1/3 bg-gradient-to-bl from-[#0607E1]/20 via-[#0607E1]/10 to-transparent rounded-full transform rotate-45 animate-pulse" />
         <div className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-gradient-to-tr from-[#0607E1]/20 via-[#0607E1]/10 to-transparent rounded-full transform -rotate-45 animate-pulse" />
         {/* Additional decorative element */}
         <div className="absolute top-1/2 left-1/2 w-1/4 h-1/4 bg-gradient-to-r from-[#0607E1]/10 to-transparent rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
+      </div>
+
+      {/* Mobile Optimized Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden md:hidden">
+        <motion.div
+          className="absolute top-1/4 right-1/4 w-40 h-40 bg-gradient-to-bl from-[#0607E1]/15 via-[#0607E1]/8 to-transparent rounded-full blur-2xl"
+          animate={{
+            y: [0, -5, 0],
+            opacity: [0.8, 1, 0.8],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 left-1/4 w-40 h-40 bg-gradient-to-tr from-[#0607E1]/15 via-[#0607E1]/8 to-transparent rounded-full blur-2xl"
+          animate={{
+            y: [0, 5, 0],
+            opacity: [0.8, 1, 0.8],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
       </div>
 
       <div className="container relative z-10">

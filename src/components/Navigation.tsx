@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
 import SEOLink from './ui/SEOLink';
 
 export const Navigation: React.FC = () => {
@@ -31,9 +32,12 @@ export const Navigation: React.FC = () => {
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             <SEOLink to="/" className="flex items-center space-x-2" ariaLabel="Quadrate Tech Solutions Home">
-              <img
+              <Image
                 src="https://ik.imagekit.io/quadrate/assets/img/QTS%20Primary%20Logo.png?updatedAt=1748456663889"
                 alt="QTS Logo"
+                width={150}
+                height={40}
+                priority
                 className="h-10 w-auto brightness-[0.7] contrast-[1.4] [filter:saturate(1.2)_hue-rotate(-10deg)]"
               />
               <span className="font-bold text-lg">QTS</span>
@@ -50,9 +54,10 @@ export const Navigation: React.FC = () => {
               >
                 <SEOLink
                   to={link.to}
-                  className={`text-sm font-medium transition-colors hover:text-[#0607E1] relative
-                    ${currentPath === link.to ? 'text-[#0607E1]' : 'text-gray-700'}`}
+                  className={`text-sm transition-colors hover:text-[#0607E1] relative
+                    ${currentPath === link.to ? 'text-[#0607E1] font-semibold' : 'text-gray-700 font-medium'}`}
                   ariaLabel={`Navigate to ${link.label}`}
+                  aria-current={currentPath === link.to ? 'page' : undefined}
                 >
                   {link.label}
                   {currentPath === link.to && (
@@ -134,9 +139,10 @@ export const Navigation: React.FC = () => {
                     <SEOLink
                       to={link.to}
                       onClick={() => setIsOpen(false)}
-                      className={`block px-3 py-2 rounded-md text-base font-medium transition-colors hover:text-[#0607E1] hover:bg-gray-50
-                        ${currentPath === link.to ? 'text-[#0607E1] bg-gray-50' : 'text-gray-700'}`}
+                      className={`block px-3 py-2 rounded-md text-base transition-colors hover:text-[#0607E1] hover:bg-gray-50
+                        ${currentPath === link.to ? 'text-[#0607E1] bg-gray-50 font-semibold' : 'text-gray-700 font-medium'}`}
                       ariaLabel={`Navigate to ${link.label}`}
+                      aria-current={currentPath === link.to ? 'page' : undefined}
                     >
                       {link.label}
                     </SEOLink>

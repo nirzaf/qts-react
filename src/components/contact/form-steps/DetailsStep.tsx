@@ -2,14 +2,15 @@ import { type FC } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Send } from 'lucide-react';
+import { Send, Loader2 } from 'lucide-react';
 import type { FormStepProps } from '../types';
 
 interface DetailsStepProps extends Omit<FormStepProps, 'onNext'> {
   onSubmit: () => void;
+  isSubmitting?: boolean;
 }
 
-const DetailsStep: FC<DetailsStepProps> = ({ formData, onFormDataChange, onSubmit }) => {
+const DetailsStep: FC<DetailsStepProps> = ({ formData, onFormDataChange, onSubmit, isSubmitting = false }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -23,12 +24,22 @@ const DetailsStep: FC<DetailsStepProps> = ({ formData, onFormDataChange, onSubmi
         value={formData.message}
         onChange={(e) => onFormDataChange({ message: e.target.value })}
       />
-      <Button 
-        className="w-full bg-[#0607E1] hover:bg-[#0607E1]/90" 
+      <Button
+        className="w-full bg-[#0607E1] hover:bg-[#0607E1]/90"
         onClick={onSubmit}
+        disabled={isSubmitting}
       >
-        Send Message
-        <Send className="ml-2 h-4 w-4" />
+        {isSubmitting ? (
+          <>
+            Sending...
+            <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+          </>
+        ) : (
+          <>
+            Send Message
+            <Send className="ml-2 h-4 w-4" />
+          </>
+        )}
       </Button>
     </motion.div>
   );

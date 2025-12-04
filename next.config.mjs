@@ -4,6 +4,15 @@ const nextConfig = {
   typedRoutes: true,
   output: 'standalone',
   distDir: '.next',
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ik.imagekit.io',
+        pathname: '/quadrate/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

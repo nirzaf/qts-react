@@ -4,6 +4,7 @@ import { type FC, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { useToast } from '@/components/ui/use-toast';
 import BasicInfoStep from './form-steps/BasicInfoStep';
 import ProjectInfoStep from './form-steps/ProjectInfoStep';
 import DetailsStep from './form-steps/DetailsStep';
@@ -15,6 +16,8 @@ interface ContactFormProps {
 
 const ContactForm: FC<ContactFormProps> = ({ onBack }) => {
   const [formStep, setFormStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -31,11 +34,39 @@ const ContactForm: FC<ContactFormProps> = ({ onBack }) => {
   const nextStep = () => setFormStep(prev => prev + 1);
 
   const handleSubmit = async () => {
+    setIsSubmitting(true);
     try {
       // TODO: Implement form submission logic
       console.log('Form submitted:', formData);
+
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for contacting us. We'll get back to you shortly.",
+        variant: "default",
+      });
+
+      // Reset form after successful submission
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+        budget: '',
+        timeline: ''
+      });
+      setFormStep(1);
     } catch (error) {
       console.error('Error submitting form:', error);
+      toast({
+        title: "Submission Failed",
+        description: "There was an error sending your message. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -80,6 +111,7 @@ const ContactForm: FC<ContactFormProps> = ({ onBack }) => {
                 formData={formData}
                 onFormDataChange={handleFormDataChange}
                 onSubmit={handleSubmit}
+                isSubmitting={isSubmitting}
               />
             )}
           </AnimatePresence>
