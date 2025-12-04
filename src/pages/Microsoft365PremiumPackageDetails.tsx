@@ -1,4 +1,6 @@
 
+'use client';
+
 import Microsoft365AppsTable from '../components/sections/microsoft365/Microsoft365AppsTable';
 import SEO from '@/components/seo/SEO';
 import PageLayout from '@/layouts/PageLayout';
@@ -9,7 +11,7 @@ const Microsoft365PremiumPackageDetails = () => {
   const productSchema = generateProductSchema({
     name: 'Microsoft 365 Premium Package',
     description: 'Comprehensive Microsoft 365 Premium Package with enterprise apps and services for business productivity.',
-    url: 'https://quadrate.lk/#/microsoft-365-premium-package',
+    url: 'https://quadrate.lk/microsoft-365-premium-package-details',
     image: 'https://ik.imagekit.io/quadrate/assets/img/microsoft-365.png',
     brand: {
       name: defaultOrganization.name,
@@ -22,7 +24,7 @@ const Microsoft365PremiumPackageDetails = () => {
   const webPageSchema = generateWebPageSchema({
     title: 'Microsoft 365 Premium Package | Quadrate Tech Solutions',
     description: 'Explore Microsoft 365 Premium Package with enterprise apps and services for business productivity.',
-    url: 'https://quadrate.lk/#/microsoft-365-premium-package',
+    url: 'https://quadrate.lk/microsoft-365-premium-package-details',
   });
 
   // Combine structured data
@@ -38,6 +40,7 @@ const Microsoft365PremiumPackageDetails = () => {
         description="Explore Microsoft 365 Premium Package with enterprise apps and services for business productivity."
         keywords="Microsoft 365, Premium Package, business productivity, enterprise apps, cloud services"
         structuredData={structuredData}
+        canonicalUrl="https://quadrate.lk/microsoft-365-premium-package-details"
       />
       <div className="container mx-auto px-4 py-8">
         <Microsoft365AppsTable />

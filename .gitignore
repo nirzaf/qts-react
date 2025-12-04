@@ -32,3 +32,11 @@ stats.html
 .env.development
 .env.test
 .env.production
+
+# Next.js build files
+.next/
+out/
+.next/types/
+.next/dev/
+next-env.d.ts
+.vercel

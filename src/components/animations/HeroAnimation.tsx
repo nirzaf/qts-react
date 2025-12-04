@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, useAnimation, AnimatePresence } from 'framer-motion';
+import { motion, useAnimation, AnimatePresence, Variants } from 'framer-motion';
 import {
   Brain,
   Code,
@@ -137,7 +139,7 @@ const HeroAnimation: React.FC = () => {
   }, [coreAnimation]);
 
   // Enhanced animation variants
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -148,21 +150,21 @@ const HeroAnimation: React.FC = () => {
     }
   };
 
-  const nodeVariants = {
+  const nodeVariants: Variants = {
     hidden: { scale: 0, opacity: 0, y: 20 },
     visible: {
       scale: 1,
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 120,
         damping: 12
       }
     }
   };
 
-  const pulseVariants = {
+  const pulseVariants: Variants = {
     animate: {
       scale: [1, 1.15, 1],
       opacity: [0.8, 1, 0.8],
@@ -174,18 +176,18 @@ const HeroAnimation: React.FC = () => {
       transition: {
         duration: 2.5,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: [0.42, 0, 0.58, 1] as any
       }
     }
   };
 
-  const orbitalVariants = {
+  const orbitalVariants: Variants = {
     animate: {
       rotate: 360,
       transition: {
         duration: 30,
         repeat: Infinity,
-        ease: "linear"
+        ease: [0, 0, 1, 1] as any
       }
     }
   };

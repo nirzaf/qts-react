@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, ArrowLeft, Search } from 'lucide-react';
 import SEO from '@/components/seo/SEO';
@@ -8,25 +10,28 @@ import SEO from '@/components/seo/SEO';
 const fadeIn = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
-  exit: { opacity: 0 },
-  transition: { duration: 0.5 }
+  exit: { opacity: 0 }
 };
+
+const fadeInTransition = { duration: 0.5 };
 
 const scaleIn = {
   initial: { scale: 0.8, opacity: 0 },
-  animate: { scale: 1, opacity: 1 },
-  transition: { type: "spring", stiffness: 200, damping: 20 }
+  animate: { scale: 1, opacity: 1 }
 };
+
+const scaleInTransition = { type: "spring" as const, stiffness: 200, damping: 20 };
 
 const slideDown = {
   initial: { y: -20, opacity: 0 },
-  animate: { y: 0, opacity: 1 },
-  transition: { type: "spring", stiffness: 200, damping: 20, delay: 0.2 }
+  animate: { y: 0, opacity: 1 }
 };
 
+const slideDownTransition = { type: "spring" as const, stiffness: 200, damping: 20, delay: 0.2 };
+
 const NotFoundPage: React.FC = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <AnimatePresence mode="wait">
@@ -37,6 +42,7 @@ const NotFoundPage: React.FC = () => {
       />
       <motion.section
         {...fadeIn}
+        transition={fadeInTransition}
         className="relative min-h-[calc(100vh-4rem)] bg-gradient-to-b from-white to-gray-50/50"
       >
         {/* Background decoration */}
@@ -58,11 +64,13 @@ const NotFoundPage: React.FC = () => {
         <div className="container relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-8 md:py-12 lg:py-24">
           <motion.div
             {...scaleIn}
+            transition={scaleInTransition}
             className="flex flex-col items-center space-y-6 text-center"
           >
             {/* 404 Text */}
             <motion.h1
               {...slideDown}
+              transition={slideDownTransition}
               className="font-bold text-8xl md:text-9xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600"
             >
               404
@@ -71,21 +79,23 @@ const NotFoundPage: React.FC = () => {
             {/* Message */}
             <motion.div
               {...slideDown}
+              transition={slideDownTransition}
               className="space-y-2"
             >
               <h2 className="text-2xl font-semibold text-gray-900">Page Not Found</h2>
               <p className="max-w-[500px] text-gray-600 text-lg">
-                We couldn't find "{location.pathname}". The page you're looking for might have been removed, renamed, or doesn't exist.
+                We couldn't find "{pathname}". The page you're looking for might have been removed, renamed, or doesn't exist.
               </p>
             </motion.div>
 
             {/* Action Buttons */}
             <motion.div
               {...slideDown}
+              transition={slideDownTransition}
               className="flex flex-col sm:flex-row gap-4 mt-8"
             >
               <Button
-                onClick={() => navigate(-1)}
+                onClick={() => router.back()}
                 variant="outline"
                 className="flex items-center gap-2"
               >
@@ -94,7 +104,7 @@ const NotFoundPage: React.FC = () => {
               </Button>
 
               <Button
-                onClick={() => navigate('/')}
+                onClick={() => router.push('/')}
                 className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
               >
                 <Home className="w-4 h-4" />
@@ -102,7 +112,7 @@ const NotFoundPage: React.FC = () => {
               </Button>
 
               <Button
-                onClick={() => navigate('/search')}
+                onClick={() => router.push('/search')}
                 variant="outline"
                 className="flex items-center gap-2"
               >
@@ -114,6 +124,7 @@ const NotFoundPage: React.FC = () => {
             {/* Helpful Links */}
             <motion.div
               {...slideDown}
+              transition={slideDownTransition}
               className="mt-12 pt-8 border-t border-gray-200"
             >
               <p className="text-gray-600 mb-4">You might want to check these pages:</p>
@@ -127,7 +138,7 @@ const NotFoundPage: React.FC = () => {
                   <Button
                     key={link.path}
                     variant="ghost"
-                    onClick={() => navigate(link.path)}
+                    onClick={() => router.push(link.path)}
                     className="text-gray-600 hover:text-blue-600"
                   >
                     {link.label}

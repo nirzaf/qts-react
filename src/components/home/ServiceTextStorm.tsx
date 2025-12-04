@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -116,7 +118,7 @@ export default function ServiceTextStorm() {
             delay: particle.delay,
             repeat: Infinity,
             repeatType: "loop",
-            ease: "linear"
+            ease: "linear" as const
           }}
           style={{
             fontSize: `${particle.size}rem`,

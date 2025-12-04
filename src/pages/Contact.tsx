@@ -1,3 +1,5 @@
+'use client';
+
 import { type FC, useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { createClient } from '@supabase/supabase-js';
@@ -11,10 +13,9 @@ import { contactMethods } from '@/data/contactData';
 import SEO from '@/components/seo/SEO';
 import { generateOrganizationSchema, generateWebPageSchema, generateLocalBusinessSchema, defaultOrganization } from '@/utils/structuredData';
 
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabase = supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : null;
 
 const Contact: FC = () => {
   const [formData, setFormData] = useState({
@@ -47,9 +48,11 @@ const Contact: FC = () => {
         subject: `${formData.subject} (${domain})`
       };
 
-      const { error } = await supabase
-        .from('quadrate_contact_submissions')
-        .insert([formDataWithDomain]);
+      if (!supabase) {
+        throw new Error('Supabase client is not configured.');
+      }
+
+      const { error } = await supabase.from('quadrate_contact_submissions').insert([formDataWithDomain]);
 
       if (error) throw error;
 
@@ -68,7 +71,7 @@ const Contact: FC = () => {
   const webPageSchema = generateWebPageSchema({
     title: 'Contact Us | Quadrate Tech Solutions',
     description: 'Get in touch with Quadrate Tech Solutions. Contact us for software development, web development, digital marketing, and IT services.',
-    url: 'https://quadrate.lk/#/contact',
+    url: 'https://quadrate.lk/contact',
   });
   const localBusinessSchema = generateLocalBusinessSchema({
     ...defaultOrganization,

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
@@ -149,18 +151,18 @@ const QuadrateHoneycombAnimation: React.FC = () => {
             rotateX: {
               duration: cell.rotateSpeed * 1.5,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut" as const
             },
             rotateY: {
               duration: cell.rotateSpeed,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut" as const
             },
             z: {
               duration: cell.pulseSpeed * 1.2,
               repeat: Infinity,
               repeatType: "reverse",
-              ease: "easeInOut"
+              ease: "easeInOut" as const
             },
             x: { duration: 0.8, delay: cell.delay },
             y: { duration: 0.8, delay: cell.delay },

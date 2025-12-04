@@ -1,10 +1,6 @@
 services:
   - type: web
     name: quadrate-react
-    env: static
-    buildCommand: npm run build
-    staticPublishPath: ./dist
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+    env: node
+    buildCommand: bun run build
+    startCommand: bun run start

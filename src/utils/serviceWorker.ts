@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Register the service worker for offline support and better performance
  */

@@ -14,7 +14,7 @@ const containerVariants: Variants = {
     opacity: 1,
     transition: {
       duration: 0.5,
-      ease: "easeOut",
+      ease: "easeOut" as const,
       when: "beforeChildren"
     }
   },
@@ -22,7 +22,7 @@ const containerVariants: Variants = {
     opacity: 0,
     transition: {
       duration: 0.3,
-      ease: "easeIn",
+      ease: "easeIn" as const,
       when: "afterChildren"
     }
   }

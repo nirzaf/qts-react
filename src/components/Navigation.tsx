@@ -1,15 +1,14 @@
+'use client';
+
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import SEOLink from './ui/SEOLink';
 
 export const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
-
-  // With hash routing, we need to check the pathname part of the location
-  const currentPath = location.pathname;
+  const currentPath = usePathname() || '/';
 
   const navLinks = [
     { to: '/', label: 'Home' },

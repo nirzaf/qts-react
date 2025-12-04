@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const CardsSection: React.FC = () => {
   useTranslation();
@@ -77,7 +79,7 @@ const CardsSection: React.FC = () => {
         {cards.map((card, index) => (
           <Link
             key={index}
-            to={card.link}
+            href={card.link}
             className="relative overflow-hidden rounded-lg border bg-background p-2 hover:bg-accent transition-colors"
           >
             <div className="flex h-[180px] flex-col justify-between rounded-md p-6">

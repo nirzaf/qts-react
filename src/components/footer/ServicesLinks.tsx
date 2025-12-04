@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const services = [
   'AI Strategy & Consulting',
@@ -20,7 +20,7 @@ export const ServicesLinks: React.FC = () => {
         {services.map((service) => (
           <li key={service}>
             <Link 
-              to="/services" 
+              href="/services" 
               className="text-sm text-[#FFFFFF]/70 hover:text-[#FFFFFF] transition-colors duration-200"
             >
               {service}

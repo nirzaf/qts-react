@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 interface CompletionPageProps {
   sessionId: string;
@@ -87,7 +89,7 @@ const CompletionPage: React.FC<CompletionPageProps> = ({ sessionId, onSubmit }) 
           </div>
         ) : (
           <Link
-            to="/"
+            href="/"
             className="inline-block bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-300"
           >
             Return to Home

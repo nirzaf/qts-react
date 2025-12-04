@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 
 interface Post {
@@ -54,7 +56,7 @@ export const useBlogPost = (slug: string | undefined) => {
         const modifiedDate = metadata.modifiedDate || metadata.pubDate;
 
         // Create URL
-        const url = `https://quadrate.lk/#/blog/${slug}`;
+        const url = `https://quadrate.lk/blog/${slug}`;
 
         setPost({
           ...metadata,

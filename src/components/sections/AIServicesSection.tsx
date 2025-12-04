@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { ChevronRight, Sparkles } from 'lucide-react';
 import { getServicesByCategory, getAllCategories, getCategoryTitle, getCategoryDescription } from '@/data/aiServices';
 
@@ -7,7 +9,7 @@ const AIServicesSection: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<'strategy' | 'development' | 'integration' | 'data' | 'packaged'>('strategy');
   const categories = getAllCategories();
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -17,18 +19,18 @@ const AIServicesSection: React.FC = () => {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
   };
 
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { opacity: 0, scale: 0.9 },
     visible: { 
       opacity: 1, 
       scale: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 15
       }
@@ -95,7 +97,7 @@ const AIServicesSection: React.FC = () => {
 
         {/* Category Description */}
         <motion.div
-          key={activeCategory}
+          key={`description-${activeCategory}`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
@@ -108,7 +110,7 @@ const AIServicesSection: React.FC = () => {
 
         {/* Services Grid */}
         <motion.div
-          key={activeCategory}
+          key={`grid-${activeCategory}`}
           initial="hidden"
           animate="visible"
           variants={containerVariants}

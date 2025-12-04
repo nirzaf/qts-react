@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import ServiceTextStorm from './ServiceTextStorm';
@@ -44,7 +46,7 @@ const BackgroundParticles = () => {
             duration: 10,
             delay: particle.delay,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut" as const
           }}
         />
       ))}
@@ -62,7 +64,7 @@ const ForegroundElements = () => {
       await controls.start({
         opacity: [0, 0.7],
         scale: [0.95, 1],
-        transition: { duration: 1.5, ease: "easeOut" }
+        transition: { duration: 1.5, ease: "easeOut" as const }
       });
 
       // Gentle continuous animation
@@ -71,7 +73,7 @@ const ForegroundElements = () => {
         scale: [1, 1.03, 1],
         transition: {
           duration: 8,
-          ease: "easeInOut",
+          ease: "easeInOut" as const,
           repeat: Infinity,
           repeatType: "reverse"
         }

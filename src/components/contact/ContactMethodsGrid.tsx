@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import ContactMethodCard from './ContactMethodCard';
 import { contactMethods } from '@/data/contactData';

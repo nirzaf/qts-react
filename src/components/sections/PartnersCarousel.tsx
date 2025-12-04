@@ -21,7 +21,7 @@ export const PartnersCarousel: React.FC<PartnersCarouselProps> = ({ logos }) => 
             duration: 30,
             repeat: Infinity,
             repeatType: "loop",
-            ease: "linear",
+            ease: "linear" as const,
           },
         }}
       >

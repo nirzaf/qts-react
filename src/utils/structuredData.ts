@@ -389,7 +389,7 @@ export const generateBreadcrumbSchema = (items: BreadcrumbItem[]) => {
 // Default organization data for Quadrate Tech Solutions
 export const defaultOrganization = {
   name: 'Quadrate Tech Solutions',
-  url: 'https://quadrate.lk/#/',
+  url: 'https://quadrate.lk/',
   logo: 'https://ik.imagekit.io/quadrate/QTS%20Logo%20Primary.png?updatedAt=1733854434969',
   description: 'Quadrate Tech Solutions offers custom software development, web development, digital marketing, IT outsourcing, and business automation services to help businesses grow.',
   sameAs: [
@@ -407,7 +407,7 @@ export const defaultOrganization = {
     {
       name: 'Fazrin',
       jobTitle: 'CEO & Founder',
-      url: 'https://quadrate.lk/#/about'
+      url: 'https://quadrate.lk/about'
     }
   ],
   numberOfEmployees: 20,

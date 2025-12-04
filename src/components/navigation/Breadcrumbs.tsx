@@ -1,8 +1,11 @@
+'use client';
+
+import Head from 'next/head';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
 import { generateBreadcrumbSchema } from '@/utils/structuredData';
-import { Helmet } from 'react-helmet-async';
 
 interface BreadcrumbsProps {
   customPaths?: { path: string; label: string }[];
@@ -10,9 +13,8 @@ interface BreadcrumbsProps {
 }
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customPaths, className = '' }) => {
-  const location = useLocation();
-  // With hash routing, we need to use the pathname part of the location
-  const pathnames = location.pathname.split('/').filter(x => x);
+  const pathname = usePathname() || '/';
+  const pathnames = pathname.split('/').filter((segment) => segment);
 
   // Generate breadcrumb items
   const breadcrumbItems = [
@@ -32,17 +34,17 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customPaths, className = '' }
   const breadcrumbStructuredData = generateBreadcrumbSchema(
     breadcrumbItems.map(item => ({
       name: item.label,
-      url: `https://quadrate.lk/#${item.path}`,
+      url: `https://quadrate.lk${item.path}`,
     }))
   );
 
   return (
     <>
-      <Helmet>
+      <Head>
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbStructuredData)}
         </script>
-      </Helmet>
+      </Head>
 
       <nav aria-label="Breadcrumb" className={`text-sm ${className}`}>
         <ol className="flex flex-wrap items-center space-x-1 md:space-x-2">
@@ -61,7 +63,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customPaths, className = '' }
                   </span>
                 ) : (
                   <Link
-                    to={item.path}
+                    href={item.path}
                     className="text-blue-600 hover:text-blue-800 hover:underline flex items-center"
                   >
                     {index === 0 ? (

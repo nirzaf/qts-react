@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageLayout from '@/layouts/PageLayout';
@@ -22,7 +24,7 @@ const BlogPage: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: 'easeOut'
+        ease: 'easeOut' as const
       }
     }
   };
@@ -32,7 +34,7 @@ const BlogPage: React.FC = () => {
   const webPageSchema = generateWebPageSchema({
     title: 'Blog | Quadrate Tech Solutions',
     description: 'Explore our blog for insights on software development, web development, digital marketing, IT trends, and technology innovations.',
-    url: 'https://quadrate.lk/#/blog',
+    url: 'https://quadrate.lk/blog',
   });
 
   // Combine structured data

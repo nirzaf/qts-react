@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import {
   Code2,
   Globe,
@@ -100,16 +100,14 @@ const services: Service[] = [
 // Define floating animation using Framer Motion's animate prop
 
 // Framer Motion Variants for the icon's 2D effect (Simplified)
-const iconVariants = {
+const iconVariants: Variants = {
   initial: {
     scale: 1,
-    rotate: 0,
-    transition: { type: 'spring', stiffness: 300, damping: 20 }
+    rotate: 0
   },
   hover: {
     scale: 1.15,  // Increased scale slightly for visibility
-    rotate: -8,   // Simple rotation
-    transition: { type: 'spring', stiffness: 300, damping: 15 }
+    rotate: -8   // Simple rotation
   }
 };
 
@@ -165,7 +163,7 @@ export const ServicesSection: React.FC = () => {
                         duration: 3,
                         repeat: Infinity,
                         repeatType: "reverse",
-                        ease: "easeInOut"
+                        ease: "easeInOut" as const
                       }
                     }}
                   >

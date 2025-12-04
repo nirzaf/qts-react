@@ -1,5 +1,7 @@
+'use client';
+
 import React, { Suspense, lazy } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { ModernHeroSection } from '@/components/sections/ModernHeroSection';
 import { AnimatedSection } from '@/components/sections/home/AnimatedSection';
 import BackgroundElements from '@/components/home/BackgroundElements';
@@ -38,10 +40,10 @@ const CompanyValues = lazy(() => import('@/components/sections/home/CompanyValue
  * - Lazy loading for optimal performance
  */
 const Home: React.FC = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
-  const handleGetStarted = () => navigate('/contact');
-  const handleLearnMore = () => navigate('/about');
+  const handleGetStarted = () => router.push('/contact');
+  const handleLearnMore = () => router.push('/about');
 
   // Generate structured data for the home page
   const organizationSchema = generateOrganizationSchema(defaultOrganization);
@@ -49,7 +51,7 @@ const Home: React.FC = () => {
   const webPageSchema = generateWebPageSchema({
     title: 'Quadrate Tech Solutions | Software Development',
     description: 'Custom software development, web development, digital marketing, and IT services to help your business grow.',
-    url: 'https://quadrate.lk/#/',
+    url: 'https://quadrate.lk/',
     image: 'https://ik.imagekit.io/quadrate/assets/img/hero-image.avif?updatedAt=1725558115458',
     datePublished: '2023-01-01',
     dateModified: new Date().toISOString().split('T')[0],
@@ -73,7 +75,7 @@ const Home: React.FC = () => {
   const webDevServiceSchema = generateServiceSchema({
     name: 'Web Development Services',
     description: 'Custom web application development using modern technologies like React, Angular, and Node.js.',
-    url: 'https://quadrate.lk/#/services#web-development',
+    url: 'https://quadrate.lk/services#web-development',
     provider: defaultOrganization,
     category: 'Web Development',
     areaServed: 'Worldwide',
@@ -90,7 +92,7 @@ const Home: React.FC = () => {
   const mobileDevServiceSchema = generateServiceSchema({
     name: 'Mobile App Development',
     description: 'Native and cross-platform mobile application development for iOS and Android.',
-    url: 'https://quadrate.lk/#/services#mobile-development',
+    url: 'https://quadrate.lk/services#mobile-development',
     provider: defaultOrganization,
     category: 'Mobile Development',
     areaServed: 'Worldwide'
