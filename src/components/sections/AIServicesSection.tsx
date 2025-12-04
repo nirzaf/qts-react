@@ -97,7 +97,7 @@ const AIServicesSection: React.FC = () => {
 
         {/* Category Description */}
         <motion.div
-          key={activeCategory}
+          key={`description-${activeCategory}`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
@@ -110,7 +110,7 @@ const AIServicesSection: React.FC = () => {
 
         {/* Services Grid */}
         <motion.div
-          key={activeCategory}
+          key={`grid-${activeCategory}`}
           initial="hidden"
           animate="visible"
           variants={containerVariants}
