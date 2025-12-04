@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { format } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
@@ -34,7 +36,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <Link to={`/blog/${slug}`}>
+      <Link href={`/blog/${slug}`}>
         <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
           <CardHeader className="p-0">
             <img

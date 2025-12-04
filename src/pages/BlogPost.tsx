@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useEffect, useState, lazy, Suspense } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, usePathname } from 'next/navigation';
 import Loading from '@/components/ui/loading';
 import BlogPostContainer from '@/components/blog/BlogPostContainer';
 import BlogPostHeader from '@/components/blog/BlogPostHeader';
@@ -70,8 +72,10 @@ const MarkdownContent: React.FC<{ content: string }> = ({ content }) => {
 };
 
 const BlogPostPage: React.FC = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const params = useParams<{ slug: string }>();
+  const slug = Array.isArray(params?.slug) ? params?.slug[0] : params?.slug;
   const { post, loading } = useBlogPost(slug);
+  const pathname = usePathname();
 
   if (loading) {
     return <Loading />;
@@ -81,17 +85,15 @@ const BlogPostPage: React.FC = () => {
     return <BlogPostNotFound />;
   }
 
-  const location = useLocation();
-
   // Calculate estimated reading time
   const wordCount = post.content.split(/\s+/).length;
   const readingTime = Math.ceil(wordCount / 200); // Assuming 200 words per minute reading speed
 
   // Generate breadcrumb items
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://quadrate.lk/#/' },
-    { name: 'Blog', url: 'https://quadrate.lk/#/blog' },
-    { name: post.title, url: `https://quadrate.lk/#${location.pathname}` }
+    { name: 'Home', url: 'https://quadrate.lk/' },
+    { name: 'Blog', url: 'https://quadrate.lk/blog' },
+    { name: post.title, url: `https://quadrate.lk${pathname}` }
   ];
 
   // Generate structured data for the blog post
@@ -100,13 +102,13 @@ const BlogPostPage: React.FC = () => {
   const blogPostSchema = generateBlogPostSchema({
     title: post.title,
     description: post.description,
-    url: `https://quadrate.lk/#/blog/${slug}`,
+    url: `https://quadrate.lk/blog/${slug}`,
     image: post.heroImage,
     datePublished: post.pubDate,
     dateModified: post.modifiedDate || post.pubDate,
     author: {
       name: post.author || 'Quadrate Tech Solutions',
-      url: 'https://quadrate.lk/#/about',
+      url: 'https://quadrate.lk/about',
       image: post.authorImage || 'https://ik.imagekit.io/quadrate/blogs/avatar.png',
       jobTitle: 'Content Writer'
     },
@@ -142,14 +144,14 @@ const BlogPostPage: React.FC = () => {
         category={post.category}
         tags={post.tags}
         language="en"
-        canonicalUrl={`https://quadrate.lk/#${location.pathname}`}
+        canonicalUrl={`https://quadrate.lk${pathname || ''}`}
       />
       <SchemaMarkup schema={structuredData} />
 
       <Breadcrumbs
         customPaths={[
           { path: '/blog', label: 'Blog' },
-          { path: location.pathname, label: post.title }
+          { path: pathname || '/blog', label: post.title }
         ]}
         className="mb-6 text-sm"
       />
@@ -181,7 +183,7 @@ const BlogPostPage: React.FC = () => {
         <h3 className="text-xl font-bold mb-4">Share this article</h3>
         <div className="flex space-x-4">
           <a
-            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://quadrate.lk/#${location.pathname}`)}`}
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://quadrate.lk${pathname || ''}`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:text-blue-700"
@@ -190,7 +192,7 @@ const BlogPostPage: React.FC = () => {
             Twitter
           </a>
           <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://quadrate.lk/#${location.pathname}`)}`}
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://quadrate.lk${pathname || ''}`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-700 hover:text-blue-900"
@@ -199,7 +201,7 @@ const BlogPostPage: React.FC = () => {
             LinkedIn
           </a>
           <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://quadrate.lk/#${location.pathname}`)}`}
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://quadrate.lk${pathname || ''}`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-900 hover:text-blue-700"

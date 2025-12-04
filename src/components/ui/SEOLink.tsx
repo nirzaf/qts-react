@@ -1,5 +1,5 @@
+import Link from 'next/link';
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 
 interface SEOLinkProps {
   to: string;
@@ -51,14 +51,14 @@ const SEOLink: React.FC<SEOLinkProps> = ({
     );
   }
 
-  // For internal links, use React Router's Link component
+  // For internal links, use Next.js Link component
   return (
-    <RouterLink
-      to={to}
+    <Link
+      href={to}
       {...commonProps}
     >
       {children}
-    </RouterLink>
+    </Link>
   );
 };
 

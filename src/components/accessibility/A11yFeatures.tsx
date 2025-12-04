@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { skipNavProps } from '@/utils/a11y';
 

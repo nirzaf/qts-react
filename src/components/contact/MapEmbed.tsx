@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, memo } from 'react';
 
 interface MapEmbedProps {

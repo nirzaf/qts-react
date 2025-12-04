@@ -1,6 +1,8 @@
+'use client';
+
+import Head from 'next/head';
+import { usePathname } from 'next/navigation';
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
 
 interface SEOProps {
   title?: string;
@@ -39,18 +41,17 @@ const SEO: React.FC<SEOProps> = ({
   alternateUrls = [],
   preload = [],
 }) => {
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   const siteUrl = 'https://quadrate.lk';
-  // For hash routing, we need to use the path without the hash for SEO purposes
-  const cleanPathname = pathname === '/' ? '' : pathname;
+  const cleanPathname = pathname && pathname !== '/' ? pathname : '';
   const url = `${siteUrl}${cleanPathname}`;
   const defaultCanonical = canonicalUrl || url;
 
   // Format structured data for output
   const formatStructuredData = () => {
     if (Array.isArray(structuredData)) {
-      return structuredData.map(data => (
-        <script key={`ld-${Math.random().toString(36).substr(2, 9)}`} type="application/ld+json">
+      return structuredData.map((data, index) => (
+        <script key={`ld-${index}`} type="application/ld+json">
           {JSON.stringify(data)}
         </script>
       ));
@@ -64,9 +65,8 @@ const SEO: React.FC<SEOProps> = ({
   };
 
   return (
-    <Helmet>
+    <Head>
       {/* Basic Meta Tags */}
-      <html lang={language} />
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
@@ -132,7 +132,7 @@ const SEO: React.FC<SEOProps> = ({
 
       {/* Structured Data / JSON-LD */}
       {structuredData && formatStructuredData()}
-    </Helmet>
+    </Head>
   );
 };
 
