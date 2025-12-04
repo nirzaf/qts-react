@@ -7,15 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
-    "generate-sitemap": "bun scripts/generate-sitemap.js",
-    "generate-image-sitemap": "bun scripts/generate-image-sitemap.js",
-    "generate-video-sitemap": "bun scripts/generate-video-sitemap.js",
-    "generate-news-sitemap": "bun scripts/generate-news-sitemap.js",
-    "generate-robots": "bun scripts/generate-robots.js",
-    "generate-rss": "bun scripts/generate-rss.js",
-    "generate-seo": "bun run generate-sitemap && bun run generate-image-sitemap && bun run generate-video-sitemap && bun run generate-news-sitemap && bun run generate-robots && bun run generate-rss",
-    "prebuild": "bun run generate-seo"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
