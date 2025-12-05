@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   description:
     'AI-powered software solutions, machine learning, computer vision, NLP, custom software development, web development, and digital marketing services.',
   alternates: {
-    canonical: './',
+    canonical: '/',
   },
   keywords: [
     'artificial intelligence',
