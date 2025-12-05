@@ -18,7 +18,9 @@ import {
   Database,
   Rocket,
   Target,
-  TrendingUp
+  TrendingUp,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 // --- Core Service Pillars representing QTS ---
@@ -123,14 +125,14 @@ const ParticleNetwork: React.FC = () => {
 
     const initParticles = () => {
       particles = [];
-      const count = Math.floor(window.innerWidth / 35);
+      const count = Math.floor(window.innerWidth / 50); // Less particles for performance
       for (let i = 0; i < count; i++) {
         const colors = ['#0607E1', '#22C55E', '#0EA5E9', '#8B5CF6', '#F59E0B', '#06B6D4'];
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.12,
-          vy: (Math.random() - 0.5) * 0.12,
+          vx: (Math.random() - 0.5) * 0.1,
+          vy: (Math.random() - 0.5) * 0.1,
           size: Math.random() * 2 + 0.5,
           color: colors[Math.floor(Math.random() * colors.length)]
         });
@@ -149,7 +151,7 @@ const ParticleNetwork: React.FC = () => {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `${p.color}20`;
+        ctx.fillStyle = `${p.color}15`;
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -158,12 +160,9 @@ const ParticleNetwork: React.FC = () => {
           const dy = p.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 120) {
+          if (dist < 100) {
             ctx.beginPath();
-            const gradient = ctx.createLinearGradient(p.x, p.y, p2.x, p2.y);
-            gradient.addColorStop(0, `${p.color}08`);
-            gradient.addColorStop(1, `${p2.color}08`);
-            ctx.strokeStyle = gradient;
+            ctx.strokeStyle = `${p.color}08`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
@@ -189,30 +188,26 @@ const ParticleNetwork: React.FC = () => {
   return <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none" />;
 };
 
-// --- Floating Keywords Component ---
+// --- Floating Keywords Component (Desktop Only) ---
 const FloatingKeywords: React.FC = () => {
   const [isMounted, setIsMounted] = useState(false);
-  
-  // Seeded random positions to ensure consistency between server and client
+
   const getStablePosition = (index: number, seed: number) => {
-    // Simple seeded random using index and seed
     const random = (Math.sin(index * seed) * 10000) % 1;
     return Math.abs(random) * 100;
   };
-  
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
-  
-  // Don't render on server to avoid hydration mismatch
+
   if (!isMounted) {
     return null;
   }
-  
+
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-5">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-5 hidden md:block">
       {techKeywords.map((keyword, i) => {
-        // Generate stable positions based on index
         const initialX = getStablePosition(i, 12.9898);
         const initialY = getStablePosition(i, 78.233);
         const targetX1 = getStablePosition(i, 43.758);
@@ -220,7 +215,7 @@ const FloatingKeywords: React.FC = () => {
         const targetX2 = getStablePosition(i, 67.542);
         const targetY2 = getStablePosition(i, 31.459);
         const duration = 20 + (getStablePosition(i, 15.234) / 10);
-        
+
         return (
           <motion.div
             key={keyword}
@@ -250,8 +245,241 @@ const FloatingKeywords: React.FC = () => {
   );
 };
 
-// --- Main Hero Animation Component ---
-const HeroAnimation: React.FC = () => {
+// --- Mobile Service Card Component ---
+const MobileServiceCard: React.FC<{ service: ServicePillar; isActive: boolean }> = ({ service, isActive }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      className="w-full"
+    >
+      <div
+        className="bg-card/95 backdrop-blur-xl rounded-2xl p-4 border shadow-xl overflow-hidden relative"
+        style={{ borderColor: `${service.color}25` }}
+      >
+        {/* Gradient Accent */}
+        <div className="absolute top-0 left-0 right-0 h-1" style={{ background: service.gradient }} />
+
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-3 mt-1">
+          <div
+            className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+            style={{ background: `${service.color}15` }}
+          >
+            <service.icon className="w-6 h-6" style={{ color: service.color }} />
+          </div>
+          <div className="flex-1">
+            <h3 className="text-base font-bold text-foreground">{service.title}</h3>
+            <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
+              {service.subtitle}
+            </span>
+          </div>
+        </div>
+
+        {/* Description */}
+        <p className="text-sm text-muted-foreground mb-3">{service.description}</p>
+
+        {/* Features */}
+        <div className="flex flex-wrap gap-1.5 mb-3">
+          {service.features.map((feature, i) => (
+            <motion.span
+              key={feature}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: i * 0.05 }}
+              className="text-[11px] font-medium px-2.5 py-1 rounded-md bg-muted/50 text-foreground border border-border"
+            >
+              {feature}
+            </motion.span>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="flex items-center justify-between pt-3 border-t border-border">
+          <div className="flex items-center gap-1.5">
+            <Sparkles className="w-3.5 h-3.5 text-primary" />
+            <span className="text-[10px] text-muted-foreground">Innovation Powered</span>
+          </div>
+          <button
+            className="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg flex items-center gap-1 text-white"
+            style={{ background: service.gradient }}
+          >
+            Learn More
+            <ArrowUpRight className="w-3 h-3" />
+          </button>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+// --- Mobile Hero Animation ---
+const MobileHeroAnimation: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % services.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const goToNext = () => setActiveIndex((prev) => (prev + 1) % services.length);
+  const goToPrev = () => setActiveIndex((prev) => (prev - 1 + services.length) % services.length);
+
+  const activeService = services[activeIndex];
+
+  return (
+    <div
+      className="relative w-full min-h-[580px] overflow-hidden font-sans flex flex-col items-center justify-start pt-4 pb-6 px-4"
+      style={{
+        background: 'radial-gradient(ellipse at 50% 0%, hsl(var(--background)) 0%, hsl(var(--muted) / 0.5) 100%)'
+      }}
+    >
+      {/* Simplified Background */}
+      <div className="absolute inset-0 z-0">
+        <motion.div
+          animate={{ opacity: [0.05, 0.1, 0.05] }}
+          transition={{ duration: 6, repeat: Infinity }}
+          className="absolute top-[-10%] left-[-20%] w-[300px] h-[300px] rounded-full blur-[80px]"
+          style={{ background: `radial-gradient(circle, ${activeService.color}30 0%, transparent 70%)` }}
+        />
+      </div>
+
+      {/* Tagline Badge */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="z-20 mb-4"
+      >
+        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/80 backdrop-blur-sm border border-border shadow-sm">
+          <Zap className="w-3 h-3 text-primary" />
+          <span className="text-[10px] font-semibold text-foreground">Digital Transformation</span>
+        </div>
+      </motion.div>
+
+      {/* Central Animated Hub */}
+      <div className="relative z-10 mb-4">
+        <motion.div
+          animate={{
+            scale: [1, 1.02, 1],
+            boxShadow: [
+              `0 0 20px ${activeService.color}10`,
+              `0 0 40px ${activeService.color}20`,
+              `0 0 20px ${activeService.color}10`
+            ]
+          }}
+          transition={{ duration: 3, repeat: Infinity }}
+          className="w-20 h-20 rounded-2xl flex items-center justify-center"
+          style={{
+            background: 'linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%)',
+            boxShadow: '0 12px 30px -8px rgba(0,0,0,0.12)'
+          }}
+        >
+          {/* Rotating Ring */}
+          <motion.div
+            className="absolute -inset-3 rounded-[1.5rem] border border-dashed opacity-20"
+            style={{ borderColor: activeService.color }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+          />
+
+          <motion.div
+            key={activeService.id}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="p-2 rounded-xl"
+            style={{ background: `${activeService.color}15` }}
+          >
+            <activeService.icon className="w-8 h-8" style={{ color: activeService.color }} />
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Service Selector Pills */}
+      <div className="relative z-10 w-full mb-4">
+        <div
+          ref={scrollRef}
+          className="flex gap-2 overflow-x-auto pb-2 px-1 scrollbar-hide justify-center"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {services.map((service, index) => {
+            const isActive = index === activeIndex;
+            return (
+              <motion.button
+                key={service.id}
+                onClick={() => setActiveIndex(index)}
+                whileTap={{ scale: 0.95 }}
+                className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all duration-300 ${isActive ? 'shadow-lg' : 'shadow-sm'
+                  }`}
+                style={{
+                  background: isActive ? service.color : 'hsl(var(--card))',
+                  border: `1.5px solid ${isActive ? service.color : 'hsl(var(--border))'}`,
+                }}
+              >
+                <service.icon
+                  className="w-4 h-4"
+                  style={{ color: isActive ? 'white' : service.color }}
+                />
+                <span
+                  className={`text-[11px] font-semibold ${isActive ? 'text-white' : 'text-foreground'}`}
+                >
+                  {service.id.charAt(0).toUpperCase() + service.id.slice(1)}
+                </span>
+              </motion.button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Navigation Arrows */}
+      <div className="absolute left-2 top-1/2 -translate-y-1/2 z-30">
+        <button
+          onClick={goToPrev}
+          className="w-8 h-8 rounded-full bg-card/80 backdrop-blur-sm border border-border shadow-md flex items-center justify-center"
+        >
+          <ChevronLeft className="w-4 h-4 text-foreground" />
+        </button>
+      </div>
+      <div className="absolute right-2 top-1/2 -translate-y-1/2 z-30">
+        <button
+          onClick={goToNext}
+          className="w-8 h-8 rounded-full bg-card/80 backdrop-blur-sm border border-border shadow-md flex items-center justify-center"
+        >
+          <ChevronRight className="w-4 h-4 text-foreground" />
+        </button>
+      </div>
+
+      {/* Active Service Card */}
+      <div className="relative z-20 w-full max-w-sm">
+        <AnimatePresence mode="wait">
+          <MobileServiceCard key={activeService.id} service={activeService} isActive={true} />
+        </AnimatePresence>
+      </div>
+
+      {/* Progress Dots */}
+      <div className="flex gap-1.5 mt-4 z-20">
+        {services.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveIndex(index)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${index === activeIndex ? 'w-6' : 'w-1.5'
+              }`}
+            style={{
+              background: index === activeIndex ? services[activeIndex].color : 'hsl(var(--border))'
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// --- Desktop Hero Animation (Original) ---
+const DesktopHeroAnimation: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -348,7 +576,7 @@ const HeroAnimation: React.FC = () => {
       >
 
         {/* Central Hexagonal Core */}
-        <div className="relative w-[280px] h-[280px] md:w-[420px] md:h-[420px] mb-8">
+        <div className="relative w-[420px] h-[420px] mb-8">
 
           {/* Core Hub */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
@@ -362,7 +590,7 @@ const HeroAnimation: React.FC = () => {
                 ]
               }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-32 h-32 md:w-40 md:h-40 rounded-3xl flex items-center justify-center transition-all duration-700"
+              className="relative w-40 h-40 rounded-3xl flex items-center justify-center transition-all duration-700"
               style={{
                 background: 'linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%)',
                 boxShadow: '0 20px 50px -12px rgba(0,0,0,0.15)'
@@ -394,7 +622,7 @@ const HeroAnimation: React.FC = () => {
                   className="p-3 rounded-2xl mb-1"
                   style={{ background: `${activeService.color}15` }}
                 >
-                  <activeService.icon className="w-8 h-8 md:w-10 md:h-10" style={{ color: activeService.color }} />
+                  <activeService.icon className="w-10 h-10" style={{ color: activeService.color }} />
                 </motion.div>
                 <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                   QTS
@@ -458,7 +686,7 @@ const HeroAnimation: React.FC = () => {
                     setActiveIndex(index);
                   }}
                   onMouseLeave={() => setIsHovering(false)}
-                  className={`relative -translate-x-1/2 -translate-y-1/2 w-14 h-14 md:w-20 md:h-20 rounded-2xl flex flex-col items-center justify-center transition-all duration-300 group ${isActive ? 'shadow-xl' : 'shadow-md hover:shadow-lg'}`}
+                  className={`relative -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-2xl flex flex-col items-center justify-center transition-all duration-300 group ${isActive ? 'shadow-xl' : 'shadow-md hover:shadow-lg'}`}
                   style={{
                     background: isActive
                       ? 'hsl(var(--card))'
@@ -481,14 +709,14 @@ const HeroAnimation: React.FC = () => {
                   )}
 
                   <service.icon
-                    className="w-5 h-5 md:w-7 md:h-7 transition-all duration-300"
+                    className="w-7 h-7 transition-all duration-300"
                     style={{
                       color: isActive ? service.color : 'hsl(var(--muted-foreground))'
                     }}
                   />
 
                   <span
-                    className={`text-[8px] md:text-[9px] font-bold uppercase tracking-wider mt-1 transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'}`}
+                    className={`text-[9px] font-bold uppercase tracking-wider mt-1 transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'}`}
                     style={{ color: service.color }}
                   >
                     {service.id}
@@ -507,10 +735,10 @@ const HeroAnimation: React.FC = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.98 }}
             transition={{ type: "spring", stiffness: 120, damping: 20 }}
-            className="absolute bottom-8 md:bottom-16 z-50 w-full max-w-lg px-4"
+            className="absolute bottom-16 z-50 w-full max-w-lg px-4"
           >
             <div
-              className="bg-card/95 dark:bg-card/90 backdrop-blur-xl rounded-2xl p-5 md:p-6 border shadow-2xl overflow-hidden relative"
+              className="bg-card/95 dark:bg-card/90 backdrop-blur-xl rounded-2xl p-6 border shadow-2xl overflow-hidden relative"
               style={{ borderColor: `${activeService.color}20` }}
             >
               {/* Top Gradient Accent */}
@@ -522,7 +750,7 @@ const HeroAnimation: React.FC = () => {
               <div className="flex items-start justify-between mb-4 mt-1">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <h2 className="text-lg md:text-xl font-bold text-foreground">
+                    <h2 className="text-xl font-bold text-foreground">
                       {activeService.title}
                     </h2>
                     <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
@@ -580,7 +808,7 @@ const HeroAnimation: React.FC = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="absolute top-4 md:top-8 left-1/2 -translate-x-1/2 z-30"
+          className="absolute top-8 left-1/2 -translate-x-1/2 z-30"
         >
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-card/80 backdrop-blur-sm border border-border shadow-sm">
             <Zap className="w-4 h-4 text-primary" />
@@ -592,6 +820,23 @@ const HeroAnimation: React.FC = () => {
 
       </motion.div>
     </div>
+  );
+};
+
+// --- Main Export: Responsive Hero Animation ---
+const HeroAnimation: React.FC = () => {
+  return (
+    <>
+      {/* Mobile View */}
+      <div className="block md:hidden">
+        <MobileHeroAnimation />
+      </div>
+
+      {/* Desktop View */}
+      <div className="hidden md:block">
+        <DesktopHeroAnimation />
+      </div>
+    </>
   );
 };
 
