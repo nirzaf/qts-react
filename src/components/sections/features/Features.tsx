@@ -48,12 +48,12 @@ export const Features: React.FC = () => {
   return (
     <section className="py-16">
       <div className="container">
-        <AnimatedHeading 
-          text="Our Features" 
+        <AnimatedHeading
+          text="Our Features"
           className="mb-8"
         />
         <div className="mx-auto max-w-2xl text-center">
-          <p className="mt-6 text-lg leading-8 text-[#010000]/70">
+          <p className="mt-6 text-lg leading-8 text-muted-foreground">
             Empower your business with our comprehensive suite of solutions designed to drive growth and innovation.
           </p>
         </div>
@@ -68,23 +68,23 @@ export const Features: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="flex flex-col relative group"
               >
-                {/* Card Background with Chrysler Blue Accent */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#0607E1]/5 to-transparent rounded-2xl -z-10 group-hover:from-[#0607E1]/10 transition-colors duration-300" />
-                
-                <div className="relative rounded-2xl border border-[#0607E1]/10 bg-white/50 p-6 group-hover:border-[#0607E1]/30 transition-all duration-300">
-                  <dt className="flex items-center gap-x-3 text-lg font-semibold leading-7 text-[#010000]">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#0607E1]/10 group-hover:bg-[#0607E1]/20 transition-colors duration-300">
-                      <feature.icon className="h-6 w-6 text-[#0607E1]" aria-hidden="true" />
+                {/* Card Background with Primary Accent */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-2xl -z-10 group-hover:from-primary/10 transition-colors duration-300" />
+
+                <div className="relative rounded-2xl border border-primary/10 bg-card/50 dark:bg-card p-6 group-hover:border-primary/30 transition-all duration-300">
+                  <dt className="flex items-center gap-x-3 text-lg font-semibold leading-7 text-foreground">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300">
+                      <feature.icon className="h-6 w-6 text-primary" aria-hidden="true" />
                     </div>
                     {feature.name}
                   </dt>
-                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-[#010000]/70">
+                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-muted-foreground">
                     <p className="flex-auto">{feature.description}</p>
                     {feature.link && (
                       <p className="mt-6">
                         <a
                           href={feature.link}
-                          className="text-sm font-semibold leading-6 text-[#010000] hover:text-[#0607E1] transition-colors duration-300"
+                          className="text-sm font-semibold leading-6 text-foreground hover:text-primary transition-colors duration-300"
                         >
                           Learn more <span aria-hidden="true">→</span>
                         </a>

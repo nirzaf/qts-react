@@ -32,7 +32,7 @@ const CompanyValues: React.FC = () => {
   ];
 
   return (
-    <section className="container py-16 bg-[#FFFFFF]">
+    <section className="container py-16 bg-background">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -41,10 +41,10 @@ const CompanyValues: React.FC = () => {
         transition={{ duration: 0.6 }}
         className="text-center mb-12"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-[#000000] mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
           Why Choose Us
         </h2>
-        <p className="text-lg text-[#000000]/70 max-w-2xl mx-auto">
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Experience excellence in technology solutions with our commitment to quality and innovation
         </p>
       </motion.div>
@@ -59,25 +59,25 @@ const CompanyValues: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
           >
-            <Card className="group h-full bg-[#FFFFFF] hover:shadow-lg transition-all duration-300 overflow-hidden">
+            <Card className="group h-full bg-card hover:shadow-lg transition-all duration-300 overflow-hidden">
               <div className="p-6 relative">
                 {/* Gradient Background */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                
+
                 {/* Content */}
                 <div className="relative z-10">
                   {/* Icon Container */}
                   <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                    <card.icon className="h-10 w-10 text-[#0607E1]" />
+                    <card.icon className="h-10 w-10 text-primary" />
                   </div>
-                  
+
                   {/* Title */}
-                  <h3 className="text-xl font-bold mb-3 text-[#000000] group-hover:text-[#0607E1] transition-colors duration-300">
+                  <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
                     {card.title}
                   </h3>
-                  
+
                   {/* Description */}
-                  <p className="text-[#000000]/70 leading-relaxed text-sm group-hover:text-[#000000]/80 transition-colors duration-300">
+                  <p className="text-muted-foreground leading-relaxed text-sm group-hover:text-foreground transition-colors duration-300">
                     {card.description}
                   </p>
                 </div>

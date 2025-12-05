@@ -2,6 +2,7 @@
 
 import type { ReactNode } from 'react';
 import { useEffect } from 'react';
+import { ThemeProvider } from 'next-themes';
 import A11yFeatures from '@/components/accessibility/A11yFeatures';
 import HubSpotChat from '@/components/chat/HubSpotChat';
 import WebVitalsReporter from '@/components/performance/WebVitalsReporter';
@@ -21,13 +22,18 @@ export function AppProviders({ children }: ProvidersProps) {
   }, []);
 
   return (
-    <>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange={false}
+    >
       <WebVitalsReporter />
       <A11yFeatures mainContentId="main-content" />
       {children}
       <Toaster />
       <HubSpotChat />
       <SEOAudit showInProduction={false} />
-    </>
+    </ThemeProvider>
   );
 }

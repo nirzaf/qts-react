@@ -26,8 +26,8 @@ const AIServicesSection: React.FC = () => {
 
   const cardVariants: Variants = {
     hidden: { opacity: 0, scale: 0.9 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
       transition: {
         type: "spring" as const,
@@ -38,7 +38,7 @@ const AIServicesSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-[#F8FAFF] to-[#FFFFFF]" id="ai-services">
+    <section className="py-20 bg-gradient-to-b from-muted to-background" id="ai-services">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -52,19 +52,19 @@ const AIServicesSection: React.FC = () => {
             <Sparkles className="w-8 h-8 text-[#0607E1] mr-3" />
             <span className="text-[#0607E1] font-semibold text-lg">AI-Powered Solutions</span>
           </motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold text-[#000000] mb-6"
+            className="text-4xl md:text-5xl font-bold text-foreground mb-6"
           >
             Artificial Intelligence Services
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             variants={itemVariants}
-            className="text-xl text-[#000000]/70 max-w-3xl mx-auto"
+            className="text-xl text-muted-foreground max-w-3xl mx-auto"
           >
-            Transform your business with cutting-edge AI solutions. From strategic consulting to custom model development, 
+            Transform your business with cutting-edge AI solutions. From strategic consulting to custom model development,
             we help you harness the power of artificial intelligence.
           </motion.p>
         </motion.div>
@@ -82,11 +82,10 @@ const AIServicesSection: React.FC = () => {
               key={category}
               variants={itemVariants}
               onClick={() => setActiveCategory(category)}
-              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                activeCategory === category
-                  ? 'bg-[#0607E1] text-white shadow-lg'
-                  : 'bg-white text-[#000000]/70 hover:bg-[#0607E1]/10 hover:text-[#0607E1]'
-              }`}
+              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeCategory === category
+                  ? 'bg-primary text-primary-foreground shadow-lg'
+                  : 'bg-card text-muted-foreground hover:bg-primary/10 hover:text-primary border border-border'
+                }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -103,7 +102,7 @@ const AIServicesSection: React.FC = () => {
           transition={{ duration: 0.3 }}
           className="text-center mb-12"
         >
-          <p className="text-lg text-[#000000]/60 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {getCategoryDescription(activeCategory)}
           </p>
         </motion.div>
@@ -121,11 +120,11 @@ const AIServicesSection: React.FC = () => {
               key={service.id}
               variants={cardVariants}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-[#0607E1]/5"
+              className="group relative bg-card rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-border"
             >
               {/* Background Gradient */}
               <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-500`} />
-              
+
               {/* Content */}
               <div className="relative">
                 {/* Icon */}
@@ -134,29 +133,29 @@ const AIServicesSection: React.FC = () => {
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="p-4 rounded-xl bg-[#0607E1]/5 group-hover:bg-[#0607E1]/10 transition-colors duration-300">
+                  <div className="p-4 rounded-xl bg-primary/5 group-hover:bg-primary/10 transition-colors duration-300">
                     {React.createElement(service.icon, {
-                      className: "w-8 h-8 text-[#0607E1]",
+                      className: "w-8 h-8 text-primary",
                       "aria-hidden": "true"
                     })}
                   </div>
                 </motion.div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold mb-3 text-[#000000] group-hover:text-[#0607E1] transition-colors duration-300">
+                <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[#000000]/70 mb-6 leading-relaxed">
+                <p className="text-muted-foreground mb-6 leading-relaxed">
                   {service.description}
                 </p>
 
                 {/* Features */}
                 <ul className="space-y-2 mb-6">
                   {service.features.slice(0, 3).map((feature, index) => (
-                    <li key={index} className="flex items-center text-sm text-[#000000]/60">
-                      <ChevronRight className="w-4 h-4 text-[#0607E1] mr-2 flex-shrink-0" />
+                    <li key={index} className="flex items-center text-sm text-muted-foreground">
+                      <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -164,7 +163,7 @@ const AIServicesSection: React.FC = () => {
 
                 {/* Learn More Link */}
                 <motion.div
-                  className="flex items-center text-[#0607E1] font-semibold group-hover:translate-x-2 transition-transform duration-300"
+                  className="flex items-center text-primary font-semibold group-hover:translate-x-2 transition-transform duration-300"
                   whileHover={{ x: 5 }}
                 >
                   <span>Learn More</span>
@@ -184,15 +183,15 @@ const AIServicesSection: React.FC = () => {
           className="text-center mt-16"
         >
           <motion.div variants={itemVariants}>
-            <h3 className="text-2xl font-bold text-[#000000] mb-4">
+            <h3 className="text-2xl font-bold text-foreground mb-4">
               Ready to Transform Your Business with AI?
             </h3>
-            <p className="text-[#000000]/70 mb-8 max-w-2xl mx-auto">
+            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
               Let's discuss how our AI solutions can drive innovation and growth for your organization.
             </p>
             <motion.a
               href="/contact"
-              className="inline-flex items-center px-8 py-4 bg-[#0607E1] text-white font-semibold rounded-full hover:bg-[#0607E1]/90 transition-colors duration-300 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-primary/90 transition-colors duration-300 shadow-lg hover:shadow-xl"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

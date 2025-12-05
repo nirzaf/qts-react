@@ -51,8 +51,8 @@ export const ModernHeroSection = ({
 
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.6,
@@ -74,7 +74,7 @@ export const ModernHeroSection = ({
 
   return (
     <motion.section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#F8FAFF] via-[#FFFFFF] to-[#F0F4FF]"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-muted dark:from-background dark:via-background dark:to-muted"
       aria-label="Hero section"
       role="region"
       initial="hidden"
@@ -95,7 +95,7 @@ export const ModernHeroSection = ({
           animate="animate"
           transition={{ delay: 1 }}
         />
-        
+
         {/* Grid Pattern */}
         <div className="absolute inset-0 opacity-[0.02]">
           <div className="absolute inset-0" style={{
@@ -137,7 +137,7 @@ export const ModernHeroSection = ({
       <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
           {/* Text Content */}
-          <motion.div 
+          <motion.div
             className="text-center lg:text-left space-y-8"
             variants={itemVariants}
           >
@@ -153,11 +153,11 @@ export const ModernHeroSection = ({
 
             {/* Main Heading */}
             <div className="space-y-4">
-              <motion.h1 
+              <motion.h1
                 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight"
                 variants={itemVariants}
               >
-                <span className="text-[#000000]">We Help </span>
+                <span className="text-foreground">We Help </span>
                 <div className="relative inline-block">
                   <AnimatePresence mode="wait">
                     <motion.span
@@ -176,15 +176,15 @@ export const ModernHeroSection = ({
             </div>
 
             {/* Subtitle */}
-            <motion.p 
-              className="text-lg sm:text-xl text-[#000000]/70 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+            <motion.p
+              className="text-lg sm:text-xl text-foreground/70 leading-relaxed max-w-2xl mx-auto lg:mx-0"
               variants={itemVariants}
             >
               Empowering businesses with cutting-edge AI solutions, custom software development, and digital transformation services. From startups to enterprises, we turn your vision into reality.
             </motion.p>
 
             {/* CTA Buttons */}
-            <motion.div 
+            <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
               variants={itemVariants}
             >
@@ -218,12 +218,12 @@ export const ModernHeroSection = ({
             </motion.div>
 
             {/* Stats */}
-            <motion.div 
-              className="grid grid-cols-3 gap-8 pt-8 border-t border-[#000000]/10"
+            <motion.div
+              className="grid grid-cols-3 gap-8 pt-8 border-t border-foreground/10"
               variants={itemVariants}
             >
               <div className="text-center lg:text-left">
-                <motion.div 
+                <motion.div
                   className="text-2xl sm:text-3xl font-bold text-[#0607E1] mb-1"
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -231,10 +231,10 @@ export const ModernHeroSection = ({
                 >
                   50+
                 </motion.div>
-                <div className="text-sm text-[#000000]/60">Projects Delivered</div>
+                <div className="text-sm text-foreground/60">Projects Delivered</div>
               </div>
               <div className="text-center lg:text-left">
-                <motion.div 
+                <motion.div
                   className="text-2xl sm:text-3xl font-bold text-[#0607E1] mb-1"
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -242,10 +242,10 @@ export const ModernHeroSection = ({
                 >
                   15+
                 </motion.div>
-                <div className="text-sm text-[#000000]/60">AI Services</div>
+                <div className="text-sm text-foreground/60">AI Services</div>
               </div>
               <div className="text-center lg:text-left">
-                <motion.div 
+                <motion.div
                   className="text-2xl sm:text-3xl font-bold text-[#0607E1] mb-1"
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -253,31 +253,31 @@ export const ModernHeroSection = ({
                 >
                   24/7
                 </motion.div>
-                <div className="text-sm text-[#000000]/60">Support</div>
+                <div className="text-sm text-foreground/60">Support</div>
               </div>
             </motion.div>
 
             {/* Trust Indicators */}
-            <motion.div 
+            <motion.div
               className="flex flex-wrap items-center gap-6 pt-6"
               variants={itemVariants}
             >
-              <motion.div 
-                className="flex items-center text-sm text-[#000000]/60"
+              <motion.div
+                className="flex items-center text-sm text-foreground/60"
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
                 ISO Certified
               </motion.div>
-              <motion.div 
-                className="flex items-center text-sm text-[#000000]/60"
+              <motion.div
+                className="flex items-center text-sm text-foreground/60"
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></div>
                 Microsoft Partner
               </motion.div>
-              <motion.div 
-                className="flex items-center text-sm text-[#000000]/60"
+              <motion.div
+                className="flex items-center text-sm text-foreground/60"
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="w-2 h-2 bg-purple-500 rounded-full mr-2 animate-pulse"></div>

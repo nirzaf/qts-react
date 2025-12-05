@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+/* 
+ * Typography: Using next/font exclusively for optimal performance
+ * Fonts loaded in layout.tsx: Chakra Petch, Plus Jakarta Sans
+ * Brand: Chrysler Blue (#0607E1)
+ */
 
 /* Import accessibility styles */
 @import './accessibility.css';
@@ -18,42 +19,60 @@
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
+    /* Brand: Chrysler Blue #0607E1 = 240 95% 45% */
+    --primary: 240 95% 45%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary-foreground: 240 95% 45%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    /* Accent: Light tint of Chrysler Blue */
+    --accent: 240 95% 96%;
+    --accent-foreground: 240 95% 45%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
+    --ring: 240 95% 45%;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    /* High-contrast dark mode for excellent visibility */
+    --background: 222 47% 6%;
+    /* Very dark blue-gray #0D1117 */
+    --foreground: 210 40% 98%;
+    /* Almost white #F8FAFC */
+    --card: 222 47% 9%;
+    /* Slightly lighter for cards #131B25 */
+    --card-foreground: 210 40% 98%;
+    /* White text on cards */
+    --popover: 222 47% 9%;
+    --popover-foreground: 210 40% 98%;
+    /* Brand: Chrysler Blue - brighter for dark mode visibility */
+    --primary: 240 95% 70%;
+    /* Brighter blue #6366F1 */
+    --primary-foreground: 0 0% 100%;
+    /* Pure white */
+    --secondary: 222 47% 15%;
+    /* Dark slate #1E293B */
+    --secondary-foreground: 210 40% 98%;
+    --muted: 222 47% 15%;
+    --muted-foreground: 215 20% 75%;
+    /* Light gray for muted text #A7B4C6 */
+    /* Accent: Visible in dark mode */
+    --accent: 240 50% 25%;
+    /* Dark blue accent */
+    --accent-foreground: 240 95% 80%;
+    /* Light blue text */
+    --destructive: 0 72% 51%;
+    /* Brighter red for dark mode */
+    --destructive-foreground: 0 0% 100%;
+    --border: 217 33% 22%;
+    /* Visible border #2D3B4F */
+    --input: 217 33% 22%;
+    --ring: 240 95% 70%;
+    /* Match primary */
   }
 }
 
@@ -61,8 +80,10 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 

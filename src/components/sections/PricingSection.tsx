@@ -12,12 +12,12 @@ const PricingSection: React.FC<PricingSectionProps> = () => {
   return (
     <section className="py-16">
       <div className="container">
-        <AnimatedHeading 
-          text="Simple Transparent Pricing" 
+        <AnimatedHeading
+          text="Simple Transparent Pricing"
           className="mb-4"
         />
-        <motion.p 
-          className="text-lg text-[#000000]/70 text-center max-w-2xl mx-auto mb-12"
+        <motion.p
+          className="text-lg text-muted-foreground text-center max-w-2xl mx-auto mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

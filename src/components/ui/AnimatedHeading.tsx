@@ -8,8 +8,8 @@ interface AnimatedHeadingProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({ 
-  text, 
+const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({
+  text,
   className = '',
   align = 'center',
   size = 'lg'
@@ -28,7 +28,7 @@ const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({
 
   return (
     <motion.h2
-      className={`font-bold tracking-tight ${sizeClasses[size]} ${alignClasses[align]} ${className}`}
+      className={`font-bold tracking-tight text-foreground ${sizeClasses[size]} ${alignClasses[align]} ${className}`}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -39,12 +39,12 @@ const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({
           <motion.span
             key={index}
             className="inline-block font-montserrat"
-            initial={{ 
+            initial={{
               opacity: 0,
               y: 20,
               rotateX: -90
             }}
-            whileInView={{ 
+            whileInView={{
               opacity: 1,
               y: 0,
               rotateX: 0

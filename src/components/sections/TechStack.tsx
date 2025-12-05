@@ -70,8 +70,8 @@ const TechCard: React.FC<{ tech: typeof technologies[0]; index: number }> = ({ t
       transition={{ delay: index * 0.1 }}
       whileHover={{ y: -10 }}
     >
-      <div className="absolute inset-0 bg-[#98CCF8]/5 backdrop-blur-xl rounded-3xl shadow-lg transition-all duration-500 group-hover:shadow-xl group-hover:bg-[#98CCF8]/10" />
-      
+      <div className="absolute inset-0 bg-primary/5 dark:bg-white/10 backdrop-blur-xl rounded-3xl shadow-lg transition-all duration-500 group-hover:shadow-xl group-hover:bg-primary/10 dark:group-hover:bg-white/20" />
+
       <div className="relative h-full w-full flex flex-col items-center justify-center p-3 sm:p-4 md:p-6">
         <div className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mb-2 sm:mb-3 md:mb-4">
           <img
@@ -81,7 +81,7 @@ const TechCard: React.FC<{ tech: typeof technologies[0]; index: number }> = ({ t
           />
         </div>
 
-        <span className="text-xs sm:text-sm font-medium text-center tracking-wide text-[#010000]">
+        <span className="text-xs sm:text-sm font-medium text-center tracking-wide text-foreground">
           {tech.name}
         </span>
       </div>
@@ -93,8 +93,8 @@ export const TechStack: React.FC = () => {
   return (
     <section className="py-8 sm:py-12 md:py-16 overflow-hidden">
       <div className="container">
-        <AnimatedHeading 
-          text="Technologies We Use" 
+        <AnimatedHeading
+          text="Technologies We Use"
           className="mb-4 sm:mb-6 md:mb-8"
         />
         <div className="relative">

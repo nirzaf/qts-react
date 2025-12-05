@@ -8,7 +8,7 @@ import { FooterBottom } from './footer/FooterBottom';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#1A1A1A] border-t border-[#FFFFFF]/5">
+    <footer className="bg-slate-900 dark:bg-slate-950 border-t border-slate-800">
       <div className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
