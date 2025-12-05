@@ -1,4 +1,4 @@
-## Quadrate Tech Solutions (QTS) — Coding Agent Guidelines
+jp## Quadrate Tech Solutions (QTS) — Coding Agent Guidelines
 
 ### Stack & Versions
 | Tech | Version | Docs |
