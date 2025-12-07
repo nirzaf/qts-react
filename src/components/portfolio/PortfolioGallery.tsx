@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, ZoomIn, ImageOff } from 'lucide-react';
 
 // Generate portfolio image list from public/portfolio directory
 const generatePortfolioImages = () => {
@@ -68,7 +68,6 @@ const Lightbox: React.FC<LightboxProps> = ({
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-lg"
             onClick={onClose}
         >
-            {/* Close Button */}
             <button
                 onClick={onClose}
                 className="absolute top-4 right-4 z-50 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
@@ -77,12 +76,10 @@ const Lightbox: React.FC<LightboxProps> = ({
                 <X className="w-6 h-6" />
             </button>
 
-            {/* Image Counter */}
             <div className="absolute top-4 left-4 z-50 px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium">
                 {currentIndex + 1} / {totalCount}
             </div>
 
-            {/* Navigation Buttons */}
             <button
                 onClick={(e) => {
                     e.stopPropagation();
@@ -104,7 +101,6 @@ const Lightbox: React.FC<LightboxProps> = ({
                 <ChevronRight className="w-8 h-8" />
             </button>
 
-            {/* Image */}
             <motion.img
                 key={image.id}
                 initial={{ scale: 0.9, opacity: 0 }}
@@ -124,6 +120,7 @@ const PortfolioGallery: React.FC = () => {
     const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
     const [visibleCount, setVisibleCount] = useState(24);
     const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+    const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
 
     const visibleImages = useMemo(
         () => portfolioImages.slice(0, visibleCount),
@@ -132,6 +129,10 @@ const PortfolioGallery: React.FC = () => {
 
     const handleImageLoad = useCallback((id: string) => {
         setLoadedImages((prev) => new Set([...prev, id]));
+    }, []);
+
+    const handleImageError = useCallback((id: string) => {
+        setFailedImages((prev) => new Set([...prev, id]));
     }, []);
 
     const openLightbox = useCallback((index: number) => {
@@ -162,7 +163,6 @@ const PortfolioGallery: React.FC = () => {
         setVisibleCount((prev) => Math.min(prev + 24, portfolioImages.length));
     }, []);
 
-    // Handle keyboard navigation
     React.useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (selectedImageIndex === null) return;
@@ -202,7 +202,6 @@ const PortfolioGallery: React.FC = () => {
     return (
         <section id="portfolio-gallery" className="py-20 px-4 md:px-8">
             <div className="max-w-7xl mx-auto">
-                {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -219,7 +218,6 @@ const PortfolioGallery: React.FC = () => {
                     </p>
                 </motion.div>
 
-                {/* Masonry Grid */}
                 <motion.div
                     className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4"
                     variants={containerVariants}
@@ -232,38 +230,44 @@ const PortfolioGallery: React.FC = () => {
                             key={image.id}
                             variants={itemVariants}
                             className="break-inside-avoid group relative overflow-hidden rounded-xl bg-muted cursor-pointer"
-                            onClick={() => openLightbox(index)}
+                            onClick={() => !failedImages.has(image.id) && openLightbox(index)}
                         >
-                            {/* Placeholder while loading */}
-                            {!loadedImages.has(image.id) && (
+                            {!loadedImages.has(image.id) && !failedImages.has(image.id) && (
                                 <div className="absolute inset-0 bg-gradient-to-br from-muted to-muted-foreground/10 animate-pulse" />
                             )}
 
-                            <img
-                                src={image.src}
-                                alt={image.alt}
-                                loading="lazy"
-                                suppressHydrationWarning
-                                onLoad={() => handleImageLoad(image.id)}
-                                className={`w-full h-auto object-cover transition-all duration-500 group-hover:scale-105 ${loadedImages.has(image.id) ? 'opacity-100' : 'opacity-0'
-                                    }`}
-                            />
-
-                            {/* Hover Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
-                                <div className="flex items-center gap-2 text-white text-sm font-medium">
-                                    <ZoomIn className="w-5 h-5" />
-                                    <span>View Full Size</span>
+                            {failedImages.has(image.id) ? (
+                                <div className="w-full aspect-square flex flex-col items-center justify-center bg-muted text-muted-foreground p-8">
+                                    <ImageOff className="w-12 h-12 mb-2" />
+                                    <p className="text-sm text-center">Image unavailable</p>
                                 </div>
-                            </div>
+                            ) : (
+                                <>
+                                    <img
+                                        src={image.src}
+                                        alt={image.alt}
+                                        loading="lazy"
+                                        suppressHydrationWarning
+                                        onLoad={() => handleImageLoad(image.id)}
+                                        onError={() => handleImageError(image.id)}
+                                        className={`w-full h-auto object-cover transition-all duration-500 group-hover:scale-105 ${loadedImages.has(image.id) ? 'opacity-100' : 'opacity-0'
+                                            }`}
+                                    />
 
-                            {/* Glow Effect on Hover */}
-                            <div className="absolute inset-0 rounded-xl ring-2 ring-primary/0 group-hover:ring-primary/50 transition-all duration-300 pointer-events-none" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                                        <div className="flex items-center gap-2 text-white text-sm font-medium">
+                                            <ZoomIn className="w-5 h-5" />
+                                            <span>View Full Size</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="absolute inset-0 rounded-xl ring-2 ring-primary/0 group-hover:ring-primary/50 transition-all duration-300 pointer-events-none" />
+                                </>
+                            )}
                         </motion.div>
                     ))}
                 </motion.div>
 
-                {/* Load More Button */}
                 {visibleCount < portfolioImages.length && (
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -281,7 +285,6 @@ const PortfolioGallery: React.FC = () => {
                 )}
             </div>
 
-            {/* Lightbox */}
             <AnimatePresence>
                 {selectedImageIndex !== null && (
                     <Lightbox
