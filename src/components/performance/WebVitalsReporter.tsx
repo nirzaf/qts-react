@@ -38,9 +38,8 @@ const WebVitalsReporter = () => {
     if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
       // Dynamically import web-vitals to avoid increasing the bundle size in development
       import('web-vitals').then((webVitals) => {
-        // Web Vitals v4.x has a different API
         webVitals.onCLS(sendToAnalytics); // Cumulative Layout Shift
-        webVitals.onFID(sendToAnalytics); // First Input Delay
+        webVitals.onINP(sendToAnalytics); // Interaction to Next Paint (replaces FID)
         webVitals.onFCP(sendToAnalytics); // First Contentful Paint
         webVitals.onLCP(sendToAnalytics); // Largest Contentful Paint
         webVitals.onTTFB(sendToAnalytics); // Time to First Byte
