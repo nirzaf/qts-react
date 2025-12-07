@@ -50,10 +50,8 @@ const PortfolioHero: React.FC = () => {
 
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-            {/* Enhanced Background */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-primary/5 dark:from-primary/20 dark:via-background dark:to-primary/10" />
 
-            {/* Enhanced Floating Elements */}
             <motion.div
                 className="absolute top-20 left-[10%] w-32 h-32 rounded-full bg-gradient-to-br from-primary/30 to-primary/10 blur-2xl"
                 variants={floatVariants}
@@ -72,7 +70,6 @@ const PortfolioHero: React.FC = () => {
                 style={{ animationDelay: '4s' }}
             />
 
-            {/* Enhanced Decorative Icons */}
             <motion.div
                 className="absolute top-32 right-[25%] text-primary/30"
                 variants={floatVariants}
@@ -89,7 +86,6 @@ const PortfolioHero: React.FC = () => {
                 <Sparkles className="w-14 h-14" />
             </motion.div>
 
-            {/* Grid Pattern */}
             <div
                 className="absolute inset-0 opacity-[0.03] dark:opacity-[0.06]"
                 style={{
@@ -98,14 +94,12 @@ const PortfolioHero: React.FC = () => {
                 }}
             />
 
-            {/* Content */}
             <motion.div
                 className="relative z-10 text-center px-4 max-w-6xl mx-auto py-20"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
             >
-                {/* Enhanced Badge */}
                 <motion.div variants={itemVariants} className="mb-8">
                     <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/15 dark:bg-primary/25 text-primary text-sm font-semibold backdrop-blur-md border border-primary/30 shadow-lg shadow-primary/10">
                         <Sparkles className="w-4 h-4 animate-pulse" />
@@ -113,7 +107,6 @@ const PortfolioHero: React.FC = () => {
                     </span>
                 </motion.div>
 
-                {/* Enhanced Heading */}
                 <motion.h1
                     variants={itemVariants}
                     className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[1.1]"
@@ -125,7 +118,6 @@ const PortfolioHero: React.FC = () => {
                     </span>
                 </motion.h1>
 
-                {/* Enhanced Subtitle */}
                 <motion.p
                     variants={itemVariants}
                     className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed font-light"
@@ -134,28 +126,26 @@ const PortfolioHero: React.FC = () => {
                     solutions that transform businesses into memorable brands.
                 </motion.p>
 
-                {/* Enhanced Partner Badge */}
                 <motion.div
                     variants={itemVariants}
-                    className="inline-flex items-center gap-4 px-8 py-5 rounded-3xl bg-card/80 backdrop-blur-xl border-2 border-border/50 shadow-2xl hover:shadow-primary/20 hover:border-primary/30 transition-all duration-300 group"
+                    className="inline-flex flex-col items-center gap-4 px-8 py-6 rounded-3xl bg-card/80 backdrop-blur-xl border-2 border-border/50 shadow-2xl hover:shadow-primary/20 hover:border-primary/30 transition-all duration-300 group"
                 >
                     <div className="transform group-hover:scale-110 transition-transform duration-300">
-                        <GraphyEmpireLogo size={70} />
+                        <GraphyEmpireLogo size={90} />
                     </div>
-                    <div className="text-left">
+                    <div className="text-center">
                         <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider mb-1">
                             In Partnership With
                         </p>
-                        <p className="font-bold text-foreground text-xl">Graphy Empire</p>
+                        <p className="font-bold text-foreground text-xl mb-1">Graphy Empire</p>
                         <p className="text-xs text-muted-foreground">Brand Identity Experts</p>
                     </div>
                 </motion.div>
 
-                {/* Enhanced Scroll Indicator */}
                 <motion.button
                     variants={itemVariants}
                     onClick={scrollToGallery}
-                    className="mt-20 inline-flex flex-col items-center gap-3 text-muted-foreground hover:text-primary transition-all duration-300 cursor-pointer group"
+                    className="mt-12 inline-flex flex-col items-center gap-3 text-muted-foreground hover:text-primary transition-all duration-300 cursor-pointer group"
                     aria-label="Scroll to gallery"
                 >
                     <span className="text-sm font-semibold uppercase tracking-wider">Explore Our Work</span>
