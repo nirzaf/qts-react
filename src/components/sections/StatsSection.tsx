@@ -71,7 +71,7 @@ const iconVariants: Variants = {
 
 const StatsSection: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-[#FFFFFF] py-24">
+    <section className="relative overflow-hidden bg-background py-24">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -96,10 +96,10 @@ const StatsSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-[#000000]">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
             Our Impact in Numbers
           </h2>
-          <p className="text-xl text-[#000000]/70 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Measurable results that speak for themselves
           </p>
         </motion.div>
@@ -125,7 +125,7 @@ const StatsSection: React.FC = () => {
                 whileHover={{ opacity: 0.05, scale: 1.1 }}
                 className="absolute inset-0 bg-[#0607E1] rounded-[2rem] blur-2xl transition-all duration-500"
               />
-              
+
               {/* Card Container */}
               <motion.div
                 className="relative transform-gpu transition-all duration-500 group-hover:scale-[1.02]"
@@ -135,11 +135,11 @@ const StatsSection: React.FC = () => {
                   transition: { duration: 0.3 }
                 }}
               >
-                <div className="relative p-8 rounded-[2rem] border border-[#000000]/10 bg-white backdrop-blur-xl shadow-xl hover:shadow-2xl hover:border-[#0607E1]/5 transition-all duration-500">
+                <div className="relative p-8 rounded-[2rem] border border-border bg-card backdrop-blur-xl shadow-xl hover:shadow-2xl hover:border-primary/5 transition-all duration-500">
                   {/* Animated Corner Accents */}
                   <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-[#000000]/10 rounded-tl-[2rem] opacity-30 group-hover:opacity-100 group-hover:border-[#0607E1]/5 transition-all duration-500" />
                   <div className="absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-[#000000]/10 rounded-br-[2rem] opacity-30 group-hover:opacity-100 group-hover:border-[#0607E1]/5 transition-all duration-500" />
-                  
+
                   {/* Icon Container */}
                   <motion.div
                     variants={iconVariants}
@@ -151,8 +151,8 @@ const StatsSection: React.FC = () => {
                     {/* Icon Background */}
                     <div className="absolute inset-0 bg-[#0607E1]/10 rounded-2xl blur opacity-25 group-hover:opacity-40 transition-opacity duration-500" />
                     <div className="relative h-16 w-16 flex items-center justify-center rounded-2xl bg-[#0607E1]/5 group-hover:bg-[#0607E1]/10 transition-all duration-500">
-                      {React.createElement(stat.icon, { 
-                        className: "h-8 w-8 text-[#0607E1] transform group-hover:scale-110 transition-transform duration-500" 
+                      {React.createElement(stat.icon, {
+                        className: "h-8 w-8 text-[#0607E1] transform group-hover:scale-110 transition-transform duration-500"
                       })}
                     </div>
                   </motion.div>
@@ -165,7 +165,7 @@ const StatsSection: React.FC = () => {
                     className="relative"
                   >
                     <div className="absolute -inset-1 bg-[#0607E1]/10 opacity-30 blur group-hover:opacity-40 transition-opacity duration-500" />
-                    <h3 className="relative font-bold text-5xl mb-3 text-[#000000] transform group-hover:scale-110 transition-transform duration-500">
+                    <h3 className="relative font-bold text-5xl mb-3 text-foreground transform group-hover:scale-110 transition-transform duration-500">
                       {stat.value}
                     </h3>
                   </motion.div>
@@ -177,7 +177,7 @@ const StatsSection: React.FC = () => {
                     transition={{ delay: index * 0.1 + 0.4 }}
                     className="relative z-10"
                   >
-                    <h4 className="text-xl font-semibold text-[#000000] mb-2 relative inline-block">
+                    <h4 className="text-xl font-semibold text-foreground mb-2 relative inline-block">
                       {stat.name}
                       <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#0607E1]/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
                     </h4>
@@ -188,7 +188,7 @@ const StatsSection: React.FC = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: index * 0.1 + 0.5 }}
-                    className="text-[#000000]/70 text-sm mt-2 leading-relaxed group-hover:text-[#000000] transition-colors duration-500"
+                    className="text-muted-foreground text-sm mt-2 leading-relaxed group-hover:text-foreground transition-colors duration-500"
                   >
                     {stat.description}
                   </motion.p>

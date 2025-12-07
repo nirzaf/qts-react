@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  FiServer, 
-  FiShield, 
-  FiGlobe, 
-  FiUsers, 
-  FiDatabase, 
+import {
+  FiServer,
+  FiShield,
+  FiGlobe,
+  FiUsers,
+  FiDatabase,
   FiCloud,
   FiCpu,
   FiHardDrive,
@@ -84,25 +84,24 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, isPopular }) => 
   return (
     <TooltipProvider>
       <motion.div
-        className={`h-full p-8 rounded-2xl border-2 ${
-          isPopular 
-            ? 'border-[#0607E1] shadow-lg' 
-            : 'border-[#000000]/10'
-        } bg-[#FFFFFF] flex flex-col justify-between relative`}
+        className={`h-full p-8 rounded-2xl border-2 ${isPopular
+            ? 'border-primary shadow-lg'
+            : 'border-border'
+          } bg-card flex flex-col justify-between relative`}
         whileHover={{ y: -5 }}
       >
         {/* Plan Header */}
         <div>
           {isPopular && (
-            <span className="inline-block px-4 py-1 mb-4 text-sm font-medium text-[#FFFFFF] bg-[#0607E1] rounded-full">
+            <span className="inline-block px-4 py-1 mb-4 text-sm font-medium text-primary-foreground bg-primary rounded-full">
               Most Popular
             </span>
           )}
-          <h3 className="text-2xl font-bold text-[#000000]">{plan.name}</h3>
-          <p className="mt-2 text-[#000000]/70 text-base">{plan.description}</p>
+          <h3 className="text-2xl font-bold text-foreground">{plan.name}</h3>
+          <p className="mt-2 text-muted-foreground text-base">{plan.description}</p>
           <div className="mt-4 mb-6">
-            <span className="text-4xl font-bold text-[#000000]">{plan.price}</span>
-            <span className="text-[#000000]/70">/year</span>
+            <span className="text-4xl font-bold text-foreground">{plan.price}</span>
+            <span className="text-muted-foreground">/year</span>
           </div>
         </div>
 
@@ -122,20 +121,20 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, isPopular }) => 
                   transition={{ delay: index * 0.1 }}
                 >
                   <span className="flex-shrink-0">
-                    <Icon 
-                      size={18} 
-                      className={`${isPopular ? 'text-[#0607E1]' : 'text-[#000000]'}`}
+                    <Icon
+                      size={18}
+                      className={`${isPopular ? 'text-primary' : 'text-foreground'}`}
                     />
                   </span>
-                  <span className="text-[#000000] font-medium text-sm flex-grow">
+                  <span className="text-foreground font-medium text-sm flex-grow">
                     {feature}
                   </span>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <button className="p-1 rounded-full hover:bg-[#0607E1]/5 transition-colors">
-                        <FiInfo 
-                          size={16} 
-                          className="text-[#000000]/40 hover:text-[#0607E1] transition-colors"
+                      <button className="p-1 rounded-full hover:bg-primary/5 transition-colors">
+                        <FiInfo
+                          size={16}
+                          className="text-muted-foreground hover:text-primary transition-colors"
                         />
                       </button>
                     </TooltipTrigger>
@@ -154,11 +153,10 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, isPopular }) => 
           href={plan.ctaLink}
           target="_blank"
           rel="noopener noreferrer"
-          className={`w-full py-3 px-6 rounded-xl text-base font-medium transition-colors text-center ${
-            isPopular
-              ? 'bg-[#0607E1] text-[#FFFFFF] hover:bg-[#0607E1]/90'
-              : 'bg-[#000000]/5 text-[#000000] hover:bg-[#000000]/10'
-          }`}
+          className={`w-full py-3 px-6 rounded-xl text-base font-medium transition-colors text-center ${isPopular
+              ? 'bg-primary text-primary-foreground hover:bg-primary/90'
+              : 'bg-muted text-foreground hover:bg-muted/80'
+            }`}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >

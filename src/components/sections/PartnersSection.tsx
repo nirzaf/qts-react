@@ -50,12 +50,12 @@ const PartnersSection: React.FC<PartnersSectionProps> = ({ title, description })
     <section className="py-16">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-4xl font-bold mb-4 font-plusJakartaSans">{title}</h2>
-          <p className="text-lg text-gray-600 text-center mx-auto max-w-2xl font-plusJakartaSans">
+          <h2 className="text-4xl font-bold mb-4 font-plusJakartaSans text-foreground">{title}</h2>
+          <p className="text-lg text-muted-foreground text-center mx-auto max-w-2xl font-plusJakartaSans">
             {description}
           </p>
         </div>
-        
+
         <PartnersCarousel logos={partnerLogos} />
       </div>
     </section>

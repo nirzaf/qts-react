@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import SEOLink from './ui/SEOLink';
+import { ThemeToggle } from './ui/ThemeToggle';
 
 export const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,8 +55,8 @@ export const Navigation: React.FC = () => {
               >
                 <SEOLink
                   to={link.to}
-                  className={`text-sm transition-colors hover:text-[#0607E1] relative
-                    ${currentPath === link.to ? 'text-[#0607E1] font-semibold' : 'text-gray-700 font-medium'}`}
+                  className={`text-sm transition-colors hover:text-primary relative
+                    ${currentPath === link.to ? 'text-primary font-semibold' : 'text-gray-700 dark:text-white font-medium'}`}
                   ariaLabel={`Navigate to ${link.label}`}
                   aria-current={currentPath === link.to ? 'page' : undefined}
                 >
@@ -70,6 +71,9 @@ export const Navigation: React.FC = () => {
               </motion.div>
             ))}
 
+            {/* Theme Toggle - Desktop */}
+            <ThemeToggle />
+
             {/* Desktop CTA Button */}
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -78,7 +82,7 @@ export const Navigation: React.FC = () => {
               <SEOLink
                 to="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions"
                 external={true}
-                className="relative inline-flex items-center justify-center rounded-md bg-[#000000] px-4 py-2 text-sm font-medium text-[#FFFFFF] hover:bg-[#000000]/90 transition-colors duration-200 overflow-hidden group"
+                className="relative inline-flex items-center justify-center rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background hover:bg-foreground/90 transition-colors duration-200 overflow-hidden group"
                 ariaLabel="Book a meeting with Quadrate Tech Solutions"
               >
                 <span className="relative z-10">Book a Meeting</span>
@@ -91,23 +95,25 @@ export const Navigation: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden">
+            {/* Theme Toggle - Mobile */}
+            <ThemeToggle className="mr-2" />
             <motion.div
-              className="mr-4"
+              className="mr-2"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <SEOLink
                 to="https://quadratetechsolutions.zohobookings.com/#/customer/quadratetechsolutions"
                 external={true}
-                className="relative inline-flex items-center justify-center rounded-md bg-[#000000] px-3 py-1.5 text-sm font-medium text-[#FFFFFF] hover:bg-[#000000]/90 transition-colors duration-200"
+                className="relative inline-flex items-center justify-center rounded-md bg-foreground px-3 py-1.5 text-sm font-medium text-background hover:bg-foreground/90 transition-colors duration-200"
                 ariaLabel="Book a meeting with Quadrate Tech Solutions"
               >
-                <span className="relative z-10">Book a Meeting</span>
+                <span className="relative z-10">Book</span>
               </SEOLink>
             </motion.div>
             <button
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#0607E1] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#0607E1]"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-white hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
             >
               <span className="sr-only">Open main menu</span>
               {isOpen ? (
@@ -139,8 +145,8 @@ export const Navigation: React.FC = () => {
                     <SEOLink
                       to={link.to}
                       onClick={() => setIsOpen(false)}
-                      className={`block px-3 py-2 rounded-md text-base transition-colors hover:text-[#0607E1] hover:bg-gray-50
-                        ${currentPath === link.to ? 'text-[#0607E1] bg-gray-50 font-semibold' : 'text-gray-700 font-medium'}`}
+                      className={`block px-3 py-2 rounded-md text-base transition-colors hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800
+                        ${currentPath === link.to ? 'text-primary bg-gray-50 dark:bg-gray-800 font-semibold' : 'text-gray-700 dark:text-white font-medium'}`}
                       ariaLabel={`Navigate to ${link.label}`}
                       aria-current={currentPath === link.to ? 'page' : undefined}
                     >

@@ -55,8 +55,8 @@ const Home: React.FC = () => {
           />
 
           {/* Features Section */}
-          <AnimatedSection className="bg-gradient-to-b from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
-            <div className="font-plusJakartaSans text-[#0607E1]">
+          <AnimatedSection className="bg-gradient-to-b from-background via-primary/5 to-background">
+            <div className="font-plusJakartaSans text-primary">
               <Suspense fallback={<Loading />}>
                 <Features />
               </Suspense>
@@ -64,9 +64,9 @@ const Home: React.FC = () => {
           </AnimatedSection>
 
           {/* Tech Stack Section */}
-          <AnimatedSection className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0607E1]/5 via-[#0607E1]/3 to-[#0607E1]/5" />
-            <div className="font-plusJakartaSans relative z-10 text-[#0607E1]">
+          <AnimatedSection className="relative bg-background">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/3 to-primary/5" />
+            <div className="font-plusJakartaSans relative z-10 text-primary">
               <Suspense fallback={<Loading />}>
                 <TechStack />
               </Suspense>
@@ -74,8 +74,8 @@ const Home: React.FC = () => {
           </AnimatedSection>
 
           {/* Services Section */}
-          <AnimatedSection className="bg-gradient-to-b from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
-            <div className="font-plusJakartaSans text-[#0607E1]">
+          <AnimatedSection className="bg-gradient-to-b from-background via-primary/5 to-background">
+            <div className="font-plusJakartaSans text-primary">
               <Suspense fallback={<Loading />}>
                 <ServicesSection />
               </Suspense>
@@ -90,7 +90,7 @@ const Home: React.FC = () => {
           </div>
 
           {/* AI Services Section */}
-          <AnimatedSection className="bg-gradient-to-b from-[#F8FAFF] to-[#FFFFFF]">
+          <AnimatedSection className="bg-gradient-to-b from-muted to-background">
             <div className="font-plusJakartaSans">
               <Suspense fallback={<Loading />}>
                 <AIServicesSection />
@@ -99,8 +99,8 @@ const Home: React.FC = () => {
           </AnimatedSection>
 
           {/* Company Values Section */}
-          <AnimatedSection className="bg-gradient-to-b from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
-            <div className="font-plusJakartaSans text-[#0607E1]">
+          <AnimatedSection className="bg-gradient-to-b from-background via-primary/5 to-background">
+            <div className="font-plusJakartaSans text-primary">
               <Suspense fallback={<Loading />}>
                 <CompanyValues />
               </Suspense>
@@ -108,8 +108,8 @@ const Home: React.FC = () => {
           </AnimatedSection>
 
           {/* Pricing Section */}
-          <div id="pricing" className="bg-[#FFFFFF]">
-            <div className="font-plusJakartaSans text-[#0607E1]">
+          <div id="pricing" className="bg-background">
+            <div className="font-plusJakartaSans text-primary">
               <Suspense fallback={<Loading />}>
                 <PricingSection />
               </Suspense>
@@ -117,16 +117,16 @@ const Home: React.FC = () => {
           </div>
 
           {/* Stats Section */}
-          <div className="font-plusJakartaSans text-[#0607E1]">
+          <div className="font-plusJakartaSans text-primary">
             <Suspense fallback={<Loading />}>
               <StatsSection />
             </Suspense>
           </div>
 
           {/* Partners Section */}
-          <AnimatedSection className="relative bg-[#FFFFFF]">
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0607E1]/5 via-[#0607E1]/3 to-transparent" />
-            <div className="font-plusJakartaSans relative z-10 text-[#0607E1]">
+          <AnimatedSection className="relative bg-background">
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-primary/3 to-transparent" />
+            <div className="font-plusJakartaSans relative z-10 text-primary">
               <Suspense fallback={<Loading />}>
                 <PartnersSection
                   title="Trusted by Industry Leaders"
@@ -145,3 +145,4 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+

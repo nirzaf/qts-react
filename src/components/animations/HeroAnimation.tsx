@@ -1,898 +1,842 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, useAnimation, AnimatePresence, Variants } from 'framer-motion';
+import { motion, AnimatePresence, useSpring, useMotionValue, useTransform } from 'framer-motion';
 import {
   Brain,
   Code,
   Globe,
-  Database,
-  Cpu,
-  Network,
-  Cloud,
-  Bot,
-  Eye,
-  MessageSquare,
-  BarChart3,
   Settings,
+  Megaphone,
+  Cpu,
+  ArrowUpRight,
   Layers,
-  Zap,
-  Shield,
   Sparkles,
-  Target,
+  Zap,
+  Cloud,
+  Shield,
+  Database,
   Rocket,
-  Lightbulb
+  Target,
+  TrendingUp,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
-import NeuralNetworkViz from './NeuralNetworkViz';
 
-const HeroAnimation: React.FC = () => {
-  const [activeNode, setActiveNode] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const coreAnimation = useAnimation();
+// --- Core Service Pillars representing QTS ---
 
-  // Enhanced technology nodes with more services and better positioning
-  const techNodes = [
-    { icon: Brain, label: 'AI Strategy', color: '#0607E1', position: { x: 50, y: 12 }, category: 'ai' },
-    { icon: Bot, label: 'Generative AI', color: '#4D0AFF', position: { x: 78, y: 22 }, category: 'ai' },
-    { icon: Eye, label: 'Computer Vision', color: '#06B6D4', position: { x: 88, y: 45 }, category: 'ai' },
-    { icon: MessageSquare, label: 'NLP & LLM', color: '#10B981', position: { x: 82, y: 68 }, category: 'ai' },
-    { icon: Sparkles, label: 'ML Models', color: '#F59E0B', position: { x: 65, y: 82 }, category: 'ai' },
-    { icon: Code, label: 'Development', color: '#EF4444', position: { x: 45, y: 88 }, category: 'dev' },
-    { icon: Database, label: 'Data Engineering', color: '#8B5CF6', position: { x: 22, y: 78 }, category: 'data' },
-    { icon: Cloud, label: 'Cloud Solutions', color: '#06B6D4', position: { x: 12, y: 55 }, category: 'infra' },
-    { icon: Globe, label: 'Web Solutions', color: '#10B981', position: { x: 18, y: 32 }, category: 'dev' },
-    { icon: Network, label: 'Integration', color: '#F59E0B', position: { x: 35, y: 18 }, category: 'infra' },
-    { icon: BarChart3, label: 'Analytics', color: '#EF4444', position: { x: 62, y: 25 }, category: 'data' },
-    { icon: Settings, label: 'Automation', color: '#8B5CF6', position: { x: 72, y: 52 }, category: 'infra' },
-    { icon: Layers, label: 'Architecture', color: '#0607E1', position: { x: 38, y: 35 }, category: 'infra' },
-    { icon: Shield, label: 'Security', color: '#4D0AFF', position: { x: 28, y: 58 }, category: 'infra' },
-    { icon: Zap, label: 'Performance', color: '#06B6D4', position: { x: 58, y: 72 }, category: 'dev' },
-    { icon: Target, label: 'Optimization', color: '#10B981', position: { x: 42, y: 48 }, category: 'ai' },
-    { icon: Rocket, label: 'Innovation', color: '#F59E0B', position: { x: 68, y: 38 }, category: 'ai' },
-    { icon: Lightbulb, label: 'Consulting', color: '#EF4444', position: { x: 32, y: 25 }, category: 'strategy' }
-  ];
+interface ServicePillar {
+  id: string;
+  title: string;
+  subtitle: string;
+  icon: any;
+  color: string;
+  gradient: string;
+  description: string;
+  features: string[];
+}
 
-  // Enhanced particle systems
-  const [dataParticles, setDataParticles] = useState<Array<{
-    id: number;
-    x: number;
-    y: number;
-    size: number;
-    speed: number;
-    color: string;
-    type: 'data' | 'energy' | 'signal';
-    opacity: number;
-  }>>([]);
+const services: ServicePillar[] = [
+  {
+    id: 'ai',
+    title: 'AI Integration',
+    subtitle: 'Smart Solutions',
+    icon: Brain,
+    color: '#0607E1',
+    gradient: 'linear-gradient(135deg, #0607E1 0%, #4338CA 100%)',
+    description: 'Transform your business with cutting-edge AI, ML & Computer Vision solutions.',
+    features: ['LLM & GPT Integration', 'Predictive Analytics', 'Computer Vision']
+  },
+  {
+    id: 'software',
+    title: 'Custom Software',
+    subtitle: 'Tailored Development',
+    icon: Code,
+    color: '#22C55E',
+    gradient: 'linear-gradient(135deg, #4ADE80 0%, #22C55E 100%)',
+    description: 'Enterprise-grade applications built for scalability and performance.',
+    features: ['Cloud Native Apps', 'SaaS Platforms', 'API Development']
+  },
+  {
+    id: 'web',
+    title: 'Web Solutions',
+    subtitle: 'Digital Excellence',
+    icon: Globe,
+    color: '#0EA5E9',
+    gradient: 'linear-gradient(135deg, #38BDF8 0%, #0EA5E9 100%)',
+    description: 'Modern, responsive web experiences that convert visitors into customers.',
+    features: ['Next.js & React', 'E-Commerce', 'Progressive Web Apps']
+  },
+  {
+    id: 'automation',
+    title: 'Business Automation',
+    subtitle: 'Enhanced Efficiency',
+    icon: Settings,
+    color: '#8B5CF6',
+    gradient: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%)',
+    description: 'Streamline operations with intelligent workflow automation.',
+    features: ['Process Automation', 'API Integrations', 'Smart Workflows']
+  },
+  {
+    id: 'marketing',
+    title: 'Digital Marketing',
+    subtitle: 'Growth Strategy',
+    icon: TrendingUp,
+    color: '#F59E0B',
+    gradient: 'linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%)',
+    description: 'Data-driven marketing strategies to accelerate your growth.',
+    features: ['SEO & SEM', 'Analytics', 'Brand Strategy']
+  },
+  {
+    id: 'cloud',
+    title: 'Cloud & DevOps',
+    subtitle: 'Scalable Infrastructure',
+    icon: Cloud,
+    color: '#06B6D4',
+    gradient: 'linear-gradient(135deg, #22D3EE 0%, #06B6D4 100%)',
+    description: 'Reliable cloud infrastructure with modern DevOps practices.',
+    features: ['AWS & Azure', 'CI/CD Pipelines', 'Kubernetes']
+  }
+];
 
-  const [energyOrbs, setEnergyOrbs] = useState<Array<{
-    id: number;
-    x: number;
-    y: number;
-    size: number;
-    color: string;
-    intensity: number;
-  }>>([]);
+// --- Floating Tech Keywords ---
+const techKeywords = [
+  'React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'AI/ML',
+  'AWS', 'DevOps', 'Cloud', 'APIs', 'Microservices', 'Docker'
+];
 
-  // Mouse tracking for interactive effects
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      setMousePosition({
-        x: ((e.clientX - rect.left) / rect.width) * 100,
-        y: ((e.clientY - rect.top) / rect.height) * 100
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    // Generate enhanced particle systems
-    const particles = Array.from({ length: 50 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 4 + 1,
-      speed: Math.random() * 4 + 2,
-      color: ['#0607E1', '#4D0AFF', '#06B6D4', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6'][Math.floor(Math.random() * 7)],
-      type: ['data', 'energy', 'signal'][Math.floor(Math.random() * 3)] as 'data' | 'energy' | 'signal',
-      opacity: Math.random() * 0.6 + 0.4
-    }));
-    setDataParticles(particles);
-
-    // Generate energy orbs
-    const orbs = Array.from({ length: 8 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 20 + 10,
-      color: ['#0607E1', '#4D0AFF', '#06B6D4', '#10B981'][Math.floor(Math.random() * 4)],
-      intensity: Math.random() * 0.3 + 0.1
-    }));
-    setEnergyOrbs(orbs);
-  }, []);
+// --- Background Particle Network ---
+const ParticleNetwork: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    // Enhanced node cycling with category-based activation
-    const nodeInterval = setInterval(() => {
-      setActiveNode((prev) => (prev + 1) % techNodes.length);
-    }, 1800);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-    return () => {
-      clearInterval(nodeInterval);
+    let animationFrameId: number;
+    let particles: Array<{ x: number; y: number; vx: number; vy: number; size: number; color: string }> = [];
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
-  }, [techNodes.length]);
 
-  // Core animation controller
-  useEffect(() => {
-    const animateCore = async () => {
-      await coreAnimation.start({
-        scale: [1, 1.05, 1],
-        rotate: [0, 360],
-        transition: {
-          scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-          rotate: { duration: 20, repeat: Infinity, ease: "linear" }
+    const initParticles = () => {
+      particles = [];
+      const count = Math.floor(window.innerWidth / 50); // Less particles for performance
+      for (let i = 0; i < count; i++) {
+        const colors = ['#0607E1', '#22C55E', '#0EA5E9', '#8B5CF6', '#F59E0B', '#06B6D4'];
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.1,
+          vy: (Math.random() - 0.5) * 0.1,
+          size: Math.random() * 2 + 0.5,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((p, i) => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `${p.color}15`;
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p.x - p2.x;
+          const dy = p.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 100) {
+            ctx.beginPath();
+            ctx.strokeStyle = `${p.color}08`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
         }
       });
+
+      animationFrameId = requestAnimationFrame(draw);
     };
-    animateCore();
-  }, [coreAnimation]);
 
-  // Enhanced animation variants
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.3
-      }
-    }
+    window.addEventListener('resize', resize);
+    resize();
+    initParticles();
+    draw();
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none" />;
+};
+
+// --- Floating Keywords Component (Desktop Only) ---
+const FloatingKeywords: React.FC = () => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  const getStablePosition = (index: number, seed: number) => {
+    const random = (Math.sin(index * seed) * 10000) % 1;
+    return Math.abs(random) * 100;
   };
 
-  const nodeVariants: Variants = {
-    hidden: { scale: 0, opacity: 0, y: 20 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring" as const,
-        stiffness: 120,
-        damping: 12
-      }
-    }
-  };
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-  const pulseVariants: Variants = {
-    animate: {
-      scale: [1, 1.15, 1],
-      opacity: [0.8, 1, 0.8],
-      boxShadow: [
-        '0 0 20px rgba(6, 7, 225, 0.3)',
-        '0 0 40px rgba(6, 7, 225, 0.8)',
-        '0 0 20px rgba(6, 7, 225, 0.3)'
-      ],
-      transition: {
-        duration: 2.5,
-        repeat: Infinity,
-        ease: [0.42, 0, 0.58, 1] as any
-      }
-    }
-  };
+  if (!isMounted) {
+    return null;
+  }
 
-  const orbitalVariants: Variants = {
-    animate: {
-      rotate: 360,
-      transition: {
-        duration: 30,
-        repeat: Infinity,
-        ease: [0, 0, 1, 1] as any
-      }
-    }
-  };
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-5 hidden md:block">
+      {techKeywords.map((keyword, i) => {
+        const initialX = getStablePosition(i, 12.9898);
+        const initialY = getStablePosition(i, 78.233);
+        const targetX1 = getStablePosition(i, 43.758);
+        const targetY1 = getStablePosition(i, 94.673);
+        const targetX2 = getStablePosition(i, 67.542);
+        const targetY2 = getStablePosition(i, 31.459);
+        const duration = 20 + (getStablePosition(i, 15.234) / 10);
+
+        return (
+          <motion.div
+            key={keyword}
+            className="absolute text-xs font-mono font-medium text-primary/10 dark:text-primary/15"
+            initial={{
+              x: `${initialX}%`,
+              y: `${initialY}%`,
+              opacity: 0
+            }}
+            animate={{
+              x: [`${targetX1}%`, `${targetX2}%`],
+              y: [`${targetY1}%`, `${targetY2}%`],
+              opacity: [0, 0.6, 0]
+            }}
+            transition={{
+              duration,
+              repeat: Infinity,
+              delay: i * 0.5,
+              ease: "linear"
+            }}
+          >
+            {keyword}
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+};
+
+// --- Mobile Service Card Component ---
+const MobileServiceCard: React.FC<{ service: ServicePillar; isActive: boolean }> = ({ service, isActive }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      className="w-full"
+    >
+      <div
+        className="bg-card/95 backdrop-blur-xl rounded-2xl p-4 border shadow-xl overflow-hidden relative"
+        style={{ borderColor: `${service.color}25` }}
+      >
+        {/* Gradient Accent */}
+        <div className="absolute top-0 left-0 right-0 h-1" style={{ background: service.gradient }} />
+
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-3 mt-1">
+          <div
+            className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+            style={{ background: `${service.color}15` }}
+          >
+            <service.icon className="w-6 h-6" style={{ color: service.color }} />
+          </div>
+          <div className="flex-1">
+            <h3 className="text-base font-bold text-foreground">{service.title}</h3>
+            <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
+              {service.subtitle}
+            </span>
+          </div>
+        </div>
+
+        {/* Description */}
+        <p className="text-sm text-muted-foreground mb-3">{service.description}</p>
+
+        {/* Features */}
+        <div className="flex flex-wrap gap-1.5 mb-3">
+          {service.features.map((feature, i) => (
+            <motion.span
+              key={feature}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: i * 0.05 }}
+              className="text-[11px] font-medium px-2.5 py-1 rounded-md bg-muted/50 text-foreground border border-border"
+            >
+              {feature}
+            </motion.span>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="flex items-center justify-between pt-3 border-t border-border">
+          <div className="flex items-center gap-1.5">
+            <Sparkles className="w-3.5 h-3.5 text-primary" />
+            <span className="text-[10px] text-muted-foreground">Innovation Powered</span>
+          </div>
+          <button
+            className="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg flex items-center gap-1 text-white"
+            style={{ background: service.gradient }}
+          >
+            Learn More
+            <ArrowUpRight className="w-3 h-3" />
+          </button>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+// --- Mobile Hero Animation ---
+const MobileHeroAnimation: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % services.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const goToNext = () => setActiveIndex((prev) => (prev + 1) % services.length);
+  const goToPrev = () => setActiveIndex((prev) => (prev - 1 + services.length) % services.length);
+
+  const activeService = services[activeIndex];
 
   return (
     <div
-      ref={containerRef}
-      className="relative w-full h-full min-h-[500px] overflow-hidden hidden md:block"
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="relative w-full min-h-[580px] overflow-hidden font-sans flex flex-col items-center justify-start pt-4 pb-6 px-4"
+      style={{
+        background: 'radial-gradient(ellipse at 50% 0%, hsl(var(--background)) 0%, hsl(var(--muted) / 0.5) 100%)'
+      }}
     >
-      {/* Enhanced Background Layers */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 via-blue-50/30 to-purple-50/50" />
-
-      {/* Neural Network Visualization */}
-      <div className="absolute inset-0">
-        <NeuralNetworkViz />
+      {/* Simplified Background */}
+      <div className="absolute inset-0 z-0">
+        <motion.div
+          animate={{ opacity: [0.05, 0.1, 0.05] }}
+          transition={{ duration: 6, repeat: Infinity }}
+          className="absolute top-[-10%] left-[-20%] w-[300px] h-[300px] rounded-full blur-[80px]"
+          style={{ background: `radial-gradient(circle, ${activeService.color}30 0%, transparent 70%)` }}
+        />
       </div>
 
-      {/* Dynamic Energy Orbs */}
-      <div className="absolute inset-0">
-        {energyOrbs.map((orb) => (
+      {/* Tagline Badge */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="z-20 mb-4"
+      >
+        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/80 backdrop-blur-sm border border-border shadow-sm">
+          <Zap className="w-3 h-3 text-primary" />
+          <span className="text-[10px] font-semibold text-foreground">Digital Transformation</span>
+        </div>
+      </motion.div>
+
+      {/* Central Animated Hub */}
+      <div className="relative z-10 mb-4">
+        <motion.div
+          animate={{
+            scale: [1, 1.02, 1],
+            boxShadow: [
+              `0 0 20px ${activeService.color}10`,
+              `0 0 40px ${activeService.color}20`,
+              `0 0 20px ${activeService.color}10`
+            ]
+          }}
+          transition={{ duration: 3, repeat: Infinity }}
+          className="w-20 h-20 rounded-2xl flex items-center justify-center"
+          style={{
+            background: 'linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%)',
+            boxShadow: '0 12px 30px -8px rgba(0,0,0,0.12)'
+          }}
+        >
+          {/* Rotating Ring */}
           <motion.div
-            key={orb.id}
-            className="absolute rounded-full blur-xl"
+            className="absolute -inset-3 rounded-[1.5rem] border border-dashed opacity-20"
+            style={{ borderColor: activeService.color }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+          />
+
+          <motion.div
+            key={activeService.id}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="p-2 rounded-xl"
+            style={{ background: `${activeService.color}15` }}
+          >
+            <activeService.icon className="w-8 h-8" style={{ color: activeService.color }} />
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Service Selector Pills */}
+      <div className="relative z-10 w-full mb-4">
+        <div
+          ref={scrollRef}
+          className="flex gap-2 overflow-x-auto pb-2 px-1 scrollbar-hide justify-center"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {services.map((service, index) => {
+            const isActive = index === activeIndex;
+            return (
+              <motion.button
+                key={service.id}
+                onClick={() => setActiveIndex(index)}
+                whileTap={{ scale: 0.95 }}
+                className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all duration-300 ${isActive ? 'shadow-lg' : 'shadow-sm'
+                  }`}
+                style={{
+                  background: isActive ? service.color : 'hsl(var(--card))',
+                  border: `1.5px solid ${isActive ? service.color : 'hsl(var(--border))'}`,
+                }}
+              >
+                <service.icon
+                  className="w-4 h-4"
+                  style={{ color: isActive ? 'white' : service.color }}
+                />
+                <span
+                  className={`text-[11px] font-semibold ${isActive ? 'text-white' : 'text-foreground'}`}
+                >
+                  {service.id.charAt(0).toUpperCase() + service.id.slice(1)}
+                </span>
+              </motion.button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Navigation Arrows */}
+      <div className="absolute left-2 top-1/2 -translate-y-1/2 z-30">
+        <button
+          onClick={goToPrev}
+          className="w-8 h-8 rounded-full bg-card/80 backdrop-blur-sm border border-border shadow-md flex items-center justify-center"
+        >
+          <ChevronLeft className="w-4 h-4 text-foreground" />
+        </button>
+      </div>
+      <div className="absolute right-2 top-1/2 -translate-y-1/2 z-30">
+        <button
+          onClick={goToNext}
+          className="w-8 h-8 rounded-full bg-card/80 backdrop-blur-sm border border-border shadow-md flex items-center justify-center"
+        >
+          <ChevronRight className="w-4 h-4 text-foreground" />
+        </button>
+      </div>
+
+      {/* Active Service Card */}
+      <div className="relative z-20 w-full max-w-sm">
+        <AnimatePresence mode="wait">
+          <MobileServiceCard key={activeService.id} service={activeService} isActive={true} />
+        </AnimatePresence>
+      </div>
+
+      {/* Progress Dots */}
+      <div className="flex gap-1.5 mt-4 z-20">
+        {services.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveIndex(index)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${index === activeIndex ? 'w-6' : 'w-1.5'
+              }`}
             style={{
-              left: `${orb.x}%`,
-              top: `${orb.y}%`,
-              width: `${orb.size}px`,
-              height: `${orb.size}px`,
-              background: `radial-gradient(circle, ${orb.color}${Math.floor(orb.intensity * 255).toString(16).padStart(2, '0')} 0%, transparent 70%)`,
-              transform: 'translate(-50%, -50%)'
-            }}
-            animate={{
-              x: [0, Math.sin(orb.id) * 20, 0],
-              y: [0, Math.cos(orb.id) * 15, 0],
-              scale: [1, 1.2, 1],
-              opacity: [orb.intensity, orb.intensity * 1.5, orb.intensity]
-            }}
-            transition={{
-              duration: 8 + orb.id,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: orb.id * 0.5
+              background: index === activeIndex ? services[activeIndex].color : 'hsl(var(--border))'
             }}
           />
         ))}
       </div>
+    </div>
+  );
+};
 
-      {/* Enhanced Central Processing Core */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-        initial={{ scale: 0, rotate: 0 }}
-        animate={coreAnimation}
+// --- Desktop Hero Animation (Original) ---
+const DesktopHeroAnimation: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // 3D Tilt Effect
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useTransform(y, [-0.5, 0.5], [6, -6]);
+  const rotateY = useTransform(x, [-0.5, 0.5], [-6, 6]);
+  const springConfig = { damping: 25, stiffness: 80, mass: 1 };
+  const springRotateX = useSpring(rotateX, springConfig);
+  const springRotateY = useSpring(rotateY, springConfig);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const xPct = (e.clientX - rect.left) / rect.width - 0.5;
+    const yPct = (e.clientY - rect.top) / rect.height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  }, [x, y]);
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+    setIsHovering(false);
+  };
+
+  useEffect(() => {
+    if (isHovering) return;
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % services.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [isHovering]);
+
+  const getPosition = (index: number, total: number, radius: number) => {
+    const angle = (index * (360 / total) - 90) * (Math.PI / 180);
+    return {
+      x: Math.cos(angle) * radius,
+      y: Math.sin(angle) * radius
+    };
+  };
+
+  const activeService = services[activeIndex];
+
+  return (
+    <div
+      className="relative w-full h-[700px] overflow-hidden font-sans flex items-center justify-center"
+      style={{
+        perspective: '1000px',
+        background: 'radial-gradient(ellipse at 50% 30%, hsl(var(--background)) 0%, hsl(var(--muted) / 0.5) 100%)'
+      }}
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+
+      {/* Background Layers */}
+      <ParticleNetwork />
+      <FloatingKeywords />
+
+      {/* Grid Pattern */}
+      <div
+        className="absolute inset-0 z-0 opacity-[0.015] dark:opacity-[0.03] pointer-events-none"
         style={{
-          x: isHovered ? (mousePosition.x - 50) * 0.1 : 0,
-          y: isHovered ? (mousePosition.y - 50) * 0.1 : 0
+          backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px'
+        }}
+      />
+
+      {/* Ambient Glow Effects */}
+      <motion.div
+        animate={{ y: [0, -30, 0], scale: [1, 1.05, 1], opacity: [0.06, 0.1, 0.06] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[-15%] left-[-5%] w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none"
+        style={{ background: `radial-gradient(circle, ${activeService.color}20 0%, transparent 70%)` }}
+      />
+      <motion.div
+        animate={{ y: [0, 40, 0], scale: [1, 1.08, 1], opacity: [0.04, 0.08, 0.04] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+        className="absolute bottom-[-15%] right-[-5%] w-[700px] h-[700px] rounded-full blur-[120px] pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #06B6D4 0%, transparent 70%)' }}
+      />
+
+      {/* Main 3D Container */}
+      <motion.div
+        className="relative z-20 w-full max-w-6xl mx-auto px-4 flex flex-col items-center justify-center h-full"
+        style={{
+          rotateX: springRotateX,
+          rotateY: springRotateY,
+          transformStyle: 'preserve-3d'
         }}
       >
-        <div className="relative">
-          {/* Enhanced Core Circle with Gradient Animation */}
-          <motion.div
-            className="w-28 h-28 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden"
-            style={{
-              background: 'linear-gradient(45deg, #0607E1, #4D0AFF, #06B6D4, #0607E1)',
-              backgroundSize: '300% 300%'
-            }}
-            animate={{
-              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            variants={pulseVariants}
-          >
-            {/* Inner Glow Effect */}
-            <div className="absolute inset-1 rounded-full bg-gradient-to-br from-white/20 to-transparent" />
 
-            {/* Animated CPU Icon */}
+        {/* Central Hexagonal Core */}
+        <div className="relative w-[420px] h-[420px] mb-8">
+
+          {/* Core Hub */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
             <motion.div
               animate={{
-                rotate: [0, 360],
-                scale: [1, 1.1, 1]
-              }}
-              transition={{
-                rotate: { duration: 8, repeat: Infinity, ease: "linear" },
-                scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-              }}
-            >
-              <Cpu className="w-14 h-14 text-white drop-shadow-lg" />
-            </motion.div>
-
-            {/* Core Energy Particles */}
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-white rounded-full"
-                style={{
-                  left: '50%',
-                  top: '50%'
-                }}
-                animate={{
-                  x: [0, Math.cos(i * 60 * Math.PI / 180) * 40],
-                  y: [0, Math.sin(i * 60 * Math.PI / 180) * 40],
-                  opacity: [1, 0],
-                  scale: [1, 0]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 0.2,
-                  ease: "easeOut"
-                }}
-              />
-            ))}
-          </motion.div>
-
-          {/* Enhanced Multi-Layer Rotating Rings */}
-          <motion.div
-            className="absolute inset-0 w-36 h-36 -m-6 border-2 rounded-full"
-            style={{
-              borderImage: 'linear-gradient(45deg, #0607E1, transparent, #0607E1) 1',
-              borderStyle: 'solid'
-            }}
-            animate={{ rotate: -360 }}
-            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-          />
-
-          <motion.div
-            className="absolute inset-0 w-44 h-44 -m-10 border rounded-full"
-            style={{
-              borderImage: 'linear-gradient(90deg, #4D0AFF, transparent, #4D0AFF) 1',
-              borderStyle: 'solid'
-            }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-          />
-
-          <motion.div
-            className="absolute inset-0 w-52 h-52 -m-14 border rounded-full"
-            style={{
-              borderImage: 'linear-gradient(135deg, #06B6D4, transparent, #06B6D4) 1',
-              borderStyle: 'solid'
-            }}
-            animate={{
-              rotate: 360,
-              scale: [1, 1.05, 1]
-            }}
-            transition={{
-              rotate: { duration: 24, repeat: Infinity, ease: "linear" },
-              scale: { duration: 6, repeat: Infinity, ease: "easeInOut" }
-            }}
-          />
-
-          {/* Orbital Elements */}
-          <motion.div
-            className="absolute inset-0 w-60 h-60 -m-18"
-            variants={orbitalVariants}
-            animate="animate"
-          >
-            {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-2 h-2 bg-gradient-to-r from-[#0607E1] to-[#4D0AFF] rounded-full"
-                style={{
-                  left: '50%',
-                  top: '50%',
-                  transformOrigin: '0 0'
-                }}
-                animate={{
-                  rotate: [0, 360],
-                  x: Math.cos(i * 45 * Math.PI / 180) * 120,
-                  y: Math.sin(i * 45 * Math.PI / 180) * 120,
-                  scale: [1, 1.5, 1],
-                  opacity: [0.6, 1, 0.6]
-                }}
-                transition={{
-                  rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                  scale: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 },
-                  opacity: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }
-                }}
-              />
-            ))}
-          </motion.div>
-        </div>
-      </motion.div>
-
-      {/* Enhanced Technology Nodes */}
-      <motion.div
-        className="absolute inset-0"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {techNodes.map((node, index) => {
-          const IconComponent = node.icon;
-          const isActive = index === activeNode;
-          const categoryColors: Record<string, string> = {
-            ai: '#0607E1',
-            dev: '#10B981',
-            data: '#F59E0B',
-            infra: '#8B5CF6',
-            strategy: '#EF4444'
-          };
-
-          return (
-            <motion.div
-              key={index}
-              className="absolute"
-              style={{
-                left: `${node.position.x}%`,
-                top: `${node.position.y}%`,
-                transform: 'translate(-50%, -50%)'
-              }}
-              variants={nodeVariants}
-              whileHover={{
-                scale: 1.3,
-                z: 10,
-                transition: { type: "spring", stiffness: 300, damping: 20 }
-              }}
-              animate={isHovered ? {
-                x: (mousePosition.x - node.position.x) * 0.05,
-                y: (mousePosition.y - node.position.y) * 0.05
-              } : {}}
-            >
-              <motion.div
-                className={`relative p-4 rounded-2xl backdrop-blur-md border-2 shadow-xl transition-all duration-500 ${
-                  isActive
-                    ? 'bg-white/95 border-2 shadow-2xl scale-110'
-                    : 'bg-white/80 border-white/40'
-                }`}
-                style={{
-                  borderColor: isActive ? node.color : 'rgba(255,255,255,0.4)',
-                  boxShadow: isActive
-                    ? `0 0 30px ${node.color}40, 0 0 60px ${node.color}20`
-                    : '0 4px 20px rgba(0,0,0,0.1)'
-                }}
-                animate={isActive ? {
-                  scale: [1, 1.05, 1],
-                  boxShadow: [
-                    `0 0 20px ${node.color}30`,
-                    `0 0 40px ${node.color}60`,
-                    `0 0 20px ${node.color}30`
-                  ]
-                } : {}}
-                transition={{ duration: 2, repeat: isActive ? Infinity : 0 }}
-              >
-                {/* Category Indicator */}
-                <motion.div
-                  className="absolute -top-1 -right-1 w-3 h-3 rounded-full"
-                  style={{ backgroundColor: categoryColors[node.category] }}
-                  animate={isActive ? {
-                    scale: [1, 1.3, 1],
-                    opacity: [0.7, 1, 0.7]
-                  } : {}}
-                  transition={{ duration: 1.5, repeat: isActive ? Infinity : 0 }}
-                />
-
-                {/* Enhanced Icon with Animation */}
-                <motion.div
-                  animate={isActive ? {
-                    rotate: [0, 360],
-                    scale: [1, 1.1, 1]
-                  } : {}}
-                  transition={{
-                    rotate: { duration: 3, repeat: isActive ? Infinity : 0, ease: "linear" },
-                    scale: { duration: 2, repeat: isActive ? Infinity : 0, ease: "easeInOut" }
-                  }}
-                >
-                  <IconComponent
-                    className={`w-7 h-7 transition-all duration-300 ${
-                      isActive ? 'text-white drop-shadow-lg' : 'text-gray-700'
-                    }`}
-                    style={{
-                      color: isActive ? node.color : undefined,
-                      filter: isActive ? 'drop-shadow(0 0 8px rgba(255,255,255,0.8))' : undefined
-                    }}
-                  />
-                </motion.div>
-
-                {/* Enhanced Node Label */}
-                <AnimatePresence>
-                  {isActive && (
-                    <motion.div
-                      className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-sm font-semibold whitespace-nowrap px-3 py-1 rounded-full backdrop-blur-sm"
-                      style={{
-                        color: node.color,
-                        backgroundColor: `${node.color}20`,
-                        border: `1px solid ${node.color}40`
-                      }}
-                      initial={{ opacity: 0, y: -10, scale: 0.8 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -10, scale: 0.8 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                    >
-                      {node.label}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Particle Burst Effect */}
-                {isActive && (
-                  <div className="absolute inset-0 pointer-events-none">
-                    {[...Array(8)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className="absolute w-1 h-1 rounded-full"
-                        style={{
-                          backgroundColor: node.color,
-                          left: '50%',
-                          top: '50%'
-                        }}
-                        animate={{
-                          x: [0, Math.cos(i * 45 * Math.PI / 180) * 30],
-                          y: [0, Math.sin(i * 45 * Math.PI / 180) * 30],
-                          opacity: [1, 0],
-                          scale: [1, 0]
-                        }}
-                        transition={{
-                          duration: 1.5,
-                          repeat: Infinity,
-                          delay: i * 0.1,
-                          ease: "easeOut"
-                        }}
-                      />
-                    ))}
-                  </div>
-                )}
-              </motion.div>
-
-              {/* Enhanced Connection Lines to Center */}
-              {isActive && (
-                <motion.div
-                  className="absolute top-1/2 left-1/2 origin-left h-1 rounded-full"
-                  style={{
-                    background: `linear-gradient(to right, ${node.color}, transparent)`,
-                    width: `${Math.sqrt(Math.pow(50 - node.position.x, 2) + Math.pow(50 - node.position.y, 2)) * 5}px`,
-                    transform: `translate(-50%, -50%) rotate(${Math.atan2(50 - node.position.y, 50 - node.position.x) * 180 / Math.PI}deg)`,
-                    boxShadow: `0 0 10px ${node.color}60`
-                  }}
-                  initial={{ scaleX: 0, opacity: 0 }}
-                  animate={{
-                    scaleX: 1,
-                    opacity: [0, 1, 0.7],
-                    boxShadow: [
-                      `0 0 5px ${node.color}40`,
-                      `0 0 15px ${node.color}80`,
-                      `0 0 5px ${node.color}40`
-                    ]
-                  }}
-                  exit={{ scaleX: 0, opacity: 0 }}
-                  transition={{
-                    scaleX: { duration: 0.6, ease: "easeOut" },
-                    opacity: { duration: 0.8 },
-                    boxShadow: { duration: 2, repeat: Infinity }
-                  }}
-                />
-              )}
-
-              {/* Data Flow Particles along Connection */}
-              {isActive && (
-                <div className="absolute top-1/2 left-1/2 pointer-events-none">
-                  {[...Array(3)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute w-2 h-2 rounded-full"
-                      style={{
-                        backgroundColor: node.color,
-                        boxShadow: `0 0 8px ${node.color}`
-                      }}
-                      animate={{
-                        x: [
-                          -25,
-                          Math.cos(Math.atan2(50 - node.position.y, 50 - node.position.x)) * Math.sqrt(Math.pow(50 - node.position.x, 2) + Math.pow(50 - node.position.y, 2)) * 2.5
-                        ],
-                        y: [
-                          -25,
-                          Math.sin(Math.atan2(50 - node.position.y, 50 - node.position.x)) * Math.sqrt(Math.pow(50 - node.position.x, 2) + Math.pow(50 - node.position.y, 2)) * 2.5
-                        ],
-                        opacity: [0, 1, 0],
-                        scale: [0.5, 1, 0.5]
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        delay: i * 0.3,
-                        ease: "easeInOut"
-                      }}
-                    />
-                  ))}
-                </div>
-              )}
-            </motion.div>
-          );
-        })}
-      </motion.div>
-
-      {/* Enhanced Floating Data Particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {dataParticles.map((particle) => (
-          <motion.div
-            key={particle.id}
-            className="absolute rounded-full"
-            style={{
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-            }}
-            animate={{
-              x: [
-                `${particle.x}%`,
-                `${(particle.x + 25) % 100}%`,
-                `${(particle.x + 50) % 100}%`,
-                `${particle.x}%`
-              ],
-              y: [
-                `${particle.y}%`,
-                `${(particle.y + 20) % 100}%`,
-                `${(particle.y + 40) % 100}%`,
-                `${particle.y}%`
-              ],
-              opacity: [particle.opacity * 0.4, particle.opacity, particle.opacity * 0.4],
-              scale: particle.type === 'energy' ? [1, 1.5, 1] : [1, 1.2, 1],
-              rotate: particle.type === 'signal' ? [0, 360] : 0
-            }}
-            transition={{
-              duration: particle.speed * 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: particle.id * 0.1
-            }}
-          >
-            {/* Particle Core */}
-            <div
-              className="w-full h-full rounded-full"
-              style={{
-                background: particle.type === 'energy'
-                  ? `radial-gradient(circle, ${particle.color}, ${particle.color}80, transparent)`
-                  : particle.type === 'signal'
-                  ? `linear-gradient(45deg, ${particle.color}, transparent, ${particle.color})`
-                  : particle.color,
-                boxShadow: `0 0 ${particle.size * 2}px ${particle.color}60`
-              }}
-            />
-
-            {/* Particle Trail Effect */}
-            {particle.type === 'data' && (
-              <motion.div
-                className="absolute inset-0 rounded-full"
-                style={{
-                  background: `radial-gradient(circle, transparent 40%, ${particle.color}20 60%, transparent 80%)`,
-                }}
-                animate={{
-                  scale: [1, 2, 1],
-                  opacity: [0, 0.6, 0]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: particle.id * 0.2
-                }}
-              />
-            )}
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Enhanced Data Flow Streams */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute h-0.5 rounded-full"
-            style={{
-              background: `linear-gradient(to right, transparent, ${['#0607E1', '#4D0AFF', '#06B6D4', '#10B981'][i % 4]}80, transparent)`,
-              top: `${15 + i * 12}%`,
-              left: '-150%',
-              width: '300%',
-              boxShadow: `0 0 10px ${['#0607E1', '#4D0AFF', '#06B6D4', '#10B981'][i % 4]}40`
-            }}
-            animate={{
-              x: ['0%', '100%'],
-              opacity: [0, 1, 0]
-            }}
-            transition={{
-              duration: 6 + i * 1.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.4
-            }}
-          />
-        ))}
-
-        {/* Vertical Data Streams */}
-        {[...Array(4)].map((_, i) => (
-          <motion.div
-            key={`vertical-${i}`}
-            className="absolute w-0.5 rounded-full"
-            style={{
-              background: `linear-gradient(to bottom, transparent, ${['#0607E1', '#4D0AFF', '#06B6D4', '#10B981'][i]}60, transparent)`,
-              left: `${25 + i * 20}%`,
-              top: '-150%',
-              height: '300%',
-              boxShadow: `0 0 8px ${['#0607E1', '#4D0AFF', '#06B6D4', '#10B981'][i]}30`
-            }}
-            animate={{
-              y: ['0%', '100%'],
-              opacity: [0, 0.8, 0]
-            }}
-            transition={{
-              duration: 8 + i * 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.6
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Enhanced Digital Transformation Visualization */}
-      <motion.div
-        className="absolute top-6 left-6"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1, duration: 1 }}
-      >
-        <div className="flex items-center space-x-3 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-[#0607E1]/20">
-          <motion.div
-            className="w-3 h-3 bg-gradient-to-r from-[#0607E1] to-[#4D0AFF] rounded-full"
-            animate={{
-              scale: [1, 1.3, 1],
-              boxShadow: [
-                '0 0 5px rgba(6, 7, 225, 0.3)',
-                '0 0 15px rgba(6, 7, 225, 0.8)',
-                '0 0 5px rgba(6, 7, 225, 0.3)'
-              ]
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-          <span className="text-sm font-medium text-[#0607E1]">AI Processing</span>
-          <motion.div
-            className="flex space-x-1"
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            {[...Array(3)].map((_, i) => (
-              <div
-                key={i}
-                className="w-1 h-4 bg-gradient-to-t from-[#0607E1] to-[#06B6D4] rounded-full"
-                style={{ animationDelay: `${i * 0.2}s` }}
-              />
-            ))}
-          </motion.div>
-        </div>
-      </motion.div>
-
-
-
-      {/* Enhanced Quadrate Logo Integration */}
-      <motion.div
-        className="absolute bottom-6 right-6"
-        initial={{ opacity: 0, scale: 0, rotate: -45 }}
-        animate={{ opacity: 0.3, scale: 1, rotate: 0 }}
-        transition={{ delay: 2, duration: 1.5, ease: "easeOut" }}
-      >
-        <motion.div
-          className="relative w-20 h-20"
-          animate={{ rotate: [0, 360] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        >
-          <div className="w-full h-full border-3 border-[#0607E1]/40 transform rotate-45 flex items-center justify-center rounded-lg backdrop-blur-sm">
-            <motion.div
-              className="w-10 h-10 bg-gradient-to-br from-[#0607E1] to-[#4D0AFF] transform -rotate-45 rounded-md shadow-lg"
-              animate={{
-                scale: [1, 1.1, 1],
+                scale: [1, 1.02, 1],
                 boxShadow: [
-                  '0 0 10px rgba(6, 7, 225, 0.3)',
-                  '0 0 20px rgba(6, 7, 225, 0.6)',
-                  '0 0 10px rgba(6, 7, 225, 0.3)'
+                  `0 0 30px ${activeService.color}10`,
+                  `0 0 60px ${activeService.color}20`,
+                  `0 0 30px ${activeService.color}10`
                 ]
               }}
-              transition={{ duration: 3, repeat: Infinity }}
-            />
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="relative w-40 h-40 rounded-3xl flex items-center justify-center transition-all duration-700"
+              style={{
+                background: 'linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%)',
+                boxShadow: '0 20px 50px -12px rgba(0,0,0,0.15)'
+              }}
+            >
+              {/* Rotating Border Ring */}
+              <motion.div
+                className="absolute -inset-4 rounded-[2rem] border-2 border-dashed opacity-20"
+                style={{ borderColor: activeService.color }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 30, ease: "linear", repeat: Infinity }}
+              />
+
+              {/* Inner Ring */}
+              <motion.div
+                className="absolute -inset-8 rounded-[2.5rem] border opacity-10"
+                style={{ borderColor: activeService.color }}
+                animate={{ rotate: -360 }}
+                transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+              />
+
+              {/* QTS Brand Emblem */}
+              <div className="relative z-10 flex flex-col items-center justify-center">
+                <motion.div
+                  key={activeService.id}
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.4 }}
+                  className="p-3 rounded-2xl mb-1"
+                  style={{ background: `${activeService.color}15` }}
+                >
+                  <activeService.icon className="w-10 h-10" style={{ color: activeService.color }} />
+                </motion.div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                  QTS
+                </span>
+              </div>
+
+              {/* Connecting Beams to Satellites */}
+              {services.map((service, idx) => {
+                const isActive = idx === activeIndex;
+                return (
+                  <motion.div
+                    key={`beam-${service.id}`}
+                    className="absolute top-1/2 left-1/2 origin-left h-[2px] z-0 pointer-events-none"
+                    style={{
+                      width: '180px',
+                      background: isActive
+                        ? `linear-gradient(90deg, ${service.color}80, transparent)`
+                        : `linear-gradient(90deg, hsl(var(--border) / 0.3), transparent)`,
+                      transform: `rotate(${(idx * (360 / services.length)) - 90}deg)`,
+                      opacity: isActive ? 1 : 0.2,
+                      transition: 'opacity 0.5s ease, background 0.5s ease'
+                    }}
+                  >
+                    {isActive && (
+                      <motion.div
+                        className="absolute top-0 left-0 bottom-0 w-16 rounded-full blur-sm"
+                        style={{ background: service.color }}
+                        animate={{ x: [0, 180], opacity: [0.6, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
+                      />
+                    )}
+                  </motion.div>
+                );
+              })}
+            </motion.div>
           </div>
 
-          {/* Orbital Elements */}
-          {[...Array(4)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-[#0607E1] rounded-full"
-              style={{
-                left: '50%',
-                top: '50%',
-                transformOrigin: '0 0'
-              }}
-              animate={{
-                rotate: [0, 360],
-                x: Math.cos(i * 90 * Math.PI / 180) * 35,
-                y: Math.sin(i * 90 * Math.PI / 180) * 35
-              }}
-              transition={{
-                rotate: { duration: 15, repeat: Infinity, ease: "linear" },
-                delay: i * 0.5
-              }}
-            />
-          ))}
-        </motion.div>
-      </motion.div>
+          {/* Service Satellites */}
+          {services.map((service, index) => {
+            const isActive = index === activeIndex;
+            const radius = 180;
+            const pos = getPosition(index, services.length, radius);
 
+            return (
+              <motion.div
+                key={service.id}
+                className="absolute top-1/2 left-1/2 z-40"
+                style={{
+                  x: pos.x,
+                  y: pos.y
+                }}
+                animate={{
+                  scale: isActive ? 1.1 : 1
+                }}
+                transition={{ type: "spring", stiffness: 150, damping: 20 }}
+              >
+                <motion.button
+                  onClick={() => setActiveIndex(index)}
+                  onMouseEnter={() => {
+                    setIsHovering(true);
+                    setActiveIndex(index);
+                  }}
+                  onMouseLeave={() => setIsHovering(false)}
+                  className={`relative -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-2xl flex flex-col items-center justify-center transition-all duration-300 group ${isActive ? 'shadow-xl' : 'shadow-md hover:shadow-lg'}`}
+                  style={{
+                    background: isActive
+                      ? 'hsl(var(--card))'
+                      : 'hsl(var(--card) / 0.8)',
+                    backdropFilter: 'blur(8px)',
+                    border: `2px solid ${isActive ? service.color : 'hsl(var(--border))'}`,
+                    boxShadow: isActive
+                      ? `0 12px 30px -8px ${service.color}40`
+                      : undefined
+                  }}
+                >
+                  {/* Pulse Ring for Active */}
+                  {isActive && (
+                    <motion.div
+                      className="absolute -inset-2 rounded-2xl border-2"
+                      style={{ borderColor: `${service.color}30` }}
+                      animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0, 0.5] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                  )}
 
+                  <service.icon
+                    className="w-7 h-7 transition-all duration-300"
+                    style={{
+                      color: isActive ? service.color : 'hsl(var(--muted-foreground))'
+                    }}
+                  />
 
-      {/* Enhanced Ambient Glow Effects */}
-      <motion.div
-        className="absolute top-1/5 left-1/5 w-40 h-40 rounded-full blur-3xl pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(6, 7, 225, 0.15) 0%, rgba(6, 7, 225, 0.05) 50%, transparent 100%)'
-        }}
-        animate={{
-          scale: [1, 1.4, 1],
-          opacity: [0.4, 0.7, 0.4],
-          x: [0, 20, 0],
-          y: [0, -15, 0]
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+                  <span
+                    className={`text-[9px] font-bold uppercase tracking-wider mt-1 transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'}`}
+                    style={{ color: service.color }}
+                  >
+                    {service.id}
+                  </span>
+                </motion.button>
+              </motion.div>
+            );
+          })}
+        </div>
 
-      <motion.div
-        className="absolute bottom-1/5 right-1/5 w-48 h-48 rounded-full blur-3xl pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(77, 10, 255, 0.12) 0%, rgba(77, 10, 255, 0.04) 50%, transparent 100%)'
-        }}
-        animate={{
-          scale: [1.1, 0.9, 1.1],
-          opacity: [0.3, 0.6, 0.3],
-          x: [0, -25, 0],
-          y: [0, 20, 0]
-        }}
-        transition={{
-          duration: 7,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1.5
-        }}
-      />
+        {/* Active Service Detail Card */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeService.id}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 120, damping: 20 }}
+            className="absolute bottom-16 z-50 w-full max-w-lg px-4"
+          >
+            <div
+              className="bg-card/95 dark:bg-card/90 backdrop-blur-xl rounded-2xl p-6 border shadow-2xl overflow-hidden relative"
+              style={{ borderColor: `${activeService.color}20` }}
+            >
+              {/* Top Gradient Accent */}
+              <div
+                className="absolute top-0 left-0 right-0 h-1"
+                style={{ background: activeService.gradient }}
+              />
 
-      <motion.div
-        className="absolute top-1/2 right-1/6 w-36 h-36 rounded-full blur-3xl pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, rgba(6, 182, 212, 0.03) 50%, transparent 100%)'
-        }}
-        animate={{
-          scale: [0.8, 1.3, 0.8],
-          opacity: [0.2, 0.5, 0.2],
-          rotate: [0, 180, 360]
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2
-        }}
-      />
+              <div className="flex items-start justify-between mb-4 mt-1">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <h2 className="text-xl font-bold text-foreground">
+                      {activeService.title}
+                    </h2>
+                    <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
+                      {activeService.subtitle}
+                    </span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{activeService.description}</p>
+                </div>
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: `${activeService.color}10` }}
+                >
+                  <activeService.icon className="w-5 h-5" style={{ color: activeService.color }} />
+                </div>
+              </div>
 
-      <motion.div
-        className="absolute bottom-1/3 left-1/6 w-44 h-44 rounded-full blur-3xl pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.02) 50%, transparent 100%)'
-        }}
-        animate={{
-          scale: [1.2, 0.7, 1.2],
-          opacity: [0.25, 0.55, 0.25],
-          x: [0, 30, 0],
-          y: [0, -25, 0]
-        }}
-        transition={{
-          duration: 9,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 3
-        }}
-      />
+              {/* Features */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {activeService.features.map((feature, i) => (
+                  <motion.span
+                    key={feature}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: i * 0.08 }}
+                    className="text-xs font-medium px-3 py-1.5 rounded-lg bg-muted/50 text-foreground border border-border"
+                  >
+                    {feature}
+                  </motion.span>
+                ))}
+              </div>
 
-      {/* Interactive Mouse Glow */}
-      {isHovered && (
+              {/* CTA */}
+              <div className="flex items-center justify-between pt-3 border-t border-border">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-primary" />
+                  <span className="text-xs text-muted-foreground">Powered by Innovation</span>
+                </div>
+                <button
+                  className="text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-lg transition-all hover:brightness-110 active:scale-95 flex items-center gap-1.5 text-white"
+                  style={{
+                    background: activeService.gradient,
+                    boxShadow: `0 4px 12px 0 ${activeService.color}25`
+                  }}
+                >
+                  Explore
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Company Tagline */}
         <motion.div
-          className="absolute w-32 h-32 rounded-full blur-2xl pointer-events-none"
-          style={{
-            left: `${mousePosition.x}%`,
-            top: `${mousePosition.y}%`,
-            transform: 'translate(-50%, -50%)',
-            background: 'radial-gradient(circle, rgba(6, 7, 225, 0.2) 0%, rgba(77, 10, 255, 0.1) 50%, transparent 100%)'
-          }}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 0.6, scale: 1 }}
-          exit={{ opacity: 0, scale: 0 }}
-          transition={{ duration: 0.3 }}
-        />
-      )}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="absolute top-8 left-1/2 -translate-x-1/2 z-30"
+        >
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-card/80 backdrop-blur-sm border border-border shadow-sm">
+            <Zap className="w-4 h-4 text-primary" />
+            <span className="text-xs font-semibold text-foreground">Digital Transformation</span>
+            <span className="text-xs text-muted-foreground">•</span>
+            <span className="text-xs text-muted-foreground">AI-Powered Solutions</span>
+          </div>
+        </motion.div>
+
+      </motion.div>
     </div>
+  );
+};
+
+// --- Main Export: Responsive Hero Animation ---
+const HeroAnimation: React.FC = () => {
+  return (
+    <>
+      {/* Mobile View */}
+      <div className="block md:hidden">
+        <MobileHeroAnimation />
+      </div>
+
+      {/* Desktop View */}
+      <div className="hidden md:block">
+        <DesktopHeroAnimation />
+      </div>
+    </>
   );
 };
 

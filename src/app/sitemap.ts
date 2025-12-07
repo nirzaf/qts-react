@@ -1,10 +1,11 @@
 import { MetadataRoute } from 'next';
+import { getAllPosts } from '@/services/blogService';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://quadrate.lk';
 
     // 1. Static Routes
-    const routes = [
+    const staticRoutes = [
         '',
         '/about',
         '/services',
@@ -20,14 +21,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: route === '' ? 1 : 0.8,
     }));
 
-    // 2. Dynamic Blog Routes (Example - uncomment when blog posts are available)
-    // const posts = await getAllPosts();
-    // const blogRoutes = posts.map((post) => ({
-    //   url: `${baseUrl}/blog/${post.slug}`,
-    //   lastModified: new Date(post.updatedAt),
-    //   changeFrequency: 'weekly' as const,
-    //   priority: 0.6,
-    // }));
+    // 2. Dynamic Blog Routes
+    const posts = await getAllPosts();
+    const blogRoutes = posts.map((post) => ({
+        url: `${baseUrl}/blog/${post.slug}`,
+        lastModified: new Date(post.modifiedDate || post.pubDate),
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+    }));
 
-    return [...routes]; // Add ...blogRoutes when ready
+    return [...staticRoutes, ...blogRoutes];
 }
