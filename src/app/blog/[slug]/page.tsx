@@ -45,7 +45,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       title: post.title,
       description: post.description,
-      images: post.heroImage ? [{ url: post.heroImage, width: 1200, height: 630 }] : [],
       publishedTime: post.pubDate,
       modifiedTime: post.modifiedDate,
       authors: [post.author || 'Quadrate Tech Solutions'],
@@ -56,7 +55,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: 'summary_large_image',
       title: post.title,
       description: post.description,
-      images: post.heroImage ? [post.heroImage] : [],
     },
     alternates: {
       canonical: url,

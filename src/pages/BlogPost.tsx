@@ -8,17 +8,9 @@ import BlogPostHeader from '@/components/blog/BlogPostHeader';
 // import BlogPostImage from '@/components/blog/BlogPostImage';
 import BlogPostNotFound from '@/components/blog/BlogPostNotFound';
 import useBlogPost from '@/hooks/useBlogPost';
-import SEO from '@/components/seo/SEO';
-import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import OptimizedImage from '@/components/ui/OptimizedImage';
 import LazyLoad from '@/components/ui/LazyLoad';
-import {
-  generateBlogPostSchema,
-  generateOrganizationSchema,
-  generateBreadcrumbSchema,
-  defaultOrganization
-} from '@/utils/structuredData';
 
 // Lazy load heavy components
 const ReactMarkdown = lazy(() => import('react-markdown'));
@@ -96,57 +88,11 @@ const BlogPostPage: React.FC = () => {
     { name: post.title, url: `https://quadrate.lk${pathname}` }
   ];
 
-  // Generate structured data for the blog post
-  const organizationSchema = generateOrganizationSchema(defaultOrganization);
-
-  const blogPostSchema = generateBlogPostSchema({
-    title: post.title,
-    description: post.description,
-    url: `https://quadrate.lk/blog/${slug}`,
-    image: post.heroImage,
-    datePublished: post.pubDate,
-    dateModified: post.modifiedDate || post.pubDate,
-    author: {
-      name: post.author || 'Quadrate Tech Solutions',
-      url: 'https://quadrate.lk/about',
-      image: post.authorImage || 'https://ik.imagekit.io/quadrate/blogs/avatar.png',
-      jobTitle: 'Content Writer'
-    },
-    category: post.category,
-    tags: post.tags,
-    wordCount: wordCount,
-    articleSection: post.category
-  });
-
-  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems);
-
-  // Combine structured data
-  const structuredData = [
-    organizationSchema,
-    blogPostSchema,
-    breadcrumbSchema
-  ];
-
-  // Generate keywords from tags
-  const keywords = post.tags ? post.tags.join(', ') : '';
+  
 
   return (
     <BlogPostContainer>
-      <SEO
-        title={`${post.title} | Quadrate Tech Solutions Blog`}
-        description={post.description}
-        keywords={keywords}
-        image={post.heroImage}
-        article={true}
-        publishedTime={post.pubDate}
-        modifiedTime={post.modifiedDate || post.pubDate}
-        author={post.author || 'Quadrate Tech Solutions'}
-        category={post.category}
-        tags={post.tags}
-        language="en"
-        canonicalUrl={`https://quadrate.lk${pathname || ''}`}
-      />
-      <SchemaMarkup schema={structuredData} />
+      
 
       <Breadcrumbs
         customPaths={[

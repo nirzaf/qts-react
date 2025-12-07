@@ -1,11 +1,16 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { motion, useAnimation } from 'framer-motion';
 import ServiceTextStorm from './ServiceTextStorm';
-import QuadrateHoneycombAnimation from '../three/QuadrateHoneycombAnimation';
+const QuadrateHoneycombAnimation = dynamic(() => import('../three/QuadrateHoneycombAnimation'), {
+  ssr: false,
+  loading: () => <div className="invisible" />,
+});
 // Import the video file
 import heroBackgroundVideo from '../../assets/hero-bg.mp4';
+import posterImage from '../../assets/qts cpu.jpeg';
 
 // Animated particles for background
 const BackgroundParticles = () => {
@@ -140,25 +145,39 @@ export const HeroBackground: React.FC = () => {
 
   return (
     <div className="absolute inset-0 overflow-hidden z-0">
-      {/* Video Background */}
-      {isMounted && (
-        <div className="absolute inset-0 w-full h-full z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ filter: 'brightness(0.8) contrast(1.1)' }}
-          >
-            <source src={heroBackgroundVideo} type="video/mp4" />
-            {/* Fallback text for screen readers */}
-            Your browser does not support the video tag.
-          </video>
-          {/* White transparent overlay to ensure text readability */}
-          <div className="absolute inset-0 bg-white/50 backdrop-blur-sm z-10" />
-        </div>
-      )}
+      {/* Base background to avoid CLS during SSR */}
+      <div className="absolute inset-0 w-full h-full bg-[#0B0F1A]" />
+
+      {/* Video Background with poster for better LCP */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        {isMounted ? (
+          <>
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster={typeof posterImage === 'string' ? posterImage : undefined}
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ filter: 'brightness(0.8) contrast(1.1)' }}
+            >
+              <source src={heroBackgroundVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="absolute inset-0 bg-white/50 backdrop-blur-sm z-10" />
+          </>
+        ) : (
+          <>
+            <img
+              src={typeof posterImage === 'string' ? posterImage : ''}
+              alt="Hero background placeholder"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ filter: 'brightness(0.8) contrast(1.1)' }}
+            />
+            <div className="absolute inset-0 bg-white/50 backdrop-blur-sm z-10" />
+          </>
+        )}
+      </div>
 
       {/* Background Particles - reduced opacity */}
       {isMounted && <BackgroundParticles />}

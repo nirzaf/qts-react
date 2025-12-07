@@ -79,8 +79,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${chakra.variable} ${plusJakarta.variable}`} suppressHydrationWarning>
-      <body className="bg-background text-foreground font-sans antialiased" suppressHydrationWarning>
+    <html lang="en" className={`${chakra.variable} ${plusJakarta.variable}`}>
+      <body className="bg-background text-foreground font-sans antialiased">
         <AppProviders>
           <div className="flex min-h-screen flex-col">
             <Navigation />
