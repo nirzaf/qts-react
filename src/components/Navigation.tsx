@@ -40,6 +40,7 @@ export const Navigation: React.FC = () => {
                 width={150}
                 height={40}
                 priority
+                suppressHydrationWarning
                 className="h-10 w-auto brightness-[0.7] contrast-[1.4] [filter:saturate(1.2)_hue-rotate(-10deg)]"
               />
               <span className="font-bold text-lg">QTS</span>

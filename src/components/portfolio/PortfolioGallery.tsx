@@ -243,6 +243,7 @@ const PortfolioGallery: React.FC = () => {
                                 src={image.src}
                                 alt={image.alt}
                                 loading="lazy"
+                                suppressHydrationWarning
                                 onLoad={() => handleImageLoad(image.id)}
                                 className={`w-full h-auto object-cover transition-all duration-500 group-hover:scale-105 ${loadedImages.has(image.id) ? 'opacity-100' : 'opacity-0'
                                     }`}
