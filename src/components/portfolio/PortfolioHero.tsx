@@ -126,37 +126,39 @@ const PortfolioHero: React.FC = () => {
                     solutions that transform businesses into memorable brands.
                 </motion.p>
 
-                <motion.div
-                    variants={itemVariants}
-                    className="inline-flex flex-col items-center gap-4 px-8 py-6 rounded-3xl bg-card/80 backdrop-blur-xl border-2 border-border/50 shadow-2xl hover:shadow-primary/20 hover:border-primary/30 transition-all duration-300 group"
-                >
-                    <div className="transform group-hover:scale-110 transition-transform duration-300">
-                        <GraphyEmpireLogo size={90} />
-                    </div>
-                    <div className="text-center">
-                        <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider mb-1">
-                            In Partnership With
-                        </p>
-                        <p className="font-bold text-foreground text-xl mb-1">Graphy Empire</p>
-                        <p className="text-xs text-muted-foreground">Brand Identity Experts</p>
-                    </div>
-                </motion.div>
-
-                <motion.button
-                    variants={itemVariants}
-                    onClick={scrollToGallery}
-                    className="mt-12 inline-flex flex-col items-center gap-3 text-muted-foreground hover:text-primary transition-all duration-300 cursor-pointer group"
-                    aria-label="Scroll to gallery"
-                >
-                    <span className="text-sm font-semibold uppercase tracking-wider">Explore Our Work</span>
+                <div className="flex flex-col items-center gap-8">
                     <motion.div
-                        animate={{ y: [0, 10, 0] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                        className="p-2 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors"
+                        variants={itemVariants}
+                        className="inline-flex flex-col items-center gap-4 px-8 py-6 rounded-3xl bg-card/80 backdrop-blur-xl border-2 border-border/50 shadow-2xl hover:shadow-primary/20 hover:border-primary/30 transition-all duration-300 group"
                     >
-                        <ChevronDown className="w-6 h-6 group-hover:text-primary transition-colors" />
+                        <div className="transform group-hover:scale-110 transition-transform duration-300">
+                            <GraphyEmpireLogo size={90} />
+                        </div>
+                        <div className="text-center">
+                            <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider mb-1">
+                                In Partnership With
+                            </p>
+                            <p className="font-bold text-foreground text-xl mb-1">Graphy Empire</p>
+                            <p className="text-xs text-muted-foreground">Brand Identity Experts</p>
+                        </div>
                     </motion.div>
-                </motion.button>
+
+                    <motion.button
+                        variants={itemVariants}
+                        onClick={scrollToGallery}
+                        className="inline-flex flex-col items-center gap-3 text-muted-foreground hover:text-primary transition-all duration-300 cursor-pointer group"
+                        aria-label="Scroll to gallery"
+                    >
+                        <span className="text-sm font-semibold uppercase tracking-wider">Explore Our Work</span>
+                        <motion.div
+                            animate={{ y: [0, 10, 0] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                            className="p-2 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors"
+                        >
+                            <ChevronDown className="w-6 h-6 group-hover:text-primary transition-colors" />
+                        </motion.div>
+                    </motion.button>
+                </div>
             </motion.div>
         </section>
     );
