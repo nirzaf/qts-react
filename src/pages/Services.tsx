@@ -10,17 +10,17 @@ import BackgroundEffects from '@/features/services/components/BackgroundEffects'
 import HeroSection from '@/features/services/components/HeroSection';
 import ServiceCard from '@/features/services/components/ServiceCard';
 import CTASection from '@/features/services/components/CTASection';
-import SEO from '@/components/seo/SEO';
+
 import Loading from '@/components/ui/loading';
 
 // Lazy load AI Services section
 const AIServicesSection = lazy(() => import('@/components/sections/AIServicesSection'));
-import { 
-  generateOrganizationSchema, 
-  generateWebPageSchema, 
-  generateServiceSchema, 
+import {
+  generateOrganizationSchema,
+  generateWebPageSchema,
+  generateServiceSchema,
   generateBreadcrumbSchema,
-  defaultOrganization 
+  defaultOrganization
 } from '@/utils/structuredData';
 
 const ServicesPage: React.FC = () => {
@@ -34,7 +34,7 @@ const ServicesPage: React.FC = () => {
     { name: 'Home', url: 'https://quadrate.lk/' },
     { name: 'Services', url: pageUrl }
   ]);
-  
+
   // Generate structured data for the services page
   const organizationSchema = generateOrganizationSchema(defaultOrganization);
   const webPageSchema = generateWebPageSchema({
@@ -72,15 +72,16 @@ const ServicesPage: React.FC = () => {
 
   return (
     <PageLayout>
-      <SEO
-        title={pageTitle}
-        description={pageDescription}
-        keywords="artificial intelligence services, AI consulting, machine learning solutions, computer vision, natural language processing, generative AI, AI integration, MLOps, data engineering, custom software development, web development, digital marketing, IT outsourcing, business email, business process automation, IT services Sri Lanka, Zoho partner, Microsoft 365 solutions, AI strategy, AI readiness assessment, cloud AI implementation"
-        image={pageImage}
-        canonicalUrl={pageUrl}
-        structuredData={structuredData}
-      />
-      
+      {/* Structured Data */}
+      {structuredData.map((data, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+        />
+      ))}
+
+
       <div className="relative overflow-hidden min-h-screen">
         <BackgroundEffects />
 

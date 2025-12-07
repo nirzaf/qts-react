@@ -10,7 +10,7 @@ import LocationCards from '@/components/contact/LocationCards';
 import ContactPageLayout from '@/components/contact/ContactPageLayout';
 import ContactFormSubmission from '@/components/contact/ContactFormSubmission';
 import { contactMethods } from '@/data/contactData';
-import SEO from '@/components/seo/SEO';
+
 import { generateOrganizationSchema, generateWebPageSchema, generateLocalBusinessSchema, defaultOrganization } from '@/utils/structuredData';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -91,11 +91,10 @@ const Contact: FC = () => {
 
   return (
     <PageLayout>
-      <SEO
-        title="Contact Us | Quadrate Tech Solutions"
-        description="Get in touch with Quadrate Tech Solutions. Contact us for software development, web development, digital marketing, and IT services."
-        keywords="contact Quadrate, tech support, software development contact, web development inquiry, digital marketing services, IT consultation"
-        structuredData={structuredData}
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <ContactPageLayout>
         <motion.div

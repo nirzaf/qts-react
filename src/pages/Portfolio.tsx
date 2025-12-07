@@ -6,7 +6,7 @@ import PortfolioHero from '@/components/portfolio/PortfolioHero';
 import PortfolioGallery from '@/components/portfolio/PortfolioGallery';
 import GraphyEmpirePartner from '@/components/portfolio/GraphyEmpirePartner';
 import BrandIdentityServices from '@/components/portfolio/BrandIdentityServices';
-import SEO from '@/components/seo/SEO';
+
 import {
     generateWebPageSchema,
     generateBreadcrumbSchema,
@@ -46,14 +46,14 @@ const PortfolioPage: React.FC = () => {
 
     return (
         <>
-            <SEO
-                title={pageTitle}
-                description={pageDescription}
-                keywords="design portfolio, brand identity, logo design, Graphy Empire, visual identity, brand colors, typography, brand guidelines, creative design, Sri Lanka"
-                image={pageImage}
-                canonicalUrl={pageUrl}
-                structuredData={structuredData}
-            />
+            {/* Structured Data */}
+            {structuredData.map((data, index) => (
+                <script
+                    key={index}
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+                />
+            ))}
 
             {/* Hero Section */}
             <PortfolioHero />

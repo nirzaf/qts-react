@@ -8,7 +8,7 @@ import TimeUpModal from '../components/interview/TimeUpModal';
 import { interviewQuestions } from '../data/interviewQuestions';
 import { CandidateDetails, InterviewSession, PageState } from '../types/interview';
 import { createInterviewSession, updateInterviewSession } from '../services/supabaseService';
-import SEO from '../components/seo/SEO';
+
 
 const QUESTIONS_PER_PAGE = 5;
 const TIME_LIMIT_PER_PAGE = 600; // 10 minutes in seconds
@@ -303,10 +303,6 @@ const InterviewAssessment: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <SEO
-        title="Interview Assessment | Quadrate Tech Solutions"
-        description="Complete our technical interview assessment to showcase your software engineering skills."
-      />
 
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">

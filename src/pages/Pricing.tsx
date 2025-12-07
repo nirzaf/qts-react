@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import PageLayout from '@/layouts/PageLayout';
 import PricingGrid from '@/components/pricing/PricingGrid';
 import CustomSolutionCard from '@/components/pricing/CustomSolutionCard';
-import SEO from '@/components/seo/SEO';
+
 import { generateOrganizationSchema, generateWebPageSchema, defaultOrganization } from '@/utils/structuredData';
 import { pricingPlans } from '@/data/home-page/pricing';
 
@@ -70,11 +70,10 @@ const Pricing: React.FC = () => {
 
   return (
     <PageLayout>
-      <SEO
-        title="Pricing | Quadrate Tech Solutions"
-        description="Explore our transparent pricing plans for software development, web development, digital marketing, and IT services. Find the perfect plan for your business needs."
-        keywords="pricing plans, software development cost, web development packages, digital marketing pricing, IT services rates, affordable tech solutions"
-        structuredData={structuredData}
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <motion.div
         className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12"

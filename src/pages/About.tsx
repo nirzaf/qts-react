@@ -5,12 +5,12 @@ import PageLayout from '@/layouts/PageLayout';
 import { QuadrateAboutSection } from '@/components/about/QuadrateAboutSection';
 import { VisionMission } from '@/components/about/VisionMission';
 import { ExperienceSection } from '@/components/about/ExperienceSection';
-import SEO from '@/components/seo/SEO';
-import { 
-  generateOrganizationSchema, 
-  generateWebPageSchema, 
+
+import {
+  generateOrganizationSchema,
+  generateWebPageSchema,
   generateBreadcrumbSchema,
-  defaultOrganization 
+  defaultOrganization
 } from '@/utils/structuredData';
 
 const AboutPage: React.FC = () => {
@@ -18,7 +18,7 @@ const AboutPage: React.FC = () => {
   const pageDescription = "Learn about Quadrate Tech Solutions, our mission, values, and the expert team driving innovation in software development and IT services in Sri Lanka.";
   const pageUrl = "https://quadrate.lk/about";
   const pageImage = "https://ik.imagekit.io/quadrate/assets/img/about.jpg?updatedAt=1718024112686";
-  
+
   // Generate breadcrumb schema
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: 'https://quadrate.lk/' },
@@ -49,14 +49,14 @@ const AboutPage: React.FC = () => {
 
   return (
     <PageLayout>
-      <SEO
-        title={pageTitle}
-        description={pageDescription}
-        keywords="about Quadrate, tech company Sri Lanka, IT solutions mission, software development team, company vision, tech expertise, Sri Lanka software developers"
-        image={pageImage}
-        canonicalUrl={pageUrl}
-        structuredData={structuredData}
-      />
+      {/* Structured Data */}
+      {structuredData.map((data, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+        />
+      ))}
 
       <QuadrateAboutSection />
       <VisionMission />
