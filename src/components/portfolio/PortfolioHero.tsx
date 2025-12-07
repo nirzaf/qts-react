@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Palette, Sparkles } from 'lucide-react';
+import GraphyEmpireLogo from './GraphyEmpireLogo';
 
 const PortfolioHero: React.FC = () => {
     const containerVariants = {
@@ -133,17 +134,15 @@ const PortfolioHero: React.FC = () => {
                     solutions that transform businesses into memorable brands.
                 </motion.p>
 
-                {/* Partner Badge */}
+                {/* Partner Badge with Logo */}
                 <motion.div
                     variants={itemVariants}
-                    className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-card/50 backdrop-blur-md border border-border/50 shadow-lg"
+                    className="inline-flex items-center gap-4 px-6 py-4 rounded-2xl bg-card/50 backdrop-blur-md border border-border/50 shadow-lg"
                 >
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-white font-bold text-lg">
-                        G
-                    </div>
+                    <GraphyEmpireLogo size={60} />
                     <div className="text-left">
                         <p className="text-xs text-muted-foreground">In Partnership With</p>
-                        <p className="font-semibold text-foreground">Graphy Empire</p>
+                        <p className="font-semibold text-foreground text-lg">Graphy Empire</p>
                     </div>
                 </motion.div>
 

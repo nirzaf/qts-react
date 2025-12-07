@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, Award, Handshake, ArrowRight } from 'lucide-react';
+import GraphyEmpireLogo from './GraphyEmpireLogo';
 
 const GraphyEmpirePartner: React.FC = () => {
     const features = [
@@ -79,10 +80,10 @@ const GraphyEmpirePartner: React.FC = () => {
                                         </span>
                                     </motion.div>
 
-                                    <motion.div variants={itemVariants} className="flex items-center gap-4 mb-6">
+                                    <motion.div variants={itemVariants} className="flex items-center gap-6 mb-6">
                                         {/* Graphy Empire Logo */}
-                                        <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg shadow-primary/25">
-                                            <span className="text-3xl md:text-4xl font-bold text-white">G</span>
+                                        <div className="shrink-0">
+                                            <GraphyEmpireLogo size={100} />
                                         </div>
                                         <div>
                                             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
