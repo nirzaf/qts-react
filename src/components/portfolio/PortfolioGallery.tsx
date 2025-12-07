@@ -4,11 +4,8 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, ZoomIn, ImageOff } from 'lucide-react';
 
-// Generate portfolio image list from public/portfolio directory
 const generatePortfolioImages = () => {
     const images: { id: string; src: string; alt: string }[] = [];
-
-    // Known image files from the portfolio directory
     const imageFiles = [
         '10023.jpg', '10024.jpg', '10028.jpeg', '10029.jpeg', '10030.jpeg',
         '10031.jpeg', '10032.jpeg', '10033.jpeg', '10034.jpg', '10035.jpg',
@@ -200,26 +197,30 @@ const PortfolioGallery: React.FC = () => {
     };
 
     return (
-        <section id="portfolio-gallery" className="py-20 px-4 md:px-8">
+        <section id="portfolio-gallery" className="py-32 px-4 md:px-8 bg-gradient-to-b from-background to-muted/20">
             <div className="max-w-7xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
+                    className="text-center mb-20"
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-6">
+                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                        Portfolio Gallery
+                    </div>
+                    <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
                         Our Creative <span className="text-primary">Portfolio</span>
                     </h2>
-                    <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
                         A showcase of brand identities, logos, and design systems we&apos;ve crafted
                         for businesses across various industries.
                     </p>
                 </motion.div>
 
                 <motion.div
-                    className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4"
+                    className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6"
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
@@ -229,17 +230,18 @@ const PortfolioGallery: React.FC = () => {
                         <motion.div
                             key={image.id}
                             variants={itemVariants}
-                            className="break-inside-avoid group relative overflow-hidden rounded-xl bg-muted cursor-pointer"
+                            className="break-inside-avoid group relative overflow-hidden rounded-2xl bg-muted cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500"
                             onClick={() => !failedImages.has(image.id) && openLightbox(index)}
+                            whileHover={{ y: -8 }}
                         >
                             {!loadedImages.has(image.id) && !failedImages.has(image.id) && (
-                                <div className="absolute inset-0 bg-gradient-to-br from-muted to-muted-foreground/10 animate-pulse" />
+                                <div className="absolute inset-0 bg-gradient-to-br from-muted via-muted-foreground/5 to-muted animate-pulse" />
                             )}
 
                             {failedImages.has(image.id) ? (
                                 <div className="w-full aspect-square flex flex-col items-center justify-center bg-muted text-muted-foreground p-8">
-                                    <ImageOff className="w-12 h-12 mb-2" />
-                                    <p className="text-sm text-center">Image unavailable</p>
+                                    <ImageOff className="w-16 h-16 mb-3 opacity-50" />
+                                    <p className="text-sm text-center font-medium">Image unavailable</p>
                                 </div>
                             ) : (
                                 <>
@@ -250,18 +252,23 @@ const PortfolioGallery: React.FC = () => {
                                         suppressHydrationWarning
                                         onLoad={() => handleImageLoad(image.id)}
                                         onError={() => handleImageError(image.id)}
-                                        className={`w-full h-auto object-cover transition-all duration-500 group-hover:scale-105 ${loadedImages.has(image.id) ? 'opacity-100' : 'opacity-0'
+                                        className={`w-full h-auto object-cover transition-all duration-700 group-hover:scale-110 ${loadedImages.has(image.id) ? 'opacity-100' : 'opacity-0'
                                             }`}
                                     />
 
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
-                                        <div className="flex items-center gap-2 text-white text-sm font-medium">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-8">
+                                        <div className="flex items-center gap-3 text-white text-sm font-semibold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                                             <ZoomIn className="w-5 h-5" />
                                             <span>View Full Size</span>
                                         </div>
                                     </div>
 
-                                    <div className="absolute inset-0 rounded-xl ring-2 ring-primary/0 group-hover:ring-primary/50 transition-all duration-300 pointer-events-none" />
+                                    <div className="absolute inset-0 rounded-2xl ring-2 ring-primary/0 group-hover:ring-primary/60 transition-all duration-500 pointer-events-none" />
+
+                                    {/* Shine effect */}
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                                    </div>
                                 </>
                             )}
                         </motion.div>
@@ -270,16 +277,21 @@ const PortfolioGallery: React.FC = () => {
 
                 {visibleCount < portfolioImages.length && (
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-center mt-12"
+                        className="text-center mt-16"
                     >
                         <button
                             onClick={loadMore}
-                            className="px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors shadow-lg hover:shadow-primary/25"
+                            className="group px-10 py-5 rounded-full bg-primary text-primary-foreground font-bold text-lg hover:bg-primary/90 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-primary/30 hover:scale-105"
                         >
-                            Load More ({portfolioImages.length - visibleCount} remaining)
+                            <span className="flex items-center gap-3">
+                                Load More
+                                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary-foreground/20 text-sm">
+                                    {portfolioImages.length - visibleCount}
+                                </span>
+                            </span>
                         </button>
                     </motion.div>
                 )}
