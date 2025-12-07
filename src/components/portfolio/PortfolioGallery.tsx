@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useCallback, useMemo } from 'react';
+import NextImage from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, ZoomIn, ImageOff } from 'lucide-react';
 
@@ -245,11 +246,14 @@ const PortfolioGallery: React.FC = () => {
                                 </div>
                             ) : (
                                 <>
-                                    <img
+                                    <NextImage
                                         src={image.src}
                                         alt={image.alt}
-                                        loading="lazy"
-                                        suppressHydrationWarning
+                                        width={500}
+                                        height={500}
+                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                                        style={{ width: '100%', height: 'auto' }}
+                                        priority={index < 6}
                                         onLoad={() => handleImageLoad(image.id)}
                                         onError={() => handleImageError(image.id)}
                                         className={`w-full h-auto object-cover transition-all duration-700 group-hover:scale-110 ${loadedImages.has(image.id) ? 'opacity-100' : 'opacity-0'

@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 
 // --- Premium Kinetic Icons (Continuously Animating) ---
 
-const KineticLogoIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+const KineticLogoIcon: React.FC<{ className?: string }> = ({ className = 'w-14 h-14' }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
         <defs>
             <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" style={{ stopColor: 'currentColor', stopOpacity: 0.2 }} />
@@ -36,8 +36,8 @@ const KineticLogoIcon = () => (
     </svg>
 );
 
-const KineticTypeIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+const KineticTypeIcon: React.FC<{ className?: string }> = ({ className = 'w-14 h-14' }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
         <path d="M4 20h16" style={{ opacity: 0.3 }} />
         <path d="M12 4L6 20h12L12 4z" />
         <motion.line
@@ -52,8 +52,8 @@ const KineticTypeIcon = () => (
     </svg>
 );
 
-const KineticColorIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+const KineticColorIcon: React.FC<{ className?: string }> = ({ className = 'w-14 h-14' }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
         <motion.g animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} style={{ transformOrigin: "12px 12px" }}>
             <motion.circle cx="12" cy="7" r="4"
                 animate={{ scale: [1, 1.1, 1] }}
@@ -75,8 +75,8 @@ const KineticColorIcon = () => (
     </svg>
 );
 
-const KineticBookIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+const KineticBookIcon: React.FC<{ className?: string }> = ({ className = 'w-14 h-14' }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
         <rect x="4" y="4" width="16" height="16" rx="2" style={{ opacity: 0.3 }} />
         <motion.line x1="8" y1="8" x2="16" y2="8"
             animate={{ pathLength: [0.2, 1, 0.2], opacity: [0.3, 1, 0.3] }}
@@ -98,8 +98,8 @@ const KineticBookIcon = () => (
     </svg>
 );
 
-const KineticEyeIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+const KineticEyeIcon: React.FC<{ className?: string }> = ({ className = 'w-14 h-14' }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
         <motion.path
             d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"
             animate={{
@@ -124,8 +124,8 @@ const KineticEyeIcon = () => (
     </svg>
 );
 
-const KineticCompassIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+const KineticCompassIcon: React.FC<{ className?: string }> = ({ className = 'w-14 h-14' }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
         <circle cx="12" cy="12" r="10" style={{ opacity: 0.2 }} />
         <motion.circle cx="12" cy="12" r="10"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -141,8 +141,8 @@ const KineticCompassIcon = () => (
     </svg>
 );
 
-const KineticStackIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+const KineticStackIcon: React.FC<{ className?: string }> = ({ className = 'w-14 h-14' }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
         <motion.rect x="4" y="4" width="16" height="16" rx="2"
             style={{ opacity: 0.3, transformOrigin: "center" }}
             animate={{ rotate: [-5, 5, -5] }}
@@ -159,8 +159,8 @@ const KineticStackIcon = () => (
     </svg>
 );
 
-const KineticNodeIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+const KineticNodeIcon: React.FC<{ className?: string }> = ({ className = 'w-14 h-14' }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
         <circle cx="18" cy="5" r="3" />
         <circle cx="6" cy="12" r="3" />
         <circle cx="18" cy="19" r="3" />
@@ -265,7 +265,7 @@ const BrandIdentityServices: React.FC = () => {
                     className="text-center mb-16"
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border text-foreground text-sm font-medium mb-6 shadow-sm">
-                        <div className="w-5 h-5 text-primary"><KineticLogoIcon /></div>
+                        <div className="w-6 h-6 text-primary"><KineticLogoIcon className="w-6 h-6" /></div>
                         Brand Identity Services
                     </div>
                     <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">
@@ -293,10 +293,10 @@ const BrandIdentityServices: React.FC = () => {
                             <div className="h-full p-8 rounded-3xl bg-card border border-border shadow-sm hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-1 overflow-hidden relative">
                                 <div className={`absolute -right-10 -top-10 w-32 h-32 bg-gradient-to-br ${service.gradient} opacity-5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700`} />
 
-                                <div className={`w-16 h-16 rounded-2xl mb-6 bg-gradient-to-br ${service.gradient} p-0.5 shadow-lg group-hover:shadow-primary/20 transition-all duration-500`}>
+                                <div className={`w-20 h-20 rounded-2xl mb-6 mx-auto bg-gradient-to-br ${service.gradient} p-0.5 shadow-lg group-hover:shadow-primary/20 transition-all duration-500`}>
                                     <div className="w-full h-full bg-card rounded-[14px] flex items-center justify-center">
                                         <div className="text-foreground group-hover:text-primary transition-colors duration-500">
-                                            <service.icon />
+                                            <service.icon className="w-14 h-14" />
                                         </div>
                                     </div>
                                 </div>
