@@ -16,6 +16,7 @@ export const Navigation: React.FC = () => {
     { to: '/', label: 'Home' },
     { to: '/about', label: 'About' },
     { to: '/services', label: 'Services' },
+    { to: '/portfolio', label: 'Portfolio' },
     { to: '/pricing', label: 'Pricing' },
     { to: '/contact', label: 'Contact' },
   ];
