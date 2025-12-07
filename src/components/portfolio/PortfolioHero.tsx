@@ -59,7 +59,7 @@ const PortfolioHero: React.FC = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: "out" }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
                     className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md"
                 >
                     <Sparkles className="w-4 h-4 text-primary animate-pulse" />
@@ -72,7 +72,7 @@ const PortfolioHero: React.FC = () => {
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2, ease: "out" }}
+                    transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                     className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-8 leading-[0.9]"
                 >
                     <span className="block text-foreground drop-shadow-sm">
@@ -87,7 +87,7 @@ const PortfolioHero: React.FC = () => {
                 <motion.p
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4, ease: "out" }}
+                    transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                     className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed font-light"
                 >
                     Where innovation meets aesthetics. We craft immersive digital experiences that define the future of brand identity.
@@ -97,7 +97,7 @@ const PortfolioHero: React.FC = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6, ease: "out" }}
+                    transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
                     className="flex flex-col sm:flex-row items-center gap-6"
                 >
                     <button
