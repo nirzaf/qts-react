@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Cloud, Cpu, Users } from 'lucide-react';
+import { HyperspaceBackground } from '@/components/animations/HyperspaceBackground';
 
 export const QuadrateAboutSection: React.FC = () => {
   const features = [
@@ -27,8 +28,16 @@ export const QuadrateAboutSection: React.FC = () => {
   ];
 
   return (
-    <div className="container py-16">
-      <div className="grid lg:grid-cols-2 gap-12">
+    <div className="relative container py-16 overflow-hidden">
+      {/* Hyperspace Background - Subtle, non-distracting */}
+      <HyperspaceBackground
+        speed={0.7}
+        opacity={0.12}
+        interactiveBoost={false}
+        zIndex={0}
+      />
+
+      <div className="grid lg:grid-cols-2 gap-12 relative z-10">
         <div className="space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

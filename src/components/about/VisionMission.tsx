@@ -1,11 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Eye, Target } from 'lucide-react';
+import { HyperspaceBackground } from '@/components/animations/HyperspaceBackground';
 
 export const VisionMission: React.FC = () => {
   return (
-    <div className="container py-12">
-      <div className="grid md:grid-cols-2 gap-8">
+    <div className="relative container py-12 overflow-hidden">
+      {/* Hyperspace Background - Very subtle */}
+      <HyperspaceBackground
+        speed={0.6}
+        opacity={0.08}
+        interactiveBoost={false}
+        zIndex={0}
+      />
+      <div className="grid md:grid-cols-2 gap-8 relative z-10">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
