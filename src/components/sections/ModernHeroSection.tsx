@@ -84,6 +84,17 @@ export const ModernHeroSection = ({
         animate="visible"
         variants={containerVariants}
       >
+        {/* Mobile Warp background with lightweight settings */}
+        <WarpVoidBackground
+          variant="blue-purple"
+          speed={0.45}
+          opacity={0.32}
+          density="low"
+          mouseTracking={false}
+          zIndex={0}
+          className="pointer-events-none"
+        />
+
         {/* Mobile Background Effects */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
