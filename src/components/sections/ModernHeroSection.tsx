@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { ArrowRight, Play, Sparkles, Zap, Brain, Globe } from 'lucide-react';
-import HeroAnimation from '@/components/animations/HeroAnimation';
-import { WarpVoidBackground } from '@/components/animations/WarpVoidBackground';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+import { ArrowRight, Play, Sparkles, Zap, Brain, Globe } from "lucide-react";
+import HeroAnimation from "@/components/animations/HeroAnimation";
+import { WarpVoidBackground } from "@/components/animations/WarpVoidBackground";
 
 interface HeroSectionProps {
   primaryButton: {
@@ -27,7 +27,7 @@ export const ModernHeroSection = ({
     "Accelerate Business Growth",
     "Innovate with AI Solutions",
     "Scale Your Operations",
-    "Build the Future"
+    "Build the Future",
   ];
 
   useEffect(() => {
@@ -45,9 +45,9 @@ export const ModernHeroSection = ({
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.1
-      }
-    }
+        delayChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants: Variants = {
@@ -57,9 +57,9 @@ export const ModernHeroSection = ({
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.4, 0, 0.2, 1] as const
-      }
-    }
+        ease: [0.4, 0, 0.2, 1] as const,
+      },
+    },
   };
 
   const floatingVariants: Variants = {
@@ -68,9 +68,9 @@ export const ModernHeroSection = ({
       transition: {
         duration: 6,
         repeat: Infinity,
-        ease: [0.42, 0, 0.58, 1] as const
-      }
-    }
+        ease: [0.42, 0, 0.58, 1] as const,
+      },
+    },
   };
 
   return (
@@ -111,7 +111,7 @@ export const ModernHeroSection = ({
           </motion.div>
 
           {/* Compact Title */}
-          <motion.h1
+          <motion.h2
             className="text-2xl sm:text-3xl font-bold text-center leading-tight mb-2"
             variants={itemVariants}
           >
@@ -119,7 +119,7 @@ export const ModernHeroSection = ({
             <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">
               Build the Future
             </span>
-          </motion.h1>
+          </motion.h2>
 
           {/* Compact Description */}
           <motion.p
@@ -130,10 +130,7 @@ export const ModernHeroSection = ({
           </motion.p>
 
           {/* CTA Buttons - Compact */}
-          <motion.div
-            className="flex gap-3 mb-6"
-            variants={itemVariants}
-          >
+          <motion.div className="flex gap-3 mb-6" variants={itemVariants}>
             <button
               onClick={primaryButton.onClick}
               className="px-4 py-2 bg-primary text-primary-foreground font-semibold text-sm rounded-lg shadow-lg hover:brightness-110 transition-all flex items-center gap-1.5"
@@ -195,13 +192,16 @@ export const ModernHeroSection = ({
 
           {/* Grid Pattern */}
           <div className="absolute inset-0 opacity-[0.02]">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `
                 linear-gradient(rgba(6, 7, 225, 0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(6, 7, 225, 0.1) 1px, transparent 1px)
               `,
-              backgroundSize: '50px 50px'
-            }} />
+                backgroundSize: "50px 50px",
+              }}
+            />
           </div>
 
           {/* Floating Icons */}
@@ -275,8 +275,9 @@ export const ModernHeroSection = ({
                   className="text-lg text-foreground/60 max-w-xl"
                   variants={itemVariants}
                 >
-                  We're a team of passionate developers and AI specialists dedicated to
-                  creating innovative solutions that help businesses thrive in the digital age.
+                  We're a team of passionate developers and AI specialists
+                  dedicated to creating innovative solutions that help
+                  businesses thrive in the digital age.
                 </motion.p>
               </div>
 
@@ -365,26 +366,26 @@ export const ModernHeroSection = ({
                 className="absolute top-1/4 -right-12 w-16 h-16 bg-gradient-to-br from-[#06B6D4]/20 to-transparent rounded-full blur-2xl"
                 animate={{
                   scale: [1, 1.3, 1],
-                  opacity: [0.3, 0.7, 0.3]
+                  opacity: [0.3, 0.7, 0.3],
                 }}
                 transition={{
                   duration: 4,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: 2
+                  delay: 2,
                 }}
               />
               <motion.div
                 className="absolute bottom-1/3 -left-12 w-20 h-20 bg-gradient-to-br from-[#10B981]/20 to-transparent rounded-full blur-2xl"
                 animate={{
                   scale: [1.2, 0.8, 1.2],
-                  opacity: [0.2, 0.6, 0.2]
+                  opacity: [0.2, 0.6, 0.2],
                 }}
                 transition={{
                   duration: 5,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: 3
+                  delay: 3,
                 }}
               />
             </motion.div>
