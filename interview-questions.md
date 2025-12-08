@@ -1,12 +1,15 @@
 # Software Engineering Interview Questions
 
 ## Table of Contents
-1. [Software Development Lifecycle and Processes](#1-software-development-lifecycle-and-processes)
-2. [Data Structures and Algorithms](#2-data-structures-and-algorithms)
-3. [Software Design and Architecture](#3-software-design-and-architecture)
-4. [Software Testing and Quality Assurance](#4-software-testing-and-quality-assurance)
-5. [Version Control and Project Management](#5-version-control-and-project-management)
-6. [Answer Key](#answer-key)
+
+- [Software Engineering Interview Questions](#software-engineering-interview-questions)
+  - [Table of Contents](#table-of-contents)
+  - [1. Software Development Lifecycle and Processes](#1-software-development-lifecycle-and-processes)
+  - [2. Data Structures and Algorithms](#2-data-structures-and-algorithms)
+  - [3. Software Design and Architecture](#3-software-design-and-architecture)
+  - [4. Software Testing and Quality Assurance](#4-software-testing-and-quality-assurance)
+  - [5. Version Control and Project Management](#5-version-control-and-project-management)
+  - [Answer Key](#answer-key)
 
 ## 1. Software Development Lifecycle and Processes
 
