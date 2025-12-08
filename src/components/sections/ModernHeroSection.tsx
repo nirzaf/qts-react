@@ -77,7 +77,7 @@ export const ModernHeroSection = ({
     <>
       {/* ========== MOBILE HERO (< lg) ========== */}
       <motion.section
-        className="lg:hidden relative flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-background via-background to-muted dark:from-background dark:via-background dark:to-muted pt-24 pb-12 min-h-[calc(100vh-4rem)]"
+        className="lg:hidden relative flex flex-col items-center justify-start overflow-x-hidden bg-gradient-to-b from-background via-background to-muted dark:from-background dark:via-background dark:to-muted pt-24 pb-16 min-h-[calc(100vh-4rem)]"
         aria-label="Hero section"
         role="region"
         initial="hidden"
@@ -142,7 +142,7 @@ export const ModernHeroSection = ({
 
           {/* Mobile Hero Animation - Compact */}
           <motion.div
-            className="relative z-10 w-full max-w-sm h-48 sm:h-64"
+            className="relative z-10 w-full max-w-sm"
             variants={itemVariants}
           >
             <HeroAnimation />
