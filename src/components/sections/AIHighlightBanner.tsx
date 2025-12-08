@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Brain, Sparkles, ArrowRight, Zap, Bot, Eye } from 'lucide-react';
+import { WarpVoidBackground } from '@/components/animations/WarpVoidBackground';
 
 const AIHighlightBanner: React.FC = () => {
   const features = [
@@ -43,9 +44,19 @@ const AIHighlightBanner: React.FC = () => {
 
   return (
     <section className="relative py-16 bg-gradient-to-r from-[#0607E1] via-[#0607E1]/90 to-[#0607E1] overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/20 via-purple-600/10 to-indigo-600/20" />
+      {/* Warp Void Background - Premium immersive effect */}
+      <WarpVoidBackground
+        variant="blue-purple"
+        speed={1.0}
+        opacity={0.6}
+        density="medium"
+        mouseTracking={true}
+        zIndex={0}
+      />
+
+      {/* Background Effects - Layered on top */}
+      <div className="absolute inset-0 z-[1]">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/10 via-purple-600/5 to-indigo-600/10" />
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
       </div>

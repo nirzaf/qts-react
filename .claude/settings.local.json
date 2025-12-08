@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(git commit -m \"$(cat <<''EOF''\nfix(config): configure Next.js deployment for Vercel\n\n- Add standalone output mode to next.config.mjs for optimized builds\n- Explicitly set framework to nextjs in vercel.json\n- Fix build output directory configuration\n\nThis resolves the \"No Output Directory named 'dist' found\" error by\nproperly configuring Next.js deployment settings for Vercel.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(git push)"
+      "Bash(git push)",
+      "Bash(bun run build:*)"
     ],
     "deny": [],
     "ask": []

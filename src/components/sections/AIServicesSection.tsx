@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { ChevronRight, Sparkles } from 'lucide-react';
 import { getServicesByCategory, getAllCategories, getCategoryTitle, getCategoryDescription } from '@/data/aiServices';
+import { WarpVoidBackground } from '@/components/animations/WarpVoidBackground';
 
 const AIServicesSection: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<'strategy' | 'development' | 'integration' | 'data' | 'packaged'>('strategy');
@@ -38,8 +39,18 @@ const AIServicesSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-muted to-background" id="ai-services">
-      <div className="container mx-auto px-4">
+    <section className="relative py-20 bg-gradient-to-b from-muted to-background overflow-hidden" id="ai-services">
+      {/* Warp Void Background - Subtle AI atmosphere */}
+      <WarpVoidBackground
+        variant="blue-purple"
+        speed={0.6}
+        opacity={0.25}
+        density="low"
+        mouseTracking={false}
+        zIndex={0}
+      />
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <motion.div
           initial="hidden"

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { ArrowRight, Play, Sparkles, Zap, Brain, Globe } from 'lucide-react';
 import HeroAnimation from '@/components/animations/HeroAnimation';
+import { WarpVoidBackground } from '@/components/animations/WarpVoidBackground';
 
 interface HeroSectionProps {
   primaryButton: {
@@ -167,8 +168,18 @@ export const ModernHeroSection = ({
         animate="visible"
         variants={containerVariants}
       >
+        {/* Warp Void Background - Immersive depth effect */}
+        <WarpVoidBackground
+          variant="blue-purple"
+          speed={0.8}
+          opacity={0.4}
+          density="medium"
+          mouseTracking={true}
+          zIndex={0}
+        />
+
         {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden z-[1]">
           {/* Gradient Orbs */}
           <motion.div
             className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-[#0607E1]/20 to-[#4D0AFF]/10 rounded-full blur-3xl"
@@ -220,7 +231,7 @@ export const ModernHeroSection = ({
           </motion.div>
         </div>
 
-        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+        <div className="container relative z-20 px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
             {/* Text Content */}
             <motion.div

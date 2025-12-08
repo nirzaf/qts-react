@@ -8,6 +8,7 @@ import TimeUpModal from '../components/interview/TimeUpModal';
 import { interviewQuestions } from '../data/interviewQuestions';
 import { CandidateDetails, InterviewSession, PageState } from '../types/interview';
 import { createInterviewSession, updateInterviewSession } from '../services/supabaseService';
+import { WarpVoidBackground } from '@/components/animations/WarpVoidBackground';
 
 
 const QUESTIONS_PER_PAGE = 5;
@@ -302,9 +303,18 @@ const InterviewAssessment: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Warp Void Background - Subtle tech atmosphere for focus */}
+      <WarpVoidBackground
+        variant="minimal"
+        speed={0.5}
+        opacity={0.3}
+        density="low"
+        mouseTracking={false}
+        zIndex={0}
+      />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-10">
           <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
             Software Engineering Interview Assessment
