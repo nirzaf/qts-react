@@ -152,7 +152,7 @@ const GraphyEmpirePartner: React.FC = () => {
     ];
 
     return (
-        <section className="py-24 px-4 md:px-8 relative overflow-hidden bg-background text-foreground selection:bg-[#f43f5e]/30">
+        <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background text-foreground selection:bg-[#f43f5e]/30">
             {/* Ambient Background Elements */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#d946ef]/10 via-background to-background opacity-70" />
             <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
@@ -164,7 +164,7 @@ const GraphyEmpirePartner: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="group relative rounded-[3rem] border border-white/10 bg-card/30 backdrop-blur-2xl overflow-hidden shadow-2xl"
+                    className="group relative rounded-3xl md:rounded-[3rem] border border-white/10 bg-card/30 backdrop-blur-2xl overflow-hidden shadow-2xl"
                 >
                     {/* Spotlight Overlay */}
                     <motion.div
@@ -172,8 +172,8 @@ const GraphyEmpirePartner: React.FC = () => {
                         style={{ background: spotlight }}
                     />
 
-                    <div className="relative z-10 p-8 md:p-12 lg:p-20">
-                        <div className="grid lg:grid-cols-12 gap-16 items-center">
+                    <div className="relative z-10 p-6 sm:p-8 md:p-12 lg:p-16">
+                        <div className="grid lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-center">
 
                             {/* Left Column: Brand Identity (5 cols) */}
                             <div className="lg:col-span-5 flex flex-col items-start relative">
@@ -182,11 +182,11 @@ const GraphyEmpirePartner: React.FC = () => {
                                     initial={{ opacity: 0, x: -20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     transition={{ delay: 0.2 }}
-                                    className="mb-8 pl-1"
+                                    className="mb-6 sm:mb-8 pl-1"
                                 >
-                                    <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md shadow-sm ring-1 ring-white/5">
+                                    <div className="inline-flex items-center gap-2.5 sm:gap-3 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md shadow-sm ring-1 ring-white/5 whitespace-normal text-center">
                                         <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${BRAND_GRADIENT} shadow-[0_0_10px_#f43f5e]`} />
-                                        <span className={`text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground/80 ${montserrat.className}`}>
+                                        <span className={`text-[10px] sm:text-xs font-bold uppercase tracking-[0.08em] sm:tracking-[0.15em] text-muted-foreground/80 ${montserrat.className}`}>
                                             Official Design Partner
                                         </span>
                                     </div>
@@ -197,19 +197,19 @@ const GraphyEmpirePartner: React.FC = () => {
                                     <div className="absolute -left-20 -top-20 w-64 h-64 bg-[#d946ef]/20 rounded-full blur-[100px] opacity-50 pointer-events-none" />
 
                                     <motion.div
-                                        className="mb-8 inline-block"
+                                        className="mb-6 sm:mb-8 inline-block"
                                         whileHover={{ scale: 1.05 }}
                                         transition={{ type: "spring", stiffness: 300, damping: 20 }}
                                     >
-                                        <div className="p-4 rounded-3xl bg-gradient-to-br from-white/10 to-transparent border border-white/10 shadow-xl backdrop-blur-sm">
-                                            <GraphyEmpireLogo size={100} />
+                                        <div className="p-3 sm:p-4 rounded-3xl bg-gradient-to-br from-white/10 to-transparent border border-white/10 shadow-xl backdrop-blur-sm">
+                                            <GraphyEmpireLogo size={90} className="w-20 h-20 sm:w-24 sm:h-24" />
                                         </div>
                                     </motion.div>
 
-                                    <h2 className={`text-5xl md:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r ${BRAND_GRADIENT} mb-6 ${montserrat.className}`}>
+                                    <h2 className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-[1.1] text-transparent bg-clip-text bg-gradient-to-r ${BRAND_GRADIENT} mb-5 sm:mb-6 ${montserrat.className}`}>
                                         Graphy Empire.
                                     </h2>
-                                    <p className={`text-xl text-muted-foreground leading-relaxed max-w-md font-light ${montserrat.className}`}>
+                                    <p className={`text-base sm:text-lg text-muted-foreground leading-relaxed max-w-md font-light ${montserrat.className}`}>
                                         Forging identities that resonate. We partner with the masters of visual storytelling to elevate your brand to an art form.
                                     </p>
                                 </div>
@@ -218,7 +218,7 @@ const GraphyEmpirePartner: React.FC = () => {
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className={`relative overflow-hidden group/btn px-10 py-5 rounded-2xl bg-gradient-to-r ${BRAND_GRADIENT} text-white font-semibold text-lg shadow-lg hover:shadow-[#f43f5e]/25 transition-all ${montserrat.className}`}
+                                    className={`relative overflow-hidden group/btn px-8 sm:px-10 py-4 sm:py-5 rounded-2xl bg-gradient-to-r ${BRAND_GRADIENT} text-white font-semibold text-base sm:text-lg shadow-lg hover:shadow-[#f43f5e]/25 transition-all ${montserrat.className}`}
                                 >
                                     <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500 ease-out" />
                                     <span className="relative z-10 flex items-center gap-3">
@@ -229,32 +229,32 @@ const GraphyEmpirePartner: React.FC = () => {
                             </div>
 
                             {/* Right Column: Interactive Features Grid (7 cols) */}
-                            <div className="lg:col-span-7">
-                                <div className="grid gap-4">
+                            <div className="lg:col-span-7 w-full">
+                                <div className="grid gap-3 sm:gap-4">
                                     {features.map((feature, index) => (
                                         <motion.div
                                             key={feature.title}
                                             initial={{ opacity: 0, x: 20 }}
                                             whileInView={{ opacity: 1, x: 0 }}
                                             transition={{ delay: 0.2 + (index * 0.1) }}
-                                            className="group/card relative p-6 rounded-3xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/10 transition-all duration-500 overflow-hidden"
+                                            className="group/card relative p-5 sm:p-6 rounded-3xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/10 transition-all duration-500 overflow-hidden"
                                         >
                                             <div className={`absolute inset-0 bg-gradient-to-r ${BRAND_GRADIENT} opacity-0 group-hover/card:opacity-5 transition-opacity duration-500`} />
 
-                                            <div className="flex items-center gap-8 relative z-10">
+                                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 lg:gap-8 relative z-10">
                                                 {/* Icon Container with Glass Effect */}
-                                                <div className="shrink-0 w-24 h-24 rounded-2xl bg-gradient-to-br from-white/10 to-transparent border border-white/10 flex items-center justify-center shadow-inner relative overflow-hidden group-hover/card:scale-105 transition-transform duration-500">
+                                                <div className="shrink-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br from-white/10 to-transparent border border-white/10 flex items-center justify-center shadow-inner relative overflow-hidden group-hover/card:scale-105 transition-transform duration-500">
                                                     <div className={`absolute inset-0 bg-gradient-to-br ${BRAND_GRADIENT} opacity-0 group-hover/card:opacity-10 transition-opacity duration-500 blur-xl`} />
-                                                    <div className="w-12 h-12 text-foreground/90 relative z-10">
+                                                    <div className="w-10 h-10 sm:w-12 sm:h-12 text-foreground/90 relative z-10">
                                                         <feature.IconComponent />
                                                     </div>
                                                 </div>
 
                                                 <div className="flex-1">
-                                                    <h3 className={`text-2xl font-semibold text-foreground mb-2 group-hover/card:text-[#f43f5e] transition-colors duration-300 ${montserrat.className}`}>
+                                                    <h3 className={`text-xl sm:text-2xl font-semibold text-foreground mb-2 group-hover/card:text-[#f43f5e] transition-colors duration-300 text-left ${montserrat.className}`}>
                                                         {feature.title}
                                                     </h3>
-                                                    <p className={`text-muted-foreground group-hover/card:text-muted-foreground/80 transition-colors duration-300 leading-relaxed text-lg ${montserrat.className}`}>
+                                                    <p className={`text-muted-foreground group-hover/card:text-muted-foreground/80 transition-colors duration-300 leading-relaxed text-sm sm:text-base md:text-lg text-left ${montserrat.className}`}>
                                                         {feature.description}
                                                     </p>
                                                 </div>
