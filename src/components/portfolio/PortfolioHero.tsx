@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ChevronDown, Sparkles, Zap, Layers, MousePointer2 } from 'lucide-react';
+import { WarpVoidBackground } from '@/components/animations/WarpVoidBackground';
 
 const PortfolioHero: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -38,9 +39,20 @@ const PortfolioHero: React.FC = () => {
     return (
         <section
             ref={containerRef}
-            onMouseMove={handleMouseMove}
-            className="relative min-h-[110vh] flex items-center justify-center overflow-hidden bg-background perspective-1000"
-        >
+        onMouseMove={handleMouseMove}
+        className="relative min-h-[110vh] flex items-center justify-center overflow-hidden bg-background perspective-1000"
+    >
+            {/* WebGL backdrop tuned for design palette */}
+            <WarpVoidBackground
+                variant="fuchsia-amber"
+                speed={0.6}
+                opacity={0.32}
+                density="low"
+                mouseTracking={false}
+                zIndex={0}
+                className="pointer-events-none"
+            />
+
             {/* Dynamic Background Grid */}
             <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />

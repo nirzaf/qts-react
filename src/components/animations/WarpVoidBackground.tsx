@@ -15,7 +15,7 @@ interface WarpVoidBackgroundProps {
   /**
    * Color scheme variant
    */
-  variant?: 'default' | 'blue-purple' | 'cyan-green' | 'minimal';
+  variant?: 'default' | 'blue-purple' | 'cyan-green' | 'minimal' | 'fuchsia-amber';
   /**
    * Enable mouse tracking for camera tilt (default: true)
    */
@@ -184,6 +184,11 @@ export const WarpVoidBackground: React.FC<WarpVoidBackgroundProps> = ({
         darkPurple: new THREE.Vector3(0.0, 0.0, 0.05),
         nebulaBlue: new THREE.Vector3(0.05, 0.05, 0.15),
         coreGlow: new THREE.Vector3(0.15, 0.15, 0.3),
+      },
+      'fuchsia-amber': {
+        darkPurple: new THREE.Vector3(0.06, 0.0, 0.08), // deep base to let warm accents pop
+        nebulaBlue: new THREE.Vector3(0.85, 0.25, 0.6), // fuchsia/rose tunnel
+        coreGlow: new THREE.Vector3(1.0, 0.75, 0.25), // amber highlights
       },
     };
 
@@ -488,6 +493,7 @@ export const WarpVoidBackground: React.FC<WarpVoidBackgroundProps> = ({
       'blue-purple': 'from-[#0607E1]/10 via-purple-600/5 to-black',
       'cyan-green': 'from-cyan-500/10 via-green-500/5 to-black',
       minimal: 'from-gray-900/20 to-black',
+      'fuchsia-amber': 'from-[#d946ef]/15 via-[#f43f5e]/10 to-[#fbbf24]/10',
     };
 
     return (
