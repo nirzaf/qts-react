@@ -181,7 +181,7 @@ export const ModernHeroSection = ({
 
       {/* ========== DESKTOP HERO (>= lg) ========== */}
       <motion.section
-        className="lg:hidden relative min-h-screen flex flex-col items-center justify-start overflow-x-hidden bg-gradient-to-b from-background via-background to-muted dark:from-background dark:via-background dark:to-muted pb-4"
+        className="hidden lg:flex relative min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-muted dark:from-background dark:via-background dark:to-muted"
         aria-label="Hero section"
         role="region"
         initial="hidden"
