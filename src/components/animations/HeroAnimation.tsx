@@ -1,7 +1,13 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence, useSpring, useMotionValue, useTransform } from 'framer-motion';
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useSpring,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
 import {
   Brain,
   Code,
@@ -20,8 +26,8 @@ import {
   Target,
   TrendingUp,
   ChevronLeft,
-  ChevronRight
-} from 'lucide-react';
+  ChevronRight,
+} from "lucide-react";
 
 // --- Core Service Pillars representing QTS ---
 
@@ -38,71 +44,88 @@ interface ServicePillar {
 
 const services: ServicePillar[] = [
   {
-    id: 'ai',
-    title: 'AI Integration',
-    subtitle: 'Smart Solutions',
+    id: "ai",
+    title: "AI Integration",
+    subtitle: "Smart Solutions",
     icon: Brain,
-    color: '#0607E1',
-    gradient: 'linear-gradient(135deg, #0607E1 0%, #4338CA 100%)',
-    description: 'Transform your business with cutting-edge AI, ML & Computer Vision solutions.',
-    features: ['LLM & GPT Integration', 'Predictive Analytics', 'Computer Vision']
+    color: "#0607E1",
+    gradient: "linear-gradient(135deg, #0607E1 0%, #4338CA 100%)",
+    description:
+      "Transform your business with cutting-edge AI, ML & Computer Vision solutions.",
+    features: [
+      "LLM & GPT Integration",
+      "Predictive Analytics",
+      "Computer Vision",
+    ],
   },
   {
-    id: 'software',
-    title: 'Custom Software',
-    subtitle: 'Tailored Development',
+    id: "software",
+    title: "Custom Software",
+    subtitle: "Tailored Development",
     icon: Code,
-    color: '#22C55E',
-    gradient: 'linear-gradient(135deg, #4ADE80 0%, #22C55E 100%)',
-    description: 'Enterprise-grade applications built for scalability and performance.',
-    features: ['Cloud Native Apps', 'SaaS Platforms', 'API Development']
+    color: "#22C55E",
+    gradient: "linear-gradient(135deg, #4ADE80 0%, #22C55E 100%)",
+    description:
+      "Enterprise-grade applications built for scalability and performance.",
+    features: ["Cloud Native Apps", "SaaS Platforms", "API Development"],
   },
   {
-    id: 'web',
-    title: 'Web Solutions',
-    subtitle: 'Digital Excellence',
+    id: "web",
+    title: "Web Solutions",
+    subtitle: "Digital Excellence",
     icon: Globe,
-    color: '#0EA5E9',
-    gradient: 'linear-gradient(135deg, #38BDF8 0%, #0EA5E9 100%)',
-    description: 'Modern, responsive web experiences that convert visitors into customers.',
-    features: ['Next.js & React', 'E-Commerce', 'Progressive Web Apps']
+    color: "#0EA5E9",
+    gradient: "linear-gradient(135deg, #38BDF8 0%, #0EA5E9 100%)",
+    description:
+      "Modern, responsive web experiences that convert visitors into customers.",
+    features: ["Next.js & React", "E-Commerce", "Progressive Web Apps"],
   },
   {
-    id: 'automation',
-    title: 'Business Automation',
-    subtitle: 'Enhanced Efficiency',
+    id: "automation",
+    title: "Business Automation",
+    subtitle: "Enhanced Efficiency",
     icon: Settings,
-    color: '#8B5CF6',
-    gradient: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%)',
-    description: 'Streamline operations with intelligent workflow automation.',
-    features: ['Process Automation', 'API Integrations', 'Smart Workflows']
+    color: "#8B5CF6",
+    gradient: "linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%)",
+    description: "Streamline operations with intelligent workflow automation.",
+    features: ["Process Automation", "API Integrations", "Smart Workflows"],
   },
   {
-    id: 'marketing',
-    title: 'Digital Marketing',
-    subtitle: 'Growth Strategy',
+    id: "marketing",
+    title: "Digital Marketing",
+    subtitle: "Growth Strategy",
     icon: TrendingUp,
-    color: '#F59E0B',
-    gradient: 'linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%)',
-    description: 'Data-driven marketing strategies to accelerate your growth.',
-    features: ['SEO & SEM', 'Analytics', 'Brand Strategy']
+    color: "#F59E0B",
+    gradient: "linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%)",
+    description: "Data-driven marketing strategies to accelerate your growth.",
+    features: ["SEO & SEM", "Analytics", "Brand Strategy"],
   },
   {
-    id: 'cloud',
-    title: 'Cloud & DevOps',
-    subtitle: 'Scalable Infrastructure',
+    id: "cloud",
+    title: "Cloud & DevOps",
+    subtitle: "Scalable Infrastructure",
     icon: Cloud,
-    color: '#06B6D4',
-    gradient: 'linear-gradient(135deg, #22D3EE 0%, #06B6D4 100%)',
-    description: 'Reliable cloud infrastructure with modern DevOps practices.',
-    features: ['AWS & Azure', 'CI/CD Pipelines', 'Kubernetes']
-  }
+    color: "#06B6D4",
+    gradient: "linear-gradient(135deg, #22D3EE 0%, #06B6D4 100%)",
+    description: "Reliable cloud infrastructure with modern DevOps practices.",
+    features: ["AWS & Azure", "CI/CD Pipelines", "Kubernetes"],
+  },
 ];
 
 // --- Floating Tech Keywords ---
 const techKeywords = [
-  'React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'AI/ML',
-  'AWS', 'DevOps', 'Cloud', 'APIs', 'Microservices', 'Docker'
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Node.js",
+  "Python",
+  "AI/ML",
+  "AWS",
+  "DevOps",
+  "Cloud",
+  "APIs",
+  "Microservices",
+  "Docker",
 ];
 
 // --- Background Particle Network ---
@@ -112,11 +135,18 @@ const ParticleNetwork: React.FC = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     let animationFrameId: number;
-    let particles: Array<{ x: number; y: number; vx: number; vy: number; size: number; color: string }> = [];
+    let particles: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      color: string;
+    }> = [];
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -127,14 +157,21 @@ const ParticleNetwork: React.FC = () => {
       particles = [];
       const count = Math.floor(window.innerWidth / 50); // Less particles for performance
       for (let i = 0; i < count; i++) {
-        const colors = ['#0607E1', '#22C55E', '#0EA5E9', '#8B5CF6', '#F59E0B', '#06B6D4'];
+        const colors = [
+          "#0607E1",
+          "#22C55E",
+          "#0EA5E9",
+          "#8B5CF6",
+          "#F59E0B",
+          "#06B6D4",
+        ];
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           vx: (Math.random() - 0.5) * 0.1,
           vy: (Math.random() - 0.5) * 0.1,
           size: Math.random() * 2 + 0.5,
-          color: colors[Math.floor(Math.random() * colors.length)]
+          color: colors[Math.floor(Math.random() * colors.length)],
         });
       }
     };
@@ -174,18 +211,23 @@ const ParticleNetwork: React.FC = () => {
       animationFrameId = requestAnimationFrame(draw);
     };
 
-    window.addEventListener('resize', resize);
+    window.addEventListener("resize", resize);
     resize();
     initParticles();
     draw();
 
     return () => {
-      window.removeEventListener('resize', resize);
+      window.removeEventListener("resize", resize);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 z-0 pointer-events-none"
+    />
+  );
 };
 
 // --- Floating Keywords Component (Desktop Only) ---
@@ -214,7 +256,7 @@ const FloatingKeywords: React.FC = () => {
         const targetY1 = getStablePosition(i, 94.673);
         const targetX2 = getStablePosition(i, 67.542);
         const targetY2 = getStablePosition(i, 31.459);
-        const duration = 20 + (getStablePosition(i, 15.234) / 10);
+        const duration = 20 + getStablePosition(i, 15.234) / 10;
 
         return (
           <motion.div
@@ -223,18 +265,18 @@ const FloatingKeywords: React.FC = () => {
             initial={{
               x: `${initialX}%`,
               y: `${initialY}%`,
-              opacity: 0
+              opacity: 0,
             }}
             animate={{
               x: [`${targetX1}%`, `${targetX2}%`],
               y: [`${targetY1}%`, `${targetY2}%`],
-              opacity: [0, 0.6, 0]
+              opacity: [0, 0.6, 0],
             }}
             transition={{
               duration,
               repeat: Infinity,
               delay: i * 0.5,
-              ease: "linear"
+              ease: "linear",
             }}
           >
             {keyword}
@@ -246,7 +288,10 @@ const FloatingKeywords: React.FC = () => {
 };
 
 // --- Mobile Service Card Component ---
-const MobileServiceCard: React.FC<{ service: ServicePillar; isActive: boolean }> = ({ service, isActive }) => {
+const MobileServiceCard: React.FC<{
+  service: ServicePillar;
+  isActive: boolean;
+}> = ({ service, isActive }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -259,7 +304,10 @@ const MobileServiceCard: React.FC<{ service: ServicePillar; isActive: boolean }>
         style={{ borderColor: `${service.color}25` }}
       >
         {/* Gradient Accent */}
-        <div className="absolute top-0 left-0 right-0 h-1" style={{ background: service.gradient }} />
+        <div
+          className="absolute top-0 left-0 right-0 h-1"
+          style={{ background: service.gradient }}
+        />
 
         {/* Header */}
         <div className="flex items-center gap-3 mb-3 mt-1">
@@ -267,10 +315,15 @@ const MobileServiceCard: React.FC<{ service: ServicePillar; isActive: boolean }>
             className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
             style={{ background: `${service.color}15` }}
           >
-            <service.icon className="w-6 h-6" style={{ color: service.color }} />
+            <service.icon
+              className="w-6 h-6"
+              style={{ color: service.color }}
+            />
           </div>
           <div className="flex-1">
-            <h3 className="text-base font-bold text-foreground">{service.title}</h3>
+            <h3 className="text-base font-bold text-foreground">
+              {service.title}
+            </h3>
             <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
               {service.subtitle}
             </span>
@@ -278,7 +331,9 @@ const MobileServiceCard: React.FC<{ service: ServicePillar; isActive: boolean }>
         </div>
 
         {/* Description */}
-        <p className="text-sm text-muted-foreground mb-3">{service.description}</p>
+        <p className="text-sm text-muted-foreground mb-3">
+          {service.description}
+        </p>
 
         {/* Features */}
         <div className="flex flex-wrap gap-1.5 mb-3">
@@ -299,7 +354,9 @@ const MobileServiceCard: React.FC<{ service: ServicePillar; isActive: boolean }>
         <div className="flex items-center justify-between pt-3 border-t border-border">
           <div className="flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5 text-primary" />
-            <span className="text-[10px] text-muted-foreground">Innovation Powered</span>
+            <span className="text-[10px] text-muted-foreground">
+              Innovation Powered
+            </span>
           </div>
           <button
             className="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg flex items-center gap-1 text-white"
@@ -327,7 +384,8 @@ const MobileHeroAnimation: React.FC = () => {
   }, []);
 
   const goToNext = () => setActiveIndex((prev) => (prev + 1) % services.length);
-  const goToPrev = () => setActiveIndex((prev) => (prev - 1 + services.length) % services.length);
+  const goToPrev = () =>
+    setActiveIndex((prev) => (prev - 1 + services.length) % services.length);
 
   const activeService = services[activeIndex];
 
@@ -335,7 +393,8 @@ const MobileHeroAnimation: React.FC = () => {
     <div
       className="relative w-full min-h-[580px] overflow-hidden font-sans flex flex-col items-center justify-start pt-4 pb-6 px-4"
       style={{
-        background: 'radial-gradient(ellipse at 50% 0%, hsl(var(--background)) 0%, hsl(var(--muted) / 0.5) 100%)'
+        background:
+          "radial-gradient(ellipse at 50% 0%, hsl(var(--background)) 0%, hsl(var(--muted) / 0.5) 100%)",
       }}
     >
       {/* Simplified Background */}
@@ -344,7 +403,9 @@ const MobileHeroAnimation: React.FC = () => {
           animate={{ opacity: [0.05, 0.1, 0.05] }}
           transition={{ duration: 6, repeat: Infinity }}
           className="absolute top-[-10%] left-[-20%] w-[300px] h-[300px] rounded-full blur-[80px]"
-          style={{ background: `radial-gradient(circle, ${activeService.color}30 0%, transparent 70%)` }}
+          style={{
+            background: `radial-gradient(circle, ${activeService.color}30 0%, transparent 70%)`,
+          }}
         />
       </div>
 
@@ -356,7 +417,9 @@ const MobileHeroAnimation: React.FC = () => {
       >
         <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/80 backdrop-blur-sm border border-border shadow-sm">
           <Zap className="w-3 h-3 text-primary" />
-          <span className="text-[10px] font-semibold text-foreground">Digital Transformation</span>
+          <span className="text-[10px] font-semibold text-foreground">
+            Digital Transformation
+          </span>
         </div>
       </motion.div>
 
@@ -368,14 +431,15 @@ const MobileHeroAnimation: React.FC = () => {
             boxShadow: [
               `0 0 20px ${activeService.color}10`,
               `0 0 40px ${activeService.color}20`,
-              `0 0 20px ${activeService.color}10`
-            ]
+              `0 0 20px ${activeService.color}10`,
+            ],
           }}
           transition={{ duration: 3, repeat: Infinity }}
           className="w-20 h-20 rounded-2xl flex items-center justify-center"
           style={{
-            background: 'linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%)',
-            boxShadow: '0 12px 30px -8px rgba(0,0,0,0.12)'
+            background:
+              "linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%)",
+            boxShadow: "0 12px 30px -8px rgba(0,0,0,0.12)",
           }}
         >
           {/* Rotating Ring */}
@@ -394,7 +458,10 @@ const MobileHeroAnimation: React.FC = () => {
             className="p-2 rounded-xl"
             style={{ background: `${activeService.color}15` }}
           >
-            <activeService.icon className="w-8 h-8" style={{ color: activeService.color }} />
+            <activeService.icon
+              className="w-8 h-8"
+              style={{ color: activeService.color }}
+            />
           </motion.div>
         </motion.div>
       </div>
@@ -403,8 +470,8 @@ const MobileHeroAnimation: React.FC = () => {
       <div className="relative z-10 w-full mb-4">
         <div
           ref={scrollRef}
-          className="flex gap-2 overflow-x-auto pb-2 px-1 scrollbar-hide justify-center"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          className="flex gap-2 overflow-x-auto overflow-y-visible pb-2 pl-2 pr-2 scrollbar-hide justify-start min-h-[56px]"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {services.map((service, index) => {
             const isActive = index === activeIndex;
@@ -413,19 +480,26 @@ const MobileHeroAnimation: React.FC = () => {
                 key={service.id}
                 onClick={() => setActiveIndex(index)}
                 whileTap={{ scale: 0.95 }}
-                className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all duration-300 ${isActive ? 'shadow-lg' : 'shadow-sm'
-                  }`}
+                className={`flex-shrink-0 inline-flex items-center gap-2 px-4 py-3 rounded-2xl leading-none min-h-[48px] transition-all duration-300 ${
+                  isActive ? "shadow-lg" : "shadow-sm"
+                }`}
                 style={{
-                  background: isActive ? service.color : 'hsl(var(--card))',
-                  border: `1.5px solid ${isActive ? service.color : 'hsl(var(--border))'}`,
+                  background: isActive ? service.color : "hsl(var(--card))",
+                  border: `1.5px solid ${
+                    isActive ? service.color : "hsl(var(--border))"
+                  }`,
+                  overflow: "visible",
+                  minWidth: "max-content",
                 }}
               >
                 <service.icon
-                  className="w-4 h-4"
-                  style={{ color: isActive ? 'white' : service.color }}
+                  className="w-5 h-5 shrink-0 block"
+                  style={{ color: isActive ? "white" : service.color }}
                 />
                 <span
-                  className={`text-[11px] font-semibold ${isActive ? 'text-white' : 'text-foreground'}`}
+                  className={`text-[11px] font-semibold leading-none whitespace-nowrap ${
+                    isActive ? "text-white" : "text-foreground"
+                  }`}
                 >
                   {service.id.charAt(0).toUpperCase() + service.id.slice(1)}
                 </span>
@@ -456,7 +530,11 @@ const MobileHeroAnimation: React.FC = () => {
       {/* Active Service Card */}
       <div className="relative z-20 w-full max-w-sm">
         <AnimatePresence mode="wait">
-          <MobileServiceCard key={activeService.id} service={activeService} isActive={true} />
+          <MobileServiceCard
+            key={activeService.id}
+            service={activeService}
+            isActive={true}
+          />
         </AnimatePresence>
       </div>
 
@@ -466,10 +544,14 @@ const MobileHeroAnimation: React.FC = () => {
           <button
             key={index}
             onClick={() => setActiveIndex(index)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${index === activeIndex ? 'w-6' : 'w-1.5'
-              }`}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              index === activeIndex ? "w-6" : "w-1.5"
+            }`}
             style={{
-              background: index === activeIndex ? services[activeIndex].color : 'hsl(var(--border))'
+              background:
+                index === activeIndex
+                  ? services[activeIndex].color
+                  : "hsl(var(--border))",
             }}
           />
         ))}
@@ -493,14 +575,17 @@ const DesktopHeroAnimation: React.FC = () => {
   const springRotateX = useSpring(rotateX, springConfig);
   const springRotateY = useSpring(rotateY, springConfig);
 
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const xPct = (e.clientX - rect.left) / rect.width - 0.5;
-    const yPct = (e.clientY - rect.top) / rect.height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
-  }, [x, y]);
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const xPct = (e.clientX - rect.left) / rect.width - 0.5;
+      const yPct = (e.clientY - rect.top) / rect.height - 0.5;
+      x.set(xPct);
+      y.set(yPct);
+    },
+    [x, y]
+  );
 
   const handleMouseLeave = () => {
     x.set(0);
@@ -520,7 +605,7 @@ const DesktopHeroAnimation: React.FC = () => {
     const angle = (index * (360 / total) - 90) * (Math.PI / 180);
     return {
       x: Math.cos(angle) * radius,
-      y: Math.sin(angle) * radius
+      y: Math.sin(angle) * radius,
     };
   };
 
@@ -530,14 +615,14 @@ const DesktopHeroAnimation: React.FC = () => {
     <div
       className="relative w-full h-[700px] overflow-hidden font-sans flex items-center justify-center"
       style={{
-        perspective: '1000px',
-        background: 'radial-gradient(ellipse at 50% 30%, hsl(var(--background)) 0%, hsl(var(--muted) / 0.5) 100%)'
+        perspective: "1000px",
+        background:
+          "radial-gradient(ellipse at 50% 30%, hsl(var(--background)) 0%, hsl(var(--muted) / 0.5) 100%)",
       }}
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-
       {/* Background Layers */}
       <ParticleNetwork />
       <FloatingKeywords />
@@ -547,22 +632,39 @@ const DesktopHeroAnimation: React.FC = () => {
         className="absolute inset-0 z-0 opacity-[0.015] dark:opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px'
+          backgroundSize: "80px 80px",
         }}
       />
 
       {/* Ambient Glow Effects */}
       <motion.div
-        animate={{ y: [0, -30, 0], scale: [1, 1.05, 1], opacity: [0.06, 0.1, 0.06] }}
+        animate={{
+          y: [0, -30, 0],
+          scale: [1, 1.05, 1],
+          opacity: [0.06, 0.1, 0.06],
+        }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-[-15%] left-[-5%] w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none"
-        style={{ background: `radial-gradient(circle, ${activeService.color}20 0%, transparent 70%)` }}
+        style={{
+          background: `radial-gradient(circle, ${activeService.color}20 0%, transparent 70%)`,
+        }}
       />
       <motion.div
-        animate={{ y: [0, 40, 0], scale: [1, 1.08, 1], opacity: [0.04, 0.08, 0.04] }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+        animate={{
+          y: [0, 40, 0],
+          scale: [1, 1.08, 1],
+          opacity: [0.04, 0.08, 0.04],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1.5,
+        }}
         className="absolute bottom-[-15%] right-[-5%] w-[700px] h-[700px] rounded-full blur-[120px] pointer-events-none"
-        style={{ background: 'radial-gradient(circle, #06B6D4 0%, transparent 70%)' }}
+        style={{
+          background: "radial-gradient(circle, #06B6D4 0%, transparent 70%)",
+        }}
       />
 
       {/* Main 3D Container */}
@@ -571,13 +673,11 @@ const DesktopHeroAnimation: React.FC = () => {
         style={{
           rotateX: springRotateX,
           rotateY: springRotateY,
-          transformStyle: 'preserve-3d'
+          transformStyle: "preserve-3d",
         }}
       >
-
         {/* Central Hexagonal Core */}
         <div className="relative w-[420px] h-[420px] mb-8">
-
           {/* Core Hub */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
             <motion.div
@@ -586,14 +686,15 @@ const DesktopHeroAnimation: React.FC = () => {
                 boxShadow: [
                   `0 0 30px ${activeService.color}10`,
                   `0 0 60px ${activeService.color}20`,
-                  `0 0 30px ${activeService.color}10`
-                ]
+                  `0 0 30px ${activeService.color}10`,
+                ],
               }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               className="relative w-40 h-40 rounded-3xl flex items-center justify-center transition-all duration-700"
               style={{
-                background: 'linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%)',
-                boxShadow: '0 20px 50px -12px rgba(0,0,0,0.15)'
+                background:
+                  "linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%)",
+                boxShadow: "0 20px 50px -12px rgba(0,0,0,0.15)",
               }}
             >
               {/* Rotating Border Ring */}
@@ -622,7 +723,10 @@ const DesktopHeroAnimation: React.FC = () => {
                   className="p-3 rounded-2xl mb-1"
                   style={{ background: `${activeService.color}15` }}
                 >
-                  <activeService.icon className="w-10 h-10" style={{ color: activeService.color }} />
+                  <activeService.icon
+                    className="w-10 h-10"
+                    style={{ color: activeService.color }}
+                  />
                 </motion.div>
                 <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                   QTS
@@ -637,13 +741,15 @@ const DesktopHeroAnimation: React.FC = () => {
                     key={`beam-${service.id}`}
                     className="absolute top-1/2 left-1/2 origin-left h-[2px] z-0 pointer-events-none"
                     style={{
-                      width: '180px',
+                      width: "180px",
                       background: isActive
                         ? `linear-gradient(90deg, ${service.color}80, transparent)`
                         : `linear-gradient(90deg, hsl(var(--border) / 0.3), transparent)`,
-                      transform: `rotate(${(idx * (360 / services.length)) - 90}deg)`,
+                      transform: `rotate(${
+                        idx * (360 / services.length) - 90
+                      }deg)`,
                       opacity: isActive ? 1 : 0.2,
-                      transition: 'opacity 0.5s ease, background 0.5s ease'
+                      transition: "opacity 0.5s ease, background 0.5s ease",
                     }}
                   >
                     {isActive && (
@@ -651,7 +757,11 @@ const DesktopHeroAnimation: React.FC = () => {
                         className="absolute top-0 left-0 bottom-0 w-16 rounded-full blur-sm"
                         style={{ background: service.color }}
                         animate={{ x: [0, 180], opacity: [0.6, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: "easeOut",
+                        }}
                       />
                     )}
                   </motion.div>
@@ -672,10 +782,10 @@ const DesktopHeroAnimation: React.FC = () => {
                 className="absolute top-1/2 left-1/2 z-40"
                 style={{
                   x: pos.x,
-                  y: pos.y
+                  y: pos.y,
                 }}
                 animate={{
-                  scale: isActive ? 1.1 : 1
+                  scale: isActive ? 1.1 : 1,
                 }}
                 transition={{ type: "spring", stiffness: 150, damping: 20 }}
               >
@@ -686,16 +796,20 @@ const DesktopHeroAnimation: React.FC = () => {
                     setActiveIndex(index);
                   }}
                   onMouseLeave={() => setIsHovering(false)}
-                  className={`relative -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-2xl flex flex-col items-center justify-center transition-all duration-300 group ${isActive ? 'shadow-xl' : 'shadow-md hover:shadow-lg'}`}
+                  className={`relative -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-2xl flex flex-col items-center justify-center transition-all duration-300 group ${
+                    isActive ? "shadow-xl" : "shadow-md hover:shadow-lg"
+                  }`}
                   style={{
                     background: isActive
-                      ? 'hsl(var(--card))'
-                      : 'hsl(var(--card) / 0.8)',
-                    backdropFilter: 'blur(8px)',
-                    border: `2px solid ${isActive ? service.color : 'hsl(var(--border))'}`,
+                      ? "hsl(var(--card))"
+                      : "hsl(var(--card) / 0.8)",
+                    backdropFilter: "blur(8px)",
+                    border: `2px solid ${
+                      isActive ? service.color : "hsl(var(--border))"
+                    }`,
                     boxShadow: isActive
                       ? `0 12px 30px -8px ${service.color}40`
-                      : undefined
+                      : undefined,
                   }}
                 >
                   {/* Pulse Ring for Active */}
@@ -711,12 +825,18 @@ const DesktopHeroAnimation: React.FC = () => {
                   <service.icon
                     className="w-7 h-7 transition-all duration-300"
                     style={{
-                      color: isActive ? service.color : 'hsl(var(--muted-foreground))'
+                      color: isActive
+                        ? service.color
+                        : "hsl(var(--muted-foreground))",
                     }}
                   />
 
                   <span
-                    className={`text-[9px] font-bold uppercase tracking-wider mt-1 transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'}`}
+                    className={`text-[9px] font-bold uppercase tracking-wider mt-1 transition-all duration-300 ${
+                      isActive
+                        ? "opacity-100"
+                        : "opacity-0 group-hover:opacity-60"
+                    }`}
                     style={{ color: service.color }}
                   >
                     {service.id}
@@ -757,13 +877,18 @@ const DesktopHeroAnimation: React.FC = () => {
                       {activeService.subtitle}
                     </span>
                   </div>
-                  <p className="text-sm text-muted-foreground">{activeService.description}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {activeService.description}
+                  </p>
                 </div>
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
                   style={{ background: `${activeService.color}10` }}
                 >
-                  <activeService.icon className="w-5 h-5" style={{ color: activeService.color }} />
+                  <activeService.icon
+                    className="w-5 h-5"
+                    style={{ color: activeService.color }}
+                  />
                 </div>
               </div>
 
@@ -786,13 +911,15 @@ const DesktopHeroAnimation: React.FC = () => {
               <div className="flex items-center justify-between pt-3 border-t border-border">
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-primary" />
-                  <span className="text-xs text-muted-foreground">Powered by Innovation</span>
+                  <span className="text-xs text-muted-foreground">
+                    Powered by Innovation
+                  </span>
                 </div>
                 <button
                   className="text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-lg transition-all hover:brightness-110 active:scale-95 flex items-center gap-1.5 text-white"
                   style={{
                     background: activeService.gradient,
-                    boxShadow: `0 4px 12px 0 ${activeService.color}25`
+                    boxShadow: `0 4px 12px 0 ${activeService.color}25`,
                   }}
                 >
                   Explore
@@ -812,12 +939,15 @@ const DesktopHeroAnimation: React.FC = () => {
         >
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-card/80 backdrop-blur-sm border border-border shadow-sm">
             <Zap className="w-4 h-4 text-primary" />
-            <span className="text-xs font-semibold text-foreground">Digital Transformation</span>
+            <span className="text-xs font-semibold text-foreground">
+              Digital Transformation
+            </span>
             <span className="text-xs text-muted-foreground">•</span>
-            <span className="text-xs text-muted-foreground">AI-Powered Solutions</span>
+            <span className="text-xs text-muted-foreground">
+              AI-Powered Solutions
+            </span>
           </div>
         </motion.div>
-
       </motion.div>
     </div>
   );

@@ -77,7 +77,7 @@ export const ModernHeroSection = ({
     <>
       {/* ========== MOBILE HERO (< lg) ========== */}
       <motion.section
-        className="lg:hidden relative min-h-screen flex flex-col items-center justify-start overflow-hidden bg-gradient-to-b from-background via-background to-muted dark:from-background dark:via-background dark:to-muted"
+        className="lg:hidden relative flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-background via-background to-muted dark:from-background dark:via-background dark:to-muted pt-24 pb-12 min-h-[calc(100vh-4rem)]"
         aria-label="Hero section"
         role="region"
         initial="hidden"
@@ -96,7 +96,7 @@ export const ModernHeroSection = ({
         />
 
         {/* Mobile Background Effects */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
           <motion.div
             className="absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br from-primary/15 to-primary/5 rounded-full blur-3xl"
             variants={floatingVariants}
@@ -110,11 +110,11 @@ export const ModernHeroSection = ({
           />
         </div>
 
-        {/* Mobile Hero Content */}
-        <div className="relative z-10 w-full flex flex-col items-center pt-20 px-4">
+        {/* Mobile Hero Content - Centered vertically */}
+        <div className="relative z-10 w-full flex flex-col items-center justify-center px-4 space-y-4">
           {/* Badge */}
           <motion.div
-            className="inline-flex items-center px-3 py-1.5 bg-primary/10 rounded-full text-primary font-medium text-xs mb-4"
+            className="inline-flex items-center px-3 py-1.5 bg-primary/10 rounded-full text-primary font-medium text-xs"
             variants={itemVariants}
           >
             <Sparkles className="w-3 h-3 mr-1.5" />
@@ -122,49 +122,61 @@ export const ModernHeroSection = ({
           </motion.div>
 
           {/* Compact Title */}
-          <motion.h2
-            className="text-2xl sm:text-3xl font-bold text-center leading-tight mb-2"
+          <motion.h1
+            className="text-3xl sm:text-4xl font-bold text-center leading-tight px-2"
             variants={itemVariants}
           >
             <span className="text-foreground">We Help </span>
             <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">
               Build the Future
             </span>
-          </motion.h2>
+          </motion.h1>
 
           {/* Compact Description */}
           <motion.p
-            className="text-sm text-muted-foreground text-center max-w-xs mb-4"
+            className="text-base sm:text-lg text-muted-foreground text-center max-w-md px-4"
             variants={itemVariants}
           >
             Software, AI & Digital Transformation
           </motion.p>
 
-          {/* CTA Buttons - Compact */}
-          <motion.div className="flex gap-3 mb-6" variants={itemVariants}>
+          {/* Mobile Hero Animation - Compact */}
+          <motion.div
+            className="relative z-10 w-full max-w-sm h-48 sm:h-64"
+            variants={itemVariants}
+          >
+            <HeroAnimation />
+          </motion.div>
+
+          {/* CTA Buttons - Stacked on very small screens */}
+          <motion.div
+            className="flex flex-col xs:flex-row gap-3 w-full max-w-sm px-4"
+            variants={itemVariants}
+          >
             <button
               onClick={primaryButton.onClick}
-              className="px-4 py-2 bg-primary text-primary-foreground font-semibold text-sm rounded-lg shadow-lg hover:brightness-110 transition-all flex items-center gap-1.5"
+              className="w-full xs:w-auto flex-1 px-5 py-3 bg-primary text-primary-foreground font-semibold text-sm rounded-lg shadow-lg hover:brightness-110 transition-all flex items-center justify-center gap-2"
             >
               {primaryButton.text}
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-4 h-4" />
             </button>
             <button
               onClick={secondaryButton.onClick}
-              className="px-4 py-2 border border-border bg-card/50 text-foreground font-medium text-sm rounded-lg hover:bg-card transition-all"
+              className="w-full xs:w-auto flex-1 px-5 py-3 border border-border bg-card/50 text-foreground font-medium text-sm rounded-lg hover:bg-card transition-all"
             >
               {secondaryButton.text}
             </button>
           </motion.div>
-        </div>
 
-        {/* Mobile Hero Animation - Takes remaining space */}
-        <motion.div
-          className="relative z-10 w-full flex-1"
-          variants={itemVariants}
-        >
-          <HeroAnimation />
-        </motion.div>
+          {/* Digital Transformation Indicator */}
+          <motion.div
+            className="text-center text-xs text-muted-foreground/60 flex items-center gap-2"
+            variants={itemVariants}
+          >
+            <Zap className="w-3 h-3 text-primary" />
+            Digital Transformation
+          </motion.div>
+        </div>
       </motion.section>
 
       {/* ========== DESKTOP HERO (>= lg) ========== */}
