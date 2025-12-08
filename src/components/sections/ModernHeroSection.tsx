@@ -122,7 +122,7 @@ export const ModernHeroSection = ({
           </motion.div>
 
           {/* Compact Title */}
-          <motion.h1
+          <motion.h2
             className="text-3xl sm:text-4xl font-bold text-center leading-tight px-2"
             variants={itemVariants}
           >
@@ -130,7 +130,7 @@ export const ModernHeroSection = ({
             <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">
               Build the Future
             </span>
-          </motion.h1>
+          </motion.h2>
 
           {/* Compact Description */}
           <motion.p

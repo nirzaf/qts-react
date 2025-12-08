@@ -391,7 +391,7 @@ const MobileHeroAnimation: React.FC = () => {
 
   return (
     <div
-      className="relative w-full min-h-[580px] overflow-hidden font-sans flex flex-col items-center justify-start pt-4 pb-6 px-4"
+      className="relative w-full min-h-[580px] overflow-x-hidden font-sans flex flex-col items-center justify-start pt-4 pb-8 px-4"
       style={{
         background:
           "radial-gradient(ellipse at 50% 0%, hsl(var(--background)) 0%, hsl(var(--muted) / 0.5) 100%)",
