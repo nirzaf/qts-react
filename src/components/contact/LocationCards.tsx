@@ -28,7 +28,7 @@ const locations: Location[] = [
 const LocationCards: FC = () => {
   return (
     <div className="pb-0 -mb-16">
-      <h2 className="font-montserrat font-bold tracking-tight text-2xl md:text-3xl text-center mb-6">
+      <h2 className="font-montserrat font-bold tracking-tight text-2xl md:text-3xl text-center mb-6 dark:text-white dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]">
         Our Global Presence
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

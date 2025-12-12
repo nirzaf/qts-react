@@ -39,25 +39,25 @@ const ContactMethodCard = ({ method, isActive, onClick, index }: ContactMethodCa
       className="h-full"
     >
       <Card
-        className={`relative h-[280px] w-full p-8 cursor-pointer transition-all duration-300 flex flex-col ${
-          isActive 
-            ? 'border-[#0607E1] shadow-xl bg-[#0607E1]/5' 
-            : 'hover:shadow-lg hover:border-[#0607E1]/50'
+        className={`relative h-[280px] w-full p-8 cursor-pointer transition-all duration-300 flex flex-col dark:bg-gray-800 dark:border-white/20 ${
+          isActive
+            ? 'border-[#0607E1] dark:border-white shadow-xl bg-[#0607E1]/5 dark:bg-white/10'
+            : 'hover:shadow-lg hover:border-[#0607E1]/50 dark:hover:border-white/40'
         }`}
         onClick={onClick}
       >
-        <motion.div 
+        <motion.div
           className={`inline-flex p-4 rounded-xl ${
-            isActive ? 'bg-[#0607E1]/10' : method.color + ' bg-opacity-10'
+            isActive ? 'bg-[#0607E1]/10 dark:bg-white/20' : method.color + ' bg-opacity-10 dark:bg-white/10'
           }`}
-          whileHover={{ 
+          whileHover={{
             scale: 1.1,
             rotate: [0, -10, 10, -10, 0],
             transition: { duration: 0.5 }
           }}
         >
           <Icon className={`h-8 w-8 ${
-            isActive ? 'text-[#0607E1]' : method.color.replace('bg-', 'text-')
+            isActive ? 'text-[#0607E1] dark:text-white' : method.color.replace('bg-', 'text-') + ' dark:text-white/80'
           }`} />
         </motion.div>
         
@@ -71,17 +71,17 @@ const ContactMethodCard = ({ method, isActive, onClick, index }: ContactMethodCa
           }}
         >
           <div>
-            <h3 className="text-2xl font-semibold mb-3">{method.title}</h3>
-            <p className="text-muted-foreground text-lg leading-relaxed line-clamp-2">{method.description}</p>
+            <h3 className="text-2xl font-semibold mb-3 dark:text-white dark:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]">{method.title}</h3>
+            <p className="text-muted-foreground dark:text-white/70 text-lg leading-relaxed line-clamp-2 dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">{method.description}</p>
           </div>
 
           <motion.div
             className="self-end mt-4"
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            whileHover={{ 
+            whileHover={{
               x: 5,
-              transition: { 
+              transition: {
                 type: "spring",
                 stiffness: 400,
                 damping: 10
@@ -89,7 +89,7 @@ const ContactMethodCard = ({ method, isActive, onClick, index }: ContactMethodCa
             }}
           >
             <ArrowRight className={`h-6 w-6 ${
-              isActive ? 'text-[#0607E1]' : 'text-[#0607E1]/60'
+              isActive ? 'text-[#0607E1] dark:text-white' : 'text-[#0607E1]/60 dark:text-white/60'
             } transition-colors`} />
           </motion.div>
         </motion.div>

@@ -29,10 +29,10 @@ const LocationCard: FC<LocationCardProps> = ({ title, address, mapUrl, index }) 
         transition: { duration: 0.2 }
       }}
     >
-      <Card className="overflow-hidden h-full border border-[#0607E1]/10 hover:border-[#0607E1]/20 transition-colors duration-300">
+      <Card className="overflow-hidden h-full border border-[#0607E1]/10 dark:border-white/20 hover:border-[#0607E1]/20 dark:hover:border-white/30 transition-colors duration-300 dark:bg-gray-800">
         <div className="p-4">
-          <h3 className="text-xl font-semibold mb-2">{title}</h3>
-          <p className="text-[#000000]/70 mb-4">{address}</p>
+          <h3 className="text-xl font-semibold mb-2 dark:text-white dark:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]">{title}</h3>
+          <p className="text-[#000000]/70 dark:text-white/70 mb-4 dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">{address}</p>
         </div>
         <div className="h-[300px] relative">
           <Suspense fallback={
