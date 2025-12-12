@@ -35,6 +35,14 @@ export const QuadrateWaveBackground: React.FC<QuadrateWaveProps> = ({
     const container = containerRef.current;
     if (!container) return;
 
+    // Detect mobile device
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
+
+    // Adjust settings for mobile performance
+    const mobileDensity = Math.floor(density * 0.5); // Reduce cubes by 50% on mobile
+    const effectiveDensity = isMobile ? Math.min(mobileDensity, 25) : density;
+    const effectiveSpeed = isMobile ? speed * 0.7 : speed; // Slower on mobile for battery
+
     // Observer to pause when off-screen
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
@@ -63,12 +71,13 @@ export const QuadrateWaveBackground: React.FC<QuadrateWaveProps> = ({
     camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: !isMobile, // Disable antialiasing on mobile for performance
       alpha: true,
-      powerPreference: 'high-performance',
+      powerPreference: isMobile ? 'low-power' : 'high-performance',
     });
     renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // Limit pixel ratio on mobile to reduce pixel count
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
     container.appendChild(renderer.domElement);
 
     // --- INSTANCED MESH SETUP (High Performance) ---
@@ -87,7 +96,8 @@ export const QuadrateWaveBackground: React.FC<QuadrateWaveProps> = ({
         uColorPrimary: { value: cPrimary },
         uColorAccent: { value: cAccent },
         uHover: { value: new THREE.Vector2(0, 0) },
-        uSpeed: { value: speed },
+        uSpeed: { value: effectiveSpeed },
+        uOpacity: { value: isMobile ? 0.4 : 0.6 }, // Reduce opacity on mobile for less distraction
       },
       vertexShader: `
         uniform float uTime;
@@ -133,6 +143,7 @@ export const QuadrateWaveBackground: React.FC<QuadrateWaveProps> = ({
       fragmentShader: `
         uniform vec3 uColorPrimary;
         uniform vec3 uColorAccent;
+        uniform float uOpacity;
         varying float vHeight;
 
         void main() {
@@ -145,15 +156,16 @@ export const QuadrateWaveBackground: React.FC<QuadrateWaveProps> = ({
           // Add subtle rim lighting
           color += vec3(0.1);
 
-          gl_FragColor = vec4(color, 1.0);
+          gl_FragColor = vec4(color, uOpacity);
         }
       `,
       // Instanced meshes need this
       side: THREE.FrontSide,
+      transparent: true, // Enable transparency for opacity control
     });
 
     // Create the mesh
-    const count = density * density;
+    const count = effectiveDensity * effectiveDensity;
     const mesh = new THREE.InstancedMesh(geometry, material, count);
 
     // Fill attributes
@@ -162,10 +174,10 @@ export const QuadrateWaveBackground: React.FC<QuadrateWaveProps> = ({
     const randoms = new Float32Array(count);
 
     let i = 0;
-    const offset = (density * 1.5) / 2; // Center the grid
+    const offset = (effectiveDensity * 1.5) / 2; // Center the grid
 
-    for (let x = 0; x < density; x++) {
-      for (let z = 0; z < density; z++) {
+    for (let x = 0; x < effectiveDensity; x++) {
+      for (let z = 0; z < effectiveDensity; z++) {
         // Grid positioning
         const px = x * 1.5 - offset;
         const pz = z * 1.5 - offset;
@@ -192,6 +204,7 @@ export const QuadrateWaveBackground: React.FC<QuadrateWaveProps> = ({
     scene.add(mesh);
 
     // --- INTERACTION ---
+    // Only enable mouse interaction on desktop (not mobile/touch devices)
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
     const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
@@ -214,28 +227,65 @@ export const QuadrateWaveBackground: React.FC<QuadrateWaveProps> = ({
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    // Touch interaction for mobile (optional - using touch position)
+    const handleTouchMove = (event: TouchEvent) => {
+      if (event.touches.length === 0) return;
+      const touch = event.touches[0];
+
+      const rect = container.getBoundingClientRect();
+      const x = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
+      const y = -((touch.clientY - rect.top) / rect.height) * 2 + 1;
+
+      mouse.set(x, y);
+      raycaster.setFromCamera(mouse, camera);
+
+      const target = new THREE.Vector3();
+      raycaster.ray.intersectPlane(plane, target);
+
+      if (target) {
+        material.uniforms.uHover.value.set(target.x, target.z);
+      }
+    };
+
+    if (!isMobile) {
+      window.addEventListener('mousemove', handleMouseMove);
+    } else {
+      // On mobile, add passive touch listener for better scroll performance
+      window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    }
 
     // --- ANIMATION LOOP ---
     const clock = new THREE.Clock();
     let frameId = 0;
+    let lastFrameTime = 0;
+    // Target 30 FPS on mobile for better battery life, 60 FPS on desktop
+    const targetFPS = isMobile ? 30 : 60;
+    const frameInterval = 1000 / targetFPS;
 
-    const animate = () => {
+    const animate = (currentTime: number) => {
+      frameId = requestAnimationFrame(animate);
+
       if (!isVisible) {
-        frameId = requestAnimationFrame(animate);
         return;
       }
 
+      // Throttle frame rate on mobile
+      const elapsed = currentTime - lastFrameTime;
+      if (elapsed < frameInterval) {
+        return;
+      }
+      lastFrameTime = currentTime - (elapsed % frameInterval);
+
       material.uniforms.uTime.value = clock.getElapsedTime();
 
-      // Gentle rotation of the entire grid
-      mesh.rotation.y = Math.sin(clock.getElapsedTime() * 0.05) * 0.1;
+      // Gentle rotation of the entire grid (reduced on mobile)
+      const rotationAmount = isMobile ? 0.05 : 0.1;
+      mesh.rotation.y = Math.sin(clock.getElapsedTime() * 0.05) * rotationAmount;
 
       renderer.render(scene, camera);
-      frameId = requestAnimationFrame(animate);
     };
 
-    animate();
+    animate(0);
 
     // Resize handler
     const handleResize = () => {
@@ -257,10 +307,20 @@ export const QuadrateWaveBackground: React.FC<QuadrateWaveProps> = ({
     return () => {
       cancelAnimationFrame(frameId);
       observer.disconnect();
-      window.removeEventListener('mousemove', handleMouseMove);
+      if (!isMobile) {
+        window.removeEventListener('mousemove', handleMouseMove);
+      } else {
+        window.removeEventListener('touchmove', handleTouchMove);
+      }
       window.removeEventListener('resize', handleResize);
       renderer.dispose();
       geometry.dispose();
+      material.dispose();
+
+      // Remove canvas from DOM
+      if (container.contains(renderer.domElement)) {
+        container.removeChild(renderer.domElement);
+      }
     };
   }, [primaryColor, accentColor, speed, density, isVisible]);
 
@@ -268,7 +328,14 @@ export const QuadrateWaveBackground: React.FC<QuadrateWaveProps> = ({
     <div
       ref={containerRef}
       className={`absolute inset-0 z-0 ${className}`}
-      style={{ background: 'linear-gradient(to bottom, #000000, #0a0a20)' }}
+      style={{
+        background: 'linear-gradient(to bottom, #000000, #0a0a20)',
+        // Prevent touch events from interfering with UI elements
+        touchAction: 'pan-y',
+        // Ensure proper stacking - background should be behind content
+        isolation: 'isolate',
+      }}
+      aria-hidden="true" // Hide from screen readers as it's decorative
     />
   );
 };

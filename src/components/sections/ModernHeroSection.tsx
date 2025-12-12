@@ -114,7 +114,7 @@ export const ModernHeroSection = ({
         <div className="relative z-10 w-full flex flex-col items-center justify-center px-4 space-y-4">
           {/* Badge */}
           <motion.div
-            className="inline-flex items-center px-3 py-1.5 bg-primary/10 rounded-full text-primary font-medium text-xs"
+            className="inline-flex items-center px-3 py-1.5 bg-primary/10 dark:bg-white/10 rounded-full text-primary dark:text-white font-medium text-xs dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
             variants={itemVariants}
           >
             <Sparkles className="w-3 h-3 mr-1.5" />
@@ -126,15 +126,20 @@ export const ModernHeroSection = ({
             className="text-3xl sm:text-4xl font-bold text-center leading-tight px-2"
             variants={itemVariants}
           >
-            <span className="text-foreground">We Help </span>
-            <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">
+            <span className="text-foreground dark:text-white dark:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]">We Help </span>
+            <span
+              className="bg-gradient-to-r from-primary via-primary to-primary/80 dark:from-white dark:via-white dark:to-white/90 bg-clip-text text-transparent"
+              style={{
+                filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.4))'
+              }}
+            >
               Build the Future
             </span>
           </motion.h2>
 
           {/* Compact Description */}
           <motion.p
-            className="text-base sm:text-lg text-muted-foreground text-center max-w-md px-4"
+            className="text-base sm:text-lg text-muted-foreground dark:text-white/80 text-center max-w-md px-4 dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
             variants={itemVariants}
           >
             Software, AI & Digital Transformation
@@ -162,7 +167,7 @@ export const ModernHeroSection = ({
             </button>
             <button
               onClick={secondaryButton.onClick}
-              className="w-full xs:w-auto flex-1 px-5 py-3 border border-border bg-card/50 text-foreground font-medium text-sm rounded-lg hover:bg-card transition-all"
+              className="w-full xs:w-auto flex-1 px-5 py-3 border border-border dark:border-white/30 bg-card/50 dark:bg-white/5 text-foreground dark:text-white font-medium text-sm rounded-lg hover:bg-card dark:hover:bg-white/10 transition-all"
             >
               {secondaryButton.text}
             </button>
@@ -170,10 +175,10 @@ export const ModernHeroSection = ({
 
           {/* Digital Transformation Indicator */}
           <motion.div
-            className="text-center text-xs text-muted-foreground/60 flex items-center gap-2"
+            className="text-center text-xs text-muted-foreground/60 dark:text-white/50 flex items-center gap-2"
             variants={itemVariants}
           >
-            <Zap className="w-3 h-3 text-primary" />
+            <Zap className="w-3 h-3 text-primary dark:text-white" />
             Digital Transformation
           </motion.div>
         </div>
@@ -263,7 +268,7 @@ export const ModernHeroSection = ({
             >
               {/* Badge */}
               <motion.div
-                className="inline-flex items-center px-4 py-2 bg-[#0607E1]/10 rounded-full text-[#0607E1] font-medium text-sm"
+                className="inline-flex items-center px-4 py-2 bg-[#0607E1]/10 dark:bg-white/10 rounded-full text-[#0607E1] dark:text-white font-medium text-sm dark:drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]"
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
               >
@@ -277,7 +282,7 @@ export const ModernHeroSection = ({
                   className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight"
                   variants={itemVariants}
                 >
-                  <span className="text-foreground">We Help </span>
+                  <span className="text-foreground dark:text-white dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]">We Help </span>
                   <div className="relative inline-block">
                     <AnimatePresence mode="wait">
                       <motion.span
@@ -286,7 +291,10 @@ export const ModernHeroSection = ({
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.5 }}
-                        className="bg-gradient-to-r from-[#0607E1] via-[#4D0AFF] to-[#0607E1] bg-clip-text text-transparent"
+                        className="bg-gradient-to-r from-[#0607E1] via-[#4D0AFF] to-[#0607E1] dark:from-white dark:via-white dark:to-white/95 bg-clip-text text-transparent"
+                        style={{
+                          filter: 'drop-shadow(0 0 25px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 50px rgba(255, 255, 255, 0.5))'
+                        }}
                       >
                         {phrases[textIndex]}
                       </motion.span>
@@ -295,7 +303,7 @@ export const ModernHeroSection = ({
                 </motion.h1>
 
                 <motion.p
-                  className="text-lg text-foreground/60 max-w-xl"
+                  className="text-lg text-foreground/60 dark:text-white/70 max-w-xl dark:drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]"
                   variants={itemVariants}
                 >
                   We're a team of passionate developers and AI specialists
@@ -312,20 +320,20 @@ export const ModernHeroSection = ({
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="group px-8 py-4 bg-gradient-to-r from-[#0607E1] to-[#4D0AFF] text-white font-semibold rounded-2xl shadow-lg shadow-[#0607E1]/25 hover:shadow-xl hover:shadow-[#0607E1]/30 transition-all duration-300 flex items-center justify-center"
+                  className="group px-8 py-4 bg-gradient-to-r from-[#0607E1] to-[#4D0AFF] text-white font-semibold rounded-2xl shadow-lg shadow-[#0607E1]/25 hover:shadow-xl hover:shadow-[#0607E1]/30 transition-all duration-300 flex items-center justify-center dark:shadow-[#0607E1]/40 dark:hover:shadow-[#0607E1]/60"
                   onClick={primaryButton.onClick}
                 >
-                  <span>{primaryButton.text}</span>
+                  <span className="dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">{primaryButton.text}</span>
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </motion.button>
 
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="group px-8 py-4 border-2 border-foreground/20 text-foreground font-semibold rounded-2xl hover:border-[#0607E1]/50 hover:bg-[#0607E1]/5 transition-all duration-300 flex items-center justify-center"
+                  className="group px-8 py-4 border-2 border-foreground/20 dark:border-white/30 text-foreground dark:text-white font-semibold rounded-2xl hover:border-[#0607E1]/50 dark:hover:border-white/50 hover:bg-[#0607E1]/5 dark:hover:bg-white/10 transition-all duration-300 flex items-center justify-center dark:drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]"
                   onClick={secondaryButton.onClick}
                 >
-                  <Play className="w-5 h-5 mr-2 text-[#0607E1]" />
+                  <Play className="w-5 h-5 mr-2 text-[#0607E1] dark:text-white" />
                   <span>{secondaryButton.text}</span>
                 </motion.button>
               </motion.div>
@@ -336,24 +344,24 @@ export const ModernHeroSection = ({
                 variants={itemVariants}
               >
                 <motion.div
-                  className="flex items-center text-sm text-foreground/60"
+                  className="flex items-center text-sm text-foreground/60 dark:text-white/60 dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse dark:shadow-[0_0_8px_rgba(34,197,94,0.8)]"></div>
                   ISO Certified
                 </motion.div>
                 <motion.div
-                  className="flex items-center text-sm text-foreground/60"
+                  className="flex items-center text-sm text-foreground/60 dark:text-white/60 dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></div>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse dark:shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
                   Microsoft Partner
                 </motion.div>
                 <motion.div
-                  className="flex items-center text-sm text-foreground/60"
+                  className="flex items-center text-sm text-foreground/60 dark:text-white/60 dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="w-2 h-2 bg-purple-500 rounded-full mr-2 animate-pulse"></div>
+                  <div className="w-2 h-2 bg-purple-500 rounded-full mr-2 animate-pulse dark:shadow-[0_0_8px_rgba(168,85,247,0.8)]"></div>
                   AI Certified
                 </motion.div>
               </motion.div>
