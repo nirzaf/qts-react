@@ -46,12 +46,12 @@ export const QuadrateAboutSection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-6"
           >
-            <h2 className="text-2xl md:text-3xl font-montserrat font-bold">
+            <h1 className="text-2xl md:text-3xl font-montserrat font-bold">
               <span className="text-black dark:text-white">INNOVATIVE</span>{' '}
               <span className="text-black dark:text-white">
                 TECH SOLUTIONS
               </span>
-            </h2>
+            </h1>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
               At <span className="font-semibold text-[#0607E1] dark:text-white">Quadrate Tech Solutions</span>, 
               we are passionate about transforming businesses through cutting-edge technology.

@@ -122,20 +122,23 @@ export const ModernHeroSection = ({
           </motion.div>
 
           {/* Compact Title */}
-          <motion.h2
+          <motion.h1
             className="text-3xl sm:text-4xl font-bold text-center leading-tight px-2"
             variants={itemVariants}
           >
-            <span className="text-foreground dark:text-white dark:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]">We Help </span>
+            <span className="text-foreground dark:text-white dark:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]">
+              We Help{" "}
+            </span>
             <span
               className="bg-gradient-to-r from-primary via-primary to-primary/80 dark:from-white dark:via-white dark:to-white/90 bg-clip-text text-transparent"
               style={{
-                filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.4))'
+                filter:
+                  "drop-shadow(0 0 20px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.4))",
               }}
             >
               Build the Future
             </span>
-          </motion.h2>
+          </motion.h1>
 
           {/* Compact Description */}
           <motion.p
@@ -282,7 +285,9 @@ export const ModernHeroSection = ({
                   className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight"
                   variants={itemVariants}
                 >
-                  <span className="text-foreground dark:text-white dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]">We Help </span>
+                  <span className="text-foreground dark:text-white dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]">
+                    We Help{" "}
+                  </span>
                   <div className="relative inline-block">
                     <AnimatePresence mode="wait">
                       <motion.span
@@ -293,7 +298,8 @@ export const ModernHeroSection = ({
                         transition={{ duration: 0.5 }}
                         className="bg-gradient-to-r from-[#0607E1] via-[#4D0AFF] to-[#0607E1] dark:from-white dark:via-white dark:to-white/95 bg-clip-text text-transparent"
                         style={{
-                          filter: 'drop-shadow(0 0 25px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 50px rgba(255, 255, 255, 0.5))'
+                          filter:
+                            "drop-shadow(0 0 25px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 50px rgba(255, 255, 255, 0.5))",
                         }}
                       >
                         {phrases[textIndex]}
@@ -323,7 +329,9 @@ export const ModernHeroSection = ({
                   className="group px-8 py-4 bg-gradient-to-r from-[#0607E1] to-[#4D0AFF] text-white font-semibold rounded-2xl shadow-lg shadow-[#0607E1]/25 hover:shadow-xl hover:shadow-[#0607E1]/30 transition-all duration-300 flex items-center justify-center dark:shadow-[#0607E1]/40 dark:hover:shadow-[#0607E1]/60"
                   onClick={primaryButton.onClick}
                 >
-                  <span className="dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">{primaryButton.text}</span>
+                  <span className="dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
+                    {primaryButton.text}
+                  </span>
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </motion.button>
 
