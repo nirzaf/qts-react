@@ -48,13 +48,28 @@ const Contact: FC = () => {
         subject: `${formData.subject} (${domain})`
       };
 
-      if (!supabase) {
-        throw new Error('Supabase client is not configured.');
+      // Store in Supabase if configured
+      if (supabase) {
+        const { error } = await supabase.from('quadrate_contact_submissions').insert([formDataWithDomain]);
+        if (error) {
+          console.error('Supabase error:', error);
+          // Continue to send email even if Supabase fails
+        }
       }
 
-      const { error } = await supabase.from('quadrate_contact_submissions').insert([formDataWithDomain]);
+      // Send email notification via API
+      const emailResponse = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formDataWithDomain),
+      });
 
-      if (error) throw error;
+      if (!emailResponse.ok) {
+        const errorData = await emailResponse.json();
+        throw new Error(errorData.error || 'Failed to send email');
+      }
 
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
