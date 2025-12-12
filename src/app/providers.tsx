@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import { useEffect } from 'react';
 import { ThemeProvider } from 'next-themes';
 import A11yFeatures from '@/components/accessibility/A11yFeatures';
-// import HubSpotChat from '@/components/chat/HubSpotChat';
+import WhatsAppChat from '@/components/chat/WhatsAppChat';
 import WebVitalsReporter from '@/components/performance/WebVitalsReporter';
 import SEOAudit from '@/components/seo/SEOAudit';
 import { Toaster } from '@/components/ui/toaster';
@@ -32,7 +32,12 @@ export function AppProviders({ children }: ProvidersProps) {
       <A11yFeatures mainContentId="main-content" />
       {children}
       <Toaster />
-      {/* <HubSpotChat /> // HubSpot chat intentionally disabled */}
+      <WhatsAppChat
+        phoneNumber="97433253203"
+        message="Hello! I would like to know more about your services."
+        position="bottom-right"
+        showDelay={3000}
+      />
       <SEOAudit showInProduction={false} />
     </ThemeProvider>
   );
