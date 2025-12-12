@@ -37,7 +37,7 @@ const stats = [
 
 export const ExperienceSection: React.FC = () => {
   return (
-    <section className="py-16 bg-gradient-to-br from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF]">
+    <section className="py-16 bg-gradient-to-br from-[#FFFFFF] via-[#0607E1]/5 to-[#FFFFFF] dark:from-[#050505] dark:via-[#0a0a0a] dark:to-[#050505]">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -46,10 +46,10 @@ export const ExperienceSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold text-[#000000] mb-4">
+          <h2 className="text-3xl font-bold text-[#000000] dark:text-white mb-4">
             Our Experience
           </h2>
-          <p className="text-lg text-[#000000]/70 max-w-2xl mx-auto">
+          <p className="text-lg text-[#000000]/70 dark:text-white/80 max-w-2xl mx-auto">
             Years of dedication and commitment to delivering exceptional software solutions
           </p>
         </motion.div>
@@ -65,18 +65,18 @@ export const ExperienceSection: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="h-full p-6 text-center hover:shadow-lg transition-shadow duration-300 bg-white/80 backdrop-blur-sm border-black/5">
+                <Card className="h-full p-6 text-center hover:shadow-lg transition-shadow duration-300 bg-white/80 dark:bg-[#0f0f0f]/90 backdrop-blur-sm border-black/5 dark:border-white/10">
                   <div className="flex flex-col h-full">
                     <div className="flex justify-center mb-4">
-                      <Icon className="w-8 h-8 text-[#0607E1]" />
+                      <Icon className="w-8 h-8 text-[#0607E1] dark:text-white" />
                     </div>
-                    <div className="text-3xl font-bold text-[#000000] mb-2">
+                    <div className="text-3xl font-bold text-[#000000] dark:text-white mb-2">
                       {stat.number}
                     </div>
-                    <div className="text-lg font-semibold text-[#000000] mb-2">
+                    <div className="text-lg font-semibold text-[#000000] dark:text-white mb-2">
                       {stat.label}
                     </div>
-                    <p className="text-sm text-[#000000]/70 mt-auto">
+                    <p className="text-sm text-[#000000]/70 dark:text-white/70 mt-auto">
                       {stat.description}
                     </p>
                   </div>

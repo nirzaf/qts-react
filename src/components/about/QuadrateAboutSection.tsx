@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Cloud, Cpu, Users } from 'lucide-react';
@@ -45,13 +47,13 @@ export const QuadrateAboutSection: React.FC = () => {
             className="space-y-6"
           >
             <h2 className="text-2xl md:text-3xl font-montserrat font-bold">
-              <span className="text-black">INNOVATIVE</span>{' '}
-              <span className="text-black">
+              <span className="text-black dark:text-white">INNOVATIVE</span>{' '}
+              <span className="text-black dark:text-white">
                 TECH SOLUTIONS
               </span>
             </h2>
-            <p className="text-gray-600 leading-relaxed text-lg">
-              At <span className="font-semibold text-[#0607E1]">Quadrate Tech Solutions</span>, 
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+              At <span className="font-semibold text-[#0607E1] dark:text-white">Quadrate Tech Solutions</span>, 
               we are passionate about transforming businesses through cutting-edge technology.
             </p>
           </motion.div>
@@ -60,7 +62,7 @@ export const QuadrateAboutSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="prose prose-lg text-gray-600"
+            className="prose prose-lg text-gray-600 dark:text-gray-300"
           >
             <p>
               As a leading software development company, we specialize in creating 
@@ -82,11 +84,11 @@ export const QuadrateAboutSection: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 + index * 0.1 }}
-                  className="p-4 rounded-lg bg-white shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                  className="p-4 rounded-lg bg-white dark:bg-[#0f0f0f] shadow-sm dark:shadow-lg/20 border border-gray-100 dark:border-white/10 hover:shadow-md transition-shadow"
                 >
-                  <Icon className="h-6 w-6 text-[#0607E1] mb-2" />
-                  <h3 className="font-semibold text-gray-900 mb-1">{feature.title}</h3>
-                  <p className="text-sm text-gray-600">{feature.description}</p>
+                  <Icon className="h-6 w-6 text-[#0607E1] dark:text-white mb-2" />
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">{feature.title}</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">{feature.description}</p>
                 </motion.div>
               );
             })}

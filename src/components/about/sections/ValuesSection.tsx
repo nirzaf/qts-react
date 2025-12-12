@@ -27,12 +27,12 @@ export const ValuesSection: React.FC<ValuesContentProps> = ({
       variants={variants}
       className={`space-y-6 ${className}`}
     >
-      <h2 className="text-3xl font-bold text-gray-900">Our Values</h2>
+      <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Our Values</h2>
       <div className="grid gap-6">
         {values.map((value, index) => (
           <div key={index} className="space-y-2">
-            <h3 className="text-xl font-semibold text-gray-800">{value.title}</h3>
-            <p className="text-gray-600">{value.description}</p>
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{value.title}</h3>
+            <p className="text-gray-600 dark:text-gray-300">{value.description}</p>
           </div>
         ))}
       </div>

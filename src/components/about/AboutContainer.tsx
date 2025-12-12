@@ -37,7 +37,7 @@ const AboutContainer: React.FC<AboutContainerProps> = ({ children }) => {
         initial="initial"
         animate="animate"
         exit="exit"
-        className="min-h-screen bg-[#FFFFFF] pt-8"
+        className="min-h-screen bg-[#FFFFFF] dark:bg-[#050505] pt-8 text-neutral-900 dark:text-neutral-100"
       >
         {children}
       </motion.div>

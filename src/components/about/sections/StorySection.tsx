@@ -19,10 +19,10 @@ export const StorySection: React.FC<StoryContentProps> = ({
       variants={variants}
       className={`space-y-6 ${className}`}
     >
-      <h2 className="text-3xl font-bold text-gray-900">{title}</h2>
+      <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{title}</h2>
       <div className="space-y-4">
         {content.map((paragraph, index) => (
-          <p key={index} className="text-gray-600 leading-relaxed">
+          <p key={index} className="text-gray-600 dark:text-gray-300 leading-relaxed">
             {paragraph}
           </p>
         ))}
