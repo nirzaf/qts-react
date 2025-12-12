@@ -89,10 +89,12 @@ self.addEventListener('fetch', event => {
             }
             
             // Cache the new response
-            const responseClone = response.clone();
-            caches.open(CACHE_NAME).then(cache => {
-              cache.put(event.request, responseClone);
-            });
+            if (event.request.method === 'GET') {
+              const responseClone = response.clone();
+              caches.open(CACHE_NAME).then(cache => {
+                cache.put(event.request, responseClone);
+              });
+            }
             
             return response;
           });

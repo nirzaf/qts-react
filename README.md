@@ -1,5 +1,136 @@
 # Quadrate Tech Solutions
 
+> Innovative AI/ML-enabled technology solutions empowering businesses to excel in the global marketplace.
+
+## Table of Contents
+
+- [Documentation](#documentation)
+- [Technology Stack](#technology-stack)
+- [Development Setup](#development-setup)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [Company Overview](#company-overview)
+- [Leadership and Company Culture](#leadership-and-company-culture)
+- [Services and Solutions](#services-and-solutions)
+
+---
+
+## Documentation
+
+📑 **[View Master Index](docs/MASTER-INDEX.md)** - Complete navigation hub for all documentation
+
+Comprehensive guides for developers, designers, and stakeholders:
+
+### Architecture & Setup
+- [Project Overview and Migration](docs/project-overview-and-migration.md) - Stack, structure, and Next.js migration plan
+- [Engineering Operations Guide](docs/engineering-operations-guide.md) - Development standards, policies, and workflows
+- [Performance Optimization](docs/performance-optimization.md) - Bundle optimization and performance strategies
+
+### Features & Integrations
+- [AI Services Guide](docs/ai-services-guide.md) - AI service catalog architecture and integration
+- [Interview Assessment Guide](docs/interview-assessment-guide.md) - Assessment platform implementation
+- [Database Setup](src/database/README.md) - Supabase schema and setup instructions
+
+### Design & Animations
+- [Brand and Asset Catalog](docs/brand-and-asset-catalog.md) - Brand colors, logos, and design assets
+- [Hero Animation Guide](docs/hero-animation-guide.md) - Hero animation architecture and usage
+- [Warp Void Animation Guide](docs/warp-void-animation-guide.md) - Warp void background implementation
+- [Hyperspace Animation Guide](docs/hyperspace-animation-guide.md) - Hyperspace background for content pages
+
+---
+
+## Technology Stack
+
+- **Framework:** Next.js 16 (App Router) + React 19
+- **Language:** TypeScript 5.9
+- **Styling:** Tailwind CSS 3.4
+- **Animations:** Framer Motion 12, Three.js
+- **UI Components:** Radix UI
+- **Database:** Supabase (PostgreSQL)
+- **Package Manager:** Bun 1.0+
+- **Deployment:** Vercel
+- **Icons:** Lucide React
+
+See [Engineering Operations Guide](docs/engineering-operations-guide.md) for detailed standards and practices.
+
+---
+
+## Development Setup
+
+Follow these steps to run the project locally:
+
+1. Install **Bun 1.0** or newer from [bun.sh](https://bun.sh).
+2. Install dependencies:
+
+   ```bash
+   bun install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   bun run dev
+   ```
+
+   The application will be available at `http://localhost:3000`.
+
+4. Create a production build:
+
+   ```bash
+   bun run build
+   ```
+
+5. Serve the production build locally:
+
+   ```bash
+   bun start
+   ```
+
+---
+
+## Project Structure
+
+```
+qts-react/
+├── src/
+│   ├── app/          # Next.js App Router (primary)
+│   ├── pages/        # Legacy Pages Router
+│   ├── components/   # React components (sections, animations, ui)
+│   ├── data/         # Static data and content
+│   ├── lib/          # Utilities and helpers
+│   ├── services/     # API and external service integrations
+│   └── database/     # Database schemas and setup
+├── public/           # Static assets and blog content
+├── docs/             # Technical documentation
+└── scripts/          # Build and SEO generation scripts
+```
+
+See [Project Overview](docs/project-overview-and-migration.md) for complete architecture details.
+
+---
+
+## Contributing
+
+This project follows strict coding standards and development practices:
+
+### Development Workflow
+- Use Bun as the package manager
+- Follow the App Router pattern for new features
+- Run `bun run lint` before committing
+- Ensure `bun run build` succeeds
+
+### Standards
+- Review [Engineering Operations Guide](docs/engineering-operations-guide.md) for coding standards
+- Follow accessibility best practices
+- Maintain performance budgets
+- Use TypeScript strictly
+
+### Documentation
+- Update relevant docs in `/docs` when adding features
+- Keep README.md in sync with major changes
+
+---
+
 ## Company Overview  
 
 Quadrate Tech Solutions is an innovative and agile technology company dedicated to providing advanced solutions that enable businesses to excel in an increasingly competitive global marketplace. Specializing in AI/ML-enabled technologies, the company delivers comprehensive services designed to optimize processes, enhance productivity, and empower organizations to make data-driven decisions.  
@@ -81,35 +212,4 @@ By aligning its offerings with industry trends and maintaining a strategic focus
 
 Quadrate Tech Solutions exemplifies a forward-thinking approach to technology, innovation, and business growth. With a clear focus on SAP and AI/ML technologies, the company is well-equipped to address the evolving needs of global markets.  
 
-By investing in talent development, fostering a culture of innovation, and strengthening its strategic partnerships, Quadrate Tech Solutions is positioned to achieve sustained success. Through continued alignment with industry trends and a commitment to delivering exceptional solutions, the company is poised to remain a significant player in the global software development industry.  
-
-## Development Setup
-
-Follow these steps to run the project locally:
-
-1. Install **Bun 1.0** or newer from [bun.sh](https://bun.sh).
-2. Install dependencies:
-
-   ```bash
-   bun install
-   ```
-
-3. Start the development server:
-
-   ```bash
-   bun run dev
-   ```
-
-   The application will be available at `http://localhost:3000`.
-
-4. Create a production build:
-
-   ```bash
-   bun run build
-   ```
-
-5. Serve the production build locally:
-
-   ```bash
-   bun start
-   ```
+By investing in talent development, fostering a culture of innovation, and strengthening its strategic partnerships, Quadrate Tech Solutions is positioned to achieve sustained success. Through continued alignment with industry trends and a commitment to delivering exceptional solutions, the company is poised to remain a significant player in the global software development industry.
