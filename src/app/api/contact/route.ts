@@ -1,14 +1,22 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { name, email, subject, message, budget, timeline } = body;
 
-    const { data, error } = await resend.emails.send({
+    const transporter = nodemailer.createTransport({
+      host: "smtp.resend.com",
+      port: 465,
+      secure: true, // true for 465, false for other ports
+      auth: {
+        user: "resend",
+        pass: process.env.RESEND_API_KEY,
+      },
+    });
+
+    const mailOptions = {
       from: "onboarding@resend.dev",
       to: "quadrate.lk@gmail.com",
       replyTo: email,
@@ -23,13 +31,14 @@ export async function POST(req: Request) {
         <p><strong>Message:</strong></p>
         <p>${message}</p>
       `,
+    };
+
+    const info = await transporter.sendMail(mailOptions);
+
+    return NextResponse.json({
+      message: "Email sent successfully",
+      messageId: info.messageId,
     });
-
-    if (error) {
-      return NextResponse.json({ error }, { status: 400 });
-    }
-
-    return NextResponse.json(data);
   } catch (error) {
     console.error("Error sending email:", error);
     return NextResponse.json(
