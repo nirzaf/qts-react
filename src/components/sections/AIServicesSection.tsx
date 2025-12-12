@@ -60,20 +60,20 @@ const AIServicesSection: React.FC = () => {
           className="text-center mb-16"
         >
           <motion.div variants={itemVariants} className="flex items-center justify-center mb-4">
-            <Sparkles className="w-8 h-8 text-[#0607E1] mr-3" />
-            <span className="text-[#0607E1] font-semibold text-lg">AI-Powered Solutions</span>
+            <Sparkles className="w-8 h-8 text-[#0607E1] dark:text-white mr-3" />
+            <span className="text-[#0607E1] dark:text-white font-semibold text-lg dark:drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">AI-Powered Solutions</span>
           </motion.div>
 
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold text-foreground mb-6"
+            className="text-4xl md:text-5xl font-bold text-foreground dark:text-white mb-6 dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]"
           >
             Artificial Intelligence Services
           </motion.h2>
 
           <motion.p
             variants={itemVariants}
-            className="text-xl text-muted-foreground max-w-3xl mx-auto"
+            className="text-xl text-muted-foreground dark:text-white/80 max-w-3xl mx-auto dark:drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]"
           >
             Transform your business with cutting-edge AI solutions. From strategic consulting to custom model development,
             we help you harness the power of artificial intelligence.
@@ -94,8 +94,8 @@ const AIServicesSection: React.FC = () => {
               variants={itemVariants}
               onClick={() => setActiveCategory(category)}
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeCategory === category
-                  ? 'bg-primary text-primary-foreground shadow-lg'
-                  : 'bg-card text-muted-foreground hover:bg-primary/10 hover:text-primary border border-border'
+                  ? 'bg-primary text-primary-foreground shadow-lg dark:bg-white dark:text-[#0607E1] dark:drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]'
+                  : 'bg-card text-muted-foreground dark:text-white/70 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 dark:hover:text-white border border-border dark:border-white/20'
                 }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -113,7 +113,7 @@ const AIServicesSection: React.FC = () => {
           transition={{ duration: 0.3 }}
           className="text-center mb-12"
         >
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground dark:text-white/70 max-w-2xl mx-auto dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
             {getCategoryDescription(activeCategory)}
           </p>
         </motion.div>
@@ -131,7 +131,7 @@ const AIServicesSection: React.FC = () => {
               key={service.id}
               variants={cardVariants}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="group relative bg-card rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-border"
+              className="group relative bg-card dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-border dark:border-white/10"
             >
               {/* Background Gradient */}
               <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-500`} />
@@ -144,29 +144,29 @@ const AIServicesSection: React.FC = () => {
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="p-4 rounded-xl bg-primary/5 group-hover:bg-primary/10 transition-colors duration-300">
+                  <div className="p-4 rounded-xl bg-primary/5 dark:bg-white/10 group-hover:bg-primary/10 dark:group-hover:bg-white/20 transition-colors duration-300">
                     {React.createElement(service.icon, {
-                      className: "w-8 h-8 text-primary",
+                      className: "w-8 h-8 text-primary dark:text-white/90",
                       "aria-hidden": "true"
                     })}
                   </div>
                 </motion.div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-xl font-bold mb-3 text-foreground dark:text-white group-hover:text-primary dark:group-hover:text-white/95 transition-colors duration-300 dark:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]">
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-muted-foreground dark:text-white/70 mb-6 leading-relaxed dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
                   {service.description}
                 </p>
 
                 {/* Features */}
                 <ul className="space-y-2 mb-6">
                   {service.features.slice(0, 3).map((feature, index) => (
-                    <li key={index} className="flex items-center text-sm text-muted-foreground">
-                      <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
+                    <li key={index} className="flex items-center text-sm text-muted-foreground dark:text-white/60">
+                      <ChevronRight className="w-4 h-4 text-primary dark:text-white/80 mr-2 flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -174,7 +174,7 @@ const AIServicesSection: React.FC = () => {
 
                 {/* Learn More Link */}
                 <motion.div
-                  className="flex items-center text-primary font-semibold group-hover:translate-x-2 transition-transform duration-300"
+                  className="flex items-center text-primary dark:text-white font-semibold group-hover:translate-x-2 transition-transform duration-300"
                   whileHover={{ x: 5 }}
                 >
                   <span>Learn More</span>
@@ -194,15 +194,15 @@ const AIServicesSection: React.FC = () => {
           className="text-center mt-16"
         >
           <motion.div variants={itemVariants}>
-            <h3 className="text-2xl font-bold text-foreground mb-4">
+            <h3 className="text-2xl font-bold text-foreground dark:text-white mb-4 dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]">
               Ready to Transform Your Business with AI?
             </h3>
-            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+            <p className="text-muted-foreground dark:text-white/70 mb-8 max-w-2xl mx-auto dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
               Let's discuss how our AI solutions can drive innovation and growth for your organization.
             </p>
             <motion.a
               href="/contact"
-              className="inline-flex items-center px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-primary/90 transition-colors duration-300 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center px-8 py-4 bg-primary text-primary-foreground dark:bg-white dark:text-[#0607E1] font-semibold rounded-full hover:bg-primary/90 dark:hover:bg-white/90 transition-colors duration-300 shadow-lg hover:shadow-xl dark:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

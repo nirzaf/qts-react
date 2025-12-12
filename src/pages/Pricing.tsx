@@ -86,7 +86,7 @@ const Pricing: React.FC = () => {
           className="text-center mb-8"
           variants={itemVariants}
         >
-          <p className="text-black/70 text-lg max-w-2xl mx-auto">
+          <p className="text-black/70 dark:text-white/80 text-lg max-w-2xl mx-auto dark:drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]">
             Choose the perfect plan for your needs. All plans include our core features.
           </p>
         </motion.div>
@@ -102,8 +102,8 @@ const Pricing: React.FC = () => {
         {/* Custom Solution Section */}
         <motion.div
           variants={itemVariants}
-          className="mt-12 max-w-4xl mx-auto bg-white/80 backdrop-blur-sm
-                     border border-black/10 rounded-lg shadow-lg"
+          className="mt-12 max-w-4xl mx-auto bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm
+                     border border-black/10 dark:border-white/20 rounded-lg shadow-lg"
         >
           <CustomSolutionCard />
         </motion.div>
@@ -113,12 +113,12 @@ const Pricing: React.FC = () => {
           variants={itemVariants}
           className="mt-16 text-center"
         >
-          <p className="text-black/60">
+          <p className="text-black/60 dark:text-white/70 dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
             Have questions about our pricing? {' '}
             <a
               href="/contact"
-              className="text-black hover:text-black/80 transition-colors duration-200
-                       border-b border-black/20 hover:border-black/40"
+              className="text-black dark:text-white hover:text-black/80 dark:hover:text-white/90 transition-colors duration-200
+                       border-b border-black/20 dark:border-white/30 hover:border-black/40 dark:hover:border-white/50"
             >
               Contact our team
             </a>

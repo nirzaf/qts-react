@@ -82,11 +82,11 @@ const ServicesPage: React.FC = () => {
       ))}
 
 
-      <div className="relative overflow-hidden min-h-screen">
+      <div className="relative overflow-hidden min-h-screen bg-background">
         <BackgroundEffects />
 
         {/* Content */}
-        <div className="relative z-20 container mx-auto px-4">
+        <div className="relative z-20 container mx-auto px-4 py-16">
           <HeroSection />
 
           {/* Services Grid */}

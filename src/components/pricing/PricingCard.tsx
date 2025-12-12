@@ -85,23 +85,23 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, isPopular }) => 
     <TooltipProvider>
       <motion.div
         className={`h-full p-8 rounded-2xl border-2 ${isPopular
-            ? 'border-primary shadow-lg'
-            : 'border-border'
-          } bg-card flex flex-col justify-between relative`}
+            ? 'border-primary dark:border-white shadow-lg'
+            : 'border-border dark:border-white/20'
+          } bg-card dark:bg-gray-800 flex flex-col justify-between relative`}
         whileHover={{ y: -5 }}
       >
         {/* Plan Header */}
         <div>
           {isPopular && (
-            <span className="inline-block px-4 py-1 mb-4 text-sm font-medium text-primary-foreground bg-primary rounded-full">
+            <span className="inline-block px-4 py-1 mb-4 text-sm font-medium text-primary-foreground bg-primary dark:bg-white dark:text-[#0607E1] rounded-full dark:drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
               Most Popular
             </span>
           )}
-          <h3 className="text-2xl font-bold text-foreground">{plan.name}</h3>
-          <p className="mt-2 text-muted-foreground text-base">{plan.description}</p>
+          <h3 className="text-2xl font-bold text-foreground dark:text-white dark:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]">{plan.name}</h3>
+          <p className="mt-2 text-muted-foreground dark:text-white/70 text-base dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">{plan.description}</p>
           <div className="mt-4 mb-6">
-            <span className="text-4xl font-bold text-foreground">{plan.price}</span>
-            <span className="text-muted-foreground">/year</span>
+            <span className="text-4xl font-bold text-foreground dark:text-white dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]">{plan.price}</span>
+            <span className="text-muted-foreground dark:text-white/60">/year</span>
           </div>
         </div>
 
@@ -123,18 +123,18 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, isPopular }) => 
                   <span className="flex-shrink-0">
                     <Icon
                       size={18}
-                      className={`${isPopular ? 'text-primary' : 'text-foreground'}`}
+                      className={`${isPopular ? 'text-primary dark:text-white' : 'text-foreground dark:text-white/80'}`}
                     />
                   </span>
-                  <span className="text-foreground font-medium text-sm flex-grow">
+                  <span className="text-foreground dark:text-white/70 font-medium text-sm flex-grow">
                     {feature}
                   </span>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <button className="p-1 rounded-full hover:bg-primary/5 transition-colors">
+                      <button className="p-1 rounded-full hover:bg-primary/5 dark:hover:bg-white/10 transition-colors">
                         <FiInfo
                           size={16}
-                          className="text-muted-foreground hover:text-primary transition-colors"
+                          className="text-muted-foreground dark:text-white/60 hover:text-primary dark:hover:text-white transition-colors"
                         />
                       </button>
                     </TooltipTrigger>
@@ -154,8 +154,8 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, isPopular }) => 
           target="_blank"
           rel="noopener noreferrer"
           className={`w-full py-3 px-6 rounded-xl text-base font-medium transition-colors text-center ${isPopular
-              ? 'bg-primary text-primary-foreground hover:bg-primary/90'
-              : 'bg-muted text-foreground hover:bg-muted/80'
+              ? 'bg-primary text-primary-foreground dark:bg-white dark:text-[#0607E1] hover:bg-primary/90 dark:hover:bg-white/90 dark:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]'
+              : 'bg-muted text-foreground dark:bg-white/10 dark:text-white hover:bg-muted/80 dark:hover:bg-white/20'
             }`}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}

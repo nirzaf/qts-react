@@ -38,39 +38,39 @@
   }
 
   .dark {
-    /* High-contrast dark mode for excellent visibility */
-    --background: 222 47% 6%;
-    /* Very dark blue-gray #0D1117 */
-    --foreground: 210 40% 98%;
-    /* Almost white #F8FAFC */
-    --card: 222 47% 9%;
-    /* Slightly lighter for cards #131B25 */
-    --card-foreground: 210 40% 98%;
-    /* White text on cards */
-    --popover: 222 47% 9%;
-    --popover-foreground: 210 40% 98%;
+    /* Pure black/very dark background for dark mode */
+    --background: 0 0% 0%;
+    /* Pure black #000000 */
+    --foreground: 0 0% 100%;
+    /* Pure white */
+    --card: 0 0% 5%;
+    /* Very dark gray for cards #0D0D0D */
+    --card-foreground: 0 0% 100%;
+    /* Pure white text on cards */
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
     /* Brand: Chrysler Blue - brighter for dark mode visibility */
     --primary: 240 95% 70%;
     /* Brighter blue #6366F1 */
     --primary-foreground: 0 0% 100%;
     /* Pure white */
-    --secondary: 222 47% 15%;
-    /* Dark slate #1E293B */
-    --secondary-foreground: 210 40% 98%;
-    --muted: 222 47% 15%;
-    --muted-foreground: 215 20% 75%;
-    /* Light gray for muted text #A7B4C6 */
+    --secondary: 0 0% 10%;
+    /* Very dark gray #1A1A1A */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 70%;
+    /* Light gray for muted text */
     /* Accent: Visible in dark mode */
-    --accent: 240 50% 25%;
-    /* Dark blue accent */
-    --accent-foreground: 240 95% 80%;
-    /* Light blue text */
+    --accent: 0 0% 15%;
+    /* Dark gray accent */
+    --accent-foreground: 0 0% 95%;
+    /* Light gray text */
     --destructive: 0 72% 51%;
     /* Brighter red for dark mode */
     --destructive-foreground: 0 0% 100%;
-    --border: 217 33% 22%;
-    /* Visible border #2D3B4F */
-    --input: 217 33% 22%;
+    --border: 0 0% 20%;
+    /* Dark gray border */
+    --input: 0 0% 20%;
     --ring: 240 95% 70%;
     /* Match primary */
   }
