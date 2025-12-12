@@ -36,11 +36,19 @@ const ContactForm: FC<ContactFormProps> = ({ onBack }) => {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     try {
-      // TODO: Implement form submission logic
-      console.log('Form submitted:', formData);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error?.message || 'Failed to send message');
+      }
 
       toast({
         title: "Message Sent Successfully!",
