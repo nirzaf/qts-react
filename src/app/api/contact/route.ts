@@ -1,43 +1,40 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { name, email, subject, message, budget, timeline } = body;
 
-    const transporter = nodemailer.createTransport({
-      host: "smtp.resend.com",
-      port: 465,
-      secure: true, // true for 465, false for other ports
-      auth: {
-        user: "resend",
-        pass: process.env.RESEND_API_KEY,
-      },
-    });
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
-    const mailOptions = {
-      from: "onboarding@resend.dev",
-      to: "quadrate.lk@gmail.com",
+    const emailHtml = `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Subject:</strong> ${subject}</p>
+      <p><strong>Budget:</strong> ${budget}</p>
+      <p><strong>Timeline:</strong> ${timeline}</p>
+      <p><strong>Message:</strong></p>
+      <p>${message}</p>
+    `;
+
+    const { data, error } = await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+      to: process.env.RESEND_TO_EMAIL || "quadrate.lk@gmail.com",
       replyTo: email,
       subject: `New Contact Form Submission: ${subject}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Budget:</strong> ${budget}</p>
-        <p><strong>Timeline:</strong> ${timeline}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-      `,
-    };
+      html: emailHtml,
+    });
 
-    const info = await transporter.sendMail(mailOptions);
+    if (error) {
+      console.error("Resend error:", error);
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    }
 
     return NextResponse.json({
       message: "Email sent successfully",
-      messageId: info.messageId,
+      id: data?.id,
     });
   } catch (error) {
     console.error("Error sending email:", error);
