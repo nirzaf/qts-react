@@ -5,7 +5,9 @@
       "Bash(git push)",
       "Bash(bun run build:*)",
       "Bash(bun run dev)",
-      "Bash(npm i:*)"
+      "Bash(npm i:*)",
+      "Bash(rm:*)",
+      "Bash(mv:*)"
     ],
     "deny": [],
     "ask": []
